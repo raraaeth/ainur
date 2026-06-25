@@ -242,5 +242,14 @@ td.keluar{
     background:var(--primary);
 
 }
+/* ===========================
+   TABLE CARD
+=========================== */
+
+.table-card{
+
+    padding:12px;
+
+}
 
 
