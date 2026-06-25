@@ -185,6 +185,8 @@ function updateTable(){
 
     const data =
     getFilteredData();
+   
+    updateTableCounter(data);
 
     if(data.length===0){
 
@@ -218,6 +220,26 @@ function updateTable(){
     .join("");
 
 }
+
+/* ===========================
+   TABLE COUNTER
+=========================== */
+
+function updateTableCounter(filtered){
+
+    const counter =
+    document.getElementById(
+        "tableCounter"
+    );
+
+    if(!counter) return;
+
+    counter.textContent =
+
+    `Menampilkan ${filtered.length} dari ${Finance.table.length} transaksi`;
+
+}
+
 
 /* ===========================
    INIT FILTER
