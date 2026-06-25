@@ -121,7 +121,53 @@ function calculateSummary(){
 /* ===========================
    CATEGORY
 =========================== */
+function calculateCategory(){
 
+    const income = {};
+
+    const expense = {};
+
+    Finance.data.forEach(item=>{
+
+        if(item.type===TRANSACTION.INCOME){
+
+            income[item.category] =
+
+            (income[item.category]||0)
+
+            + item.amount;
+
+        }
+
+        else{
+
+            if(
+
+                item.category!==CATEGORY.WIFE
+
+            ){
+
+                expense[item.category] =
+
+                (expense[item.category]||0)
+
+                + item.amount;
+
+            }
+
+        }
+
+    });
+
+    Finance.category={
+
+        income,
+
+        expense
+
+    };
+
+}
 
 /* ===========================
    CHART
