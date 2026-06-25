@@ -71,11 +71,11 @@ const CATEGORY = {
 
     WIFE :
 
-    "Jatah istri",
+    "jatah istri",
 
     SAVING :
 
-    "Tabungan"
+    "tabungan"
 
 };
 
