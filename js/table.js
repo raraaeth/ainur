@@ -62,6 +62,41 @@ function populateFilters(){
 
 }
 
+function getFilteredData(){
+
+    const month =
+    document.getElementById("monthFilter").value;
+
+    const category =
+    document.getElementById("categoryFilter").value;
+
+    const type =
+    document.getElementById("typeFilter").value;
+
+    return Finance.table.filter(item=>{
+
+        const matchMonth =
+        month === "all" ||
+        item.month == Number(month);
+
+        const matchCategory =
+        category === "all" ||
+        item.category === category;
+
+        const matchType =
+        type === "all" ||
+        item.type === type.toLowerCase();
+
+        return (
+            matchMonth &&
+            matchCategory &&
+            matchType
+        );
+
+    });
+
+}
+
 /* ===========================
    SEARCH
 =========================== */
