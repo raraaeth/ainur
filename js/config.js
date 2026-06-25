@@ -100,6 +100,34 @@ const MONTH = [
 
 ];
 
+const MONTH_SHORT = [
+
+    "Jan",
+
+    "Feb",
+
+    "Mar",
+
+    "Apr",
+
+    "Mei",
+
+    "Jun",
+
+    "Jul",
+
+    "Agu",
+
+    "Sep",
+
+    "Okt",
+
+    "Nov",
+
+    "Des"
+
+];
+
 
 /* ===========================
    GLOBAL STORE
