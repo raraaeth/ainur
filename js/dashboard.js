@@ -14,7 +14,7 @@ function updateSummaryCard(){
     alert("Income = " + summary.income);
 
     document.getElementById("totalIncome").textContent =
-        formatCurrency(summary.income);
+    summary.income;
 
     document.getElementById("totalExpense").textContent =
         formatCurrency(summary.expense);
