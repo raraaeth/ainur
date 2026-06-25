@@ -186,6 +186,32 @@ function updateTable(){
     const data =
     getFilteredData();
 
+    if(data.length===0){
+
+        tbody.innerHTML = `
+
+        <tr>
+
+            <td
+                colspan="5"
+                class="empty-state">
+
+                📭<br><br>
+
+                Tidak ada transaksi
+                yang sesuai
+                dengan filter.
+
+            </td>
+
+        </tr>
+
+        `;
+
+        return;
+
+    }
+
     tbody.innerHTML =
     data
     .map(createTableRow)
