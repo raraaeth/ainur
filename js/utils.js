@@ -74,3 +74,13 @@ function $$(selector){
     return document.querySelectorAll(selector);
 
 }
+
+/* ===========================
+   MESSAGE
+=========================== */
+
+function showToast(message){
+
+    console.log(message);
+
+}
