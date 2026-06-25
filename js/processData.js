@@ -186,6 +186,10 @@ function calculateChart(){
 
             monthly[key]={
 
+                year:item.year,
+
+                month:item.month,
+
                 income:0,
 
                 expense:0
@@ -208,37 +212,45 @@ function calculateChart(){
 
     });
 
-    const result=
+    const result = Object.values(monthly)
 
-    Object.entries(monthly)
+        .sort((a,b)=>{
 
-    .sort()
+            if(a.year!==b.year){
 
-    .slice(-3);
+                return a.year-b.year;
 
-    Finance.chart={
+            }
+
+            return a.month-b.month;
+
+        })
+
+        .slice(-3);
+
+    Finance.charts={
 
         labels:result.map(
 
-            ([key])=>key
+            item=>MONTH_SHORT[item.month-1]
 
         ),
 
         income:result.map(
 
-            ([,value])=>value.income
+            item=>item.income
 
         ),
 
         expense:result.map(
 
-            ([,value])=>value.expense
+            item=>item.expense
 
         )
 
     };
 
-       }
+}
 
 /* ===========================
    TABLE
