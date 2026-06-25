@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Finance Dashboard</title>
+
+<!-- Google Font -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<!-- Font Awesome -->
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+<!-- CSS -->
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/cards.css">
+<link rel="stylesheet" href="css/chart.css">
+<link rel="stylesheet" href="css/table.css">
+<link rel="stylesheet" href="css/stats.css">
+<link rel="stylesheet" href="css/footer.css">
+<link rel="stylesheet" href="css/responsive.css">
+
+<!-- ChartJS -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<!-- =========================
+HEADER
+========================= -->
+
+<header class="header">
+
+<div>
+
+<h1 id="greetingTitle">
+Halo, Ainur 👋
+</h1>
+
+<p id="greetingText">
+Seberapa boros hari ini?
+</p>
+
+<span id="todayDate"></span>
+
+</div>
+
+<div class="header-action">
+
+<button id="refreshBtn">
+
+<i class="fa-solid fa-rotate-right"></i>
+
+Refresh
+
+</button>
+
+</div>
+
+</header>
+
+<!-- =========================
+SUMMARY
+========================= -->
+
+<section class="summary-grid">
+
+<div class="summary-card income">
+
+<span>Total Pemasukan</span>
+
+<h2 id="totalIncome">
+Rp0
+</h2>
+
+</div>
+
+<div class="summary-card expense">
+
+<span>Total Pengeluaran</span>
+
+<h2 id="totalExpense">
+Rp0
+</h2>
+
+</div>
+
+<div class="summary-card balance">
+
+<span>Sisa Saldo</span>
+
+<h2 id="remainingBalance">
+Rp0
+</h2>
+
+</div>
+
+<div class="summary-card saving">
+
+<span>Saving Rate</span>
+
+<h2 id="savingRate">
+0%
+</h2>
+
+</div>
+
+</section>
+
+<!-- =========================
+TABUNGAN
+========================= -->
+
+<section class="section">
+
+<div class="section-title">
+
+<h2>Dana Tabungan Kelolaan</h2>
+
+</div>
+
+<div class="summary-grid">
+
+<div class="summary-card">
+
+<span>Dana Diterima</span>
+
+<h3 id="savingIncome">
+Rp0
+</h3>
+
+</div>
+
+<div class="summary-card">
+
+<span>Dana Disetor</span>
+
+<h3 id="savingExpense">
+Rp0
+</h3>
+
+</div>
+
+<div class="summary-card">
+
+<span>Selisih</span>
+
+<h3 id="savingDifference">
+Rp0
+</h3>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- =========================
+CHART
+========================= -->
+
+<section class="section">
+
+<div class="section-title">
+
+<h2>Perbandingan 3 Bulan</h2>
+
+</div>
+
+<div class="chart-card">
+
+<canvas id="monthlyChart"></canvas>
+
+</div>
+
+</section>
+
+<!-- =========================
+TOP CATEGORY
+========================= -->
+
+<section class="top-grid">
+
+<div class="card">
+
+<h3>Top 3 Pemasukan</h3>
+
+<div id="topIncomeCategory">
+
+</div>
+
+</div>
+
+<div class="card">
+
+<h3>Top 3 Pengeluaran</h3>
+
+<div id="topExpenseCategory">
+
+</div>
+
+</div>
+
+</section>
+
+<!-- =========================
+FILTER
+========================= -->
+
+<section class="section">
+
+<div class="section-title">
+
+<h2>Filter Transaksi</h2>
+
+</div>
+
+<div class="filter-grid">
+
+<select id="monthFilter">
+
+<option value="all">
+Semua Bulan
+</option>
+
+</select>
+
+<select id="categoryFilter">
+
+<option value="all">
+Semua Kategori
+</option>
+
+</select>
+
+<select id="typeFilter">
+
+<option value="all">
+Semua Jenis
+</option>
+
+<option value="Masuk">
+Pemasukan
+</option>
+
+<option value="Keluar">
+Pengeluaran
+</option>
+
+</select>
+
+<input
+type="text"
+id="searchInput"
+placeholder="Cari transaksi...">
+
+</div>
+
+</section>
+
+<!-- =========================
+TRANSACTION
+========================= -->
+
+<section class="section">
+
+<div class="section-title">
+
+<h2>Riwayat Transaksi</h2>
+
+</div>
+
+<div class="table-wrapper">
+
+<table>
+
+<thead>
+
+<tr>
+
+<th>Tanggal</th>
+
+<th>Jenis</th>
+
+<th>Kategori</th>
+
+<th>Keterangan</th>
+
+<th>Nominal</th>
+
+</tr>
+
+</thead>
+
+<tbody id="transactionTable">
+
+</tbody>
+
+</table>
+
+</div>
+
+</section>
+
+<!-- =========================
+STATISTICS
+========================= -->
+
+<section class="section">
+
+<div class="section-title">
+
+<h2>Statistik</h2>
+
+</div>
+
+<div id="statisticsContainer"
+class="stats-grid">
+
+</div>
+
+</section>
+
+<!-- =========================
+INSIGHT
+========================= -->
+
+<section class="section">
+
+<div class="section-title">
+
+<h2>Insight</h2>
+
+</div>
+
+<div id="insightContainer"
+class="insight-box">
+
+</div>
+
+</section>
+
+<!-- =========================
+PROJECTS
+========================= -->
+
+<section class="section">
+
+<div class="section-title">
+
+<h2>My Projects</h2>
+
+</div>
+
+<div id="projectContainer"
+class="project-grid">
+
+</div>
+
+</section>
+
+<!-- =========================
+FOOTER
+========================= -->
+
+<footer class="footer">
+
+<p>
+
+Finance Dashboard v1.0
+
+</p>
+
+<p id="lastSync">
+
+Last Sync : -
+
+</p>
+
+</footer>
+
+</div>
+
+<!-- =========================
+JAVASCRIPT
+========================= -->
+
+<script src="js/config.js"></script>
+<script src="js/utils.js"></script>
+<script src="js/api.js"></script>
+<script src="js/processData.js"></script>
+<script src="js/dashboard.js"></script>
+<script src="js/charts.js"></script>
+<script src="js/table.js"></script>
+<script src="js/stats.js"></script>
+<script src="js/insight.js"></script>
+<script src="js/projects.js"></script>
+<script src="js/main.js"></script>
+
+</body>
+
+</html>
