@@ -270,4 +270,16 @@ td.keluar{
 
 }
 
+/* ===========================
+   TABLE COUNTER
+=========================== */
 
+.table-counter{
+
+    margin-bottom:14px;
+
+    color:var(--text-secondary);
+
+    font-size:.9rem;
+
+}
