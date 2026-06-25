@@ -10,6 +10,8 @@ function updateSummaryCard(){
 
     const summary = Finance.summary;
 
+    alert("Income = " + summary.income);
+
     document.getElementById("totalIncome").textContent =
         formatCurrency(summary.income);
 
