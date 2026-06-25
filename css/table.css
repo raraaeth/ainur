@@ -6,23 +6,195 @@
 /* ===========================
    FILTER
 =========================== */
+.filter-grid{
 
+    display:grid;
+
+    grid-template-columns:
+    repeat(auto-fit,minmax(180px,1fr));
+
+    gap:18px;
+
+    margin-bottom:24px;
+
+}
 
 /* ===========================
    SEARCH
 =========================== */
+.search-box{
 
+    position:relative;
+
+}
+
+.search-box i{
+
+    position:absolute;
+
+    left:15px;
+
+    top:50%;
+
+    transform:translateY(-50%);
+
+    color:var(--text-secondary);
+
+}
+
+.search-box input{
+
+    padding-left:42px;
+
+}
 
 /* ===========================
    TABLE
 =========================== */
+.table-wrapper{
 
+    overflow-x:auto;
+
+    background:var(--card);
+
+    border-radius:var(--radius-lg);
+
+    border:1px solid var(--border);
+
+    box-shadow:var(--shadow-sm);
+
+}
+
+table{
+
+    width:100%;
+
+    border-collapse:collapse;
+
+}
+
+thead{
+
+    background:#18263F;
+
+}
+
+thead th{
+
+    padding:18px;
+
+    text-align:left;
+
+    color:var(--text);
+
+    font-size:.92rem;
+
+    font-weight:600;
+
+}
+
+tbody td{
+
+    padding:16px 18px;
+
+    border-top:1px solid rgba(255,255,255,.05);
+
+    color:var(--text-secondary);
+
+}
+
+tbody tr{
+
+    transition:var(--transition);
+
+}
+
+tbody tr:hover{
+
+    background:rgba(255,255,255,.03);
+
+}
 
 /* ===========================
    TABLE BADGE
 =========================== */
+.type-income{
 
+    color:var(--success);
+
+    font-weight:600;
+
+}
+
+.type-expense{
+
+    color:var(--danger);
+
+    font-weight:600;
+
+}
+
+.amount-income{
+
+    color:var(--success);
+
+    font-weight:700;
+
+}
+
+.amount-expense{
+
+    color:var(--danger);
+
+    font-weight:700;
+
+}
 
 /* ===========================
    PAGINATION
 =========================== */
+.pagination{
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    gap:12px;
+
+    margin-top:24px;
+
+}
+
+.page-btn{
+
+    width:40px;
+
+    height:40px;
+
+    border-radius:50%;
+
+    background:var(--card);
+
+    border:1px solid var(--border);
+
+    color:var(--text);
+
+    transition:var(--transition);
+
+}
+
+.page-btn:hover{
+
+    background:var(--primary);
+
+}
+
+.page-btn.active{
+
+    background:var(--primary);
+
+}
+
+
