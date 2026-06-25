@@ -143,14 +143,19 @@ function createTableRow(item){
 
 function updateTable(){
 
-    const tbody = document.getElementById(
+    const tbody =
+    document.getElementById(
         "transactionTable"
     );
 
     if(!tbody) return;
 
-    tbody.innerHTML = Finance.table
-        .map(createTableRow)
-        .join("");
+    const data =
+    getFilteredData();
+
+    tbody.innerHTML =
+    data
+    .map(createTableRow)
+    .join("");
 
 }
