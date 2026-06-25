@@ -9,12 +9,9 @@
 function updateSummaryCard(){
 
     const summary = Finance.summary;
-   alert("updateSummaryCard jalan!");
-
-    alert("Income = " + summary.income);
 
     document.getElementById("totalIncome").textContent =
-    summary.income;
+        formatCurrency(summary.income);
 
     document.getElementById("totalExpense").textContent =
         formatCurrency(summary.expense);
