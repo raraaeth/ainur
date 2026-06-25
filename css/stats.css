@@ -6,23 +6,123 @@
 /* ===========================
    STATS GRID
 =========================== */
+.stats-grid{
 
+    display:grid;
+
+    grid-template-columns:
+    repeat(auto-fit,minmax(260px,1fr));
+
+    gap:20px;
+
+}
 
 /* ===========================
    STAT CARD
 =========================== */
 
+.stat-card{
 
+    background:var(--card);
+
+    border:1px solid var(--border);
+
+    border-radius:var(--radius-lg);
+
+    padding:24px;
+
+    transition:var(--transition);
+
+    box-shadow:var(--shadow-sm);
+
+}
+
+.stat-card:hover{
+
+    transform:translateY(-5px);
+
+    box-shadow:var(--shadow-md);
+
+}
+
+.stat-card h3{
+
+    margin-bottom:10px;
+
+}
+
+.stat-card p{
+
+    margin-top:8px;
+
+}
 /* ===========================
    FINANCIAL SCORE
 =========================== */
 
+.financial-score{
 
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    margin-top:12px;
+
+}
+
+.score-value{
+
+    font-size:2rem;
+
+    font-weight:700;
+
+    color:var(--primary);
+
+}
 /* ===========================
    INSIGHT
 =========================== */
+.insight-box{
 
+    background:linear-gradient(
+        145deg,
+        rgba(30,41,59,.95),
+        rgba(15,23,42,.95)
+    );
+
+    border:1px solid var(--border);
+
+    border-radius:var(--radius-lg);
+
+    padding:24px;
+
+    line-height:1.8;
+
+    box-shadow:var(--shadow-sm);
+
+}
 
 /* ===========================
    ANALYTICS
 =========================== */
+.analytics-item{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    padding:12px 0;
+
+    border-bottom:1px solid rgba(255,255,255,.05);
+
+}
+
+.analytics-item:last-child{
+
+    border:none;
+
+}
