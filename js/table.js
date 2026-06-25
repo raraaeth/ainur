@@ -6,7 +6,52 @@
 /* ===========================
    FILTER
 =========================== */
-// SOON
+function populateFilters(){
+
+    const monthFilter =
+    document.getElementById("monthFilter");
+
+    const categoryFilter =
+    document.getElementById("categoryFilter");
+
+    if(!monthFilter || !categoryFilter) return;
+
+    // Reset
+    monthFilter.innerHTML =
+    '<option value="all">Semua Bulan</option>';
+
+    categoryFilter.innerHTML =
+    '<option value="all">Semua Kategori</option>';
+
+    // Bulan
+    MONTH.forEach((name,index)=>{
+
+        monthFilter.innerHTML +=
+        `<option value="${index+1}">
+            ${name}
+        </option>`;
+
+    });
+
+    // Kategori unik
+    const categories = [
+        ...new Set(
+            Finance.data.map(
+                item=>item.category
+            )
+        )
+    ].sort();
+
+    categories.forEach(category=>{
+
+        categoryFilter.innerHTML +=
+        `<option value="${category}">
+            ${category}
+        </option>`;
+
+    });
+
+}
 
 /* ===========================
    SEARCH
