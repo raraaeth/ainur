@@ -75,25 +75,50 @@ function getFilteredData(){
 
     return Finance.table.filter(item=>{
 
-        const matchMonth =
-        month === "all" ||
-        item.month == Number(month);
+    const keyword =
+    getSearchKeyword();
 
-        const matchCategory =
-        category === "all" ||
-        item.category === category;
+    const matchMonth =
+    month === "all" ||
+    item.month == Number(month);
 
-        const matchType =
-        type === "all" ||
-        item.type === type.toLowerCase();
+    const matchCategory =
+    category === "all" ||
+    item.category === category;
 
-        return (
-            matchMonth &&
-            matchCategory &&
-            matchType
-        );
+    const matchType =
+    type === "all" ||
+    item.type === type.toLowerCase();
 
-    });
+    const matchSearch =
+
+        keyword === "" ||
+
+        item.description
+        .toLowerCase()
+        .includes(keyword) ||
+
+        item.category
+        .toLowerCase()
+        .includes(keyword) ||
+
+        item.type
+        .toLowerCase()
+        .includes(keyword) ||
+
+        String(item.amount)
+        .includes(keyword);
+
+    return (
+
+        matchMonth &&
+        matchCategory &&
+        matchType &&
+        matchSearch
+
+    );
+
+});
 
 }
 
@@ -101,7 +126,15 @@ function getFilteredData(){
    SEARCH
 =========================== */
 
-// SOON
+function getSearchKeyword(){
+
+    return document
+    .getElementById("searchInput")
+    .value
+    .trim()
+    .toLowerCase();
+
+}
 
 /* ===========================
    TABLE
@@ -186,5 +219,12 @@ function initFilters(){
         "change",
         updateTable
     );
+   
+   document
+.getElementById("searchInput")
+.addEventListener(
+    "input",
+    updateTable
+);
 
 }
