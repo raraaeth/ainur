@@ -111,3 +111,26 @@ const MONTH = [
     "Desember"
 
 ];
+
+
+/* ===========================
+   GLOBAL STORE
+=========================== */
+
+const Finance = {
+
+    raw : [],
+
+    data : [],
+
+    summary : {},
+
+    chart : {},
+
+    statistics : {},
+
+    insight : {},
+
+    table : []
+
+};
