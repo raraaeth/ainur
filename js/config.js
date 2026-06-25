@@ -141,7 +141,7 @@ const Finance = {
 
     summary : {},
 
-    chart : {},
+    charts : {},
 
     category : {},
 
