@@ -51,16 +51,30 @@
 /* ===========================
    TABLE
 =========================== */
-.table-wrapper{
+
 .table-wrapper{
 
+    width:100%;
+
     overflow-x:auto;
+
+    background:#151E2D;
+
+    border:1px solid rgba(255,255,255,.06);
+
+    border-radius:20px;
+
+    padding:12px;
+
+    margin-top:15px;
 
 }
 
 table{
 
     width:100%;
+
+    min-width:700px;
 
     border-collapse:collapse;
 
@@ -132,6 +146,28 @@ td.keluar{
     color:#EF4444;
 
     font-weight:600;
+
+}
+
+/* ===========================
+   TABLE WRAPPER
+=========================== */
+
+.table-wrapper{
+
+    width:100%;
+
+    overflow-x:auto;
+
+    background:#151E2D;
+
+    border:1px solid rgba(255,255,255,.06);
+
+    border-radius:20px;
+
+    padding:12px;
+
+    margin-top:15px;
 
 }
    
