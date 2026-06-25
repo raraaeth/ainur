@@ -16,11 +16,15 @@ document.addEventListener(
 
 async function init(){
 
-    console.log(APP.NAME,APP.VERSION);
-
     await fetchTransactions();
 
+    console.log("RAW", Finance.raw);
+
     processFinanceData();
+
+    console.log("DATA", Finance.data);
+
+    console.log("SUMMARY", Finance.summary);
 
     updateDashboard();
 
