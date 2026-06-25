@@ -52,16 +52,9 @@
    TABLE
 =========================== */
 .table-wrapper{
+.table-wrapper{
 
     overflow-x:auto;
-
-    background:var(--card);
-
-    border-radius:var(--radius-lg);
-
-    border:1px solid var(--border);
-
-    box-shadow:var(--shadow-sm);
 
 }
 
@@ -73,48 +66,75 @@ table{
 
 }
 
-thead{
+th,
+td{
 
-    background:#18263F;
-
-}
-
-thead th{
-
-    padding:18px;
+    padding:14px;
 
     text-align:left;
 
-    color:var(--text);
+    border-bottom:1px solid rgba(255,255,255,.08);
 
-    font-size:.92rem;
+}
+
+th{
+
+    font-size:.85rem;
+
+    color:#94A3B8;
+
+}
+
+td{
+
+    color:#F8FAFC;
+
+}
+
+.badge{
+
+    padding:4px 10px;
+
+    border-radius:20px;
+
+    font-size:.75rem;
 
     font-weight:600;
 
 }
 
-tbody td{
+.badge.masuk{
 
-    padding:16px 18px;
+    background:rgba(34,197,94,.15);
 
-    border-top:1px solid rgba(255,255,255,.05);
-
-    color:var(--text-secondary);
+    color:#22C55E;
 
 }
 
-tbody tr{
+.badge.keluar{
 
-    transition:var(--transition);
+    background:rgba(239,68,68,.15);
 
-}
-
-tbody tr:hover{
-
-    background:rgba(255,255,255,.03);
+    color:#EF4444;
 
 }
 
+td.masuk{
+
+    color:#22C55E;
+
+    font-weight:600;
+
+}
+
+td.keluar{
+
+    color:#EF4444;
+
+    font-weight:600;
+
+}
+   
 /* ===========================
    TABLE BADGE
 =========================== */
