@@ -18,16 +18,17 @@ async function init(){
 
     await fetchTransactions();
 
-    console.log("RAW", Finance.raw);
+processFinanceData();
 
-    processFinanceData();
+alert(
+"RAW = " + Finance.raw.length +
+"\nDATA = " + Finance.data.length +
+"\nIncome = " + Finance.summary.income +
+"\nExpense = " + Finance.summary.expense
+);
 
-    console.log("DATA", Finance.data);
+updateDashboard();
 
-    console.log("SUMMARY", Finance.summary);
-
-    updateDashboard();
-
-    updateCharts();
+updateCharts();
 
 }
