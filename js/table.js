@@ -8,39 +8,42 @@
 =========================== */
 function populateFilters(){
 
+    alert("1");
+
     const monthFilter =
     document.getElementById("monthFilter");
 
     const categoryFilter =
     document.getElementById("categoryFilter");
 
+    alert("2");
+
     if(!monthFilter || !categoryFilter) return;
 
-    // Reset
     monthFilter.innerHTML =
     '<option value="all">Semua Bulan</option>';
 
     categoryFilter.innerHTML =
     '<option value="all">Semua Kategori</option>';
 
-    // Bulan
+    alert("3");
+
     MONTH.forEach((name,index)=>{
 
         monthFilter.innerHTML +=
-        `<option value="${index+1}">
-            ${name}
-        </option>`;
+        `<option value="${index+1}">${name}</option>`;
 
     });
 
-    // Kategori unik
+    alert("4");
+
     const categories = [
         ...new Set(
-            Finance.data.map(
-                item=>item.category
-            )
+            Finance.data.map(item=>item.category)
         )
     ].sort();
+
+    alert("5");
 
     categories.forEach(category=>{
 
@@ -50,6 +53,8 @@ function populateFilters(){
         </option>`;
 
     });
+
+    alert("6");
 
 }
 
