@@ -21,9 +21,11 @@ async function init(){
     updateDashboard();
 
     updateCharts();
-   
-    updateTable();
-   
+
     populateFilters();
+
+    initFilters();
+
+    updateTable();
 
 }
