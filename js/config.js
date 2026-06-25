@@ -44,13 +44,9 @@ const CONFIG = {
 
 const TRANSACTION = {
 
-    INCOME :
+    INCOME : "masuk",
 
-    "Masuk",
-
-    EXPENSE :
-
-    "Keluar"
+    EXPENSE : "keluar"
 
 };
 
