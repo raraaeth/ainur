@@ -26,6 +26,8 @@ async function init(){
 
     await fetchTransactions();
 
-    console.table(transactions);
+    processFinanceData();
+
+    console.log(Finance);
 
 }
