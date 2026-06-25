@@ -9,6 +9,7 @@
 function updateSummaryCard(){
 
     const summary = Finance.summary;
+   alert("updateSummaryCard jalan!");
 
     alert("Income = " + summary.income);
 
