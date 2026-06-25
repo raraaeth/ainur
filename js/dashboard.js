@@ -41,3 +41,15 @@ function updateSavingCard(){
         formatCurrency(summary.savingDifference);
 
 }
+
+/* ===========================
+   UPDATE DASHBOARD
+=========================== */
+
+function updateDashboard(){
+
+    updateSummaryCard();
+
+    updateSavingCard();
+
+}
