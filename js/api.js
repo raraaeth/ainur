@@ -33,21 +33,21 @@ async function fetchTransactions(){
 
         const data = await response.json();
 
-        transactions = data.map(item=>({
+        Finance.raw = data.map(item=>({
 
-            date : item.Tanggal,
+    date:item.Tanggal,
 
-            type : item.Jenis,
+    type:item.Jenis,
 
-            category : item.Kategori,
+    category:item.Kategori,
 
-            description : item.Keterangan,
+    description:item.Keterangan,
 
-            amount : toNumber(item.Nominal)
+    amount:toNumber(item.Nominal)
 
-        }));
+}));
 
-        return transactions;
+        return Finance.raw;
 
     }
 
