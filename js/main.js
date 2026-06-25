@@ -23,5 +23,7 @@ async function init(){
     updateCharts();
    
     updateTable();
+   
+    populateFilters();
 
 }
