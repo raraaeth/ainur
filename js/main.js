@@ -18,14 +18,13 @@ async function init(){
 
     await fetchTransactions();
 
-processFinanceData();
+    processFinanceData();
 
-alert(
-"RAW = " + Finance.raw.length +
-"\nDATA = " + Finance.data.length +
-"\nIncome = " + Finance.summary.income +
-"\nExpense = " + Finance.summary.expense
-);
+    updateDashboard();
+
+    updateCharts();
+
+}
 
 updateDashboard();
 
