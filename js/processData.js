@@ -2,31 +2,63 @@
    Finance Dashboard v1.0
    File : processData.js
 ===================================================== */
+/* ===========================
+   NORMALIZE
+=========================== */
+function normalizeTransactions(){
+
+    Finance.data = Finance.raw.map(item=>{
+
+        const date = new Date(item.date);
+
+        return{
+
+            date,
+
+            day : date.getDate(),
+
+            month : date.getMonth()+1,
+
+            year : date.getFullYear(),
+
+            type : item.type,
+
+            category : item.category
+.trim()
+.toLowerCase(),
+            description : item.description,
+
+            amount : Number(item.amount)||0
+
+        };
+
+    });
+
+}
 
 /* ===========================
    SUMMARY
 =========================== */
-function getSummary(){
 
-    let income=0;
+function calculateSummary(){
 
-    let expense=0;
+    let income = 0;
+    let expense = 0;
 
-    let savingIncome=0;
+    let savingIncome = 0;
+    let savingExpense = 0;
 
-    let savingExpense=0;
-
-    transactions.forEach(item=>{
+    Finance.data.forEach(item=>{
 
         if(item.type===TRANSACTION.INCOME){
 
-            income+=item.amount;
+            income += item.amount;
 
         }
 
         if(item.type===TRANSACTION.EXPENSE){
 
-            expense+=item.amount;
+            expense += item.amount;
 
         }
 
@@ -38,7 +70,7 @@ function getSummary(){
 
         ){
 
-            savingIncome+=item.amount;
+            savingIncome += item.amount;
 
         }
 
@@ -50,39 +82,35 @@ function getSummary(){
 
         ){
 
-            savingExpense+=item.amount;
+            savingExpense += item.amount;
 
         }
 
     });
 
-    const balance=
-
-    income-expense;
-
-    const savingRate=
-
-    income===0
-
-    ?0
-
-    :((balance/income)*100);
-
-    return{
+    Finance.summary = {
 
         income,
 
         expense,
 
-        balance,
+        balance :
 
-        savingRate,
+        income-expense,
+
+        savingRate :
+
+        income===0
+
+        ?0
+
+        :((income-expense)/income)*100,
 
         savingIncome,
 
         savingExpense,
 
-        savingDifference:
+        savingDifference :
 
         savingIncome-savingExpense
 
