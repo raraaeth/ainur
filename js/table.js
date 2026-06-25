@@ -159,3 +159,32 @@ function updateTable(){
     .join("");
 
 }
+
+/* ===========================
+   INIT FILTER
+=========================== */
+
+function initFilters(){
+
+    document
+    .getElementById("monthFilter")
+    .addEventListener(
+        "change",
+        updateTable
+    );
+
+    document
+    .getElementById("categoryFilter")
+    .addEventListener(
+        "change",
+        updateTable
+    );
+
+    document
+    .getElementById("typeFilter")
+    .addEventListener(
+        "change",
+        updateTable
+    );
+
+}
