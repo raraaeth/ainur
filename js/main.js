@@ -20,6 +20,8 @@ async function init(){
 
     processFinanceData();
 
+    processPlanner();
+
     updateDashboard();
 
     updateCharts();
