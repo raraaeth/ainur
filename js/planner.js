@@ -247,6 +247,101 @@ function togglePlannerHistory(){
 
 }
 
+/* ===========================
+   HEADER REMINDER
+=========================== */
+
+function updatePlannerHeader(){
+
+    const container =
+
+    document.getElementById(
+
+        "plannerHeader"
+
+    );
+
+    if(!container) return;
+
+    const planner =
+
+    Finance.planner
+
+    .filter(item=>
+
+        !item.completed &&
+
+        item.status==="upcoming"
+
+    )
+
+    .sort(
+
+        (a,b)=>
+
+        a.daysLeft-b.daysLeft
+
+    )
+
+    .slice(0,3);
+
+    if(planner.length===0){
+
+        container.innerHTML=`
+
+        <p>
+
+        ✅ Tidak ada pengingat
+        dalam waktu dekat.
+
+        </p>
+
+        `;
+
+        return;
+
+    }
+
+    const icon={
+
+        birthday:"🎂",
+
+        anniversary:"💍",
+
+        reminder:"📄",
+
+        maintenance:"🔧"
+
+    };
+
+    container.innerHTML=
+
+    planner.map(item=>`
+
+        <div class="analytics-item">
+
+            <span>
+
+                ${icon[item.type]||"📌"}
+
+                <strong>
+
+                ${item.title}
+
+                </strong>
+
+                (${item.daysLeft} hari)
+
+            </span>
+
+        </div>
+
+    `).join("");
+
+}
+
+
+
 
 
 
