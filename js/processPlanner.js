@@ -103,6 +103,10 @@ function calculatePlannerStatus(){
 
         item.daysLeft = diff;
 
+        item.countdown =
+
+        formatPlannerCountdown(diff);
+
         if(diff < 0){
 
             item.status = "overdue";
@@ -134,6 +138,55 @@ function calculatePlannerStatus(){
     });
 
 }
+
+/* ===========================
+   FORMAT COUNTDOWN
+=========================== */
+
+function formatPlannerCountdown(days){
+
+    if(days<0){
+
+        return `Terlambat ${Math.abs(days)} hari`;
+
+    }
+
+    if(days===0){
+
+        return "Hari ini";
+
+    }
+
+    if(days===1){
+
+        return "Besok";
+
+    }
+
+    if(days<7){
+
+        return `${days} hari lagi`;
+
+    }
+
+    if(days<30){
+
+        const week =
+
+        Math.ceil(days/7);
+
+        return `${week} minggu lagi`;
+
+    }
+
+    const month =
+
+    Math.ceil(days/30);
+
+    return `${month} bulan lagi";
+
+}
+
 
 /* ===========================
    MATCH TRANSACTION
