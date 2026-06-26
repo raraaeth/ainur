@@ -220,19 +220,11 @@ function calculateChart(){
 
         /* ===== EXPENSE ===== */
 
-        if(
+if(item.type===TRANSACTION.EXPENSE){
 
-            item.type===TRANSACTION.EXPENSE &&
+    monthly[key].expense += item.amount;
 
-            !EXCLUDED_EXPENSE.includes(
-                item.category
-            )
-
-        ){
-
-            monthly[key].expense += item.amount;
-
-        }
+}
 
     });
 
