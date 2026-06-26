@@ -52,7 +52,9 @@ function createStatCard(
 
     value,
 
-    subtitle=""
+    subtitle="",
+
+    color=""
 
 ){
 
@@ -60,13 +62,17 @@ function createStatCard(
 
     <div class="stat-card">
 
-        <small>
+        <div class="stat-header">
 
-            <i class="${icon}"></i>
+            <small>
 
-            ${title}
+                ${title}
 
-        </small>
+            </small>
+
+            <i class="${icon} ${color}"></i>
+
+        </div>
 
         <h3>
 
@@ -85,6 +91,7 @@ function createStatCard(
     `;
 
 }
+
 /* ===========================
    UPDATE STATISTICS
 =========================== */
