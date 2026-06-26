@@ -152,3 +152,15 @@ const Finance = {
     table : []
 
 };
+
+/* ===========================
+   EXCLUDED EXPENSE
+=========================== */
+
+const EXCLUDED_EXPENSE = [
+
+    CATEGORY.WIFE,
+
+    CATEGORY.SAVING
+
+];
