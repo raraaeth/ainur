@@ -153,3 +153,54 @@
     border-bottom:none;
 
 }
+/* ===========================
+   STAT HEADER
+=========================== */
+
+.stat-header{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    margin-bottom:14px;
+
+}
+
+.stat-header i{
+
+    font-size:1.4rem;
+
+    opacity:.18;
+
+}
+
+/* ===========================
+   ICON COLOR
+=========================== */
+
+.icon-success{
+
+    color:var(--success);
+
+}
+
+.icon-danger{
+
+    color:var(--danger);
+
+}
+
+.icon-warning{
+
+    color:var(--warning);
+
+}
+
+.icon-primary{
+
+    color:var(--primary);
+
+}
