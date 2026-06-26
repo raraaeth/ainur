@@ -138,13 +138,15 @@ function calculateSummary(){
 /* ===========================
    CATEGORY
 =========================== */
+
 function calculateCategory(){
 
     const income = {};
-
     const expense = {};
 
     Finance.data.forEach(item=>{
+
+        /* ===== INCOME ===== */
 
         if(item.type===TRANSACTION.INCOME){
 
@@ -156,27 +158,29 @@ function calculateCategory(){
 
         }
 
-        else{
+        /* ===== EXPENSE ===== */
 
-            if(
+        if(
 
-                item.category!==CATEGORY.WIFE
+            item.type===TRANSACTION.EXPENSE &&
 
-            ){
+            !EXCLUDED_EXPENSE.includes(
+                item.category
+            )
 
-                expense[item.category] =
+        ){
 
-                (expense[item.category]||0)
+            expense[item.category] =
 
-                + item.amount;
+            (expense[item.category]||0)
 
-            }
+            + item.amount;
 
         }
 
     });
 
-    Finance.category={
+    Finance.category = {
 
         income,
 
@@ -189,6 +193,7 @@ function calculateCategory(){
 /* ===========================
    CHART
 =========================== */
+
 function calculateChart(){
 
     const monthly = {};
@@ -213,15 +218,27 @@ function calculateChart(){
 
         }
 
+        /* ===== INCOME ===== */
+
         if(item.type===TRANSACTION.INCOME){
 
-            monthly[key].income+=item.amount;
+            monthly[key].income += item.amount;
 
         }
 
-        else{
+        /* ===== EXPENSE ===== */
 
-            monthly[key].expense+=item.amount;
+        if(
+
+            item.type===TRANSACTION.EXPENSE &&
+
+            !EXCLUDED_EXPENSE.includes(
+                item.category
+            )
+
+        ){
+
+            monthly[key].expense += item.amount;
 
         }
 
@@ -246,21 +263,15 @@ function calculateChart(){
     Finance.charts={
 
         labels:result.map(
-
             item=>MONTH_SHORT[item.month-1]
-
         ),
 
         income:result.map(
-
             item=>item.income
-
         ),
 
         expense:result.map(
-
             item=>item.expense
-
         )
 
     };
@@ -309,30 +320,33 @@ function calculateStatistics(){
 
         /* ===== EXPENSE ===== */
 
-        if(item.type===TRANSACTION.EXPENSE){
+        if(
 
-            // Abaikan Jatah Istri
-            if(item.category!==CATEGORY.WIFE){
+            item.type===TRANSACTION.EXPENSE &&
 
-                stats.expenseByCategory[item.category]=
+            !EXCLUDED_EXPENSE.includes(
+                item.category
+            )
 
-                (stats.expenseByCategory[item.category]||0)
+        ){
 
-                + item.amount;
+            stats.expenseByCategory[item.category]=
 
-                if(
+            (stats.expenseByCategory[item.category]||0)
 
-                    !stats.highestExpense ||
+            + item.amount;
 
-                    item.amount>
+            if(
 
-                    stats.highestExpense.amount
+                !stats.highestExpense ||
 
-                ){
+                item.amount >
 
-                    stats.highestExpense=item;
+                stats.highestExpense.amount
 
-                }
+            ){
+
+                stats.highestExpense = item;
 
             }
 
@@ -352,13 +366,13 @@ function calculateStatistics(){
 
                 !stats.highestIncome ||
 
-                item.amount>
+                item.amount >
 
                 stats.highestIncome.amount
 
             ){
 
-                stats.highestIncome=item;
+                stats.highestIncome = item;
 
             }
 
@@ -366,7 +380,7 @@ function calculateStatistics(){
 
     });
 
-    Finance.statistics=stats;
+    Finance.statistics = stats;
 
 }
 
