@@ -30,4 +30,6 @@ async function init(){
    
     updateStatistics();
 
+    updateInsight();
+
 }
