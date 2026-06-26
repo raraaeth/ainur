@@ -220,6 +220,7 @@ function formatPlannerCountdown(days){
 }
 
 
+
 /* ===========================
    PLANNER STATUS
 =========================== */
@@ -232,13 +233,65 @@ function calculatePlannerStatus(){
 
     Finance.planner.forEach(item=>{
 
-        const target = new Date(item.date);
+        let target;
 
-        target.setHours(0,0,0,0);
+        /* ===== Event
+           (Birthday / Anniversary) ===== */
+
+        if(item.isEvent){
+
+            target = new Date(today);
+
+            target.setMonth(
+
+                item.date.getMonth()
+
+            );
+
+            target.setDate(
+
+                item.date.getDate()
+
+            );
+
+            target.setHours(
+
+                0,0,0,0
+
+            );
+
+            if(target < today){
+
+                target.setFullYear(
+
+                    target.getFullYear()+1
+
+                );
+
+            }
+
+        }
+
+        /* ===== Task
+           (Reminder / Maintenance) ===== */
+
+        else{
+
+            target = new Date(item.date);
+
+            target.setHours(
+
+                0,0,0,0
+
+            );
+
+        }
 
         const diff = Math.ceil(
 
-            (target - today) / 86400000
+            (target - today)
+
+            /86400000
 
         );
 
@@ -258,35 +311,47 @@ function calculatePlannerStatus(){
 
         ){
 
-            item.status = "completed";
+            item.status =
+
+            "completed";
 
         }
 
         else if(diff < 0){
 
-            item.status = "overdue";
+            item.status =
+
+            "overdue";
 
         }
 
         else if(diff === 0){
 
-            item.status = "today";
+            item.status =
+
+            "today";
 
         }
 
         else if(
 
-            diff <= item.reminderBefore
+            diff <=
+
+            item.reminderBefore
 
         ){
 
-            item.status = "upcoming";
+            item.status =
+
+            "upcoming";
 
         }
 
         else{
 
-            item.status = "waiting";
+            item.status =
+
+            "waiting";
 
         }
 
