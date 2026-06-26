@@ -15,9 +15,9 @@ function createPlannerItem(item){
 
         anniversary:"💍",
 
-        reminder:"📄",
+        maintenance:"🔧",
 
-        maintenance:"🔧"
+        reminder:"📄"
 
     };
 
@@ -59,6 +59,14 @@ function createPlannerItem(item){
 
             <small>
 
+                📅 ${formatDate(item.nextDate)}
+
+            </small>
+
+            <br>
+
+            <small>
+
                 ${item.note}
 
             </small>
@@ -93,7 +101,9 @@ function updatePlanner(){
 
     .filter(item=>
 
-        !item.completed
+        item.status !==
+
+        "completed"
 
     )
 
@@ -101,7 +111,9 @@ function updatePlanner(){
 
         (a,b)=>
 
-        a.daysLeft-b.daysLeft
+        a.daysLeft -
+
+        b.daysLeft
 
     )
 
@@ -109,19 +121,23 @@ function updatePlanner(){
 
     if(planner.length===0){
 
-        container.innerHTML=
+        container.innerHTML =
 
-        "<p>Tidak ada planner aktif 🎉</p>";
+        "<p>🎉 Tidak ada planner aktif.</p>";
 
         return;
 
     }
 
-    container.innerHTML=
+    container.innerHTML =
 
     planner
 
-    .map(createPlannerItem)
+    .map(
+
+        createPlannerItem
+
+    )
 
     .join("");
 
@@ -147,17 +163,25 @@ function updatePlannerHistory(){
 
     Finance.planner
 
-    .filter(item=>item.completed)
+    .filter(item=>
 
-    .sort(
+        item.status===
 
-        (a,b)=>
+        "completed"
 
-        b.transaction.date-
+    )
 
-        a.transaction.date
+    .sort((a,b)=>{
 
-    );
+        return(
+
+            b.lastTransaction.date-
+
+            a.lastTransaction.date
+
+        );
+
+    });
 
     if(history.length===0){
 
@@ -201,7 +225,19 @@ function updatePlannerHistory(){
 
                 <small>
 
-                    ${formatDate(item.transaction.date)}
+                    ${formatDate(
+
+                        item.lastTransaction.date
+
+                    )}
+
+                </small>
+
+                <br>
+
+                <small>
+
+                    ${item.note}
 
                 </small>
 
@@ -219,7 +255,7 @@ function updatePlannerHistory(){
 
     ){
 
-        container.innerHTML +=`
+        container.innerHTML+=`
 
         <div class="text-center mt-2">
 
@@ -265,6 +301,7 @@ function togglePlannerHistory(){
 
 }
 
+
 /* ===========================
    HEADER REMINDER
 =========================== */
@@ -287,9 +324,9 @@ function updatePlannerHeader(){
 
     .filter(item=>
 
-        !item.completed &&
+        item.status===
 
-        item.status==="upcoming"
+        "upcoming"
 
     )
 
@@ -297,7 +334,9 @@ function updatePlannerHeader(){
 
         (a,b)=>
 
-        a.daysLeft-b.daysLeft
+        a.daysLeft-
+
+        b.daysLeft
 
     )
 
@@ -305,12 +344,14 @@ function updatePlannerHeader(){
 
     if(planner.length===0){
 
-        container.innerHTML=`
+        container.innerHTML=
+
+        `
 
         <p>
 
-        ✅ Tidak ada pengingat
-        dalam waktu dekat.
+        ✅ Tidak ada reminder
+        terdekat.
 
         </p>
 
@@ -326,9 +367,9 @@ function updatePlannerHeader(){
 
         anniversary:"💍",
 
-        reminder:"📄",
+        maintenance:"🔧",
 
-        maintenance:"🔧"
+        reminder:"📄"
 
     };
 
@@ -344,7 +385,7 @@ function updatePlannerHeader(){
 
                 <strong>
 
-                ${item.title}
+                    ${item.title}
 
                 </strong>
 
@@ -357,8 +398,6 @@ function updatePlannerHeader(){
     `).join("");
 
 }
-
-
 
 
 
