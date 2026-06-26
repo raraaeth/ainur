@@ -108,3 +108,91 @@ function updatePlanner(){
     .join("");
 
 }
+
+/* ===========================
+   UPDATE PLANNER HISTORY
+=========================== */
+
+function updatePlannerHistory(){
+
+    const container =
+
+    document.getElementById(
+
+        "plannerHistoryContainer"
+
+    );
+
+    if(!container) return;
+
+    const history =
+
+    Finance.planner
+
+    .filter(
+
+        item=>item.completed
+
+    )
+
+    .sort(
+
+        (a,b)=>
+
+        b.transaction.date-
+
+        a.transaction.date
+
+    )
+
+    .slice(0,5);
+
+    if(history.length===0){
+
+        container.innerHTML=
+
+        "<p>Belum ada riwayat planner.</p>";
+
+        return;
+
+    }
+
+    container.innerHTML=
+
+    history
+
+    .map(item=>`
+
+        <div class="analytics-item">
+
+            <div>
+
+                <strong>
+
+                    ✔ ${item.title}
+
+                </strong>
+
+                <br>
+
+                <small>
+
+                    ${formatDate(
+
+                        item.transaction.date
+
+                    )}
+
+                </small>
+
+            </div>
+
+        </div>
+
+    `)
+
+    .join("");
+
+}
+
+
