@@ -51,7 +51,7 @@ function createPlannerItem(item){
 
                 ${priority[item.priority]}
 
-                ${item.daysLeft} hari lagi
+                ${item.countdown}
 
             </small>
 
