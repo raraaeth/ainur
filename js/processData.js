@@ -292,37 +292,38 @@ function calculateStatistics(){
 
     Finance.data.forEach(item=>{
 
+        /* ===== EXPENSE ===== */
+
         if(item.type===TRANSACTION.EXPENSE){
 
-            if(
-
-                item.category!==CATEGORY.WIFE
-
-            ){
+            // Abaikan Jatah Istri
+            if(item.category!==CATEGORY.WIFE){
 
                 stats.expenseByCategory[item.category]=
 
                 (stats.expenseByCategory[item.category]||0)
 
-                +item.amount;
+                + item.amount;
 
-            }
+                if(
 
-            if(
+                    !stats.highestExpense ||
 
-                !stats.highestExpense ||
+                    item.amount>
 
-                item.amount>
+                    stats.highestExpense.amount
 
-                stats.highestExpense.amount
+                ){
 
-            ){
+                    stats.highestExpense=item;
 
-                stats.highestExpense=item;
+                }
 
             }
 
         }
+
+        /* ===== INCOME ===== */
 
         if(item.type===TRANSACTION.INCOME){
 
@@ -330,7 +331,7 @@ function calculateStatistics(){
 
             (stats.incomeByCategory[item.category]||0)
 
-            +item.amount;
+            + item.amount;
 
             if(
 
