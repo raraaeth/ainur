@@ -35,5 +35,7 @@ async function init(){
     updateStatistics();
 
     updateInsight();
+   
+    updatePlanner();
 
 }
