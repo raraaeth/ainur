@@ -75,73 +75,49 @@ function calculatePlannerStatus(){
 
         let nextDate;
 
-if(
+        if(item.lastTransaction){
 
-    item.completed &&
+            nextDate = new Date(
 
-    item.transaction
+                item.lastTransaction.date
 
-){
+            );
 
-    nextDate = new Date(
+        }
 
-        item.transaction.date
+        else{
 
-    );
+            nextDate = new Date(
 
-    nextDate.setHours(
+                item.date
 
-        0,0,0,0
+            );
 
-    );
+        }
 
-    if(item.interval>0){
+        nextDate.setHours(
 
-        nextDate.setDate(
-
-            nextDate.getDate() +
-
-            item.interval
+            0,0,0,0
 
         );
 
-    }
+        while(
 
-}
+            nextDate < today &&
 
-else{
+            item.interval > 0
 
-    nextDate = new Date(
+        ){
 
-        item.date
+            nextDate.setDate(
 
-    );
+                nextDate.getDate() +
 
-    nextDate.setHours(
+                item.interval
 
-        0,0,0,0
+            );
 
-    );
-
-    while(
-
-        nextDate<today &&
-
-        item.interval>0
-
-    ){
-
-        nextDate.setDate(
-
-            nextDate.getDate() +
-
-            item.interval
-
-        );
-
-    }
-
-}
+        }
 
         const diff = Math.ceil(
 
@@ -249,21 +225,19 @@ function matchPlannerTransaction(){
     Finance.planner.forEach(planner=>{
 
         /* Birthday & Anniversary
-           tidak dicek transaksi */
+           tidak membutuhkan transaksi */
 
         if(!planner.keyword){
 
-            planner.completed = false;
-
-            planner.transaction = null;
+            planner.lastTransaction = null;
 
             return;
 
         }
 
-        const transaction =
+        const transactions =
 
-        Finance.data.find(item=>{
+        Finance.data.filter(item=>{
 
             return(
 
@@ -281,25 +255,25 @@ function matchPlannerTransaction(){
 
         });
 
-        if(transaction){
+        if(transactions.length===0){
 
-            planner.completed = true;
+            planner.lastTransaction = null;
 
-            planner.transaction = transaction;
-
-            planner.status =
-
-            "completed";
+            return;
 
         }
 
-        else{
+        transactions.sort(
 
-            planner.completed = false;
+            (a,b)=>
 
-            planner.transaction = null;
+            b.date-a.date
 
-        }
+        );
+
+        planner.lastTransaction =
+
+        transactions[0];
 
     });
 
