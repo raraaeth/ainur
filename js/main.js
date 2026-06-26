@@ -37,6 +37,8 @@ async function init(){
     updateInsight();
    
     updatePlanner();
+
+    updatePlannerHistory();
    
     updateLastSync();
 
