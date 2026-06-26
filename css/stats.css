@@ -171,9 +171,11 @@
 
 .stat-header i{
 
-    font-size:1.4rem;
+    font-size:1.8rem;
 
-    opacity:.18;
+    opacity:.45;
+
+    transition:var(--transition);
 
 }
 
