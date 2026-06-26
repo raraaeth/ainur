@@ -77,29 +77,17 @@ function calculatePlannerStatus(){
 
         if(item.lastTransaction){
 
-            nextDate = new Date(
-
-                item.lastTransaction.date
-
-            );
+            nextDate = new Date(item.lastTransaction.date);
 
         }
 
         else{
 
-            nextDate = new Date(
-
-                item.date
-
-            );
+            nextDate = new Date(item.date);
 
         }
 
-        nextDate.setHours(
-
-            0,0,0,0
-
-        );
+        nextDate.setHours(0,0,0,0);
 
         while(
 
@@ -121,9 +109,7 @@ function calculatePlannerStatus(){
 
         const diff = Math.ceil(
 
-            (nextDate - today)
-
-            /86400000
+            (nextDate - today) / 86400000
 
         );
 
@@ -131,48 +117,39 @@ function calculatePlannerStatus(){
 
         item.daysLeft = diff;
 
-        item.countdown =
+        item.countdown = formatPlannerCountdown(diff);
 
-        formatPlannerCountdown(diff);
-       item.completed =
+        item.completed = !!item.lastTransaction;
 
-       item.lastTransaction &&
+        if(item.completed){
 
-       item.lastTransaction.date >= item.date;
+            item.status = "completed";
 
-      if(item.completed){
+        }
 
-    item.status = "completed";
+        else if(diff < 0){
 
-}
+            item.status = "overdue";
 
-else if(diff < 0){
+        }
 
-    item.status = "overdue";
+        else if(diff === 0){
 
-}
+            item.status = "today";
 
-else if(diff === 0){
+        }
 
-    item.status = "today";
+        else if(diff <= item.reminderBefore){
 
-}
+            item.status = "upcoming";
 
-else if(
+        }
 
-    diff <= item.reminderBefore
+        else{
 
-){
+            item.status = "waiting";
 
-    item.status = "upcoming";
-
-}
-
-else{
-
-    item.status = "waiting";
-
-}
+        }
 
     });
 
