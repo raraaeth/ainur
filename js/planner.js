@@ -9,7 +9,7 @@
 
 function createPlannerItem(item){
 
-    const icon = {
+    const icon={
 
         birthday:"🎂",
 
@@ -18,6 +18,16 @@ function createPlannerItem(item){
         reminder:"📄",
 
         maintenance:"🔧"
+
+    };
+
+    const priority={
+
+        high:"🔴",
+
+        medium:"🟡",
+
+        low:"🔵"
 
     };
 
@@ -39,9 +49,17 @@ function createPlannerItem(item){
 
             <small>
 
-                ${item.daysLeft}
+                ${priority[item.priority]}
 
-                hari lagi
+                ${item.daysLeft} hari lagi
+
+            </small>
+
+            <br>
+
+            <small>
+
+                ${item.note}
 
             </small>
 
