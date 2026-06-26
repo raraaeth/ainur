@@ -52,17 +52,31 @@ function calculateSummary(){
 
     Finance.data.forEach(item=>{
 
+        /* ===== INCOME ===== */
+
         if(item.type===TRANSACTION.INCOME){
 
             income += item.amount;
 
         }
 
-        if(item.type===TRANSACTION.EXPENSE){
+        /* ===== EXPENSE ===== */
+
+        if(
+
+            item.type===TRANSACTION.EXPENSE &&
+
+            !EXCLUDED_EXPENSE.includes(
+                item.category
+            )
+
+        ){
 
             expense += item.amount;
 
         }
+
+        /* ===== SAVING ===== */
 
         if(
 
@@ -90,15 +104,16 @@ function calculateSummary(){
 
     });
 
+    const balance =
+    income - expense;
+
     Finance.summary = {
 
         income,
 
         expense,
 
-        balance :
-
-        income-expense,
+        balance,
 
         savingRate :
 
@@ -106,7 +121,7 @@ function calculateSummary(){
 
         ?0
 
-        :((income-expense)/income)*100,
+        :(balance/income)*100,
 
         savingIncome,
 
