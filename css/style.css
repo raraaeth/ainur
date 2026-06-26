@@ -310,17 +310,13 @@ select:focus{
 
 .header{
 
-    background:linear-gradient(
-        135deg,
-        #D1D5DB,
-        #E5E7EB
-    );
+    background:#BFC7D5;
 
     padding:28px;
 
     border-radius:var(--radius-lg);
 
-    border:1px solid #C5CCD6;
+    border:1px solid #AAB4C4;
 
     box-shadow:var(--shadow-md);
 
