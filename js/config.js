@@ -175,7 +175,11 @@ const Finance = {
 
     plannerRaw : [],
 
-    planner : []
+    planner : [],
+
+    plannerHistoryLimit : 5,
+
+    plannerHistoryExpand : false
 
 };
 
