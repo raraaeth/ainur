@@ -53,3 +53,27 @@ function updateDashboard(){
     updateSavingCard();
 
 }
+
+/* ===========================
+   LAST SYNC
+=========================== */
+
+function updateLastSync(){
+
+    const now = new Date();
+
+    document.getElementById(
+
+        "lastSync"
+
+    ).textContent =
+
+    "Last Sync : " +
+
+    now.toLocaleString(
+
+        "id-ID"
+
+    );
+
+}
