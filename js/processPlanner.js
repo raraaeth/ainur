@@ -181,9 +181,9 @@ function formatPlannerCountdown(days){
 
     const month =
 
-    Math.ceil(days/30);
+Math.ceil(days/30);
 
-    return `${month} bulan lagi";
+return `${month} bulan lagi`;
 
 }
 
