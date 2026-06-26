@@ -21,13 +21,15 @@ function createPlannerItem(item){
 
     };
 
-    const priority={
+    const badge={
 
-        high:"🔴",
+        today:"🟢 Hari Ini",
 
-        medium:"🟡",
+        upcoming:"🟡 Upcoming",
 
-        low:"🔵"
+        waiting:"⚪ Waiting",
+
+        overdue:"🔴 Overdue"
 
     };
 
@@ -49,9 +51,15 @@ function createPlannerItem(item){
 
             <small>
 
-                ${priority[item.priority]}
+                ${badge[item.status]}
 
-                ${item.countdown}
+            </small>
+
+            <br>
+
+            <small>
+
+                ⏳ ${item.countdown}
 
             </small>
 
@@ -95,33 +103,63 @@ function updatePlanner(){
 
     if(!container) return;
 
-    const planner =
+    const order={
+
+        today:0,
+
+        upcoming:1,
+
+        waiting:2,
+
+        overdue:3
+
+    };
+
+    const planner=
 
     Finance.planner
 
     .filter(item=>
 
-        item.status !==
-
-        "completed"
+        item.status!=="completed"
 
     )
 
-    .sort(
+    .sort((a,b)=>{
 
-        (a,b)=>
+        if(
 
-        a.daysLeft -
+            order[a.status]!==
 
-        b.daysLeft
+            order[b.status]
 
-    )
+        ){
+
+            return(
+
+                order[a.status]-
+
+                order[b.status]
+
+            );
+
+        }
+
+        return(
+
+            a.daysLeft-
+
+            b.daysLeft
+
+        );
+
+    })
 
     .slice(0,5);
 
     if(planner.length===0){
 
-        container.innerHTML =
+        container.innerHTML=
 
         "<p>🎉 Tidak ada planner aktif.</p>";
 
@@ -129,15 +167,11 @@ function updatePlanner(){
 
     }
 
-    container.innerHTML =
+    container.innerHTML=
 
     planner
 
-    .map(
-
-        createPlannerItem
-
-    )
+    .map(createPlannerItem)
 
     .join("");
 
@@ -149,7 +183,7 @@ function updatePlanner(){
 
 function updatePlannerHistory(){
 
-    const container =
+    const container=
 
     document.getElementById(
 
@@ -159,29 +193,25 @@ function updatePlannerHistory(){
 
     if(!container) return;
 
-    const history =
+    const history=
 
     Finance.planner
 
     .filter(item=>
 
-        item.status===
-
-        "completed"
+        item.lastTransaction
 
     )
 
-    .sort((a,b)=>{
+    .sort(
 
-        return(
+        (a,b)=>
 
-            b.lastTransaction.date-
+        b.lastTransaction.date-
 
-            a.lastTransaction.date
+        a.lastTransaction.date
 
-        );
-
-    });
+    );
 
     if(history.length===0){
 
@@ -193,13 +223,13 @@ function updatePlannerHistory(){
 
     }
 
-    const list =
+    const list=
 
     Finance.plannerHistoryExpand
 
-    ? history
+    ?history
 
-    : history.slice(
+    :history.slice(
 
         0,
 
@@ -225,19 +255,11 @@ function updatePlannerHistory(){
 
                 <small>
 
-                    ${formatDate(
+                    📅 ${formatDate(
 
                         item.lastTransaction.date
 
                     )}
-
-                </small>
-
-                <br>
-
-                <small>
-
-                    ${item.note}
 
                 </small>
 
@@ -247,45 +269,8 @@ function updatePlannerHistory(){
 
     `).join("");
 
-    if(
-
-        history.length>
-
-        Finance.plannerHistoryLimit
-
-    ){
-
-        container.innerHTML+=`
-
-        <div class="text-center mt-2">
-
-            <button
-
-            onclick="togglePlannerHistory()">
-
-            ${
-
-                Finance.plannerHistoryExpand
-
-                ?
-
-                "Tampilkan Lebih Sedikit"
-
-                :
-
-                "Tampilkan Semua"
-
-            }
-
-            </button>
-
-        </div>
-
-        `;
-
-    }
-
 }
+
 
 /* ===========================
    TOGGLE HISTORY
@@ -299,16 +284,14 @@ function togglePlannerHistory(){
 
     updatePlannerHistory();
 
-}
-
-
+       }
 /* ===========================
    HEADER REMINDER
 =========================== */
 
 function updatePlannerHeader(){
 
-    const container =
+    const container=
 
     document.getElementById(
 
@@ -318,15 +301,13 @@ function updatePlannerHeader(){
 
     if(!container) return;
 
-    const planner =
+    const planner=
 
     Finance.planner
 
     .filter(item=>
 
-        item.status===
-
-        "upcoming"
+        item.status!=="completed"
 
     )
 
@@ -346,16 +327,7 @@ function updatePlannerHeader(){
 
         container.innerHTML=
 
-        `
-
-        <p>
-
-        ✅ Tidak ada reminder
-        terdekat.
-
-        </p>
-
-        `;
+        "<p>✅ Tidak ada reminder.</p>";
 
         return;
 
@@ -381,7 +353,7 @@ function updatePlannerHeader(){
 
             <span>
 
-                ${icon[item.type]||"📌"}
+                ${icon[item.type]}
 
                 <strong>
 
@@ -389,7 +361,7 @@ function updatePlannerHeader(){
 
                 </strong>
 
-                (${item.daysLeft} hari)
+                (${item.countdown})
 
             </span>
 
@@ -398,7 +370,3 @@ function updatePlannerHeader(){
     `).join("");
 
 }
-
-
-
-
