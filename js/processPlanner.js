@@ -136,6 +136,73 @@ function calculatePlannerStatus(){
 }
 
 /* ===========================
+   MATCH TRANSACTION
+=========================== */
+
+function matchPlannerTransaction(){
+
+    Finance.planner.forEach(planner=>{
+
+        /* Birthday & Anniversary
+           tidak dicek transaksi */
+
+        if(!planner.keyword){
+
+            planner.completed = false;
+
+            planner.transaction = null;
+
+            return;
+
+        }
+
+        const transaction =
+
+        Finance.data.find(item=>{
+
+            return(
+
+                item.description
+
+                .toLowerCase()
+
+                .includes(
+
+                    planner.keyword
+
+                )
+
+            );
+
+        });
+
+        if(transaction){
+
+            planner.completed = true;
+
+            planner.transaction = transaction;
+
+            planner.status =
+
+            "completed";
+
+        }
+
+        else{
+
+            planner.completed = false;
+
+            planner.transaction = null;
+
+        }
+
+    });
+
+}
+
+
+
+/* ===========================
    PROCESS PLANNER
 =========================== */
 
@@ -144,6 +211,8 @@ function processPlanner(){
     normalizePlanner();
 
     calculatePlannerStatus();
+
+    matchPlannerTransaction();
 
 }
 
