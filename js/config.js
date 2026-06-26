@@ -21,19 +21,31 @@ const APP = {
    OPENSHEET
 =========================== */
 
+/* ===========================
+   OPENSHEET
+=========================== */
+
 const CONFIG = {
 
     SHEET_ID :
 
     "18SyIR5CwehYNStVL5DKpx18yhBj7On8slqsQ4-p_s-M",
 
-    SHEET_NAME :
+    TRANSACTION_SHEET :
 
     "transaksi",
 
-    API_URL :
+    PLANNER_SHEET :
 
-    "https://opensheet.elk.sh/18SyIR5CwehYNStVL5DKpx18yhBj7On8slqsQ4-p_s-M/transaksi"
+    "planner",
+
+    TRANSACTION_API_URL :
+
+    "https://opensheet.elk.sh/18SyIR5CwehYNStVL5DKpx18yhBj7On8slqsQ4-p_s-M/transaksi",
+
+    PLANNER_API_URL :
+
+    "https://opensheet.elk.sh/18SyIR5CwehYNStVL5DKpx18yhBj7On8slqsQ4-p_s-M/planner"
 
 };
 
@@ -133,11 +145,21 @@ const MONTH_SHORT = [
    GLOBAL STORE
 =========================== */
 
+/* ===========================
+   GLOBAL STORE
+=========================== */
+
 const Finance = {
+
+    /* ===== Transaction ===== */
 
     raw : [],
 
     data : [],
+
+    table : [],
+
+    /* ===== Summary ===== */
 
     summary : {},
 
@@ -149,7 +171,11 @@ const Finance = {
 
     insight : {},
 
-    table : []
+    /* ===== Planner ===== */
+
+    plannerRaw : [],
+
+    planner : []
 
 };
 
