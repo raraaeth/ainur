@@ -38,6 +38,7 @@ function normalizeTransactions(){
 
 }
 
+
 /* ===========================
    SUMMARY
 =========================== */
@@ -62,15 +63,7 @@ function calculateSummary(){
 
         /* ===== EXPENSE ===== */
 
-        if(
-
-            item.type===TRANSACTION.EXPENSE &&
-
-            !EXCLUDED_EXPENSE.includes(
-                item.category
-            )
-
-        ){
+        if(item.type===TRANSACTION.EXPENSE){
 
             expense += item.amount;
 
@@ -104,8 +97,7 @@ function calculateSummary(){
 
     });
 
-    const balance =
-    income - expense;
+    const balance = income - expense;
 
     Finance.summary = {
 
@@ -121,7 +113,7 @@ function calculateSummary(){
 
         ?0
 
-        :(balance/income)*100,
+        :(savingExpense/income)*100,
 
         savingIncome,
 
