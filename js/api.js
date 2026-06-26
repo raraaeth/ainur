@@ -3,14 +3,6 @@
    File : api.js
 ===================================================== */
 
-/* ===========================
-   FETCH DATA
-=========================== */
-/* =====================================================
-   Finance Dashboard v1.0
-   File : api.js
-===================================================== */
-
 let transactions = [];
 
 /* ===========================
@@ -21,7 +13,11 @@ async function fetchTransactions(){
 
     try{
 
-        const response = await fetch(CONFIG.API_URL);
+        const response = await fetch(
+
+    CONFIG.TRANSACTION_API_URL
+
+);
 
         if(!response.ok){
 
