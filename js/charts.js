@@ -60,11 +60,27 @@ function updateMonthlyChart(){
 
         options:{
 
-            responsive:true,
+    responsive:true,
 
-            maintainAspectRatio:false,
+    maintainAspectRatio:false,
 
-            plugins:{
+    layout:{
+
+        padding:{
+
+            top:10,
+
+            bottom:10,
+
+            left:0,
+
+            right:0
+
+        }
+
+    },
+
+    plugins:{
 
                 legend:{
 
