@@ -307,17 +307,20 @@ select:focus{
 /* ===========================
    HEADER
 =========================== */
-/* ===========================
-   HEADER
-=========================== */
 
 .header{
 
-    background:#F8FAFC;
+    background:linear-gradient(
+        135deg,
+        #D1D5DB,
+        #E5E7EB
+    );
 
     padding:28px;
 
     border-radius:var(--radius-lg);
+
+    border:1px solid #C5CCD6;
 
     box-shadow:var(--shadow-md);
 
@@ -329,11 +332,17 @@ select:focus{
 
     color:#0F172A;
 
+    font-weight:700;
+
+    margin-bottom:4px;
+
 }
 
 .header p{
 
-    color:#64748B;
+    color:#475569;
+
+    line-height:1.6;
 
 }
 
@@ -355,7 +364,7 @@ select:focus{
 
     margin-top:6px;
 
-    color:var(--primary);
+    color:#2563EB;
 
     font-weight:600;
 
@@ -367,7 +376,7 @@ select:focus{
 
     padding-top:18px;
 
-    border-top:1px solid #E5E7EB;
+    border-top:1px solid rgba(15,23,42,.12);
 
 }
 
