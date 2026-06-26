@@ -27,5 +27,7 @@ async function init(){
     initFilters();
 
     updateTable();
+   
+    updateStatistics();
 
 }
