@@ -129,11 +129,7 @@ function updatePlannerHistory(){
 
     Finance.planner
 
-    .filter(
-
-        item=>item.completed
-
-    )
+    .filter(item=>item.completed)
 
     .sort(
 
@@ -143,9 +139,7 @@ function updatePlannerHistory(){
 
         a.transaction.date
 
-    )
-
-    .slice(0,5);
+    );
 
     if(history.length===0){
 
@@ -157,11 +151,23 @@ function updatePlannerHistory(){
 
     }
 
+    const list =
+
+    Finance.plannerHistoryExpand
+
+    ? history
+
+    : history.slice(
+
+        0,
+
+        Finance.plannerHistoryLimit
+
+    );
+
     container.innerHTML=
 
-    history
-
-    .map(item=>`
+    list.map(item=>`
 
         <div class="analytics-item">
 
@@ -177,11 +183,7 @@ function updatePlannerHistory(){
 
                 <small>
 
-                    ${formatDate(
-
-                        item.transaction.date
-
-                    )}
+                    ${formatDate(item.transaction.date)}
 
                 </small>
 
@@ -189,10 +191,62 @@ function updatePlannerHistory(){
 
         </div>
 
-    `)
+    `).join("");
 
-    .join("");
+    if(
+
+        history.length>
+
+        Finance.plannerHistoryLimit
+
+    ){
+
+        container.innerHTML +=`
+
+        <div class="text-center mt-2">
+
+            <button
+
+            onclick="togglePlannerHistory()">
+
+            ${
+
+                Finance.plannerHistoryExpand
+
+                ?
+
+                "Tampilkan Lebih Sedikit"
+
+                :
+
+                "Tampilkan Semua"
+
+            }
+
+            </button>
+
+        </div>
+
+        `;
+
+    }
 
 }
+
+/* ===========================
+   TOGGLE HISTORY
+=========================== */
+
+function togglePlannerHistory(){
+
+    Finance.plannerHistoryExpand=
+
+    !Finance.plannerHistoryExpand;
+
+    updatePlannerHistory();
+
+}
+
+
 
 
