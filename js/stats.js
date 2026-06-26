@@ -1,95 +1,69 @@
 /* =====================================================
    Finance Dashboard v1.0
-   File : stats.js
+   File : stats.css
 ===================================================== */
 
 /* ===========================
-   UPDATE STATISTICS
+   STATS GRID
 =========================== */
 
-function updateStatistics(){
+.stats-grid{
 
-    const container =
-    document.getElementById(
-        "statisticsContainer"
-    );
+    display:grid;
 
-    if(!container) return;
+    grid-template-columns:
+    repeat(auto-fit,minmax(220px,1fr));
 
-    const stats =
-    Finance.statistics;
+    gap:20px;
 
-    const summary =
-    Finance.summary;
+}
 
-    const incomeAvg =
-    summary.income /
-    Math.max(
-        1,
-        Object.keys(
-            stats.incomeByCategory
-        ).length
-    );
+/* ===========================
+   STATS CARD
+=========================== */
 
-    const expenseAvg =
-    summary.expense /
-    Math.max(
-        1,
-        Object.keys(
-            stats.expenseByCategory
-        ).length
-    );
+.stats-card{
 
-    container.innerHTML = `
+    background:var(--card);
 
-    <div class="card">
+    border:1px solid var(--border);
 
-        <small>Total Transaksi</small>
+    border-radius:var(--radius-lg);
 
-        <h3>
+    padding:22px;
 
-            ${Finance.table.length}
+    box-shadow:var(--shadow-sm);
 
-        </h3>
+    transition:var(--transition);
 
-    </div>
+}
 
-    <div class="card">
+.stats-card:hover{
 
-        <small>Rata-rata Pemasukan</small>
+    transform:translateY(-4px);
 
-        <h3>
+    box-shadow:var(--shadow-md);
 
-            ${formatCurrency(incomeAvg)}
+}
 
-        </h3>
+.stats-card small{
 
-    </div>
+    display:block;
 
-    <div class="card">
+    color:var(--text-secondary);
 
-        <small>Rata-rata Pengeluaran</small>
+    margin-bottom:10px;
 
-        <h3>
+    font-size:.9rem;
 
-            ${formatCurrency(expenseAvg)}
+}
 
-        </h3>
+.stats-card h3{
 
-    </div>
+    font-size:1.5rem;
 
-    <div class="card">
+    font-weight:700;
 
-        <small>Saving Rate</small>
-
-        <h3>
-
-            ${summary.savingRate.toFixed(1)}%
-
-        </h3>
-
-    </div>
-
-    `;
+    color:var(--text);
 
 }
