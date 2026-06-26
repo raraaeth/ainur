@@ -19,28 +19,77 @@ function updateStatistics(){
     const stats =
     Finance.statistics;
 
+    const summary =
+    Finance.summary;
+
     const incomeAvg =
-
-        Finance.summary.income /
-
-        Math.max(
-            1,
-            Object.keys(
-                stats.incomeByCategory
-            ).length
-        );
+    summary.income /
+    Math.max(
+        1,
+        Object.keys(
+            stats.incomeByCategory
+        ).length
+    );
 
     const expenseAvg =
+    summary.expense /
+    Math.max(
+        1,
+        Object.keys(
+            stats.expenseByCategory
+        ).length
+    );
 
-        Finance.summary.expense /
+    container.innerHTML = `
 
-        Math.max(
-            1,
-            Object.keys(
-                stats.expenseByCategory
-            ).length
-        );
+    <div class="card">
 
-    container.innerHTML = "";
+        <small>Total Transaksi</small>
+
+        <h3>
+
+            ${Finance.table.length}
+
+        </h3>
+
+    </div>
+
+    <div class="card">
+
+        <small>Rata-rata Pemasukan</small>
+
+        <h3>
+
+            ${formatCurrency(incomeAvg)}
+
+        </h3>
+
+    </div>
+
+    <div class="card">
+
+        <small>Rata-rata Pengeluaran</small>
+
+        <h3>
+
+            ${formatCurrency(expenseAvg)}
+
+        </h3>
+
+    </div>
+
+    <div class="card">
+
+        <small>Saving Rate</small>
+
+        <h3>
+
+            ${summary.savingRate.toFixed(1)}%
+
+        </h3>
+
+    </div>
+
+    `;
 
 }
