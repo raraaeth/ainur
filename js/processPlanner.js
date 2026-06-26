@@ -73,23 +73,75 @@ function calculatePlannerStatus(){
 
     Finance.planner.forEach(item=>{
 
-        const target = new Date(item.date);
+        let nextDate;
 
-        target.setHours(0,0,0,0);
+if(
 
-        let nextDate = new Date(target);
+    item.completed &&
 
-        while(nextDate < today && item.interval > 0){
+    item.transaction
 
-            nextDate.setDate(
+){
 
-                nextDate.getDate() +
+    nextDate = new Date(
 
-                item.interval
+        item.transaction.date
 
-            );
+    );
 
-        }
+    nextDate.setHours(
+
+        0,0,0,0
+
+    );
+
+    if(item.interval>0){
+
+        nextDate.setDate(
+
+            nextDate.getDate() +
+
+            item.interval
+
+        );
+
+    }
+
+}
+
+else{
+
+    nextDate = new Date(
+
+        item.date
+
+    );
+
+    nextDate.setHours(
+
+        0,0,0,0
+
+    );
+
+    while(
+
+        nextDate<today &&
+
+        item.interval>0
+
+    ){
+
+        nextDate.setDate(
+
+            nextDate.getDate() +
+
+            item.interval
+
+        );
+
+    }
+
+}
 
         const diff = Math.ceil(
 
@@ -263,9 +315,9 @@ function processPlanner(){
 
     normalizePlanner();
 
-    calculatePlannerStatus();
-
     matchPlannerTransaction();
+
+    calculatePlannerStatus();
 
 }
 
