@@ -139,6 +139,16 @@ function updateStatistics(){
         ).length
     );
 
+    const incomePercent =
+    summary.income===0
+    ?0
+    :(topIncome.amount/summary.income)*100;
+
+    const expensePercent =
+    summary.expense===0
+    ?0
+    :(topExpense.amount/summary.expense)*100;
+
     container.innerHTML =
 
         createStatCard(
@@ -155,7 +165,9 @@ function updateStatistics(){
 
             stats.highestIncome
             ? stats.highestIncome.category
-            : ""
+            : "",
+
+            "icon-success"
 
         )
 
@@ -175,7 +187,9 @@ function updateStatistics(){
 
             stats.highestExpense
             ? stats.highestExpense.category
-            : ""
+            : "",
+
+            "icon-danger"
 
         )
 
@@ -189,7 +203,10 @@ function updateStatistics(){
 
             Finance.table.length,
 
-            "Semua transaksi"
+            `${Object.keys(stats.incomeByCategory).length}
+            kategori pemasukan`,
+
+            "icon-primary"
 
         )
 
@@ -201,10 +218,11 @@ function updateStatistics(){
 
             "Saving Rate",
 
-            summary.savingRate
-            .toFixed(1)+"%",
+            summary.savingRate.toFixed(1)+"%",
 
-            "Dari total pemasukan"
+            "Persentase sisa dari pemasukan",
+
+            "icon-warning"
 
         )
 
@@ -220,7 +238,9 @@ function updateStatistics(){
                 incomeAvg
             ),
 
-            "Per kategori"
+            "Per kategori",
+
+            "icon-success"
 
         )
 
@@ -236,7 +256,9 @@ function updateStatistics(){
                 expenseAvg
             ),
 
-            "Per kategori"
+            "Per kategori",
+
+            "icon-danger"
 
         )
 
@@ -246,13 +268,13 @@ function updateStatistics(){
 
             "fa-solid fa-trophy",
 
-            "Kategori Pemasukan",
+            "Top Kategori Pemasukan",
 
             topIncome.name,
 
-            formatCurrency(
-                topIncome.amount
-            )
+            `${incomePercent.toFixed(1)}% dari pemasukan`,
+
+            "icon-success"
 
         )
 
@@ -262,16 +284,18 @@ function updateStatistics(){
 
             "fa-solid fa-fire",
 
-            "Kategori Pengeluaran",
+            "Top Kategori Pengeluaran",
 
             topExpense.name,
 
-            formatCurrency(
-                topExpense.amount
-            )
+            `${expensePercent.toFixed(1)}% dari pengeluaran`,
+
+            "icon-warning"
 
         );
 
-       }
+      }
 
+
+        
 
