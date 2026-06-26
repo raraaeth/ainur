@@ -2,7 +2,6 @@
    Life Dashboard v1.0
    File : processPlanner.js
 ===================================================== */
-
 /* ===========================
    NORMALIZE PLANNER
 =========================== */
@@ -13,17 +12,19 @@ function normalizePlanner(){
 
     Finance.plannerRaw.map(item=>{
 
+        const type =
+
+        item.Jenis
+        .trim()
+        .toLowerCase();
+
         return{
 
             title :
 
             item.Judul,
 
-            type :
-
-            item.Jenis
-            .trim()
-            .toLowerCase(),
+            type,
 
             date :
 
@@ -41,7 +42,7 @@ function normalizePlanner(){
 
             priority :
 
-            item.Priority
+            (item.Priority||"low")
             .trim()
             .toLowerCase(),
 
@@ -53,13 +54,40 @@ function normalizePlanner(){
 
             note :
 
-            item.Catatan||""
+            item.Catatan||"",
+
+            isEvent :
+
+            [
+                "birthday",
+                "anniversary"
+            ].includes(type),
+
+            isTask :
+
+            [
+                "maintenance",
+                "reminder"
+            ].includes(type),
+
+            lastTransaction : null,
+
+            nextDate : null,
+
+            daysLeft : 0,
+
+            countdown : "",
+
+            completed : false,
+
+            status : "waiting"
 
         };
 
     });
 
 }
+
 
 /* ===========================
    PLANNER STATUS
@@ -69,85 +97,135 @@ function calculatePlannerStatus(){
 
     const today = new Date();
 
-    today.setHours(0,0,0,0);
+    today.setHours(
+
+        0,0,0,0
+
+    );
 
     Finance.planner.forEach(item=>{
 
-        let nextDate;
+        const target =
 
-        if(item.lastTransaction){
+        new Date(item.date);
 
-            nextDate = new Date(item.lastTransaction.date);
+        target.setHours(
 
-        }
-
-        else{
-
-            nextDate = new Date(item.date);
-
-        }
-
-        nextDate.setHours(0,0,0,0);
-
-        while(
-
-            nextDate < today &&
-
-            item.interval > 0
-
-        ){
-
-            nextDate.setDate(
-
-                nextDate.getDate() +
-
-                item.interval
-
-            );
-
-        }
-
-        const diff = Math.ceil(
-
-            (nextDate - today) / 86400000
+            0,0,0,0
 
         );
 
-        item.nextDate = nextDate;
+        const diff = Math.ceil(
+
+            (target - today)
+
+            /86400000
+
+        );
+
+        item.nextDate = target;
 
         item.daysLeft = diff;
 
-        item.countdown = formatPlannerCountdown(diff);
+        item.countdown =
 
-        item.completed = !!item.lastTransaction;
+        formatPlannerCountdown(diff);
+
+        /* ===================
+           EVENT
+        =================== */
+
+        if(item.isEvent){
+
+            if(diff < 0){
+
+                item.status =
+
+                "overdue";
+
+            }
+
+            else if(diff === 0){
+
+                item.status =
+
+                "today";
+
+            }
+
+            else if(
+
+                diff <=
+
+                item.reminderBefore
+
+            ){
+
+                item.status =
+
+                "upcoming";
+
+            }
+
+            else{
+
+                item.status =
+
+                "waiting";
+
+            }
+
+            return;
+
+        }
+
+        /* ===================
+           TASK
+        =================== */
 
         if(item.completed){
 
-            item.status = "completed";
+            item.status =
+
+            "completed";
 
         }
 
         else if(diff < 0){
 
-            item.status = "overdue";
+            item.status =
+
+            "overdue";
 
         }
 
         else if(diff === 0){
 
-            item.status = "today";
+            item.status =
+
+            "today";
 
         }
 
-        else if(diff <= item.reminderBefore){
+        else if(
 
-            item.status = "upcoming";
+            diff <=
+
+            item.reminderBefore
+
+        ){
+
+            item.status =
+
+            "upcoming";
 
         }
 
         else{
 
-            item.status = "waiting";
+            item.status =
+
+            "waiting";
 
         }
 
@@ -203,6 +281,66 @@ return `${month} bulan lagi`;
 
 }
 
+/* ===========================
+   NEXT DUE DATE
+=========================== */
+
+function getNextDueDate(item){
+
+    let nextDate;
+
+    if(item.lastTransaction){
+
+        nextDate =
+
+        new Date(
+
+            item.lastTransaction.date
+
+        );
+
+    }
+
+    else{
+
+        nextDate =
+
+        new Date(
+
+            item.date
+
+        );
+
+    }
+
+    nextDate.setHours(
+
+        0,0,0,0
+
+    );
+
+    while(
+
+        nextDate < new Date() &&
+
+        item.interval > 0
+
+    ){
+
+        nextDate.setDate(
+
+            nextDate.getDate() +
+
+            item.interval
+
+        );
+
+    }
+
+    return nextDate;
+
+}
+
 
 /* ===========================
    MATCH TRANSACTION
@@ -212,12 +350,25 @@ function matchPlannerTransaction(){
 
     Finance.planner.forEach(planner=>{
 
-        /* Birthday & Anniversary
-           tidak membutuhkan transaksi */
+        /* Event tidak membutuhkan transaksi */
+
+        if(planner.isEvent){
+
+            planner.lastTransaction = null;
+
+            planner.completed = false;
+
+            return;
+
+        }
+
+        /* Task tanpa keyword */
 
         if(!planner.keyword){
 
             planner.lastTransaction = null;
+
+            planner.completed = false;
 
             return;
 
@@ -227,9 +378,7 @@ function matchPlannerTransaction(){
 
         Finance.data.filter(item=>{
 
-            return(
-
-                item.description
+            return item.description
 
                 .toLowerCase()
 
@@ -237,15 +386,15 @@ function matchPlannerTransaction(){
 
                     planner.keyword
 
-                )
-
-            );
+                );
 
         });
 
         if(transactions.length===0){
 
             planner.lastTransaction = null;
+
+            planner.completed = false;
 
             return;
 
@@ -263,11 +412,11 @@ function matchPlannerTransaction(){
 
         transactions[0];
 
+        planner.completed = true;
+
     });
 
 }
-
-
 
 /* ===========================
    PROCESS PLANNER
