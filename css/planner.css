@@ -1,0 +1,269 @@
+/* =====================================================
+   Life Dashboard v1.0
+   File : planner.css
+===================================================== */
+
+/* ===========================
+   PLANNER CONTAINER
+=========================== */
+
+.planner-card{
+
+    background:var(--card);
+
+    border:1px solid var(--border);
+
+    border-radius:var(--radius-lg);
+
+    padding:24px;
+
+    box-shadow:var(--shadow-sm);
+
+}
+
+.planner-title{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    margin-bottom:18px;
+
+}
+
+.planner-title h2{
+
+    font-size:1.15rem;
+
+    font-weight:600;
+
+}
+
+.planner-title small{
+
+    color:var(--text-secondary);
+
+}
+
+/* ===========================
+   PLANNER LIST
+=========================== */
+
+#plannerContainer{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:14px;
+
+}
+
+.analytics-item{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:flex-start;
+
+    padding:16px;
+
+    background:rgba(255,255,255,.03);
+
+    border:1px solid rgba(255,255,255,.06);
+
+    border-left:4px solid var(--primary);
+
+    border-radius:14px;
+
+    transition:var(--transition);
+
+}
+
+.analytics-item:hover{
+
+    transform:translateY(-2px);
+
+    box-shadow:var(--shadow-md);
+
+    border-left-color:#38BDF8;
+
+}
+
+/* ===========================
+   ITEM TEXT
+=========================== */
+
+.analytics-item strong{
+
+    display:block;
+
+    font-size:15px;
+
+    color:#F8FAFC;
+
+    margin-bottom:4px;
+
+}
+
+.analytics-item small{
+
+    display:block;
+
+    color:#94A3B8;
+
+    line-height:1.6;
+
+    font-size:.82rem;
+
+}
+
+/* ===========================
+   STATUS BADGE
+=========================== */
+
+.badge{
+
+    display:inline-block;
+
+    padding:4px 10px;
+
+    border-radius:999px;
+
+    font-size:11px;
+
+    font-weight:600;
+
+    margin-bottom:6px;
+
+}
+
+.badge.today{
+
+    background:#14532D;
+
+    color:#86EFAC;
+
+}
+
+.badge.upcoming{
+
+    background:#78350F;
+
+    color:#FACC15;
+
+}
+
+.badge.waiting{
+
+    background:#334155;
+
+    color:#CBD5E1;
+
+}
+
+.badge.overdue{
+
+    background:#7F1D1D;
+
+    color:#FCA5A5;
+
+}
+/* ===========================
+   HEADER REMINDER
+=========================== */
+
+#plannerHeader{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:12px;
+
+    margin-top:18px;
+
+}
+
+#plannerHeader .analytics-item{
+
+    padding:12px 16px;
+
+}
+/* ===========================
+   HISTORY
+=========================== */
+
+#plannerHistoryContainer{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:12px;
+
+}
+
+#plannerHistoryContainer .analytics-item{
+
+    border-left-color:#22C55E;
+
+}
+/* ===========================
+   BUTTON
+=========================== */
+
+#plannerHistoryContainer button{
+
+    padding:10px 16px;
+
+    border:none;
+
+    border-radius:10px;
+
+    background:var(--primary);
+
+    color:#fff;
+
+    cursor:pointer;
+
+    transition:.25s;
+
+}
+
+#plannerHistoryContainer button:hover{
+
+    opacity:.9;
+
+}
+/* ===========================
+   RESPONSIVE
+=========================== */
+
+@media(max-width:768px){
+
+    .analytics-item{
+
+        padding:14px;
+
+    }
+
+    .planner-card{
+
+        padding:18px;
+
+    }
+
+}
+
+
+
+
+
+
+
+
+
