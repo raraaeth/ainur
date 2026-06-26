@@ -16,6 +16,8 @@ async function init(){
 
     await fetchTransactions();
 
+    await fetchPlanner();
+
     processFinanceData();
 
     updateDashboard();
