@@ -368,70 +368,108 @@ function calculateStatistics(){
 
 }
 
+
 /* ===========================
    INSIGHT
 =========================== */
+
 function generateInsight(){
 
-    const summary=
-
+    const summary =
     Finance.summary;
 
-    const insight=[];
+    const stats =
+    Finance.statistics;
+
+    const insight = [];
+
+    /* ===== CASHFLOW ===== */
 
     if(summary.balance>0){
 
-        insight.push(
+        insight.push({
 
+            icon:"📈",
+
+            text:
             "Cashflow bulan ini masih positif."
 
-        );
+        });
+
+    }else{
+
+        insight.push({
+
+            icon:"⚠️",
+
+            text:
+            "Cashflow bulan ini negatif."
+
+        });
 
     }
 
-    else{
+    /* ===== SAVING RATE ===== */
 
-        insight.push(
+    if(summary.savingRate>=20){
 
-            "Pengeluaran lebih besar daripada pemasukan."
+        insight.push({
 
-        );
+            icon:"🏦",
 
-    }
+            text:
+            `Saving Rate ${summary.savingRate.toFixed(1)}%.
+            Sangat baik, pertahankan!`
 
-    if(summary.savingRate>=30){
+        });
 
-        insight.push(
+    }else{
 
-            "Saving rate sangat baik."
+        insight.push({
 
-        );
+            icon:"💰",
 
-    }
+            text:
+            `Saving Rate ${summary.savingRate.toFixed(1)}%.
+            Coba tingkatkan hingga minimal 20%.`
 
-    else if(summary.savingRate>=15){
-
-        insight.push(
-
-            "Saving rate cukup baik."
-
-        );
+        });
 
     }
 
-    else{
+    /* ===== TOP EXPENSE ===== */
 
-        insight.push(
+    if(stats.highestExpense){
 
-            "Saving rate masih rendah."
+        insight.push({
 
-        );
+            icon:"💸",
+
+            text:
+            `Pengeluaran operasional terbesar berasal dari kategori "${stats.highestExpense.category}".`
+
+        });
 
     }
 
-    Finance.insight=insight;
+    /* ===== TOP INCOME ===== */
 
-}
+    if(stats.highestIncome){
+
+        insight.push({
+
+            icon:"💵",
+
+            text:
+            `Sumber pemasukan terbesar berasal dari "${stats.highestIncome.category}".`
+
+        });
+
+    }
+
+    Finance.insight = insight;
+
+           }
 
 /* ===========================
    ALL FUNCTION
