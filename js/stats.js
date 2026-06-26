@@ -4,6 +4,88 @@
 ===================================================== */
 
 /* ===========================
+   TOP CATEGORY
+=========================== */
+
+function getTopCategory(data){
+
+    const entries =
+    Object.entries(data);
+
+    if(entries.length===0){
+
+        return{
+
+            name:"-",
+
+            amount:0
+
+        };
+
+    }
+
+    entries.sort(
+
+        (a,b)=>b[1]-a[1]
+
+    );
+
+    return{
+
+        name:entries[0][0],
+
+        amount:entries[0][1]
+
+    };
+
+}
+
+/* ===========================
+   CREATE CARD
+=========================== */
+
+function createStatCard(
+
+    icon,
+
+    title,
+
+    value,
+
+    subtitle=""
+
+){
+
+    return `
+
+    <div class="stat-card">
+
+        <small>
+
+            <i class="${icon}"></i>
+
+            ${title}
+
+        </small>
+
+        <h3>
+
+            ${value}
+
+        </h3>
+
+        <p>
+
+            ${subtitle}
+
+        </p>
+
+    </div>
+
+    `;
+
+}
+/* ===========================
    UPDATE STATISTICS
 =========================== */
 
@@ -16,11 +98,21 @@ function updateStatistics(){
 
     if(!container) return;
 
+    const summary =
+    Finance.summary;
+
     const stats =
     Finance.statistics;
 
-    const summary =
-    Finance.summary;
+    const topIncome =
+    getTopCategory(
+        stats.incomeByCategory
+    );
+
+    const topExpense =
+    getTopCategory(
+        stats.expenseByCategory
+    );
 
     const incomeAvg =
     summary.income /
@@ -40,56 +132,139 @@ function updateStatistics(){
         ).length
     );
 
-    container.innerHTML = `
+    container.innerHTML =
 
-    <div class="stats-card">
+        createStatCard(
 
-        <small>Total Transaksi</small>
+            "fa-solid fa-money-bill-trend-up",
 
-        <h3>
+            "Pemasukan Terbesar",
 
-            ${Finance.table.length}
+            stats.highestIncome
+            ? formatCurrency(
+                stats.highestIncome.amount
+            )
+            : "-",
 
-        </h3>
+            stats.highestIncome
+            ? stats.highestIncome.category
+            : ""
 
-    </div>
+        )
 
-    <div class="stats-card">
+        +
 
-        <small>Rata-rata Pemasukan</small>
+        createStatCard(
 
-        <h3>
+            "fa-solid fa-money-bill-transfer",
 
-            ${formatCurrency(incomeAvg)}
+            "Pengeluaran Terbesar",
 
-        </h3>
+            stats.highestExpense
+            ? formatCurrency(
+                stats.highestExpense.amount
+            )
+            : "-",
 
-    </div>
+            stats.highestExpense
+            ? stats.highestExpense.category
+            : ""
 
-    <div class="stats-card">
+        )
 
-        <small>Rata-rata Pengeluaran</small>
+        +
 
-        <h3>
+        createStatCard(
 
-            ${formatCurrency(expenseAvg)}
+            "fa-solid fa-chart-column",
 
-        </h3>
+            "Total Transaksi",
 
-    </div>
+            Finance.table.length,
 
-    <div class="stats-card">
+            "Semua transaksi"
 
-        <small>Saving Rate</small>
+        )
 
-        <h3>
+        +
 
-            ${summary.savingRate.toFixed(1)}%
+        createStatCard(
 
-        </h3>
+            "fa-solid fa-piggy-bank",
 
-    </div>
+            "Saving Rate",
 
-    `;
+            summary.savingRate
+            .toFixed(1)+"%",
 
-}
+            "Dari total pemasukan"
+
+        )
+
+        +
+
+        createStatCard(
+
+            "fa-solid fa-arrow-trend-up",
+
+            "Rata-rata Pemasukan",
+
+            formatCurrency(
+                incomeAvg
+            ),
+
+            "Per kategori"
+
+        )
+
+        +
+
+        createStatCard(
+
+            "fa-solid fa-arrow-trend-down",
+
+            "Rata-rata Pengeluaran",
+
+            formatCurrency(
+                expenseAvg
+            ),
+
+            "Per kategori"
+
+        )
+
+        +
+
+        createStatCard(
+
+            "fa-solid fa-trophy",
+
+            "Kategori Pemasukan",
+
+            topIncome.name,
+
+            formatCurrency(
+                topIncome.amount
+            )
+
+        )
+
+        +
+
+        createStatCard(
+
+            "fa-solid fa-fire",
+
+            "Kategori Pengeluaran",
+
+            topExpense.name,
+
+            formatCurrency(
+                topExpense.amount
+            )
+
+        );
+
+       }
+
+
