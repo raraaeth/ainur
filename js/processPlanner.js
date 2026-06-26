@@ -134,34 +134,47 @@ function calculatePlannerStatus(){
         item.countdown =
 
         formatPlannerCountdown(diff);
+       item.completed =
 
-        if(diff < 0){
+       item.lastTransaction &&
 
-            item.status = "overdue";
+       item.lastTransaction.date >= item.date;
 
-        }
+       if(item.completed){
 
-        else if(diff === 0){
+    if(item.completed){
 
-            item.status = "today";
+    item.status = "completed";
 
-        }
+}
 
-        else if(
+else if(diff < 0){
 
-            diff <= item.reminderBefore
+    item.status = "overdue";
 
-        ){
+}
 
-            item.status = "upcoming";
+else if(diff === 0){
 
-        }
+    item.status = "today";
 
-        else{
+}
 
-            item.status = "waiting";
+else if(
 
-        }
+    diff <= item.reminderBefore
+
+){
+
+    item.status = "upcoming";
+
+}
+
+else{
+
+    item.status = "waiting";
+
+}
 
     });
 
