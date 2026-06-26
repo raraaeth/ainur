@@ -140,9 +140,7 @@ function calculatePlannerStatus(){
 
        item.lastTransaction.date >= item.date;
 
-       if(item.completed){
-
-    if(item.completed){
+      if(item.completed){
 
     item.status = "completed";
 
