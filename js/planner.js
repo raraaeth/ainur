@@ -65,19 +65,7 @@ function updatePlanner(){
 
     if(!container) return;
 
-    const order={
-
-        today:0,
-
-        upcoming:1,
-
-        waiting:2,
-
-        overdue:3
-
-    };
-
-    const planner=
+    const active =
 
     Finance.planner
 
@@ -87,81 +75,21 @@ function updatePlanner(){
 
     )
 
-    .sort((a,b)=>{
+    .sort(
 
-        if(
+        (a,b)=>
 
-            order[a.status]!==
-
-            order[b.status]
-
-        ){
-
-            return(
-
-                order[a.status]-
-
-                order[b.status]
-
-            );
-
-        }
-
-        return(
-
-            a.daysLeft-
-
-            b.daysLeft
-
-        );
-
-    })
-
-    .slice(0,5);
-
-    if(planner.length===0){
-
-        container.innerHTML=
-
-        "<p>🎉 Tidak ada planner aktif.</p>";
-
-        return;
-
-    }
-
-    container.innerHTML=
-
-    planner
-
-    .map(createPlannerItem)
-
-    .join("");
-
-}
-
-/* ===========================
-   UPDATE PLANNER HISTORY
-=========================== */
-
-function updatePlannerHistory(){
-
-    const container=
-
-    document.getElementById(
-
-        "plannerHistoryContainer"
+        a.daysLeft-b.daysLeft
 
     );
 
-    if(!container) return;
-
-    const history=
+    const completed =
 
     Finance.planner
 
     .filter(item=>
 
-        item.lastTransaction
+        item.status==="completed"
 
     )
 
@@ -175,61 +103,96 @@ function updatePlannerHistory(){
 
     );
 
-    if(history.length===0){
+    const activeList =
 
-        container.innerHTML=
+    active.slice(0,5);
 
-        "<p>Belum ada riwayat planner.</p>";
+    let html =
 
-        return;
+    activeList
 
-    }
+    .map(createPlannerItem)
 
-    const list=
+    .join("");
 
-    Finance.plannerHistoryExpand
+    if(
 
-    ?history
+        completed.length>0
 
-    :history.slice(
+    ){
 
-        0,
+        html +=`
 
-        Finance.plannerHistoryLimit
+        <div
+        class="planner-more">
 
-    );
+        <button
 
-    container.innerHTML=
+        onclick="togglePlannerHistory()">
 
-    list.map(item=>`
+        ▼ Planner lainnya
+        (${completed.length})
 
-        <div class="analytics-item">
-
-            <div>
-
-                <strong>
-
-                    ✔ ${item.title}
-
-                </strong>
-
-                <br>
-
-                <small>
-
-                    📅 ${formatDate(
-
-                        item.lastTransaction.date
-
-                    )}
-
-                </small>
-
-            </div>
+        </button>
 
         </div>
 
-    `).join("");
+        `;
+
+        if(
+
+            Finance.plannerHistoryExpand
+
+        ){
+
+            html +=
+
+            completed
+
+            .map(
+
+                createCompletedPlannerItem
+
+            )
+
+            .join("");
+
+        }
+
+    }
+
+    container.innerHTML =
+
+    html;
+
+}
+function createCompletedPlannerItem(item){
+
+    return `
+
+    <div
+
+    class="analytics-item completed">
+
+        <div>
+
+            <strong>
+
+            ✔ ${item.title}
+
+            </strong>
+
+            <small>
+
+            Selesai
+
+            </small>
+
+        </div>
+
+    </div>
+
+    `;
 
 }
 
