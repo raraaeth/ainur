@@ -42,14 +42,58 @@ function updateInsight(){
 
     );
 
-    if(!container) return;
+    const dailyInsight =
 
-    container.innerHTML =
+    document.getElementById(
 
-    Finance.insight
+        "dailyInsight"
 
-    .map(createInsightItem)
+    );
 
-    .join("");
+    if(container){
+
+        container.innerHTML =
+
+        Finance.insight
+
+        .map(createInsightItem)
+
+        .join("");
+
+    }
+
+    if(dailyInsight){
+
+        if(Finance.insight.length===0){
+
+            dailyInsight.innerHTML =
+
+            "💡 Tidak ada insight hari ini.";
+
+        }
+
+        else{
+
+            const random =
+
+            Math.floor(
+
+                Math.random() *
+
+                Finance.insight.length
+
+            );
+
+            const item =
+
+            Finance.insight[random];
+
+            dailyInsight.innerHTML =
+
+            `${item.icon} ${item.text}`;
+
+        }
+
+    }
 
 }
