@@ -312,15 +312,53 @@
 
 }
 
-.reminder-content{
+.reminder-wrapper{
 
     flex:1;
+
+    overflow:hidden;
+
+    white-space:nowrap;
+
+}
+
+.reminder-content{
+
+    display:inline-block;
+
+    white-space:nowrap;
 
     color:#F8FAFC;
 
     font-size:.95rem;
 
     font-weight:500;
+
+    animation:
+
+    reminderTicker
+
+    20s linear infinite;
+
+}
+
+@keyframes reminderTicker{
+
+    from{
+
+        transform:
+
+        translateX(100%);
+
+    }
+
+    to{
+
+        transform:
+
+        translateX(-100%);
+
+    }
 
 }
 
