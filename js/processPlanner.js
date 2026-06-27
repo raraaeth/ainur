@@ -1,8 +1,7 @@
 /* =====================================================
-   Life Dashboard v2.0
+   Life Dashboard v3.0
    File : processPlanner.js
 ===================================================== */
-
 /* ===========================
    NORMALIZE PLANNER
 =========================== */
@@ -23,21 +22,25 @@ function normalizePlanner(){
 
         return{
 
-            title :
+            title:
 
             item.Judul||"",
 
             type,
 
-            date :
+            date:
 
             new Date(item.Tanggal),
 
-            interval :
+            interval:
 
             Number(item.Interval)||0,
 
-            keyword :
+            reminderBefore:
+
+            Number(item["Reminder before"])||0,
+
+            keyword:
 
             (item.Keyword||"")
 
@@ -45,27 +48,31 @@ function normalizePlanner(){
 
             .toLowerCase(),
 
-            priority :
+            priority:
 
-            (item.Priority||"low")
-
-            .trim()
+            (item.Priority||"medium")
 
             .toLowerCase(),
 
-            reminderBefore :
-
-            Number(
-
-                item["Reminder before"]
-
-            )||0,
-
-            note :
+            note:
 
             item.Catatan||"",
 
-            isEvent :
+            /* ===================
+               CATEGORY
+            =================== */
+
+            isRecurring:
+
+            [
+
+                "maintenance",
+
+                "reminder"
+
+            ].includes(type),
+
+            isEvent:
 
             [
 
@@ -75,13 +82,9 @@ function normalizePlanner(){
 
             ].includes(type),
 
-            isTask :
+            isProject:
 
             [
-
-                "maintenance",
-
-                "reminder",
 
                 "planning",
 
@@ -89,25 +92,21 @@ function normalizePlanner(){
 
             ].includes(type),
 
-            lastTransaction :
+            /* ===================
+               RUNTIME
+            =================== */
 
-            null,
+            lastTransaction:null,
 
-            status :
+            nextDate:null,
 
-            "waiting",
+            daysLeft:0,
 
-            daysLeft :
+            countdown:"",
 
-            0,
+            completed:false,
 
-            countdown :
-
-            "",
-
-            completed :
-
-            false
+            status:"waiting"
 
         };
 
@@ -115,28 +114,14 @@ function normalizePlanner(){
 
 }
 
-            
-
 
 /* ===========================
-   MATCH PLANNER TRANSACTION
+   FIND LAST TRANSACTION
 =========================== */
 
-function matchPlannerTransaction(){
+function findLastTransaction(){
 
     Finance.planner.forEach(item=>{
-
-        /* Event tidak membutuhkan
-           transaksi */
-
-        if(item.isEvent){
-
-            return;
-
-        }
-
-        /* Task tanpa keyword
-           dianggap planner manual */
 
         if(!item.keyword){
 
@@ -148,17 +133,19 @@ function matchPlannerTransaction(){
 
         Finance.data.filter(transaction=>{
 
-            return(
+            const description =
 
-                transaction.description
+            String(
 
-                .toLowerCase()
+                transaction.description||
 
-                .includes(
+                ""
 
-                    item.keyword
+            ).toLowerCase();
 
-                )
+            return description.includes(
+
+                item.keyword
 
             );
 
@@ -174,7 +161,9 @@ function matchPlannerTransaction(){
 
             (a,b)=>
 
-            b.date-a.date
+            new Date(b.date)-
+
+            new Date(a.date)
 
         );
 
@@ -187,10 +176,10 @@ function matchPlannerTransaction(){
 }
 
 /* ===========================
-   CALCULATE PLANNER STATUS
+   CALCULATE NEXT DATE
 =========================== */
 
-function calculatePlannerStatus(){
+function calculateNextDate(){
 
     const today = new Date();
 
@@ -198,41 +187,43 @@ function calculatePlannerStatus(){
 
     Finance.planner.forEach(item=>{
 
-        let target = new Date(item.date);
+        let nextDate =
 
-        target.setHours(0,0,0,0);
+        new Date(item.date);
+
+        nextDate.setHours(
+
+            0,0,0,0
+
+        );
 
         /* ======================
-           Birthday & Anniversary
+           RECURRING
         ====================== */
 
-        if(item.isEvent){
+        if(item.isRecurring){
 
-            target = new Date(today);
+            if(item.lastTransaction){
 
-            target.setMonth(
+                nextDate =
 
-                item.date.getMonth()
+                new Date(
 
-            );
+                    item.lastTransaction.date
 
-            target.setDate(
+                );
 
-                item.date.getDate()
+                nextDate.setHours(
 
-            );
+                    0,0,0,0
 
-            target.setHours(
+                );
 
-                0,0,0,0
+                nextDate.setDate(
 
-            );
+                    nextDate.getDate() +
 
-            if(target < today){
-
-                target.setFullYear(
-
-                    target.getFullYear()+1
+                    item.interval
 
                 );
 
@@ -240,15 +231,92 @@ function calculatePlannerStatus(){
 
         }
 
+        /* ======================
+           EVENT
+        ====================== */
+
+        if(item.isEvent){
+
+            nextDate =
+
+            new Date(today);
+
+            nextDate.setMonth(
+
+                item.date.getMonth()
+
+            );
+
+            nextDate.setDate(
+
+                item.date.getDate()
+
+            );
+
+            nextDate.setHours(
+
+                0,0,0,0
+
+            );
+
+            if(nextDate < today){
+
+                nextDate.setFullYear(
+
+                    nextDate.getFullYear()+1
+
+                );
+
+            }
+
+        }
+
+        /* ======================
+           PROJECT
+        ====================== */
+
+        if(item.isProject){
+
+            nextDate =
+
+            new Date(item.date);
+
+            nextDate.setHours(
+
+                0,0,0,0
+
+            );
+
+        }
+
+        item.nextDate =
+
+        nextDate;
+
+    });
+
+}
+
+
+/* ===========================
+   CALCULATE STATUS
+=========================== */
+
+function calculateStatus(){
+
+    const today = new Date();
+
+    today.setHours(0,0,0,0);
+
+    Finance.planner.forEach(item=>{
+
         const diff = Math.ceil(
 
-            (target - today)
+            (item.nextDate - today) /
 
-            /86400000
+            86400000
 
         );
-
-        item.nextDate = target;
 
         item.daysLeft = diff;
 
@@ -257,68 +325,46 @@ function calculatePlannerStatus(){
         formatPlannerCountdown(diff);
 
         /* ======================
-   CALCULATE NEXT DATE
-====================== */
+           DEFAULT
+        ====================== */
 
-if(
+        item.completed = false;
 
-    item.isTask &&
+        item.status = "waiting";
 
-    item.keyword &&
+        /* ======================
+           PROJECT
+        ====================== */
 
-    item.lastTransaction
+        if(item.isProject){
 
-){
+            if(
 
-    target = new Date(
+                item.keyword &&
 
-        item.lastTransaction.date
+                item.lastTransaction
 
-    );
+            ){
 
-    target.setDate(
+                item.completed = true;
 
-        target.getDate() +
+                item.status = "completed";
 
-        item.interval
+                return;
 
-    );
+            }
 
-    target.setHours(
-
-        0,0,0,0
-
-    );
-
-    item.nextDate = target;
-
-    item.daysLeft = Math.ceil(
-
-        (target - today) /
-
-        86400000
-
-    );
-
-    item.countdown =
-
-    formatPlannerCountdown(
-
-        item.daysLeft
-
-    );
-
-}
+        }
 
         /* ======================
            TODAY
         ====================== */
 
-        if(diff === 0){
+        if(diff===0){
 
-            item.status =
+            item.status="today";
 
-            "today";
+            return;
 
         }
 
@@ -326,17 +372,15 @@ if(
            UPCOMING
         ====================== */
 
-        else if(
+        if(
 
-            diff <=
-
-            item.reminderBefore
+            diff<=item.reminderBefore
 
         ){
 
-            item.status =
+            item.status="upcoming";
 
-            "upcoming";
+            return;
 
         }
 
@@ -344,80 +388,11 @@ if(
            WAITING
         ====================== */
 
-        else{
-
-            item.status =
-
-            "waiting";
-
-        }
+        item.status="waiting";
 
     });
 
     }
-
-
-/* ===========================
-   FORMAT PLANNER COUNTDOWN
-=========================== */
-
-function formatPlannerCountdown(days){
-
-    if(days < 0){
-
-        return `⚠ Terlambat ${Math.abs(days)} hari`;
-
-    }
-
-    if(days === 0){
-
-        return "Hari ini";
-
-    }
-
-    if(days === 1){
-
-        return "Besok";
-
-    }
-
-    if(days < 30){
-
-        return `${days} hari lagi`;
-
-    }
-
-    if(days < 365){
-
-        const month =
-
-        Math.floor(days / 30);
-
-        return `${month} bulan lagi`;
-
-    }
-
-    const year =
-
-    Math.floor(days / 365);
-
-    const remain =
-
-    days % 365;
-
-    const month =
-
-    Math.floor(remain / 30);
-
-    if(month===0){
-
-        return `${year} tahun lagi`;
-
-    }
-
-    return `${year} tahun ${month} bulan lagi`;
-
-}
 
 /* ===========================
    SORT PLANNER
@@ -425,7 +400,7 @@ function formatPlannerCountdown(days){
 
 function sortPlanner(){
 
-    const statusOrder={
+    const order={
 
         today:0,
 
@@ -441,21 +416,31 @@ function sortPlanner(){
 
         (a,b)=>{
 
-            const statusDiff =
+            /* ===================
+               STATUS
+            =================== */
 
-            statusOrder[a.status]-
+            if(
 
-            statusOrder[b.status];
+                order[a.status]!==
 
-            if(statusDiff!==0){
+                order[b.status]
 
-                return statusDiff;
+            ){
+
+                return(
+
+                    order[a.status]-
+
+                    order[b.status]
+
+                );
 
             }
 
-            /* ======================
+            /* ===================
                COMPLETED
-            ====================== */
+            =================== */
 
             if(
 
@@ -465,36 +450,52 @@ function sortPlanner(){
 
             ){
 
-                const dateA =
+                if(
 
-                a.lastTransaction
+                    a.lastTransaction &&
 
-                ? a.lastTransaction.date
+                    b.lastTransaction
 
-                : a.date;
+                ){
 
-                const dateB =
+                    return(
 
-                b.lastTransaction
+                        new Date(
 
-                ? b.lastTransaction.date
+                            b.lastTransaction.date
 
-                : b.date;
+                        )-
 
-                return dateB-dateA;
+                        new Date(
+
+                            a.lastTransaction.date
+
+                        )
+
+                    );
+
+                }
 
             }
 
-            /* ======================
+            /* ===================
                ACTIVE
-            ====================== */
+            =================== */
 
-            return a.daysLeft-b.daysLeft;
+            return(
+
+                a.daysLeft-
+
+                b.daysLeft
+
+            );
 
         }
 
     );
- }
+
+               }
+
 
 
 /* ===========================
@@ -505,10 +506,19 @@ function processPlanner(){
 
     normalizePlanner();
 
-    matchPlannerTransaction();
+    findLastTransaction();
 
-    calculatePlannerStatus();
+    calculateNextDate();
+
+    calculateStatus();
 
     sortPlanner();
 
 }
+
+
+
+
+
+
+
