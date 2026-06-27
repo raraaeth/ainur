@@ -282,9 +282,7 @@ function updatePlannerHeader(){
 reminder.map(item=>
 
 `${icon[item.type]||"📌"}
-
 <strong>${item.title}</strong>
-
 (${item.countdown})`
 
 ).join(
@@ -293,13 +291,27 @@ reminder.map(item=>
 
 );
 
-container.innerHTML =
+if(reminder.length===1){
 
-text +
+    container.style.animation="none";
 
-"&nbsp;&nbsp;&nbsp; • &nbsp;&nbsp;&nbsp;" +
+    container.innerHTML=text;
 
-text;
+}
+
+else{
+
+    container.style.animation=
+
+    "reminderTicker 25s linear infinite";
+
+    container.innerHTML=
+
+    text+
+
+    "&nbsp;&nbsp;&nbsp; • &nbsp;&nbsp;&nbsp;"+
+
+    text;
 
 }
 
