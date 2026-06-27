@@ -282,29 +282,37 @@
 
     overflow:hidden;
 
-    white-space:nowrap;
+    position:relative;
 
 }
 
 .reminder-content{
 
-    display:inline-block;
+    display:inline-flex;
+
+    align-items:center;
 
     white-space:nowrap;
 
-    animation:reminderTicker 25s linear infinite;
+    width:max-content;
+
+    will-change:transform;
+
+    animation:
+
+    reminderTicker 30s linear infinite;
 
 }
 
 @keyframes reminderTicker{
 
-    from{
+    0%{
 
         transform:translateX(100%);
 
     }
 
-    to{
+    100%{
 
         transform:translateX(-100%);
 
