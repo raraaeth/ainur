@@ -73,7 +73,6 @@
 }
 
 /* ===========================
-/* ===========================
    PLANNER ITEM
 =========================== */
 
@@ -85,23 +84,63 @@
 
     align-items:center;
 
-    padding:14px 0;
+    padding:14px 16px;
 
-    border-bottom:1px solid rgba(255,255,255,.06);
+    margin-bottom:10px;
+
+    background:rgba(255,255,255,.04);
+
+    border:1px solid rgba(255,255,255,.06);
+
+    border-left:4px solid #3B82F6;
+
+    border-radius:14px;
+
+    transition:var(--transition);
 
 }
 
-.analytics-item:last-child{
+.analytics-item:hover{
 
-    border-bottom:none;
+    transform:translateY(-2px);
+
+    border-left-color:#38BDF8;
+
+    box-shadow:var(--shadow-sm);
 
 }
+
+/* ===========================
+   COMPLETED PLANNER
+=========================== */
+
+.analytics-item.completed{
+
+    background:rgba(255,255,255,.02);
+
+    border-left:4px solid #64748B;
+
+    opacity:.65;
+
+}
+
+.analytics-item.completed:hover{
+
+    transform:none;
+
+    box-shadow:none;
+
+}
+
+/* ===========================
+   ITEM TEXT
+=========================== */
 
 .analytics-item strong{
 
     display:block;
 
-    font-size:15px;
+    font-size:.95rem;
 
     color:#F8FAFC;
 
@@ -111,42 +150,61 @@
 
 .analytics-item small{
 
+    display:block;
+
+    font-size:.82rem;
+
     color:var(--text-secondary);
 
-    font-size:13px;
-
 }
 
-/* ===========================
-/* ===========================
-   PLANNER TEXT
-=========================== */
-
-.analytics-item strong{
-
-    display:block;
-
-    font-size:1rem;
-
-    font-weight:700;
-
-    color:#F8FAFC;
-
-    margin-bottom:6px;
-
-}
-
-.analytics-item small{
-
-    display:block;
-
-    font-size:.9rem;
+.analytics-item.completed strong{
 
     color:#CBD5E1;
 
-    line-height:1.5;
+}
+
+.analytics-item.completed small{
+
+    color:#94A3B8;
 
 }
+/* ===========================
+   EXPAND BUTTON
+=========================== */
+
+.planner-more{
+
+    text-align:center;
+
+    margin-top:12px;
+
+}
+
+.planner-more button{
+
+    background:none;
+
+    border:none;
+
+    color:#60A5FA;
+
+    cursor:pointer;
+
+    font-size:.9rem;
+
+    font-weight:600;
+
+    transition:.25s;
+
+}
+
+.planner-more button:hover{
+
+    color:#93C5FD;
+
+}
+
 
 /* ===========================
    STATUS BADGE
@@ -380,21 +438,24 @@
 .planner-card{
 
     background:linear-gradient(
+
         145deg,
+
         rgba(30,41,59,.95),
+
         rgba(15,23,42,.95)
+
     );
 
     border:1px solid var(--border);
 
     border-radius:var(--radius-lg);
 
-    padding:20px;
+    padding:18px;
 
     box-shadow:var(--shadow-sm);
 
 }
-
 
 
 
