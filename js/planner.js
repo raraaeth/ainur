@@ -277,21 +277,29 @@ function updatePlannerHeader(){
 
     };
 
-    container.innerHTML=
+    const text =
 
-    reminder.map(item=>
+reminder.map(item=>
 
-        `${icon[item.type]||"📌"}
+`${icon[item.type]||"📌"}
 
-        <strong>${item.title}</strong>
+<strong>${item.title}</strong>
 
-        (${item.countdown})`
+(${item.countdown})`
 
-    ).join(
+).join(
 
-        " &nbsp;&nbsp;•&nbsp;&nbsp; "
+"&nbsp;&nbsp;&nbsp; • &nbsp;&nbsp;&nbsp;"
 
-    );
+);
+
+container.innerHTML =
+
+text +
+
+"&nbsp;&nbsp;&nbsp; • &nbsp;&nbsp;&nbsp;" +
+
+text;
 
 }
 
