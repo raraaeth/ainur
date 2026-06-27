@@ -286,7 +286,7 @@
 
     align-items:center;
 
-    gap:16px;
+    gap:10px;
 
     background:#1E293B;
 
@@ -296,7 +296,9 @@
 
     border-radius:16px;
 
-    padding:14px 18px;
+    padding:10px 16px;
+
+    min-height:56px;
 
     margin-bottom:28px;
 
