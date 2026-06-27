@@ -291,7 +291,7 @@ function togglePlannerHistory(){
 
 function updatePlannerHeader(){
 
-    const container=
+    const container =
 
     document.getElementById(
 
@@ -301,13 +301,15 @@ function updatePlannerHeader(){
 
     if(!container) return;
 
-    const planner=
+    const planner =
 
     Finance.planner
 
     .filter(item=>
 
-        item.status!=="completed"
+        item.status==="today" ||
+
+        item.status==="upcoming"
 
     )
 
@@ -325,9 +327,9 @@ function updatePlannerHeader(){
 
     if(planner.length===0){
 
-        container.innerHTML=
+        container.textContent=
 
-        "<p>✅ Tidak ada reminder.</p>";
+        "✅ Tidak ada reminder dalam waktu dekat.";
 
         return;
 
@@ -347,26 +349,18 @@ function updatePlannerHeader(){
 
     container.innerHTML=
 
-    planner.map(item=>`
+    planner.map(item=>
 
-        <div class="analytics-item">
+        `${icon[item.type]}
 
-            <span>
+        <strong>${item.title}</strong>
 
-                ${icon[item.type]}
+        (${item.countdown})`
 
-                <strong>
+    ).join(
 
-                    ${item.title}
+        " &nbsp;&nbsp; • &nbsp;&nbsp; "
 
-                </strong>
-
-                (${item.countdown})
-
-            </span>
-
-        </div>
-
-    `).join("");
+    );
 
 }
