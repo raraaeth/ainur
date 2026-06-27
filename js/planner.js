@@ -347,20 +347,26 @@ function updatePlannerHeader(){
 
     };
 
-    container.innerHTML=
+    container.innerHTML =
 
-    planner.map(item=>
+planner.map(item =>
 
-        `${icon[item.type]}
+`${icon[item.type]}
+<b>${item.title}</b>
+(${item.countdown})`
 
-        <strong>${item.title}</strong>
+).join(
 
-        (${item.countdown})`
+" &nbsp;&nbsp;&nbsp; • &nbsp;&nbsp;&nbsp; "
 
-    ).join(
+);
 
-        " &nbsp;&nbsp; • &nbsp;&nbsp; "
+// Duplikat agar scroll tidak putus
 
-    );
+container.innerHTML +=
+
+" &nbsp;&nbsp;&nbsp; • &nbsp;&nbsp;&nbsp; " +
+
+container.innerHTML;
 
 }
