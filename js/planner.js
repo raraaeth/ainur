@@ -21,18 +21,6 @@ function createPlannerItem(item){
 
     };
 
-    const badge={
-
-        today:"🟢 Hari Ini",
-
-        upcoming:"🟡 Upcoming",
-
-        waiting:"⚪ Waiting",
-
-        overdue:"🔴 Overdue"
-
-    };
-
     return `
 
     <div class="analytics-item">
@@ -41,41 +29,15 @@ function createPlannerItem(item){
 
             <strong>
 
-                ${icon[item.type]||"📌"}
+                ${icon[item.type]}
 
                 ${item.title}
 
             </strong>
 
-            <br>
-
             <small>
 
-                ${badge[item.status]}
-
-            </small>
-
-            <br>
-
-            <small>
-
-                ⏳ ${item.countdown}
-
-            </small>
-
-            <br>
-
-            <small>
-
-                📅 ${formatDate(item.nextDate)}
-
-            </small>
-
-            <br>
-
-            <small>
-
-                ${item.note}
+                ${item.countdown}
 
             </small>
 
