@@ -1,349 +1,7 @@
 /* =====================================================
-   Life Dashboard v1.0
+   Life Dashboard v2.0
    File : planner.css
 ===================================================== */
-
-/* ===========================
-   PLANNER CONTAINER
-=========================== */
-
-.planner-card{
-
-    background:var(--card);
-
-    border:1px solid var(--border);
-
-    border-radius:var(--radius-lg);
-
-    padding:24px;
-
-    box-shadow:var(--shadow-sm);
-
-}
-
-.planner-title{
-
-    display:flex;
-
-    justify-content:space-between;
-
-    align-items:center;
-
-    margin-bottom:18px;
-
-}
-
-.planner-title h2{
-
-    font-size:1.15rem;
-
-    font-weight:600;
-
-}
-
-.planner-title small{
-
-    color:var(--text-secondary);
-
-}
-
-
-/* ===========================
-   PLANNER CONTAINER
-=========================== */
-
-#plannerContainer{
-
-    display:flex;
-
-    flex-direction:column;
-
-    gap:10px;
-
-    margin-top:18px;
-
-    padding:0;
-
-    background:none;
-
-    border:none;
-
-    box-shadow:none;
-
-}
-
-/* ===========================
-   PLANNER ITEM
-=========================== */
-
-.analytics-item{
-
-    display:flex;
-
-    justify-content:space-between;
-
-    align-items:center;
-
-    padding:14px 16px;
-
-    margin-bottom:10px;
-
-    background:rgba(255,255,255,.04);
-
-    border:1px solid rgba(255,255,255,.06);
-
-    border-left:4px solid #3B82F6;
-
-    border-radius:14px;
-
-    transition:var(--transition);
-
-}
-
-.analytics-item:hover{
-
-    transform:translateY(-2px);
-
-    border-left-color:#38BDF8;
-
-    box-shadow:var(--shadow-sm);
-
-}
-
-/* ===========================
-   COMPLETED PLANNER
-=========================== */
-
-.analytics-item.completed{
-
-    background:rgba(255,255,255,.02);
-
-    border-left:4px solid #64748B;
-
-    opacity:.65;
-
-}
-
-.analytics-item.completed:hover{
-
-    transform:none;
-
-    box-shadow:none;
-
-}
-
-/* ===========================
-   ITEM TEXT
-=========================== */
-
-.analytics-item strong{
-
-    display:block;
-
-    font-size:.95rem;
-
-    color:#F8FAFC;
-
-    margin-bottom:4px;
-
-}
-
-.analytics-item small{
-
-    display:block;
-
-    font-size:.82rem;
-
-    color:var(--text-secondary);
-
-}
-
-.analytics-item.completed strong{
-
-    color:#CBD5E1;
-
-}
-
-.analytics-item.completed small{
-
-    color:#94A3B8;
-
-}
-/* ===========================
-   EXPAND BUTTON
-=========================== */
-
-.planner-more{
-
-    text-align:center;
-
-    margin-top:12px;
-
-}
-
-.planner-more button{
-
-    background:none;
-
-    border:none;
-
-    color:#60A5FA;
-
-    cursor:pointer;
-
-    font-size:.9rem;
-
-    font-weight:600;
-
-    transition:.25s;
-
-}
-
-.planner-more button:hover{
-
-    color:#93C5FD;
-
-}
-
-
-/* ===========================
-   STATUS BADGE
-=========================== */
-
-.badge{
-
-    display:inline-block;
-
-    padding:4px 10px;
-
-    border-radius:999px;
-
-    font-size:11px;
-
-    font-weight:600;
-
-    margin-bottom:6px;
-
-}
-
-.badge.today{
-
-    background:#14532D;
-
-    color:#86EFAC;
-
-}
-
-.badge.upcoming{
-
-    background:#78350F;
-
-    color:#FACC15;
-
-}
-
-.badge.waiting{
-
-    background:#334155;
-
-    color:#CBD5E1;
-
-}
-
-.badge.overdue{
-
-    background:#7F1D1D;
-
-    color:#FCA5A5;
-
-}
-/* ===========================
-   HEADER REMINDER
-=========================== */
-
-#plannerHeader{
-
-    display:flex;
-
-    flex-direction:column;
-
-    gap:12px;
-
-    margin-top:18px;
-
-}
-
-#plannerHeader .analytics-item{
-
-    padding:12px 16px;
-
-}
-/* ===========================
-   HISTORY
-=========================== */
-
-#plannerHistoryContainer{
-
-    display:flex;
-
-    flex-direction:column;
-
-    gap:12px;
-
-}
-
-#plannerHistoryContainer .analytics-item{
-
-    border-left-color:#22C55E;
-
-}
-/* ===========================
-   BUTTON
-=========================== */
-
-#plannerHistoryContainer button{
-
-    padding:10px 16px;
-
-    border:none;
-
-    border-radius:10px;
-
-    background:var(--primary);
-
-    color:#fff;
-
-    cursor:pointer;
-
-    transition:.25s;
-
-}
-
-#plannerHistoryContainer button:hover{
-
-    opacity:.9;
-
-}
-/* ===========================
-   RESPONSIVE
-=========================== */
-
-@media(max-width:768px){
-
-    .analytics-item{
-
-        padding:14px;
-
-    }
-
-    .planner-card{
-
-        padding:18px;
-
-    }
-
-}
-
 
 /* ===========================
    REMINDER BAR
@@ -357,77 +15,39 @@
 
     gap:10px;
 
-    background:#1E293B;
+    padding:10px 16px;
+
+    margin-bottom:24px;
+
+    background:rgba(30,41,59,.95);
 
     border:1px solid rgba(255,255,255,.08);
 
     border-left:4px solid #3B82F6;
 
-    border-radius:16px;
-
-    padding:10px 16px;
-
-    min-height:56px;
-
-    margin-bottom:28px;
-
-    box-shadow:var(--shadow-sm);
+    border-radius:14px;
 
 }
 
 .reminder-icon{
 
-    font-size:1.2rem;
-
-}
-
-.reminder-wrapper{
-
-    flex:1;
-
-    overflow:hidden;
-
-    white-space:nowrap;
+    font-size:1.1rem;
 
 }
 
 .reminder-content{
 
-    display:inline-block;
-
-    white-space:nowrap;
+    flex:1;
 
     color:#F8FAFC;
 
-    font-size:.95rem;
+    font-size:.9rem;
 
-    font-weight:500;
+    overflow:hidden;
 
-    animation:
+    white-space:nowrap;
 
-    reminderTicker
-
-    20s linear infinite;
-
-}
-
-@keyframes reminderTicker{
-
-    from{
-
-        transform:
-
-        translateX(100%);
-
-    }
-
-    to{
-
-        transform:
-
-        translateX(-100%);
-
-    }
+    text-overflow:ellipsis;
 
 }
 
@@ -437,23 +57,258 @@
 
 .planner-card{
 
-    background:linear-gradient(
+    background:rgba(30,41,59,.95);
 
-        145deg,
+    border:1px solid rgba(255,255,255,.08);
 
-        rgba(30,41,59,.95),
-
-        rgba(15,23,42,.95)
-
-    );
-
-    border:1px solid var(--border);
-
-    border-radius:var(--radius-lg);
+    border-radius:16px;
 
     padding:18px;
 
-    box-shadow:var(--shadow-sm);
+    box-shadow:0 8px 20px rgba(0,0,0,.18);
+
+}
+
+/* ===========================
+   STATUS TITLE
+=========================== */
+
+.planner-status{
+
+    margin:18px 0 10px;
+
+    padding-bottom:6px;
+
+    border-bottom:1px solid rgba(255,255,255,.08);
+
+    font-size:.8rem;
+
+    font-weight:700;
+
+    text-transform:uppercase;
+
+    letter-spacing:1px;
+
+    color:#94A3B8;
+
+}
+
+.planner-status:first-child{
+
+    margin-top:0;
+
+}
+
+
+/* ===========================
+   PLANNER ITEM
+=========================== */
+
+.analytics-item{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    gap:16px;
+
+    padding:12px 0;
+
+    border-bottom:1px solid rgba(255,255,255,.06);
+
+}
+
+.analytics-item:last-child{
+
+    border-bottom:none;
+
+}
+
+/* ===========================
+   PLANNER LEFT
+=========================== */
+
+.planner-left{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:10px;
+
+    flex:1;
+
+    min-width:0;
+
+}
+
+.planner-icon{
+
+    flex-shrink:0;
+
+    font-size:.95rem;
+
+}
+
+.planner-title{
+
+    overflow:hidden;
+
+    text-overflow:ellipsis;
+
+    white-space:nowrap;
+
+    color:#F8FAFC;
+
+    font-size:.92rem;
+
+    font-weight:500;
+
+}
+
+
+/* ===========================
+   PLANNER RIGHT
+=========================== */
+
+.planner-right{
+
+    flex-shrink:0;
+
+    margin-left:12px;
+
+    font-size:.82rem;
+
+    font-weight:600;
+
+    color:#CBD5E1;
+
+    text-align:right;
+
+}
+
+
+/* ===========================
+   PLANNER STATUS
+=========================== */
+
+.analytics-item.today .planner-right{
+
+    color:#F59E0B;
+
+}
+
+.analytics-item.upcoming .planner-right{
+
+    color:#38BDF8;
+
+}
+
+.analytics-item.waiting .planner-right{
+
+    color:#94A3B8;
+
+}
+
+.analytics-item.completed{
+
+    opacity:.55;
+
+}
+
+.analytics-item.completed .planner-title{
+
+    color:#94A3B8;
+
+}
+
+.analytics-item.completed .planner-right{
+
+    color:#22C55E;
+
+   }
+
+/* ===========================
+   PLANNER EXPAND
+=========================== */
+
+.planner-more{
+
+    display:flex;
+
+    justify-content:center;
+
+    margin-top:14px;
+
+    padding-top:14px;
+
+    border-top:1px solid rgba(255,255,255,.08);
+
+}
+
+.planner-more button{
+
+    background:none;
+
+    border:none;
+
+    color:#60A5FA;
+
+    font-size:.9rem;
+
+    font-weight:600;
+
+    cursor:pointer;
+
+    transition:.25s;
+
+}
+
+.planner-more button:hover{
+
+    color:#93C5FD;
+
+}
+
+/* ===========================
+   RESPONSIVE
+=========================== */
+
+@media(max-width:768px){
+
+    .planner-card{
+
+        padding:16px;
+
+    }
+
+    .analytics-item{
+
+        gap:10px;
+
+        padding:11px 0;
+
+    }
+
+    .planner-title{
+
+        font-size:.88rem;
+
+    }
+
+    .planner-right{
+
+        font-size:.78rem;
+
+    }
+
+    .planner-status{
+
+        font-size:.75rem;
+
+    }
 
 }
 
