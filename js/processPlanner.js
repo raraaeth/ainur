@@ -1,5 +1,5 @@
 /* =====================================================
-   Life Dashboard v1.0
+   Life Dashboard v2.0
    File : processPlanner.js
 ===================================================== */
 
@@ -15,7 +15,7 @@ function normalizePlanner(){
 
         const type =
 
-        (item.Jenis || "")
+        (item.Jenis||"")
 
         .trim()
 
@@ -25,7 +25,7 @@ function normalizePlanner(){
 
             title :
 
-            item.Judul || "",
+            item.Judul||"",
 
             type,
 
@@ -63,7 +63,7 @@ function normalizePlanner(){
 
             note :
 
-            item.Catatan || "",
+            item.Catatan||"",
 
             isEvent :
 
@@ -81,7 +81,11 @@ function normalizePlanner(){
 
                 "maintenance",
 
-                "reminder"
+                "reminder",
+
+                "planning",
+
+                "renovasi"
 
             ].includes(type),
 
@@ -89,9 +93,9 @@ function normalizePlanner(){
 
             null,
 
-            nextDate :
+            status :
 
-            null,
+            "waiting",
 
             daysLeft :
 
@@ -101,9 +105,9 @@ function normalizePlanner(){
 
             "",
 
-            status :
+            completed :
 
-            "waiting"
+            false
 
         };
 
@@ -111,118 +115,79 @@ function normalizePlanner(){
 
 }
 
+            
+
 
 /* ===========================
-   MATCH TRANSACTION
+   MATCH PLANNER TRANSACTION
 =========================== */
 
 function matchPlannerTransaction(){
 
     Finance.planner.forEach(item=>{
 
-        item.lastTransaction = null;
+        /* Event tidak membutuhkan
+           transaksi */
 
-        if(
-
-            item.isEvent ||
-
-            !item.keyword
-
-        ){
+        if(item.isEvent){
 
             return;
 
         }
 
-        const transaction =
+        /* Task tanpa keyword
+           dianggap planner manual */
 
-        Finance.data
+        if(!item.keyword){
 
-        .filter(data=>
+            return;
 
-            data.description
+        }
 
-            .toLowerCase()
+        const transactions =
 
-            .includes(
+        Finance.data.filter(transaction=>{
 
-                item.keyword
+            return(
 
-            )
+                transaction.description
 
-        )
+                .toLowerCase()
 
-        .sort(
+                .includes(
+
+                    item.keyword
+
+                )
+
+            );
+
+        });
+
+        if(transactions.length===0){
+
+            return;
+
+        }
+
+        transactions.sort(
 
             (a,b)=>
 
             b.date-a.date
 
-        )[0];
+        );
 
-        if(transaction){
+        item.lastTransaction =
 
-            item.lastTransaction =
-
-            transaction;
-
-        }
+        transactions[0];
 
     });
 
 }
 
-
 /* ===========================
-   FORMAT COUNTDOWN
-=========================== */
-
-function formatPlannerCountdown(days){
-
-    if(days < 0){
-
-        return `Terlambat ${Math.abs(days)} hari`;
-
-    }
-
-    if(days === 0){
-
-        return "Hari ini";
-
-    }
-
-    if(days === 1){
-
-        return "Besok";
-
-    }
-
-    if(days < 7){
-
-        return `${days} hari lagi`;
-
-    }
-
-    if(days < 30){
-
-        return `${Math.ceil(days / 7)} minggu lagi`;
-
-    }
-
-    if(days < 365){
-
-        return `${Math.ceil(days / 30)} bulan lagi`;
-
-    }
-
-    return `${Math.ceil(days / 365)} tahun lagi`;
-
-}
-
-
-
-/* ===========================
-   PLANNER STATUS
+   CALCULATE PLANNER STATUS
 =========================== */
 
 function calculatePlannerStatus(){
@@ -233,10 +198,13 @@ function calculatePlannerStatus(){
 
     Finance.planner.forEach(item=>{
 
-        let target;
+        let target = new Date(item.date);
 
-        /* ===== Event
-           (Birthday / Anniversary) ===== */
+        target.setHours(0,0,0,0);
+
+        /* ======================
+           Birthday & Anniversary
+        ====================== */
 
         if(item.isEvent){
 
@@ -272,21 +240,6 @@ function calculatePlannerStatus(){
 
         }
 
-        /* ===== Task
-           (Reminder / Maintenance) ===== */
-
-        else{
-
-            target = new Date(item.date);
-
-            target.setHours(
-
-                0,0,0,0
-
-            );
-
-        }
-
         const diff = Math.ceil(
 
             (target - today)
@@ -303,35 +256,63 @@ function calculatePlannerStatus(){
 
         formatPlannerCountdown(diff);
 
-        if(
+        /* ======================
+           COMPLETED
+        ====================== */
 
-            item.isTask &&
+        if(item.isTask){
 
-            item.lastTransaction
+            if(
 
-        ){
+                item.keyword &&
 
-            item.status =
+                item.lastTransaction
 
-            "completed";
+            ){
+
+                item.completed = true;
+
+                item.status =
+
+                "completed";
+
+                return;
+
+            }
 
         }
 
-        else if(diff < 0){
+        else{
 
-            item.status =
+            if(diff < 0){
 
-            "overdue";
+                item.completed = true;
+
+                item.status =
+
+                "completed";
+
+                return;
+
+            }
 
         }
 
-        else if(diff === 0){
+        /* ======================
+           TODAY
+        ====================== */
+
+        if(diff === 0){
 
             item.status =
 
             "today";
 
         }
+
+        /* ======================
+           UPCOMING
+        ====================== */
 
         else if(
 
@@ -347,6 +328,10 @@ function calculatePlannerStatus(){
 
         }
 
+        /* ======================
+           WAITING
+        ====================== */
+
         else{
 
             item.status =
@@ -357,7 +342,147 @@ function calculatePlannerStatus(){
 
     });
 
+    }
+
+
+/* ===========================
+   FORMAT PLANNER COUNTDOWN
+=========================== */
+
+function formatPlannerCountdown(days){
+
+    if(days < 0){
+
+        return `⚠ Terlambat ${Math.abs(days)} hari`;
+
+    }
+
+    if(days === 0){
+
+        return "Hari ini";
+
+    }
+
+    if(days === 1){
+
+        return "Besok";
+
+    }
+
+    if(days < 30){
+
+        return `${days} hari lagi`;
+
+    }
+
+    if(days < 365){
+
+        const month =
+
+        Math.floor(days / 30);
+
+        return `${month} bulan lagi`;
+
+    }
+
+    const year =
+
+    Math.floor(days / 365);
+
+    const remain =
+
+    days % 365;
+
+    const month =
+
+    Math.floor(remain / 30);
+
+    if(month===0){
+
+        return `${year} tahun lagi`;
+
+    }
+
+    return `${year} tahun ${month} bulan lagi`;
+
 }
+
+/* ===========================
+   SORT PLANNER
+=========================== */
+
+function sortPlanner(){
+
+    const statusOrder={
+
+        today:0,
+
+        upcoming:1,
+
+        waiting:2,
+
+        completed:3
+
+    };
+
+    Finance.planner.sort(
+
+        (a,b)=>{
+
+            const statusDiff =
+
+            statusOrder[a.status]-
+
+            statusOrder[b.status];
+
+            if(statusDiff!==0){
+
+                return statusDiff;
+
+            }
+
+            /* ======================
+               COMPLETED
+            ====================== */
+
+            if(
+
+                a.status==="completed" &&
+
+                b.status==="completed"
+
+            ){
+
+                const dateA =
+
+                a.lastTransaction
+
+                ? a.lastTransaction.date
+
+                : a.date;
+
+                const dateB =
+
+                b.lastTransaction
+
+                ? b.lastTransaction.date
+
+                : b.date;
+
+                return dateB-dateA;
+
+            }
+
+            /* ======================
+               ACTIVE
+            ====================== */
+
+            return a.daysLeft-b.daysLeft;
+
+        }
+
+    );
+ }
 
 
 /* ===========================
@@ -371,5 +496,7 @@ function processPlanner(){
     matchPlannerTransaction();
 
     calculatePlannerStatus();
+
+    sortPlanner();
 
 }
