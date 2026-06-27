@@ -1,5 +1,5 @@
 /* =====================================================
-   Life Dashboard v1.0
+   Life Dashboard v2.0
    File : planner.js
 ===================================================== */
 
@@ -11,35 +11,69 @@ function createPlannerItem(item){
 
     const icon={
 
-        birthday:"🎂",
-
-        anniversary:"💍",
-
         maintenance:"🔧",
 
-        reminder:"📄"
+        reminder:"📄",
+
+        planning:"🎯",
+
+        renovasi:"🏠",
+
+        birthday:"🎂",
+
+        anniversary:"💍"
 
     };
 
+    const priority={
+
+        high:"🔴",
+
+        medium:"🟡",
+
+        low:"🔵"
+
+    };
+
+    const statusText={
+
+        today:"Hari Ini",
+
+        completed:"✔ Selesai"
+
+    };
+
+    const rightText=
+
+    statusText[item.status]||
+
+    item.countdown;
+
     return `
 
-    <div class="analytics-item">
+    <div class="analytics-item ${item.status}">
 
-        <div>
+        <div class="planner-left">
 
-            <strong>
+            <span class="planner-icon">
 
-                ${icon[item.type]}
+                ${priority[item.priority]}
+
+                ${icon[item.type]||"📌"}
+
+            </span>
+
+            <span class="planner-title">
 
                 ${item.title}
 
-            </strong>
+            </span>
 
-            <small>
+        </div>
 
-                ${item.countdown}
+        <div class="planner-right">
 
-            </small>
+            ${rightText}
 
         </div>
 
@@ -65,153 +99,134 @@ function updatePlanner(){
 
     if(!container) return;
 
-    const active =
+    const limit = 5;
 
-    Finance.planner
+    const planner =
 
-    .filter(item=>
+    Finance.planner;
 
-        item.status!=="completed"
+    const visible =
 
-    )
+    Finance.plannerExpand
 
-    .sort(
+    ? planner
 
-        (a,b)=>
+    : planner.slice(
 
-        a.daysLeft-b.daysLeft
+        0,
 
-    );
-
-    const completed =
-
-    Finance.planner
-
-    .filter(item=>
-
-        item.status==="completed"
-
-    )
-
-    .sort(
-
-        (a,b)=>
-
-        b.lastTransaction.date-
-
-        a.lastTransaction.date
+        limit
 
     );
 
-    const activeList =
+    let html = "";
 
-    active.slice(0,5);
+    let currentStatus = "";
 
-    let html =
+    const statusTitle={
 
-    activeList
+        today:"Hari Ini",
 
-    .map(createPlannerItem)
+        upcoming:"Segera",
 
-    .join("");
+        waiting:"Akan Datang",
+
+        completed:"Selesai"
+
+    };
+
+    visible.forEach(item=>{
+
+        if(
+
+            currentStatus!==
+
+            item.status
+
+        ){
+
+            currentStatus=
+
+            item.status;
+
+            html+=`
+
+            <div class="planner-status">
+
+                ${statusTitle[item.status]}
+
+            </div>
+
+            `;
+
+        }
+
+        html+=
+
+        createPlannerItem(item);
+
+    });
 
     if(
 
-        completed.length>0
+        planner.length>
+
+        limit
 
     ){
 
-        html +=`
+        html+=`
 
-        <div
-        class="planner-more">
+        <div class="planner-more">
 
-        <button
+            <button
 
-        onclick="togglePlannerHistory()">
+            onclick="togglePlanner()">
 
-        ▼ Planner lainnya
-        (${completed.length})
+            ${
 
-        </button>
+                Finance.plannerExpand
+
+                ?
+
+                "▲ Sembunyikan"
+
+                :
+
+                `▼ Planner lainnya (${planner.length-limit})`
+
+            }
+
+            </button>
 
         </div>
 
         `;
 
-        if(
-
-            Finance.plannerHistoryExpand
-
-        ){
-
-            html +=
-
-            completed
-
-            .map(
-
-                createCompletedPlannerItem
-
-            )
-
-            .join("");
-
-        }
-
     }
 
-    container.innerHTML =
+    container.innerHTML=
 
     html;
 
 }
-function createCompletedPlannerItem(item){
 
-    return `
+/* ===========================
+   TOGGLE PLANNER
+=========================== */
 
-    <div
+function togglePlanner(){
 
-    class="analytics-item completed">
+    Finance.plannerExpand =
 
-        <div>
+    !Finance.plannerExpand;
 
-            <strong>
-
-            ✔ ${item.title}
-
-            </strong>
-
-            <small>
-
-            Selesai
-
-            </small>
-
-        </div>
-
-    </div>
-
-    `;
+    updatePlanner();
 
 }
 
-
 /* ===========================
-   TOGGLE HISTORY
-=========================== */
-
-function togglePlannerHistory(){
-
-    Finance.plannerHistoryExpand=
-
-    !Finance.plannerHistoryExpand;
-
-    updatePlannerHistory();
-
-       }
-/* ===========================
-   HEADER REMINDER
+   UPDATE REMINDER HEADER
 =========================== */
 
 function updatePlannerHeader(){
@@ -226,33 +241,19 @@ function updatePlannerHeader(){
 
     if(!container) return;
 
-    const planner =
+    const reminder =
 
-    Finance.planner
-
-    .filter(item=>
+    Finance.planner.filter(item=>
 
         item.status==="today" ||
 
         item.status==="upcoming"
 
-    )
+    );
 
-    .sort(
+    if(reminder.length===0){
 
-        (a,b)=>
-
-        a.daysLeft-
-
-        b.daysLeft
-
-    )
-
-    .slice(0,3);
-
-    if(planner.length===0){
-
-        container.textContent=
+        container.innerHTML=
 
         "✅ Tidak ada reminder dalam waktu dekat.";
 
@@ -262,36 +263,51 @@ function updatePlannerHeader(){
 
     const icon={
 
-        birthday:"🎂",
-
-        anniversary:"💍",
-
         maintenance:"🔧",
 
-        reminder:"📄"
+        reminder:"📄",
+
+        planning:"🎯",
+
+        renovasi:"🏠",
+
+        birthday:"🎂",
+
+        anniversary:"💍"
 
     };
 
-    container.innerHTML =
+    container.innerHTML=
 
-planner.map(item =>
+    reminder.map(item=>
 
-`${icon[item.type]}
-<b>${item.title}</b>
-(${item.countdown})`
+        `${icon[item.type]||"📌"}
 
-).join(
+        <strong>${item.title}</strong>
 
-" &nbsp;&nbsp;&nbsp; • &nbsp;&nbsp;&nbsp; "
+        (${item.countdown})`
 
-);
+    ).join(
 
-// Duplikat agar scroll tidak putus
+        " &nbsp;&nbsp;•&nbsp;&nbsp; "
 
-container.innerHTML +=
-
-" &nbsp;&nbsp;&nbsp; • &nbsp;&nbsp;&nbsp; " +
-
-container.innerHTML;
+    );
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
