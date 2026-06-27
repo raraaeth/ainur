@@ -257,46 +257,58 @@ function calculatePlannerStatus(){
         formatPlannerCountdown(diff);
 
         /* ======================
-           COMPLETED
-        ====================== */
+   CALCULATE NEXT DATE
+====================== */
 
-        if(item.isTask){
+if(
 
-            if(
+    item.isTask &&
 
-                item.keyword &&
+    item.keyword &&
 
-                item.lastTransaction
+    item.lastTransaction
 
-            ){
+){
 
-                item.completed = true;
+    target = new Date(
 
-                item.status =
+        item.lastTransaction.date
 
-                "completed";
+    );
 
-                return;
+    target.setDate(
 
-            }
+        target.getDate() +
 
-        }
+        item.interval
 
-        else{
+    );
 
-            if(diff < 0){
+    target.setHours(
 
-                item.completed = true;
+        0,0,0,0
 
-                item.status =
+    );
 
-                "completed";
+    item.nextDate = target;
 
-                return;
+    item.daysLeft = Math.ceil(
 
-            }
+        (target - today) /
 
-        }
+        86400000
+
+    );
+
+    item.countdown =
+
+    formatPlannerCountdown(
+
+        item.daysLeft
+
+    );
+
+}
 
         /* ======================
            TODAY
