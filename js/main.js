@@ -38,8 +38,6 @@ async function init(){
    
     updatePlanner();
 
-    updatePlannerHistory();
-
     updatePlannerHeader();
    
     updateLastSync();
