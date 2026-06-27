@@ -2,6 +2,7 @@
    Life Dashboard v3.0
    File : processPlanner.js
 ===================================================== */
+
 /* ===========================
    NORMALIZE PLANNER
 =========================== */
@@ -14,7 +15,7 @@ function normalizePlanner(){
 
         const type =
 
-        (item.Jenis||"")
+        String(item.Jenis||"")
 
         .trim()
 
@@ -36,13 +37,9 @@ function normalizePlanner(){
 
             Number(item.Interval)||0,
 
-            reminderBefore:
-
-            Number(item["Reminder before"])||0,
-
             keyword:
 
-            (item.Keyword||"")
+            String(item.Keyword||"")
 
             .trim()
 
@@ -50,21 +47,27 @@ function normalizePlanner(){
 
             priority:
 
-            (item.Priority||"medium")
+            String(item.Priority||"medium")
+
+            .trim()
 
             .toLowerCase(),
+
+            reminderBefore:
+
+            Number(
+
+                item["Reminder before"]
+
+            )||0,
 
             note:
 
             item.Catatan||"",
 
-            /* ===================
-               CATEGORY
-            =================== */
+            /* CATEGORY */
 
-            isRecurring:
-
-            [
+            isRecurring:[
 
                 "maintenance",
 
@@ -72,9 +75,7 @@ function normalizePlanner(){
 
             ].includes(type),
 
-            isEvent:
-
-            [
+            isEvent:[
 
                 "birthday",
 
@@ -82,9 +83,7 @@ function normalizePlanner(){
 
             ].includes(type),
 
-            isProject:
-
-            [
+            isProject:[
 
                 "planning",
 
@@ -92,21 +91,19 @@ function normalizePlanner(){
 
             ].includes(type),
 
-            /* ===================
-               RUNTIME
-            =================== */
+            /* RUNTIME */
 
             lastTransaction:null,
 
-            nextDate:null,
+            dueDate:null,
 
             daysLeft:0,
 
             countdown:"",
 
-            completed:false,
+            status:"waiting",
 
-            status:"waiting"
+            completed:false
 
         };
 
@@ -123,7 +120,13 @@ function findLastTransaction(){
 
     Finance.planner.forEach(item=>{
 
-        if(!item.keyword){
+        if(
+
+            !item.isRecurring ||
+
+            !item.keyword
+
+        ){
 
             return;
 
@@ -141,7 +144,11 @@ function findLastTransaction(){
 
                 ""
 
-            ).toLowerCase();
+            )
+
+            .toLowerCase()
+
+            .trim();
 
             return description.includes(
 
@@ -151,7 +158,11 @@ function findLastTransaction(){
 
         });
 
-        if(transactions.length===0){
+        if(
+
+            transactions.length===0
+
+        ){
 
             return;
 
@@ -175,11 +186,12 @@ function findLastTransaction(){
 
 }
 
+
 /* ===========================
-   CALCULATE NEXT DATE
+   CALCULATE DUE DATE
 =========================== */
 
-function calculateNextDate(){
+function calculateDueDate(){
 
     const today = new Date();
 
@@ -187,11 +199,11 @@ function calculateNextDate(){
 
     Finance.planner.forEach(item=>{
 
-        let nextDate =
+        let dueDate =
 
         new Date(item.date);
 
-        nextDate.setHours(
+        dueDate.setHours(
 
             0,0,0,0
 
@@ -205,7 +217,7 @@ function calculateNextDate(){
 
             if(item.lastTransaction){
 
-                nextDate =
+                dueDate =
 
                 new Date(
 
@@ -213,21 +225,21 @@ function calculateNextDate(){
 
                 );
 
-                nextDate.setHours(
+                dueDate.setHours(
 
                     0,0,0,0
 
                 );
 
-                nextDate.setDate(
-
-                    nextDate.getDate() +
-
-                    item.interval
-
-                );
-
             }
+
+            dueDate.setDate(
+
+                dueDate.getDate() +
+
+                item.interval
+
+            );
 
         }
 
@@ -237,33 +249,33 @@ function calculateNextDate(){
 
         if(item.isEvent){
 
-            nextDate =
+            dueDate =
 
             new Date(today);
 
-            nextDate.setMonth(
+            dueDate.setMonth(
 
                 item.date.getMonth()
 
             );
 
-            nextDate.setDate(
+            dueDate.setDate(
 
                 item.date.getDate()
 
             );
 
-            nextDate.setHours(
+            dueDate.setHours(
 
                 0,0,0,0
 
             );
 
-            if(nextDate < today){
+            if(dueDate < today){
 
-                nextDate.setFullYear(
+                dueDate.setFullYear(
 
-                    nextDate.getFullYear()+1
+                    dueDate.getFullYear()+1
 
                 );
 
@@ -277,11 +289,11 @@ function calculateNextDate(){
 
         if(item.isProject){
 
-            nextDate =
+            dueDate =
 
             new Date(item.date);
 
-            nextDate.setHours(
+            dueDate.setHours(
 
                 0,0,0,0
 
@@ -289,14 +301,11 @@ function calculateNextDate(){
 
         }
 
-        item.nextDate =
-
-        nextDate;
+        item.dueDate = dueDate;
 
     });
 
 }
-
 
 /* ===========================
    CALCULATE STATUS
@@ -312,7 +321,7 @@ function calculateStatus(){
 
         const diff = Math.ceil(
 
-            (item.nextDate - today) /
+            (item.dueDate - today) /
 
             86400000
 
@@ -324,13 +333,7 @@ function calculateStatus(){
 
         formatPlannerCountdown(diff);
 
-        /* ======================
-           DEFAULT
-        ====================== */
-
         item.completed = false;
-
-        item.status = "waiting";
 
         /* ======================
            PROJECT
@@ -348,7 +351,9 @@ function calculateStatus(){
 
                 item.completed = true;
 
-                item.status = "completed";
+                item.status =
+
+                "completed";
 
                 return;
 
@@ -374,11 +379,33 @@ function calculateStatus(){
 
         if(
 
+            diff>0 &&
+
             diff<=item.reminderBefore
 
         ){
 
             item.status="upcoming";
+
+            return;
+
+        }
+
+        /* ======================
+           OVERDUE
+        ====================== */
+
+        if(diff<0){
+
+            item.status="upcoming";
+
+            item.countdown=
+
+            `⚠ Terlambat ${
+
+                Math.abs(diff)
+
+            } hari`;
 
             return;
 
@@ -392,7 +419,67 @@ function calculateStatus(){
 
     });
 
+}
+
+/* ===========================
+   FORMAT COUNTDOWN
+=========================== */
+
+function formatPlannerCountdown(days){
+
+    if(days<0){
+
+        return `⚠ Terlambat ${Math.abs(days)} hari`;
+
     }
+
+    if(days===0){
+
+        return "Hari Ini";
+
+    }
+
+    if(days===1){
+
+        return "Besok";
+
+    }
+
+    if(days<30){
+
+        return `${days} hari lagi`;
+
+    }
+
+    if(days<365){
+
+        const month =
+
+        Math.floor(days/30);
+
+        return `${month} bulan lagi`;
+
+    }
+
+    const year =
+
+    Math.floor(days/365);
+
+    const month =
+
+    Math.floor(
+
+        (days%365)/30
+
+    );
+
+    return month===0
+
+    ? `${year} tahun lagi`
+
+    : `${year} tahun ${month} bulan lagi`;
+
+}
 
 /* ===========================
    SORT PLANNER
@@ -416,10 +503,6 @@ function sortPlanner(){
 
         (a,b)=>{
 
-            /* ===================
-               STATUS
-            =================== */
-
             if(
 
                 order[a.status]!==
@@ -438,50 +521,6 @@ function sortPlanner(){
 
             }
 
-            /* ===================
-               COMPLETED
-            =================== */
-
-            if(
-
-                a.status==="completed" &&
-
-                b.status==="completed"
-
-            ){
-
-                if(
-
-                    a.lastTransaction &&
-
-                    b.lastTransaction
-
-                ){
-
-                    return(
-
-                        new Date(
-
-                            b.lastTransaction.date
-
-                        )-
-
-                        new Date(
-
-                            a.lastTransaction.date
-
-                        )
-
-                    );
-
-                }
-
-            }
-
-            /* ===================
-               ACTIVE
-            =================== */
-
             return(
 
                 a.daysLeft-
@@ -494,8 +533,7 @@ function sortPlanner(){
 
     );
 
-               }
-
+}
 
 
 /* ===========================
@@ -508,15 +546,13 @@ function processPlanner(){
 
     findLastTransaction();
 
-    calculateNextDate();
+    calculateDueDate();
 
     calculateStatus();
 
     sortPlanner();
 
 }
-
-
 
 
 
