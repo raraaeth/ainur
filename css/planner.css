@@ -73,6 +73,7 @@
 }
 
 /* ===========================
+/* ===========================
    PLANNER ITEM
 =========================== */
 
@@ -80,29 +81,39 @@
 
     display:flex;
 
+    justify-content:space-between;
+
     align-items:center;
 
-    padding:14px 16px;
+    padding:14px 0;
 
-    background:rgba(255,255,255,.04);
-
-    border:1px solid rgba(255,255,255,.08);
-
-    border-left:4px solid #3B82F6;
-
-    border-radius:16px;
-
-    transition:.25s;
+    border-bottom:1px solid rgba(255,255,255,.06);
 
 }
 
-.analytics-item:hover{
+.analytics-item:last-child{
 
-    transform:translateY(-2px);
+    border-bottom:none;
 
-    border-left-color:#38BDF8;
+}
 
-    box-shadow:0 8px 18px rgba(0,0,0,.20);
+.analytics-item strong{
+
+    display:block;
+
+    font-size:15px;
+
+    color:#F8FAFC;
+
+    margin-bottom:4px;
+
+}
+
+.analytics-item small{
+
+    color:var(--text-secondary);
+
+    font-size:13px;
 
 }
 
@@ -362,7 +373,27 @@
 
 }
 
+/* ===========================
+   PLANNER CARD
+=========================== */
 
+.planner-card{
+
+    background:linear-gradient(
+        145deg,
+        rgba(30,41,59,.95),
+        rgba(15,23,42,.95)
+    );
+
+    border:1px solid var(--border);
+
+    border-radius:var(--radius-lg);
+
+    padding:20px;
+
+    box-shadow:var(--shadow-sm);
+
+}
 
 
 
