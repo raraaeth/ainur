@@ -225,4 +225,91 @@
     border-radius:var(--radius-lg);
 
 }
+/* ==========================
+   STATISTICS BOX
+========================== */
 
+.stats-box{
+    background:var(--card);
+    border:1px solid var(--border);
+    border-radius:var(--radius-lg);
+    padding:20px;
+    box-shadow:var(--shadow-sm);
+}
+
+.stats-header{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    margin-bottom:18px;
+    font-size:1rem;
+    font-weight:700;
+    color:var(--text);
+}
+
+.stats-header i{
+    color:var(--primary);
+    font-size:1.1rem;
+}
+
+.stats-row{
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-start;
+    padding:12px 0;
+    border-bottom:1px solid rgba(255,255,255,.06);
+}
+
+.stats-row:last-child{
+    border-bottom:none;
+    padding-bottom:0;
+}
+
+.stats-row span{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    color:var(--text-secondary);
+    font-size:.92rem;
+}
+
+.stats-row span i{
+    width:18px;
+    text-align:center;
+}
+
+.stats-value{
+    text-align:right;
+}
+
+.stats-value strong{
+    display:block;
+    color:var(--text);
+    font-size:1rem;
+    font-weight:700;
+}
+
+.stats-value small{
+    display:block;
+    margin-top:4px;
+    color:var(--text-secondary);
+    font-size:.8rem;
+}
+
+/* Badge warna */
+
+.icon-success{
+    color:#22c55e;
+}
+
+.icon-danger{
+    color:#ef4444;
+}
+
+.icon-warning{
+    color:#f59e0b;
+}
+
+.icon-primary{
+    color:#3b82f6;
+}
