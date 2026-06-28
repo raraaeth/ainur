@@ -107,3 +107,9 @@ const WALLET_FILTER = {
     minimumUsd: 0.01
 
 };
+
+/* =========================
+   CURRENCY
+========================= */
+
+const USD_IDR = 16200;
