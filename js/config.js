@@ -151,6 +151,10 @@ const Finance = {
     data : [],
 
     table : [],
+   
+   tableLimit : 5,
+
+tableExpand : false,
 
     /* ===== Summary ===== */
 
