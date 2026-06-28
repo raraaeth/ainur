@@ -67,6 +67,7 @@ fetchAllWalletTokens()
 
     processWalletData();
     updateWalletDashboard();
+   updatePortfolioCard();
 
 })
 
