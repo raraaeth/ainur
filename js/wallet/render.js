@@ -31,17 +31,15 @@ function updateCryptoSummary(){
 
     Wallet.summary.totalUSD;
 
+    const totalIDR =
+
+    totalUSD * USD_IDR;
+
     Wallet.dashboard = {
 
         totalUSD,
 
-        totalIDR:
-
-        totalUSD * USD_IDR,
-
-        coreUSD:
-
-        Wallet.summary.coreUSD,
+        totalIDR,
 
         totalWallets:
 
@@ -50,6 +48,10 @@ function updateCryptoSummary(){
         totalTokens:
 
         Wallet.summary.totalTokens,
+
+        lastSync:
+
+        new Date(),
 
         topHoldings:
 
