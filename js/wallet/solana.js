@@ -6,10 +6,10 @@ const SOLANA_BASE_URL =
 "https://solana-gateway.moralis.io";
 
 /* =========================
-   FETCH SOLANA TOKEN
+   FETCH SOLANA WALLET
 ========================= */
 
-async function fetchSolanaTokens(address){
+async function fetchSolanaWallet(address){
 
     try{
 
@@ -26,9 +26,17 @@ async function fetchSolanaTokens(address){
 
         );
 
-        const data = await response.json();
+        const data =
+        await response.json();
 
-        return data.tokens || [];
+        console.log(
+            "Solana Response:",
+            data
+        );
+
+        return filterWalletTokens(
+            data.tokens || data || []
+        );
 
     }catch(error){
 
@@ -42,50 +50,3 @@ async function fetchSolanaTokens(address){
     }
 
 }
-
-
-/* =========================
-   FETCH ALL SOLANA
-========================= */
-
-async function fetchAllSolanaWallets(){
-
-    const solWallets = Wallet.raw.filter(
-
-        item =>
-
-        item.Aktif === "TRUE" &&
-        item.Network === "solana"
-
-    );
-
-    for(const wallet of solWallets){
-
-        const tokens =
-        filterWalletTokens(
-
-            await fetchSolanaTokens(
-                wallet.Address
-            )
-
-        );
-
-        Wallet.tokens.push({
-
-            portfolio:wallet.Portofolio,
-
-            network:"solana",
-
-            provider:wallet.Provider,
-
-            address:wallet.Address,
-
-            tokens
-
-        });
-
-    }
-
-}
-
-
