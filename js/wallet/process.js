@@ -52,7 +52,7 @@ sol:[]
             wallet.portfolio
         ];
 
-        for(const token of wallet.tokens){
+        
 for(const token of wallet.tokens){
 
     const usd =
@@ -92,8 +92,6 @@ for(const token of wallet.tokens){
 
     }
 
-  }
-           
   }
 
     console.log(
