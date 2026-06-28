@@ -11,8 +11,22 @@ function filterWalletTokens(tokens){
         (token.symbol || "")
         .toUpperCase();
 
-        return CORE_ASSET.includes(
-            symbol
+        const usd =
+
+        Number(
+            token.usd_value || 0
+        );
+
+        return (
+
+            CORE_ASSET.includes(
+                symbol
+            )
+
+            &&
+
+            usd > 0
+
         );
 
     });
