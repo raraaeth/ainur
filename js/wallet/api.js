@@ -5,8 +5,7 @@
 const WALLET_SHEET = "wallet";
 
 const WALLET_API_URL =
-`https://opensheet.elk.sh/${SHEET_ID}/${WALLET_SHEET}`;
-
+`https://opensheet.elk.sh/${CONFIG.SHEET_ID}/${WALLET_SHEET}`;
 
 /* =========================
    FETCH WALLET LIST
