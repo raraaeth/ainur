@@ -86,7 +86,7 @@ const CORE_ASSET = [
 
     "AVAX",
 
-    "HYPE"
+    "HYPE",
     "USDE",
     "FDUSD",
     "DAI"
