@@ -190,4 +190,9 @@ filterWalletTokens(
 
     );
 
+   // Simpan hasil ke cache
+saveWalletCache();
+
+return Wallet.tokens;
+
 }
