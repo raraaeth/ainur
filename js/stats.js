@@ -149,153 +149,111 @@ function updateStatistics(){
     ?0
     :(topExpense.amount/summary.expense)*100;
 
-    container.innerHTML =
+    container.innerHTML = `
+<div class="stats-box">
+
+    <div class="stats-header">
+        <i class="fa-solid fa-chart-simple"></i>
+        <span>Ringkasan Statistik</span>
+    </div>
+
+    <div class="stats-row">
+        <span>
+            <i class="fa-solid fa-money-bill-trend-up icon-success"></i>
+            Pemasukan Terbesar
+        </span>
+
+        <div class="stats-value">
+            <strong>${
+                stats.highestIncome
+                ? formatCurrency(stats.highestIncome.amount)
+                : "-"
+            }</strong>
+
+            <small>${
+                stats.highestIncome
+                ? stats.highestIncome.category
+                : "-"
+            }</small>
+        </div>
+    </div>
+
+    <div class="stats-row">
+        <span>
+            <i class="fa-solid fa-money-bill-transfer icon-danger"></i>
+            Pengeluaran Terbesar
+        </span>
+
+        <div class="stats-value">
+            <strong>${
+                stats.highestExpense
+                ? formatCurrency(stats.highestExpense.amount)
+                : "-"
+            }</strong>
+
+            <small>${
+                stats.highestExpense
+                ? stats.highestExpense.category
+                : "-"
+            }</small>
+        </div>
+    </div>
+
+    <div class="stats-row">
+        <span>
+            <i class="fa-solid fa-arrow-trend-up icon-success"></i>
+            Rata-rata Pemasukan
+        </span>
+
+        <strong>${formatCurrency(incomeAvg)}</strong>
+    </div>
+
+    <div class="stats-row">
+        <span>
+            <i class="fa-solid fa-arrow-trend-down icon-danger"></i>
+            Rata-rata Pengeluaran
+        </span>
+
+        <strong>${formatCurrency(expenseAvg)}</strong>
+    </div>
+
+    <div class="stats-row">
+        <span>
+            <i class="fa-solid fa-trophy icon-success"></i>
+            Top Pemasukan
+        </span>
+
+        <strong>${topIncome.name} (${incomePercent.toFixed(1)}%)</strong>
+    </div>
+
+    <div class="stats-row">
+        <span>
+            <i class="fa-solid fa-fire icon-warning"></i>
+            Top Pengeluaran
+        </span>
+
+        <strong>${topExpense.name} (${expensePercent.toFixed(1)}%)</strong>
+    </div>
+
+    <div class="stats-row">
+        <span>
+            <i class="fa-solid fa-chart-column icon-primary"></i>
+            Total Transaksi
+        </span>
+
+        <strong>${Finance.table.length}</strong>
+    </div>
+
+    <div class="stats-row">
+        <span>
+            <i class="fa-solid fa-piggy-bank icon-warning"></i>
+            Saving Rate
+        </span>
+
+        <strong>${summary.savingRate.toFixed(1)}%</strong>
+    </div>
 
-        createStatCard(
-
-            "fa-solid fa-money-bill-trend-up",
-
-            "Pemasukan Terbesar",
-
-            stats.highestIncome
-            ? formatCurrency(
-                stats.highestIncome.amount
-            )
-            : "-",
-
-            stats.highestIncome
-            ? stats.highestIncome.category
-            : "",
-
-            "icon-success"
-
-        )
-
-        +
-
-        createStatCard(
-
-            "fa-solid fa-money-bill-transfer",
-
-            "Pengeluaran Terbesar",
-
-            stats.highestExpense
-            ? formatCurrency(
-                stats.highestExpense.amount
-            )
-            : "-",
-
-            stats.highestExpense
-            ? stats.highestExpense.category
-            : "",
-
-            "icon-danger"
-
-        )
-
-        +
-
-        createStatCard(
-
-            "fa-solid fa-chart-column",
-
-            "Total Transaksi",
-
-            Finance.table.length,
-
-            `${Object.keys(stats.incomeByCategory).length}
-            kategori pemasukan`,
-
-            "icon-primary"
-
-        )
-
-        +
-
-        createStatCard(
-
-            "fa-solid fa-piggy-bank",
-
-            "Saving Rate",
-
-            summary.savingRate.toFixed(1)+"%",
-
-            "Persentase sisa dari pemasukan",
-
-            "icon-warning"
-
-        )
-
-        +
-
-        createStatCard(
-
-            "fa-solid fa-arrow-trend-up",
-
-            "Rata-rata Pemasukan",
-
-            formatCurrency(
-                incomeAvg
-            ),
-
-            "Per kategori",
-
-            "icon-success"
-
-        )
-
-        +
-
-        createStatCard(
-
-            "fa-solid fa-arrow-trend-down",
-
-            "Rata-rata Pengeluaran",
-
-            formatCurrency(
-                expenseAvg
-            ),
-
-            "Per kategori",
-
-            "icon-danger"
-
-        )
-
-        +
-
-        createStatCard(
-
-            "fa-solid fa-trophy",
-
-            "Top Kategori Pemasukan",
-
-            topIncome.name,
-
-            `${incomePercent.toFixed(1)}% dari pemasukan`,
-
-            "icon-success"
-
-        )
-
-        +
-
-        createStatCard(
-
-            "fa-solid fa-fire",
-
-            "Top Kategori Pengeluaran",
-
-            topExpense.name,
-
-            `${expensePercent.toFixed(1)}% dari pengeluaran`,
-
-            "icon-warning"
-
-        );
-
-      }
-
-
+</div>
+`;
         
-
+}
