@@ -6,17 +6,17 @@ function processWalletData(){
 
     Wallet.summary = {
 
-    totalUSD:0,
+        totalUSD: 0,
 
-    coreUSD:0,
+        coreUSD: 0,
 
-    totalWallets:Wallet.summary.totalWallets,
+        totalWallets: Wallet.summary.totalWallets,
 
-    totalTokens:0,
+        totalTokens: 0,
 
-    portfolios:{}
+        portfolios: {}
 
-};
+    };
 
     for(const wallet of Wallet.tokens){
 
@@ -30,17 +30,17 @@ function processWalletData(){
 
             Wallet.summary.portfolios[
                 wallet.portfolio
-            ]={
+            ] = {
 
-                totalUSD:0,
+                totalUSD: 0,
 
-coreUSD:0,
+                coreUSD: 0,
 
-totalTokens:0,
+                totalTokens: 0,
 
-evm:[],
+                evm: [],
 
-sol:[]
+                sol: []
 
             };
 
@@ -52,47 +52,48 @@ sol:[]
             wallet.portfolio
         ];
 
-        
-for(const token of wallet.tokens){
+        for(const token of wallet.tokens){
 
-    const usd =
-    Number(
-        token.usd_value || 0
-    );
+            const usd =
+            Number(
+                token.usd_value || 0
+            );
 
-    const symbol =
-    token.symbol || "";
+            const symbol =
+            token.symbol || "";
 
-    const isCore =
-    CORE_ASSET.includes(symbol);
+            const isCore =
+            CORE_ASSET.includes(symbol);
 
-    portfolio.totalUSD += usd;
+            portfolio.totalUSD += usd;
 
-    portfolio.totalTokens++;
+            portfolio.totalTokens++;
 
-    Wallet.summary.totalUSD += usd;
+            Wallet.summary.totalUSD += usd;
 
-    Wallet.summary.totalTokens++;
+            Wallet.summary.totalTokens++;
 
-    if(isCore){
+            if(isCore){
 
-        portfolio.coreUSD += usd;
+                portfolio.coreUSD += usd;
 
-        Wallet.summary.coreUSD += usd;
+                Wallet.summary.coreUSD += usd;
+
+            }
+
+            if(wallet.network === "evm"){
+
+                portfolio.evm.push(token);
+
+            }else{
+
+                portfolio.sol.push(token);
+
+            }
+
+        }
 
     }
-
-    if(wallet.network === "evm"){
-
-        portfolio.evm.push(token);
-
-    }else{
-
-        portfolio.sol.push(token);
-
-    }
-
-  }
 
     console.log(
 
