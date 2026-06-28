@@ -4,67 +4,42 @@
 ===================================================== */
 
 /* ===========================
-   INITIALIZE APP
+INITIALIZE APP
 =========================== */
 
 document.addEventListener(
-    "DOMContentLoaded",
-    init
+"DOMContentLoaded",
+init
 );
 
 async function init(){
 
-    /* ===========================
-       FINANCE
-    =========================== */
+await fetchTransactions();  
 
-    await fetchTransactions();
+await fetchPlanner();  
 
-    await fetchPlanner();
+processFinanceData();  
 
+processPlanner();  
 
-    /* ===========================
-       WALLET
-    =========================== */
+updateDashboard();  
 
-    await fetchWalletList();
+updateCharts();  
 
-    await fetchAllWalletTokens();
+populateFilters();  
 
+initFilters();  
 
-    /* ===========================
-       PROCESS
-    =========================== */
+updateTable();  
+ 
+updateStatistics();  
 
-    processFinanceData();
+updateInsight();  
+ 
+updatePlanner();  
 
-    processPlanner();
-
-    processWalletData();
-
-
-    /* ===========================
-       DASHBOARD
-    =========================== */
-
-    updateDashboard();
-
-    updateCharts();
-
-    populateFilters();
-
-    initFilters();
-
-    updateTable();
-
-    updateStatistics();
-
-    updateInsight();
-
-    updatePlanner();
-
-    updatePlannerHeader();
-
-    updateLastSync();
+updatePlannerHeader();  
+ 
+updateLastSync();
 
 }
