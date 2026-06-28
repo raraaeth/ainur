@@ -59,31 +59,54 @@ async function fetchWalletTokens(
 
     try{
 
-        const chain =
-        NETWORK[network];
+        let chains = [];
 
-        const response =
-        await fetch(
+if(network === "evm"){
+
+    chains = EVM_CHAINS;
+
+}else{
+
+    chains = [ NETWORK[network] ];
+
+}
+
+        let allTokens = [];
+
+for(const chain of chains){
+
+    const response =
+    await fetch(
 
 `${MORALIS.BASE_URL}/wallets/${address}/tokens?chain=${chain}`,
 
-        {
+    {
 
-            headers:{
+        headers:{
 
-                "accept":"application/json",
+            "accept":"application/json",
 
-                "X-API-Key":
-                MORALIS.API_KEY
+            "X-API-Key":
+            MORALIS.API_KEY
 
-            }
+        }
 
-        });
+    });
 
-        const data =
-        await response.json();
+    const data =
+    await response.json();
 
-        return data.result || [];
+    if(data.result){
+
+        allTokens.push(
+            ...data.result
+        );
+
+    }
+
+}
+
+return allTokens;
 
     }catch(error){
 
