@@ -47,12 +47,13 @@ async function init(){
 
 
     /* =========================
-       WALLET (Background)
-    ========================= */
+   WALLET (Background)
+========================= */
 
-    fetchWalletList()
-       // tampilkan cache lebih dulu
-if(loadWalletCache()){
+await fetchWalletList();
+
+// tampilkan cache lebih dulu
+if (loadWalletCache()) {
 
     processWalletData();
     updateWalletDashboard();
@@ -60,25 +61,23 @@ if(loadWalletCache()){
 }
 
 // update data terbaru dari Moralis
+fetchAllWalletTokens()
 
-    .then(fetchAllWalletTokens)
+.then(() => {
 
-    .then(() => {
+    processWalletData();
+    updateWalletDashboard();
 
-        processWalletData();
+})
 
-        updateWalletDashboard();
+.catch(error => {
 
-    })
+    console.error(
+        "Wallet Error",
+        error
+    );
 
-    .catch(error => {
-
-        console.error(
-            "Wallet Error",
-            error
-        );
-
-    });
+});
 
 
     /* =========================
