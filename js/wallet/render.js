@@ -27,29 +27,37 @@ function updateWalletDashboard(){
 
 function updateCryptoSummary(){
 
+    const totalUSD =
+
+    Wallet.summary.totalUSD;
+
     Wallet.dashboard = {
 
-    totalUSD:
+        totalUSD,
 
-    Wallet.summary.totalUSD,
+        totalIDR:
 
-    coreUSD:
+        totalUSD * USD_IDR,
 
-    Wallet.summary.coreUSD,
+        coreUSD:
 
-    totalWallets:
+        Wallet.summary.coreUSD,
 
-    Wallet.summary.totalWallets,
+        totalWallets:
 
-    totalTokens:
+        Wallet.summary.totalWallets,
 
-    Wallet.summary.totalTokens,
+        totalTokens:
 
-    topHoldings:
+        Wallet.summary.totalTokens,
 
-    getTopHoldings()
+        topHoldings:
 
-};
+        getTopHoldings()
+
+    };
+
+}
 
 /* =========================
    TOP HOLDINGS
