@@ -3,53 +3,79 @@
    File : main.js
 ===================================================== */
 
+
 /* ===========================
-INITIALIZE APP
+   INITIALIZE APP
 =========================== */
 
 document.addEventListener(
-"DOMContentLoaded",
-init
+    "DOMContentLoaded",
+    init
 );
 
 async function init(){
 
-await fetchTransactions();  
+    /* =========================
+       FINANCE
+    ========================= */
 
-await fetchPlanner();  
-   
-/* ===========================
-   WALLET
-=========================== */
+    await fetchTransactions();
 
-await fetchWalletList();
-await fetchAllWalletTokens();
-processWalletData();
-updateWalletDashboard();
+    await fetchPlanner();
+
+    processFinanceData();
+
+    processPlanner();
+
+    updateDashboard();
+
+    updateCharts();
+
+    populateFilters();
+
+    initFilters();
+
+    updateTable();
+
+    updateStatistics();
+
+    updateInsight();
+
+    updatePlanner();
+
+    updatePlannerHeader();
 
 
-processFinanceData();  
+    /* =========================
+       WALLET (Background)
+    ========================= */
 
-processPlanner();  
+    fetchWalletList()
 
-updateDashboard();  
+    .then(fetchAllWalletTokens)
 
-updateCharts();  
+    .then(() => {
 
-populateFilters();  
+        processWalletData();
 
-initFilters();  
+        updateWalletDashboard();
 
-updateTable();  
- 
-updateStatistics();  
+    })
 
-updateInsight();  
- 
-updatePlanner();  
+    .catch(error => {
 
-updatePlannerHeader();  
- 
-updateLastSync();
+        console.error(
+            "Wallet Error",
+            error
+        );
+
+    });
+
+
+    /* =========================
+       LAST SYNC
+    ========================= */
+
+    updateLastSync();
 
 }
