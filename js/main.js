@@ -23,6 +23,7 @@ await fetchPlanner();
 =========================== */
 
 await fetchWalletList();
+await fetchAllWalletTokens();
 
 
 
