@@ -17,6 +17,13 @@ async function init(){
 await fetchTransactions();  
 
 await fetchPlanner();  
+   /* ===========================
+   WALLET
+=========================== */
+
+await fetchWalletList();
+
+await fetchAllWalletTokens();
 
 processFinanceData();  
 
