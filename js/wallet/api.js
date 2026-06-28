@@ -66,7 +66,7 @@ if(network === "evm"){
 
 }else{
 
-    chains = [ NETWORK[network] ];
+    return [];
 
 }
 
