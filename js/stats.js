@@ -150,12 +150,7 @@ function updateStatistics(){
     :(topExpense.amount/summary.expense)*100;
 
     container.innerHTML = `
-<div class="stats-box">
-
-    <div class="stats-header">
-        <i class="fa-solid fa-chart-simple"></i>
-        <span>Ringkasan Statistik</span>
-    </div>
+    <div class="stats-box">
 
     <div class="stats-row">
         <span>
