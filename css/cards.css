@@ -126,6 +126,12 @@
     border-top:1px solid rgba(255,255,255,.08);
     margin:4px 0;
 }
+.saving-overview{
+    display:flex;
+    flex-direction:column;
+    gap:14px;
+}
+
 /* ===========================
    CARD COLOR
 =========================== */
