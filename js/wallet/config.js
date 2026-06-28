@@ -47,12 +47,23 @@ const MORALIS = {
 
 const NETWORK = {
 
-    evm: "eth",
-
     sol: "solana"
 
 };
 
+const EVM_CHAINS = [
+
+    "eth",
+
+    "base",
+
+    "bsc",
+
+    "arbitrum",
+
+    "optimism"
+
+];
 
 /* =========================
    CORE ASSET
