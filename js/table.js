@@ -214,10 +214,17 @@ function updateTable(){
 
     }
 
-    tbody.innerHTML =
-    data
-    .map(createTableRow)
-    .join("");
+    const displayData =
+Finance.tableExpand
+? data
+: data.slice(0, Finance.tableLimit);
+
+tbody.innerHTML =
+displayData
+.map(createTableRow)
+.join("");
+
+renderTableButton(data.length);
 
 }
 
@@ -237,6 +244,55 @@ function updateTableCounter(filtered){
     counter.textContent =
 
     `Menampilkan ${filtered.length} dari ${Finance.table.length} transaksi`;
+
+}
+/* =========================
+   TABLE BUTTON
+========================= */
+
+function renderTableButton(total){
+
+    let button =
+    document.getElementById("tableMoreBtn");
+
+    if(!button){
+
+        button =
+        document.createElement("button");
+
+        button.id = "tableMoreBtn";
+
+        button.className = "btn-more";
+
+        document
+        .querySelector(".table-wrapper")
+        .appendChild(button);
+
+    }
+
+    if(total <= Finance.tableLimit){
+
+        button.style.display = "none";
+
+        return;
+
+    }
+
+    button.style.display = "block";
+
+    button.textContent =
+    Finance.tableExpand
+    ? "Sembunyikan"
+    : `Lihat ${total - Finance.tableLimit} transaksi lainnya`;
+
+    button.onclick = () => {
+
+        Finance.tableExpand =
+        !Finance.tableExpand;
+
+        updateTable();
+
+    };
 
 }
 
