@@ -14,13 +14,38 @@ document.addEventListener(
 
 async function init(){
 
+    /* ===========================
+       FINANCE
+    =========================== */
+
     await fetchTransactions();
 
     await fetchPlanner();
 
+
+    /* ===========================
+       WALLET
+    =========================== */
+
+    await fetchWalletList();
+
+    await fetchAllWalletTokens();
+
+
+    /* ===========================
+       PROCESS
+    =========================== */
+
     processFinanceData();
 
     processPlanner();
+
+    processWalletData();
+
+
+    /* ===========================
+       DASHBOARD
+    =========================== */
 
     updateDashboard();
 
@@ -31,15 +56,15 @@ async function init(){
     initFilters();
 
     updateTable();
-   
+
     updateStatistics();
 
     updateInsight();
-   
+
     updatePlanner();
 
     updatePlannerHeader();
-   
+
     updateLastSync();
 
 }
