@@ -92,6 +92,40 @@
     color:var(--text);
 
 }
+.summary-overview{
+    display:flex;
+    flex-direction:column;
+    gap:14px;
+}
+
+.summary-overview h3{
+    font-size:18px;
+    margin-bottom:8px;
+    color:#fff;
+}
+
+.summary-row{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+.summary-row span{
+    font-size:14px;
+    color:#9ca3af;
+}
+
+.summary-row strong{
+    font-size:18px;
+    color:#fff;
+    font-weight:700;
+}
+
+.summary-overview hr{
+    border:none;
+    border-top:1px solid rgba(255,255,255,.08);
+    margin:4px 0;
+}
 /* ===========================
    CARD COLOR
 =========================== */
