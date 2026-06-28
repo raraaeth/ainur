@@ -151,18 +151,18 @@ async function fetchAllWalletTokens(){
 
     for(const wallet of activeWallets){
 
-        const tokens =
-filterWalletTokens(
+        let tokens = [];
 
-    await fetchWalletTokens(
-
-        wallet.Address,
-
-        wallet.Network
-
-    )
-
-);
+if(wallet.Network === "sol"){
+    tokens = await fetchSolanaWallet(wallet.Address);
+}else{
+    tokens = filterWalletTokens(
+        await fetchWalletTokens(
+            wallet.Address,
+            wallet.Network
+        )
+    );
+}
 
         Wallet.tokens.push({
 
