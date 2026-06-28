@@ -70,14 +70,23 @@ const EVM_CHAINS = [
 ========================= */
 
 const CORE_ASSET = [
-
-    "BTC",
-    "ETH",
-    "BNB",
-    "SOL",
+    "USDC",
 
     "USDT",
-    "USDC",
+
+    "ETH",
+
+    "BNB",
+
+    "SOL",
+
+    "BTC",
+
+    "POL",
+
+    "AVAX",
+
+    "HYPE"
     "USDE",
     "FDUSD",
     "DAI"
