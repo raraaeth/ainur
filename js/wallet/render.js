@@ -4,7 +4,10 @@
 
 function updateWalletDashboard(){
 
-    if(!Wallet.summary){
+    const summary =
+    Wallet.summary;
+
+    if(!summary){
 
         return;
 
@@ -14,8 +17,34 @@ function updateWalletDashboard(){
 
         "Wallet Dashboard",
 
-        Wallet.summary
+        summary
 
     );
+
+    updateCryptoSummary();
+
+}
+
+function updateCryptoSummary(){
+
+    Wallet.dashboard = {
+
+        totalUSD:
+
+        Wallet.summary.totalUSD,
+
+        coreUSD:
+
+        Wallet.summary.coreUSD,
+
+        totalWallets:
+
+        Wallet.summary.totalWallets,
+
+        totalTokens:
+
+        Wallet.summary.totalTokens
+
+    };
 
 }
