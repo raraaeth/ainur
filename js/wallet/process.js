@@ -6,15 +6,17 @@ function processWalletData(){
 
     Wallet.summary = {
 
-        totalUSD:0,
+    totalUSD:0,
 
-        totalWallets:Wallet.summary.totalWallets,
+    coreUSD:0,
 
-        totalTokens:0,
+    totalWallets:Wallet.summary.totalWallets,
 
-        portfolios:{}
+    totalTokens:0,
 
-    };
+    portfolios:{}
+
+};
 
     for(const wallet of Wallet.tokens){
 
@@ -32,11 +34,13 @@ function processWalletData(){
 
                 totalUSD:0,
 
-                totalTokens:0,
+coreUSD:0,
 
-                evm:[],
+totalTokens:0,
 
-                sol:[]
+evm:[],
+
+sol:[]
 
             };
 
@@ -49,44 +53,48 @@ function processWalletData(){
         ];
 
         for(const token of wallet.tokens){
+for(const token of wallet.tokens){
 
-            portfolio.totalUSD +=
+    const usd =
+    Number(
+        token.usd_value || 0
+    );
 
-            Number(
-                token.usd_value || 0
-            );
+    const symbol =
+    token.symbol || "";
 
-            portfolio.totalTokens++;
+    const isCore =
+    CORE_ASSET.includes(symbol);
 
-            Wallet.summary.totalUSD +=
+    portfolio.totalUSD += usd;
 
-            Number(
-                token.usd_value || 0
-            );
+    portfolio.totalTokens++;
 
-            Wallet.summary.totalTokens++;
+    Wallet.summary.totalUSD += usd;
 
-            if(
+    Wallet.summary.totalTokens++;
 
-                wallet.network==="evm"
+    if(isCore){
 
-            ){
+        portfolio.coreUSD += usd;
 
-                portfolio.evm.push(
-                    token
-                );
-
-            }else{
-
-                portfolio.sol.push(
-                    token
-                );
-
-            }
-
-        }
+        Wallet.summary.coreUSD += usd;
 
     }
+
+    if(wallet.network === "evm"){
+
+        portfolio.evm.push(token);
+
+    }else{
+
+        portfolio.sol.push(token);
+
+    }
+
+  }
+           
+  }
 
     console.log(
 
