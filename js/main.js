@@ -51,6 +51,15 @@ async function init(){
     ========================= */
 
     fetchWalletList()
+       // tampilkan cache lebih dulu
+if(loadWalletCache()){
+
+    processWalletData();
+    updateWalletDashboard();
+
+}
+
+// update data terbaru dari Moralis
 
     .then(fetchAllWalletTokens)
 
