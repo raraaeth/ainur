@@ -124,14 +124,17 @@ async function fetchAllWalletTokens(){
     for(const wallet of activeWallets){
 
         const tokens =
+filterWalletTokens(
 
-        await fetchWalletTokens(
+    await fetchWalletTokens(
 
-            wallet.Address,
+        wallet.Address,
 
-            wallet.Network
+        wallet.Network
 
-        );
+    )
+
+);
 
         Wallet.tokens.push({
 
