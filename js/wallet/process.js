@@ -52,6 +52,16 @@ function processWalletData(){
             wallet.portfolio
         ];
 
+       wallet.tokens.sort(
+
+    (a,b)=>
+
+    b.usd_value -
+
+    a.usd_value
+
+);
+
         for(const token of wallet.tokens){
 
             const usd =
