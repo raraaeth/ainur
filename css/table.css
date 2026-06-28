@@ -283,3 +283,44 @@ td.keluar{
     font-size:.9rem;
 
 }
+/* =========================
+   TABLE BUTTON
+========================= */
+
+.table-footer{
+
+    display:flex;
+
+    justify-content:center;
+
+    margin-top:20px;
+
+}
+
+.btn-more{
+
+    padding:10px 22px;
+
+    border:none;
+
+    border-radius:12px;
+
+    background:var(--primary);
+
+    color:#fff;
+
+    font-size:.9rem;
+
+    font-weight:600;
+
+    cursor:pointer;
+
+    transition:.25s;
+
+}
+
+.btn-more:hover{
+
+    opacity:.85;
+
+}
