@@ -113,3 +113,28 @@ function getTopHoldings(){
     .slice(0,3);
 
 }
+/* =========================
+   LAST SYNC
+========================= */
+
+function getLastSync(){
+
+    return Wallet.dashboard
+
+    .lastSync
+
+    .toLocaleTimeString(
+
+        "id-ID",
+
+        {
+
+            hour:"2-digit",
+
+            minute:"2-digit"
+
+        }
+
+    );
+
+}
