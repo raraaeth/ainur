@@ -64,13 +64,7 @@ if(network === "evm"){
 
     chains = EVM_CHAINS;
 
-}
-else if(network === "solana"){
-
-    return await fetchSolanaTokens(address);
-
-}
-else{
+}else{
 
     return [];
 
