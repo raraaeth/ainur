@@ -4,36 +4,16 @@
 
 function filterWalletTokens(tokens){
 
-    return tokens.filter(token =>{
+    return tokens.filter(token=>{
 
-        /* Hide Spam */
+        const symbol =
 
-        if(
-            WALLET_FILTER.hideSpam &&
-            token.possible_spam
-        ){
-            return false;
-        }
+        (token.symbol || "")
+        .toUpperCase();
 
-        /* Hide USD = 0 */
-
-        if(
-            WALLET_FILTER.hideZeroUsd &&
-            Number(token.usd_value) <= 0
-        ){
-            return false;
-        }
-
-        /* Minimum USD */
-
-        if(
-            Number(token.usd_value) <
-            WALLET_FILTER.minimumUsd
-        ){
-            return false;
-        }
-
-        return true;
+        return CORE_ASSET.includes(
+            symbol
+        );
 
     });
 
