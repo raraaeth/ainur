@@ -24,7 +24,8 @@ await fetchPlanner();
 
 await fetchWalletList();
 await fetchAllWalletTokens();
-
+processWalletData();
+updateWalletDashboard();
 
 
 processFinanceData();  
