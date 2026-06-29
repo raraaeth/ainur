@@ -582,13 +582,13 @@ select:focus{
 
 .wallet-card{
 
-    background:#fff;
+    background:#111827;
+
+    border:1px solid rgba(255,255,255,.15);
 
     border-radius:16px;
 
     padding:18px;
-
-    box-shadow:0 5px 18px rgba(0,0,0,.06);
 
 }
 
@@ -610,13 +610,15 @@ select:focus{
 
     font-weight:700;
 
+    color:#ffffff;
+
 }
 
 .wallet-provider{
 
     font-size:13px;
 
-    color:#777;
+    color:#94a3b8;
 
 }
 
@@ -626,7 +628,19 @@ select:focus{
 
     font-weight:700;
 
+    color:#22c55e;
+
     margin-top:10px;
+
+}
+
+.wallet-idr{
+
+    margin-top:6px;
+
+    font-size:15px;
+
+    color:#cbd5e1;
 
 }
 
