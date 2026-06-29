@@ -57,7 +57,9 @@ if (loadWalletCache()) {
 
     processWalletData();
     updateWalletDashboard();
+    updatePortfolioCard();
     renderWalletOverview();
+    renderWalletAllocationChart();
 
 }
 
@@ -70,6 +72,7 @@ fetchAllWalletTokens()
     updateWalletDashboard();
     updatePortfolioCard();
     renderWalletOverview();
+    renderWalletAllocationChart();
 
 })
 
