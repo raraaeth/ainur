@@ -59,7 +59,7 @@ function renderWalletOverview(){
             <div class="wallet-idr">
 
                 ≈ ${formatCurrency(
-                    item.totalUSD * USD_TO_IDR
+                    item.totalUSD * USD_IDR
                 )}
 
             </div>
