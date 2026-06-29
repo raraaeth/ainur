@@ -1,13 +1,8 @@
 /* =====================================================
-   WALLET CHARTS
+   PORTFOLIO ALLOCATION
 ===================================================== */
 
 let walletAllocationChart = null;
-
-
-/* =========================
-   PORTFOLIO ALLOCATION
-========================= */
 
 function renderWalletAllocationChart(){
 
@@ -19,7 +14,7 @@ function renderWalletAllocationChart(){
     if(!canvas) return;
 
     const portfolios =
-    Object.values(
+    Object.entries(
         Wallet.summary.portfolios || {}
     );
 
@@ -27,12 +22,12 @@ function renderWalletAllocationChart(){
 
     const labels =
     portfolios.map(
-        item => item.name
+        ([name]) => name
     );
 
     const values =
     portfolios.map(
-        item => item.totalUSD
+        ([,item]) => item.totalUSD
     );
 
     if(walletAllocationChart){
@@ -52,11 +47,9 @@ function renderWalletAllocationChart(){
 
             datasets:[{
 
-                label:"USD",
-
                 data:values,
 
-                borderRadius:8,
+                borderRadius:10,
 
                 borderSkipped:false
 
@@ -87,13 +80,22 @@ function renderWalletAllocationChart(){
                     beginAtZero:true,
 
                     ticks:{
-                        callback:value =>
-                        "$" + value
+                        color:"#ffffff",
+                        callback:v =>
+                        "$"+v.toFixed(0)
+                    },
+
+                    grid:{
+                        color:"rgba(255,255,255,.08)"
                     }
 
                 },
 
                 y:{
+
+                    ticks:{
+                        color:"#ffffff"
+                    },
 
                     grid:{
                         display:false
