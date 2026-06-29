@@ -3,6 +3,56 @@
    Finance Dashboard v1.0
    File : insight.js
 ===================================================== */
+/* ===========================
+   PROCESS INSIGHT
+=========================== */
+
+function processInsight(){
+
+    Finance.insight = [];
+
+    processFinanceInsight();
+
+    processCryptoInsight();
+
+}
+
+/* ===========================
+   FINANCE INSIGHT
+=========================== */
+
+function processFinanceInsight(){
+
+    if(
+
+        Finance.summary.savingRate >= 20
+
+    ){
+
+        Finance.insight.push({
+
+            icon:"🟢",
+
+            text:
+            `Saving rate ${Finance.summary.savingRate.toFixed(1)}% melebihi target.`
+
+        });
+
+    }else{
+
+        Finance.insight.push({
+
+            icon:"🟡",
+
+            text:
+            `Saving rate ${Finance.summary.savingRate.toFixed(1)}% masih di bawah target.`
+
+        });
+
+    }
+
+}
+
 
 /* ===========================
    CREATE INSIGHT
