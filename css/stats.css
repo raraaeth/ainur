@@ -106,6 +106,7 @@
 
 }
 
+
 /* ===========================
    INSIGHT BOX
 =========================== */
@@ -122,11 +123,43 @@
 
     border-radius:var(--radius-lg);
 
-    padding:24px;
-
-    line-height:1.8;
+    padding:16px;
 
     box-shadow:var(--shadow-sm);
+
+}
+
+/* ===========================
+   INSIGHT ITEM
+=========================== */
+
+.insight-item{
+
+    padding:8px 0;
+
+    border-bottom:1px solid rgba(255,255,255,.06);
+
+}
+
+.insight-item:last-child{
+
+    border-bottom:none;
+
+}
+
+.insight-text{
+
+    display:flex;
+
+    align-items:flex-start;
+
+    gap:8px;
+
+    font-size:13px;
+
+    line-height:1.4;
+
+    color:var(--text);
 
 }
 
