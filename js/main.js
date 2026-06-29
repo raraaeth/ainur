@@ -57,6 +57,7 @@ if (loadWalletCache()) {
 
     processWalletData();
     updateWalletDashboard();
+    renderWalletOverview();
 
 }
 
