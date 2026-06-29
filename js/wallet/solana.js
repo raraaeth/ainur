@@ -33,10 +33,22 @@ async function fetchSolanaWallet(address){
             "Solana Response:",
             data
         );
+       console.log(
+    "Before Filter:",
+    data
+);
 
-        return filterWalletTokens(
-            data.tokens || data || []
-        );
+const tokens =
+filterWalletTokens(
+    data.tokens || data || []
+);
+
+console.log(
+    "After Filter:",
+    tokens
+);
+
+return tokens;
 
     }catch(error){
 
