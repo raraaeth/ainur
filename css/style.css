@@ -568,3 +568,73 @@ select:focus{
 
 }
 
+/* =========================
+   WALLET OVERVIEW
+========================= */
+
+.wallet-overview{
+
+    display:grid;
+
+    gap:16px;
+
+}
+
+.wallet-card{
+
+    background:#fff;
+
+    border-radius:16px;
+
+    padding:18px;
+
+    box-shadow:0 5px 18px rgba(0,0,0,.06);
+
+}
+
+.wallet-card-top{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    margin-bottom:10px;
+
+}
+
+.wallet-name{
+
+    font-size:18px;
+
+    font-weight:700;
+
+}
+
+.wallet-provider{
+
+    font-size:13px;
+
+    color:#777;
+
+}
+
+.wallet-total{
+
+    font-size:26px;
+
+    font-weight:700;
+
+    margin-top:10px;
+
+}
+
+.wallet-idr{
+
+    color:#666;
+
+    font-size:14px;
+
+}
+
