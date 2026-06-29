@@ -12,9 +12,15 @@ function renderWalletOverview(){
     if(!container) return;
 
     const portfolios =
-    Object.values(
-        Wallet.summary.portfolios || {}
-    );
+Object.entries(
+    Wallet.summary.portfolios || {}
+).map(([name,data]) => ({
+
+    name,
+
+    ...data
+
+}));
 
     if(!portfolios.length){
 
