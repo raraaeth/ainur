@@ -62,9 +62,9 @@ function createInsightItem(item){
 
     return `
 
-    <div class="analytics-item">
+    <div class="insight-item">
 
-        <span>
+        <span class="insight-text">
 
             ${item.icon}
 
