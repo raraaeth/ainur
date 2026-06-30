@@ -652,3 +652,69 @@ select:focus{
 
 }
 
+/* ===========================
+   TOP HOLDING LIST
+=========================== */
+
+.top-holding-list{
+
+    margin-top:20px;
+
+}
+
+.holding-item{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    padding:14px 0;
+
+    border-bottom:1px solid rgba(255,255,255,.08);
+
+}
+
+.holding-item:last-child{
+
+    border-bottom:none;
+
+}
+
+.holding-info{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:4px;
+
+}
+
+.holding-info strong{
+
+    font-size:15px;
+
+    font-weight:700;
+
+}
+
+.holding-info small{
+
+    font-size:12px;
+
+    color:#94a3b8;
+
+}
+
+.holding-value{
+
+    font-size:15px;
+
+    font-weight:700;
+
+    color:#fff;
+
+}
+
