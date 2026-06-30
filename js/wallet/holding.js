@@ -116,3 +116,89 @@ function renderTopHolding(){
     `).join("");
 
 }
+
+/* =========================
+   TOP HOLDING CHART
+========================= */
+
+let topHoldingChart = null;
+
+function renderTopHoldingChart(){
+
+    const canvas =
+
+    document.getElementById(
+        "topHoldingChart"
+    );
+
+    if(!canvas) return;
+
+    const data =
+
+    Wallet.summary.topHolding
+    .slice(0,5);
+
+    if(topHoldingChart){
+
+        topHoldingChart.destroy();
+
+    }
+
+    topHoldingChart =
+
+    new Chart(
+
+        canvas,
+
+        {
+
+            type:"doughnut",
+
+            data:{
+
+                labels:
+
+                data.map(
+
+                    item=>item.symbol
+
+                ),
+
+                datasets:[{
+
+                    data:
+
+                    data.map(
+
+                        item=>item.usd
+
+                    )
+
+                }]
+
+            },
+
+            options:{
+
+                responsive:true,
+
+                maintainAspectRatio:false,
+
+                plugins:{
+
+                    legend:{
+
+                        position:"bottom"
+
+                    }
+
+                }
+
+            }
+
+        }
+
+    );
+
+}
+
