@@ -60,7 +60,7 @@ const sol =
 item.sol
    .filter(
     token=>token.usd_value>0
-
+)
 .map(token=>`
 
 <div class="wallet-token">
@@ -78,6 +78,11 @@ item.sol
 return `
 
 <div class="wallet-card">
+
+    <div
+        class="wallet-header"
+        onclick="toggleWalletDetail(this)"
+    >
 
     <div class="wallet-card-top">
 
@@ -112,6 +117,12 @@ return `
         )}
 
     </div>
+    <div class="wallet-toggle">
+
+    ▼ Detail
+
+</div>
+</div>
 
     <div class="wallet-detail">
 
