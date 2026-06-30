@@ -49,7 +49,7 @@ async function init(){
     /* =========================
    WALLET (Background)
 ========================= */
-
+await fetchWalletPrices();
 await fetchWalletList();
 
 // tampilkan cache lebih dulu
