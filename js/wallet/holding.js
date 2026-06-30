@@ -65,6 +65,8 @@ function processTopHolding(){
     );
 
 }
+
+
 /* =========================
    RENDER TOP HOLDING
 ========================= */
@@ -93,19 +95,19 @@ function renderTopHolding(){
 
         <div class="holding-item">
 
-            <div>
+            <div class="holding-info">
 
                 <strong>${item.symbol}</strong>
 
-                <div>
+                <small>
 
                     ${item.wallets} Wallet
 
-                </div>
+                </small>
 
             </div>
 
-            <div>
+            <div class="holding-value">
 
                 $${item.usd.toFixed(2)}
 
@@ -113,7 +115,9 @@ function renderTopHolding(){
 
         </div>
 
-    `).join("");
+    `)
+
+    .join("");
 
 }
 
