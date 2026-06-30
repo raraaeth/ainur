@@ -177,4 +177,39 @@ return `
 }).join("");
 
 }
+/* =========================
+   TOGGLE DETAIL
+========================= */
+
+function toggleWalletDetail(header){
+
+    const detail =
+
+    header.nextElementSibling;
+
+    const toggle =
+
+    header.querySelector(
+        ".wallet-toggle"
+    );
+
+    const opened =
+
+    detail.classList.toggle(
+        "show"
+    );
+
+    toggle.innerHTML =
+
+        opened
+
+        ?
+
+        "▲ Tutup"
+
+        :
+
+        "▼ Detail";
+
+}
 
