@@ -15,8 +15,9 @@ async function fetchSolanaWallet(address){
 
         const response = await fetch(
 
-            `${SOLANA_BASE_URL}/account/mainnet/${address}/portfolio`
-            {
+    `${SOLANA_BASE_URL}/account/mainnet/${address}/portfolio`,
+
+           {
                 headers:{
                     "accept":"application/json",
                     "X-API-Key":MORALIS.API_KEY
