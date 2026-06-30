@@ -653,6 +653,65 @@ select:focus{
 }
 
 /* ===========================
+   WALLET DETAIL
+=========================== */
+
+.wallet-detail{
+
+    margin-top:18px;
+
+    padding-top:14px;
+
+    border-top:1px solid rgba(255,255,255,.08);
+
+}
+
+.wallet-network{
+
+    font-size:11px;
+
+    font-weight:700;
+
+    color:var(--primary);
+
+    text-transform:uppercase;
+
+    letter-spacing:.8px;
+
+    margin:12px 0 8px;
+
+}
+
+.wallet-token{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    padding:6px 0;
+
+    font-size:13px;
+
+}
+
+.wallet-token span:first-child{
+
+    color:#cbd5e1;
+
+}
+
+.wallet-token span:last-child{
+
+    font-weight:600;
+
+    color:#fff;
+
+}
+
+
+/* ===========================
    TOP HOLDING LIST
 =========================== */
 
@@ -717,4 +776,5 @@ select:focus{
     color:#fff;
 
 }
+
 
