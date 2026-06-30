@@ -37,6 +37,9 @@ portfolios.map(item=>{
 const evm =
 
 item.evm
+   .filter(
+    token=>token.usd_value>0
+)
 
 .map(token=>`
 
@@ -55,6 +58,8 @@ item.evm
 const sol =
 
 item.sol
+   .filter(
+    token=>token.usd_value>0
 
 .map(token=>`
 
