@@ -70,17 +70,19 @@ async function fetchSolanaWallet(address){
 
             tokens.push({
 
-                symbol:"SOL",
+    symbol:"SOL",
 
-                balance:solBalance,
+    balance:solBalance,
 
-                amount:solBalance,
+    amount:solBalance,
 
-                usd_value:0,
+    usd_value:
+    solBalance *
+    (Wallet.prices.SOL || 0),
 
-                network:"sol"
+    network:"sol"
 
-            });
+});
 
         }
 
