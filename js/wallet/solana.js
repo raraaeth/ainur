@@ -13,23 +13,24 @@ async function fetchSolanaWallet(address){
 
     try{
 
-        const response = await fetch(
+        const url =
+SOLANA_BASE_URL +
+"/account/mainnet/" +
+address +
+"/portfolio";
 
-            `${SOLANA_BASE_URL}/account/mainnet/${address}/portfolio`,
+const response = await fetch(
 
-            {
+    url,
 
-                headers:{
+    {
+        headers:{
+            "accept":"application/json",
+            "X-API-Key": MORALIS.API_KEY
+        }
+    }
 
-                    "accept":"application/json",
-
-                    "X-API-Key": MORALIS.API_KEY
-
-                }
-
-            }
-
-        );
+);
 
         const data =
         await response.json();
