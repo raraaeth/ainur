@@ -64,4 +64,32 @@ const CONTRACTS = {
 
     optimism:{
 
+        native:"ETH",
+
+        stable:{
+
+            USDC:
+            "0x0b2c639c533813f4aa9d7837caf62653d097ff85"
+
+        }
+
+    },
+
+    solana:{
+
+        native:"SOL",
+
+        stable:{
+
+            USDC:
+            "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v",
+
+            USDT:
+            "Es9vMFrzaCERmJfrF4H2FYj9p4QzVv1YxAECEV4VpW"
+        }
+
+    }
+
+};
+
        
