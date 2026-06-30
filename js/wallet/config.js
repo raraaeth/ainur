@@ -106,3 +106,25 @@ const WALLET_FILTER = {
 ========================= */
 
 const USD_IDR = 16200;
+
+/* =========================
+   TRACKED ASSET
+========================= */
+
+const TRACKED_ASSETS = {
+
+    evm:[
+        "ETH",
+        "BNB",
+        "BTC",
+        "USDC",
+        "USDT"
+    ],
+
+    sol:[
+        "SOL",
+        "USDC",
+        "USDT"
+    ]
+
+};
