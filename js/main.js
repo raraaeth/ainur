@@ -62,6 +62,7 @@ if (loadWalletCache()) {
     renderWalletAllocationChart();
     processTopHolding();
     renderTopHolding();
+    renderTopHoldingChart();
     processInsight();
     updateInsight();
 
@@ -79,6 +80,7 @@ fetchAllWalletTokens()
     renderWalletAllocationChart();
     processTopHolding();
     renderTopHolding();
+    renderTopHoldingChart();
     processInsight();
     updateInsight();
 
