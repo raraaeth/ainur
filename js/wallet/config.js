@@ -86,27 +86,6 @@ const CORE_ASSET = [
 
 ];
 
-
-/* =========================
-   FILTER
-========================= */
-
-const WALLET_FILTER = {
-
-    hideSpam: true,
-
-    hideZeroUsd: true,
-
-    minimumUsd: 0.01
-
-};
-
-/* =========================
-   CURRENCY
-========================= */
-
-const USD_IDR = 16200;
-
 /* =========================
    TRACKED ASSET
 ========================= */
@@ -128,3 +107,26 @@ const TRACKED_ASSETS = {
     ]
 
 };
+
+
+
+/* =========================
+   FILTER
+========================= */
+
+const WALLET_FILTER = {
+
+    hideSpam: true,
+
+    hideZeroUsd: true,
+
+    minimumUsd: 0.01
+
+};
+
+/* =========================
+   CURRENCY
+========================= */
+
+const USD_IDR = 16200;
+
