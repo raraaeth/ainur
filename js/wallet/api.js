@@ -131,8 +131,6 @@ return allTokens;
 
 async function fetchAllWalletTokens(){
 
-    Wallet.tokens = [];
-
     const activeWallets =
 
     Wallet.raw.filter(
@@ -143,56 +141,86 @@ async function fetchAllWalletTokens(){
 
     );
 
-    for(const wallet of activeWallets){
+    Wallet.tokens =
 
-        let tokens = [];
+    await Promise.all(
 
-if(wallet.Network === "sol"){
-    tokens = await fetchSolanaWallet(wallet.Address);
-}else{
-    tokens = filterWalletTokens(
-        await fetchWalletTokens(
-            wallet.Address,
-            wallet.Network
+        activeWallets.map(
+
+            async wallet=>{
+
+                let tokens=[];
+
+                if(
+
+                    wallet.Network==="sol"
+
+                ){
+
+                    tokens =
+
+                    await fetchSolanaWallet(
+
+                        wallet.Address
+
+                    );
+
+                }else{
+
+                    tokens =
+
+                    filterWalletTokens(
+
+                        await fetchWalletTokens(
+
+                            wallet.Address,
+
+                            wallet.Network
+
+                        )
+
+                    );
+
+                }
+
+                return{
+
+                    portfolio:
+
+                    wallet.Portofolio,
+
+                    network:
+
+                    wallet.Network,
+
+                    provider:
+
+                    wallet.Provider,
+
+                    address:
+
+                    wallet.Address,
+
+                    tokens
+
+                };
+
+            }
+
         )
+
     );
-}
-
-        Wallet.tokens.push({
-
-            portfolio:
-
-            wallet.Portofolio,
-
-            network:
-
-            wallet.Network,
-
-            provider:
-
-            wallet.Provider,
-
-            address:
-
-            wallet.Address,
-
-            tokens
-
-        });
-
-    }
 
     console.log(
 
-        "Portfolio Loaded :",
+        "Portfolio Loaded:",
 
         Wallet.tokens
 
     );
 
-   // Simpan hasil ke cache
-saveWalletCache();
+    saveWalletCache();
 
-return Wallet.tokens;
+    return Wallet.tokens;
 
 }
