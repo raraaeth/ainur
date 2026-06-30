@@ -186,13 +186,29 @@ function renderTopHoldingChart(){
 
                 plugins:{
 
-                    legend:{
+    legend:{
 
-                        position:"bottom"
+        position:"bottom"
 
-                    }
+    },
 
-                }
+    tooltip:{
+
+        callbacks:{
+
+            label:function(context){
+
+                return "$" +
+
+                context.parsed.toFixed(2);
+
+            }
+
+        }
+
+    }
+
+}
 
             }
 
