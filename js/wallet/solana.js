@@ -110,17 +110,17 @@ async function fetchSolanaWallet(address){
 
                 tokens.push({
 
-                    symbol:"USDC",
+    symbol:"USDC",
 
-                    balance:amount,
+    balance:amount,
 
-                    amount:amount,
+    amount:amount,
 
-                    usd_value:0,
+    usd_value:amount,
 
-                    network:"sol"
+    network:"sol"
 
-                });
+});
 
             }
 
@@ -133,17 +133,17 @@ async function fetchSolanaWallet(address){
 
                 tokens.push({
 
-                    symbol:"USDT",
+    symbol:"USDT",
 
-                    balance:amount,
+    balance:amount,
 
-                    amount:amount,
+    amount:amount,
 
-                    usd_value:0,
+    usd_value:amount,
 
-                    network:"sol"
+    network:"sol"
 
-                });
+});
 
             }
 
