@@ -15,40 +15,32 @@ async function fetchSolanaWallet(address){
 
         const response = await fetch(
 
-    `${SOLANA_BASE_URL}/account/mainnet/${address}/portfolio`,
+            `${SOLANA_BASE_URL}/account/mainnet/${address}/portfolio`,
 
-           {
+            {
+
                 headers:{
+
                     "accept":"application/json",
-                    "X-API-Key":MORALIS.API_KEY
+
+                    "X-API-Key": MORALIS.API_KEY
+
                 }
+
             }
 
         );
 
-        console.log(
-    "Solana Portfolio:",
-    data
-);
-
-return [];
+        const data =
+        await response.json();
 
         console.log(
-            "Solana Response:",
+            "Solana Portfolio:",
             data
         );
 
-        const tokens =
-        filterWalletTokens(
-            data.tokens || data || []
-        );
-
-        console.log(
-            "After Filter:",
-            tokens
-        );
-
-        return tokens;
+        // Sementara belum diproses
+        return [];
 
     }catch(error){
 
