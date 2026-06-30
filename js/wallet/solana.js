@@ -29,10 +29,20 @@ async function fetchSolanaWallet(address){
         const data =
         await response.json();
 
-        console.log(
-            "Solana Response:",
-            data
-        );
+        const data =
+await response.json();
+
+console.log(
+    "Solana JSON:"
+);
+
+console.log(
+    JSON.stringify(
+        data,
+        null,
+        2
+    )
+);
        console.log(
     "Before Filter:",
     data
