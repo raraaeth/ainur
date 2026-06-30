@@ -27,35 +27,24 @@ async function fetchSolanaWallet(address){
         );
 
         const data =
-await response.json();
+        await response.json();
 
-console.log(
-    "Solana JSON:"
-);
+        console.log(
+            "Solana Response:",
+            data
+        );
 
-console.log(
-    JSON.stringify(
-        data,
-        null,
-        2
-    )
-);
-       console.log(
-    "Before Filter:",
-    data
-);
+        const tokens =
+        filterWalletTokens(
+            data.tokens || data || []
+        );
 
-const tokens =
-filterWalletTokens(
-    data.tokens || data || []
-);
+        console.log(
+            "After Filter:",
+            tokens
+        );
 
-console.log(
-    "After Filter:",
-    tokens
-);
-
-return tokens;
+        return tokens;
 
     }catch(error){
 
