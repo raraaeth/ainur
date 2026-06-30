@@ -15,8 +15,7 @@ async function fetchSolanaWallet(address){
 
         const response = await fetch(
 
-            `${SOLANA_BASE_URL}/account/mainnet/${address}/tokens`,
-
+            `${SOLANA_BASE_URL}/account/mainnet/${address}/portfolio`
             {
                 headers:{
                     "accept":"application/json",
@@ -26,8 +25,12 @@ async function fetchSolanaWallet(address){
 
         );
 
-        const data =
-        await response.json();
+        console.log(
+    "Solana Portfolio:",
+    data
+);
+
+return [];
 
         console.log(
             "Solana Response:",
