@@ -28,7 +28,11 @@ function processFinanceInsight(){
        CASHFLOW
     ========================= */
 
-    if(Finance.summary.balance>=0){
+    if(
+
+        Finance.statistics.monthlyBalance>=0
+
+    ){
 
         Finance.insight.push({
 
@@ -70,7 +74,7 @@ function processFinanceInsight(){
 
             text:
 
-            `Saving Rate bulan ini ${Finance.summary.savingRate.toFixed(1)}%. Sangat baik, pertahankan!`
+            `Saving Rate ${Finance.summary.savingRate.toFixed(1)}%. Sangat baik, pertahankan!`
 
         });
 
@@ -82,7 +86,7 @@ function processFinanceInsight(){
 
             text:
 
-            `Saving Rate bulan ini ${Finance.summary.savingRate.toFixed(1)}%. Masih di bawah target 20%.`
+            `Saving Rate ${Finance.summary.savingRate.toFixed(1)}%. Masih di bawah target 20%.`
 
         });
 
@@ -104,7 +108,7 @@ function processFinanceInsight(){
 
             text:
 
-            `Pengeluaran terbesar bulan ini berasal dari "${Finance.statistics.highestExpense.category}".`
+            `Pengeluaran terbesar bulan ini berasal dari kategori "${Finance.statistics.highestExpense.category}".`
 
         });
 
@@ -133,6 +137,7 @@ function processFinanceInsight(){
     }
 
 }
+
 
 /* ===========================
    CREATE INSIGHT
