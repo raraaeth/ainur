@@ -92,6 +92,7 @@ function createStatCard(
 
 }
 
+
 /* ===========================
    UPDATE STATISTICS
 =========================== */
@@ -104,9 +105,6 @@ function updateStatistics(){
     );
 
     if(!container) return;
-
-    const summary =
-    Finance.summary;
 
     const stats =
     Finance.statistics;
@@ -122,7 +120,7 @@ function updateStatistics(){
     );
 
     const incomeAvg =
-    summary.income /
+    stats.monthlyIncome /
     Math.max(
         1,
         Object.keys(
@@ -131,7 +129,7 @@ function updateStatistics(){
     );
 
     const expenseAvg =
-    summary.expense /
+    stats.monthlyExpense /
     Math.max(
         1,
         Object.keys(
@@ -140,17 +138,26 @@ function updateStatistics(){
     );
 
     const incomePercent =
-    summary.income===0
+    stats.monthlyIncome===0
     ?0
-    :(topIncome.amount/summary.income)*100;
+    :(topIncome.amount/
+    stats.monthlyIncome)*100;
 
     const expensePercent =
-    summary.expense===0
+    stats.monthlyExpense===0
     ?0
-    :(topExpense.amount/summary.expense)*100;
+    :(topExpense.amount/
+    stats.monthlyExpense)*100;
+
+    const savingRate =
+    stats.monthlyIncome===0
+    ?0
+    :(stats.monthlyExpense/
+    stats.monthlyIncome)*100;
 
     container.innerHTML = `
-    <div class="stats-box">
+
+<div class="stats-box">
 
     <div class="stats-row">
         <span>
@@ -233,10 +240,13 @@ function updateStatistics(){
     <div class="stats-row">
         <span>
             <i class="fa-solid fa-chart-column icon-primary"></i>
-            Total Transaksi
+            Total Kategori
         </span>
 
-        <strong>${Finance.table.length}</strong>
+        <strong>${
+            Object.keys(stats.incomeByCategory).length +
+            Object.keys(stats.expenseByCategory).length
+        }</strong>
     </div>
 
     <div class="stats-row">
@@ -245,10 +255,12 @@ function updateStatistics(){
             Saving Rate
         </span>
 
-        <strong>${summary.savingRate.toFixed(1)}%</strong>
+        <strong>${savingRate.toFixed(1)}%</strong>
     </div>
 
 </div>
+
 `;
-        
+
 }
+                
