@@ -6,7 +6,7 @@ function processCryptoInsight(){
 
     if(!Finance.insight){
 
-        Finance.insight = [];
+        Finance.insight=[];
 
     }
 
@@ -16,29 +16,25 @@ function processCryptoInsight(){
 
     if(
 
-        Wallet.summary.totalUSD > 0 &&
+        Wallet.summary.totalUSD>0 &&
 
-        Finance.summary.totalExpense > 0
+        Finance.summary.expense>0
 
     ){
 
-        const months =
+        const months=
 
-        (Wallet.summary.totalUSD * USD_IDR) /
+        (Wallet.summary.totalUSD*USD_IDR)/
 
-        Finance.summary.totalExpense;
+        Finance.summary.expense;
 
         Finance.insight.push({
 
-            type:"info",
-
             icon:"💰",
-
-            title:"Portfolio",
 
             text:
 
-            `Portfolio crypto setara ${months.toFixed(1)} bulan pengeluaran.`
+            `Nilai portfolio saat ini setara ${months.toFixed(1)} bulan pengeluaran.`
 
         });
 
@@ -50,31 +46,53 @@ function processCryptoInsight(){
 
     if(
 
-        Wallet.summary.coreUSD > 0 &&
+        Wallet.summary.coreUSD>0 &&
 
-        Wallet.summary.totalUSD > 0
+        Wallet.summary.totalUSD>0
 
     ){
 
-        const percent =
+        const percent=
 
-        Wallet.summary.coreUSD /
+        Wallet.summary.coreUSD/
 
-        Wallet.summary.totalUSD *
-
-        100;
+        Wallet.summary.totalUSD*100;
 
         Finance.insight.push({
 
-            type:"success",
-
             icon:"🪙",
-
-            title:"Core Asset",
 
             text:
 
-            `Core asset mencakup ${percent.toFixed(1)}% dari total portfolio.`
+            `Core Asset mencakup ${percent.toFixed(1)}% dari total portfolio.`
+
+        });
+
+    }
+
+    /* =========================
+       TOP HOLDING
+    ========================= */
+
+    if(
+
+        Wallet.summary.topHolding &&
+
+        Wallet.summary.topHolding.length
+
+    ){
+
+        const top=
+
+        Wallet.summary.topHolding[0];
+
+        Finance.insight.push({
+
+            icon:"🔥",
+
+            text:
+
+            `${top.symbol} menjadi aset terbesar senilai $${top.usd.toFixed(2)}.`
 
         });
 
@@ -86,15 +104,11 @@ function processCryptoInsight(){
 
     Finance.insight.push({
 
-        type:"info",
-
         icon:"👛",
-
-        title:"Wallet",
 
         text:
 
-        `${Wallet.summary.totalWallets} wallet aktif dipantau.`
+        `${Wallet.summary.totalWallets} wallet aktif sedang dipantau.`
 
     });
 
