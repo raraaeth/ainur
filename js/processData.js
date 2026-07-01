@@ -437,6 +437,10 @@ function calculateStatistics(){
     stats.monthlyExpense;
 
     Finance.statistics = stats;
+   console.log(
+    "Monthly Statistics",
+    Finance.statistics
+);
 
 }
             
