@@ -18,23 +18,25 @@ function processInsight(){
 }
 
 /* ===========================
+/* ===========================
    FINANCE INSIGHT
 =========================== */
 
 function processFinanceInsight(){
 
-    if(
+    /* =========================
+       CASHFLOW
+    ========================= */
 
-        Finance.summary.savingRate >= 20
-
-    ){
+    if(Finance.summary.balance>=0){
 
         Finance.insight.push({
 
-            icon:"🟢",
+            icon:"📈",
 
             text:
-            `Saving rate ${Finance.summary.savingRate.toFixed(1)}% melebihi target.`
+
+            "Cashflow bulan ini masih positif."
 
         });
 
@@ -42,17 +44,95 @@ function processFinanceInsight(){
 
         Finance.insight.push({
 
-            icon:"🟡",
+            icon:"📉",
 
             text:
-            `Saving rate ${Finance.summary.savingRate.toFixed(1)}% masih di bawah target.`
+
+            "Cashflow bulan ini masih negatif."
+
+        });
+
+    }
+
+    /* =========================
+       SAVING RATE
+    ========================= */
+
+    if(
+
+        Finance.summary.savingRate>=20
+
+    ){
+
+        Finance.insight.push({
+
+            icon:"🏦",
+
+            text:
+
+            `Saving Rate bulan ini ${Finance.summary.savingRate.toFixed(1)}%. Sangat baik, pertahankan!`
+
+        });
+
+    }else{
+
+        Finance.insight.push({
+
+            icon:"💰",
+
+            text:
+
+            `Saving Rate bulan ini ${Finance.summary.savingRate.toFixed(1)}%. Masih di bawah target 20%.`
+
+        });
+
+    }
+
+    /* =========================
+       TOP EXPENSE
+    ========================= */
+
+    if(
+
+        Finance.statistics.highestExpense
+
+    ){
+
+        Finance.insight.push({
+
+            icon:"💸",
+
+            text:
+
+            `Pengeluaran terbesar bulan ini berasal dari "${Finance.statistics.highestExpense.category}".`
+
+        });
+
+    }
+
+    /* =========================
+       TOP INCOME
+    ========================= */
+
+    if(
+
+        Finance.statistics.highestIncome
+
+    ){
+
+        Finance.insight.push({
+
+            icon:"💵",
+
+            text:
+
+            `Pemasukan terbesar bulan ini berasal dari "${Finance.statistics.highestIncome.category}".`
 
         });
 
     }
 
 }
-
 
 /* ===========================
    CREATE INSIGHT
