@@ -2,7 +2,6 @@
    Life Dashboard v3.0
    File : processPlanner.js
 ===================================================== */
-
 /* ===========================
    NORMALIZE PLANNER
 =========================== */
@@ -15,7 +14,15 @@ function normalizePlanner(){
 
         const type =
 
-        String(item.Jenis||"")
+        String(item.Jenis || "")
+
+        .trim()
+
+        .toLowerCase();
+
+        const keyword =
+
+        String(item.Keyword || "")
 
         .trim()
 
@@ -25,7 +32,7 @@ function normalizePlanner(){
 
             title:
 
-            item.Judul||"",
+            item.Judul || "",
 
             type,
 
@@ -35,19 +42,13 @@ function normalizePlanner(){
 
             interval:
 
-            Number(item.Interval)||0,
+            Number(item.Interval) || 0,
 
-            keyword:
-
-            String(item.Keyword||"")
-
-            .trim()
-
-            .toLowerCase(),
+            keyword,
 
             priority:
 
-            String(item.Priority||"medium")
+            String(item.Priority || "medium")
 
             .trim()
 
@@ -59,21 +60,15 @@ function normalizePlanner(){
 
                 item["Reminder before"]
 
-            )||0,
+            ) || 0,
 
             note:
 
-            item.Catatan||"",
+            item.Catatan || "",
 
-            /* CATEGORY */
-
-            isRecurring:[
-
-                "maintenance",
-
-                "reminder"
-
-            ].includes(type),
+            /* ======================
+               CATEGORY
+            ====================== */
 
             isEvent:[
 
@@ -83,15 +78,13 @@ function normalizePlanner(){
 
             ].includes(type),
 
-            isProject:[
+            hasKeyword:
 
-                "planning",
+            keyword.length > 0,
 
-                "renovasi"
-
-            ].includes(type),
-
-            /* RUNTIME */
+            /* ======================
+               RUNTIME
+            ====================== */
 
             lastTransaction:null,
 
@@ -111,7 +104,6 @@ function normalizePlanner(){
 
 }
 
-
 /* ===========================
    FIND LAST TRANSACTION
 =========================== */
@@ -120,11 +112,13 @@ function findLastTransaction(){
 
     Finance.planner.forEach(item=>{
 
+        /* ======================
+           NO KEYWORD
+        ====================== */
+
         if(
 
-            !item.isRecurring ||
-
-            !item.keyword
+            !item.hasKeyword
 
         ){
 
@@ -140,15 +134,15 @@ function findLastTransaction(){
 
             String(
 
-                transaction.description||
+                transaction.description ||
 
                 ""
 
             )
 
-            .toLowerCase()
+            .trim()
 
-            .trim();
+            .toLowerCase();
 
             return description.includes(
 
@@ -186,7 +180,6 @@ function findLastTransaction(){
 
 }
 
-
 /* ===========================
    CALCULATE DUE DATE
 =========================== */
@@ -195,7 +188,11 @@ function calculateDueDate(){
 
     const today = new Date();
 
-    today.setHours(0,0,0,0);
+    today.setHours(
+
+        0,0,0,0
+
+    );
 
     Finance.planner.forEach(item=>{
 
@@ -208,40 +205,6 @@ function calculateDueDate(){
             0,0,0,0
 
         );
-
-        /* ======================
-           RECURRING
-        ====================== */
-
-        if(item.isRecurring){
-
-            if(item.lastTransaction){
-
-                dueDate =
-
-                new Date(
-
-                    item.lastTransaction.date
-
-                );
-
-                dueDate.setHours(
-
-                    0,0,0,0
-
-                );
-
-            }
-
-            dueDate.setDate(
-
-                dueDate.getDate() +
-
-                item.interval
-
-            );
-
-        }
 
         /* ======================
            EVENT
@@ -271,7 +234,11 @@ function calculateDueDate(){
 
             );
 
-            if(dueDate < today){
+            if(
+
+                dueDate < today
+
+            ){
 
                 dueDate.setFullYear(
 
@@ -284,10 +251,48 @@ function calculateDueDate(){
         }
 
         /* ======================
-           PROJECT
+           KEYWORD + INTERVAL
         ====================== */
 
-        if(item.isProject){
+        else if(
+
+            item.hasKeyword &&
+
+            item.interval > 0 &&
+
+            item.lastTransaction
+
+        ){
+
+            dueDate =
+
+            new Date(
+
+                item.lastTransaction.date
+
+            );
+
+            dueDate.setHours(
+
+                0,0,0,0
+
+            );
+
+            dueDate.setDate(
+
+                dueDate.getDate() +
+
+                item.interval
+
+            );
+
+        }
+
+        /* ======================
+           DEFAULT
+        ====================== */
+
+        else{
 
             dueDate =
 
@@ -301,13 +306,13 @@ function calculateDueDate(){
 
         }
 
-        item.dueDate = dueDate;
+        item.dueDate =
+
+        dueDate;
 
     });
 
-}
-
-/* ===========================
+    }/* ===========================
    CALCULATE STATUS
 =========================== */
 
@@ -315,7 +320,11 @@ function calculateStatus(){
 
     const today = new Date();
 
-    today.setHours(0,0,0,0);
+    today.setHours(
+
+        0,0,0,0
+
+    );
 
     Finance.planner.forEach(item=>{
 
@@ -336,16 +345,24 @@ function calculateStatus(){
         item.completed = false;
 
         /* ======================
-           PROJECT
+           KEYWORD + TRANSACTION
         ====================== */
 
-        if(item.isProject){
+        if(
+
+            item.hasKeyword &&
+
+            item.lastTransaction
+
+        ){
+
+            /* ==================
+               ONE TIME
+            ================== */
 
             if(
 
-                item.keyword &&
-
-                item.lastTransaction
+                item.interval===0
 
             ){
 
@@ -355,27 +372,91 @@ function calculateStatus(){
 
                 "completed";
 
+                item.countdown =
+
+                "✔ Selesai";
+
                 return;
 
             }
 
-        }
+            /* ==================
+               RECURRING
+            ================== */
 
-        /* ======================
-           TODAY
-        ====================== */
+            if(
 
-        if(diff===0){
+                diff===0
 
-            item.status="today";
+            ){
+
+                item.status =
+
+                "today";
+
+                return;
+
+            }
+
+            if(
+
+                diff>0 &&
+
+                diff<=item.reminderBefore
+
+            ){
+
+                item.status =
+
+                "upcoming";
+
+                return;
+
+            }
+
+            if(
+
+                diff<0
+
+            ){
+
+                item.status =
+
+                "upcoming";
+
+                item.countdown =
+
+                `⚠ Terlambat ${
+
+                    Math.abs(diff)
+
+                } hari`;
+
+                return;
+
+            }
+
+            item.status =
+
+            "waiting";
 
             return;
 
         }
 
         /* ======================
-           UPCOMING
+           EVENT / NO TRANSACTION
         ====================== */
+
+        if(diff===0){
+
+            item.status =
+
+            "today";
+
+            return;
+
+        }
 
         if(
 
@@ -385,21 +466,21 @@ function calculateStatus(){
 
         ){
 
-            item.status="upcoming";
+            item.status =
+
+            "upcoming";
 
             return;
 
         }
 
-        /* ======================
-           OVERDUE
-        ====================== */
-
         if(diff<0){
 
-            item.status="upcoming";
+            item.status =
 
-            item.countdown=
+            "upcoming";
+
+            item.countdown =
 
             `⚠ Terlambat ${
 
@@ -411,13 +492,65 @@ function calculateStatus(){
 
         }
 
-        /* ======================
-           WAITING
-        ====================== */
+        item.status =
 
-        item.status="waiting";
+        "waiting";
 
     });
+
+}
+
+/* ===========================
+   SORT PLANNER
+=========================== */
+
+function sortPlanner(){
+
+    const order={
+
+        today:0,
+
+        upcoming:1,
+
+        waiting:2,
+
+        completed:3
+
+    };
+
+    Finance.planner.sort(
+
+        (a,b)=>{
+
+            if(
+
+                order[a.status]!==
+
+                order[b.status]
+
+            ){
+
+                return(
+
+                    order[a.status]-
+
+                    order[b.status]
+
+                );
+
+            }
+
+            return(
+
+                a.dueDate-
+
+                b.dueDate
+
+            );
+
+        }
+
+    );
 
 }
 
@@ -481,60 +614,6 @@ function formatPlannerCountdown(days){
 
 }
 
-/* ===========================
-   SORT PLANNER
-=========================== */
-
-function sortPlanner(){
-
-    const order={
-
-        today:0,
-
-        upcoming:1,
-
-        waiting:2,
-
-        completed:3
-
-    };
-
-    Finance.planner.sort(
-
-        (a,b)=>{
-
-            if(
-
-                order[a.status]!==
-
-                order[b.status]
-
-            ){
-
-                return(
-
-                    order[a.status]-
-
-                    order[b.status]
-
-                );
-
-            }
-
-            return(
-
-                a.daysLeft-
-
-                b.daysLeft
-
-            );
-
-        }
-
-    );
-
-}
-
 
 /* ===========================
    PROCESS PLANNER
@@ -553,8 +632,4 @@ function processPlanner(){
     sortPlanner();
 
 }
-
-
-
-
 
