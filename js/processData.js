@@ -283,10 +283,20 @@ function prepareTable(){
 
 
 /* ===========================
-   STATISTICS
+   STATISTICS BULANAN
 =========================== */
 
 function calculateStatistics(){
+
+    const today = new Date();
+
+    const currentMonth =
+
+    today.getMonth()+1;
+
+    const currentYear =
+
+    today.getFullYear();
 
     const stats={
 
@@ -300,7 +310,17 @@ function calculateStatistics(){
 
     };
 
-    Finance.data.forEach(item=>{
+    const currentData =
+
+    Finance.data.filter(item=>
+
+        item.month===currentMonth &&
+
+        item.year===currentYear
+
+    );
+
+    currentData.forEach(item=>{
 
         /* ===== EXPENSE ===== */
 
@@ -309,28 +329,40 @@ function calculateStatistics(){
             item.type===TRANSACTION.EXPENSE &&
 
             !EXCLUDED_EXPENSE.includes(
+
                 item.category
+
             )
 
         ){
 
-            stats.expenseByCategory[item.category]=
+            stats.expenseByCategory[
 
-            (stats.expenseByCategory[item.category]||0)
+                item.category
 
-            + item.amount;
+            ]=
+
+            (
+
+                stats.expenseByCategory[
+
+                    item.category
+
+                ]||0
+
+            )+item.amount;
 
             if(
 
                 !stats.highestExpense ||
 
-                item.amount >
+                item.amount>
 
                 stats.highestExpense.amount
 
             ){
 
-                stats.highestExpense = item;
+                stats.highestExpense=item;
 
             }
 
@@ -338,25 +370,39 @@ function calculateStatistics(){
 
         /* ===== INCOME ===== */
 
-        if(item.type===TRANSACTION.INCOME){
+        if(
 
-            stats.incomeByCategory[item.category]=
+            item.type===TRANSACTION.INCOME
 
-            (stats.incomeByCategory[item.category]||0)
+        ){
 
-            + item.amount;
+            stats.incomeByCategory[
+
+                item.category
+
+            ]=
+
+            (
+
+                stats.incomeByCategory[
+
+                    item.category
+
+                ]||0
+
+            )+item.amount;
 
             if(
 
                 !stats.highestIncome ||
 
-                item.amount >
+                item.amount>
 
                 stats.highestIncome.amount
 
             ){
 
-                stats.highestIncome = item;
+                stats.highestIncome=item;
 
             }
 
@@ -367,6 +413,7 @@ function calculateStatistics(){
     Finance.statistics = stats;
 
 }
+
 
 
 /* ===========================
