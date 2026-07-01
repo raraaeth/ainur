@@ -306,7 +306,13 @@ function calculateStatistics(){
 
         expenseByCategory:{},
 
-        incomeByCategory:{}
+        incomeByCategory:{},
+
+        monthlyIncome:0,
+
+        monthlyExpense:0,
+
+        monthlyBalance:0
 
     };
 
@@ -321,6 +327,20 @@ function calculateStatistics(){
     );
 
     currentData.forEach(item=>{
+
+        /* ===== MONTHLY CASHFLOW ===== */
+
+        if(item.type===TRANSACTION.INCOME){
+
+            stats.monthlyIncome += item.amount;
+
+        }
+
+        if(item.type===TRANSACTION.EXPENSE){
+
+            stats.monthlyExpense += item.amount;
+
+        }
 
         /* ===== EXPENSE ===== */
 
@@ -410,11 +430,16 @@ function calculateStatistics(){
 
     });
 
+    stats.monthlyBalance =
+
+    stats.monthlyIncome -
+
+    stats.monthlyExpense;
+
     Finance.statistics = stats;
 
 }
-
-
+            
 
 /* ===========================
    INSIGHT
