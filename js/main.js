@@ -52,22 +52,6 @@ async function init(){
 await fetchWalletPrices();
 await fetchWalletList();
 
-// tampilkan cache lebih dulu
-if (loadWalletCache()) {
-
-    processWalletData();
-    updateWalletDashboard();
-    updatePortfolioCard();
-    renderWalletOverview();
-    renderWalletAllocationChart();
-    processTopHolding();
-    renderTopHolding();
-    renderTopHoldingChart();
-    processInsight();
-    updateInsight();
-
-}
-
 // update data terbaru dari Moralis
 fetchAllWalletTokens()
 
