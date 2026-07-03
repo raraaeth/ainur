@@ -138,15 +138,26 @@ async function fetchWalletTokens(
 
 async function fetchAllWalletTokens(){
 
+    if(
+
+        loadWalletCache()
+
+    ){
+
+        return Wallet.tokens;
+
+    }
+
     const activeWallets =
 
-    Wallet.raw.filter(
+        Wallet.raw.filter(
 
-        item =>
+            item =>
 
-        item.Aktif === "TRUE"
+            item.Aktif === "TRUE"
 
-    );
+        );
+
 
     Wallet.tokens =
 
