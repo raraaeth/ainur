@@ -315,3 +315,75 @@ function renderHistory(data){
 
 }
 
+/* =========================
+   INIT FILTER
+========================= */
+
+function initAirdropFilters(){
+
+    document
+
+    .getElementById(
+
+        "airdropSearch"
+
+    )
+
+    ?.addEventListener(
+
+        "keyup",
+
+        updateHistory
+
+    );
+
+    document
+
+    .getElementById(
+
+        "airdropWalletFilter"
+
+    )
+
+    ?.addEventListener(
+
+        "change",
+
+        updateHistory
+
+    );
+
+    document
+
+    .getElementById(
+
+        "airdropCategoryFilter"
+
+    )
+
+    ?.addEventListener(
+
+        "change",
+
+        updateHistory
+
+    );
+
+    document
+
+    .getElementById(
+
+        "airdropStatusFilter"
+
+    )
+
+    ?.addEventListener(
+
+        "change",
+
+        updateHistory
+
+    );
+
+}
+
