@@ -53,6 +53,8 @@ await fetchAirdrop();
 
 processAirdrop();
 
+populateAirdropFilters();
+
 updateAirdropDashboard();
 
 updateHistory();
