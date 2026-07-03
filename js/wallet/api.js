@@ -130,9 +130,7 @@ async function fetchWalletTokens(
 
 }
 
-   
-
-/* =========================
+ /* =========================
    FETCH ALL WALLET
 ========================= */
 
@@ -150,14 +148,13 @@ async function fetchAllWalletTokens(){
 
     const activeWallets =
 
-        Wallet.raw.filter(
+    Wallet.raw.filter(
 
-            item =>
+        item =>
 
-            item.Aktif === "TRUE"
+        item.Aktif === "TRUE"
 
-        );
-
+    );
 
     Wallet.tokens =
 
@@ -241,4 +238,6 @@ async function fetchAllWalletTokens(){
 
     return Wallet.tokens;
 
-}
+}  
+
+    
