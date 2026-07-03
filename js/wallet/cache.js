@@ -12,7 +12,44 @@ const CACHE_TIME =
 
 const CACHE_DURATION =
 
-10 * 60 * 1000;
+60 * 60 * 1000;
+
+/* =========================
+   CACHE VALID
+========================= */
+
+function isWalletCacheValid(){
+
+    const time =
+
+    Number(
+
+        localStorage.getItem(
+
+            CACHE_TIME
+
+        )
+
+    );
+
+    if(!time){
+
+        return false;
+
+    }
+
+    return(
+
+        Date.now() -
+
+        time <
+
+        CACHE_DURATION
+
+    );
+
+}
+
 
 /* =========================
    SAVE CACHE
@@ -48,6 +85,16 @@ function saveWalletCache(){
 
 function loadWalletCache(){
 
+    if(
+
+        !isWalletCacheValid()
+
+    ){
+
+        return false;
+
+    }
+
     const cache =
 
     localStorage.getItem(
@@ -56,39 +103,7 @@ function loadWalletCache(){
 
     );
 
-    const time =
-
-    Number(
-
-        localStorage.getItem(
-
-            CACHE_TIME
-
-        )
-
-    );
-
-    if(
-
-        !cache ||
-
-        !time
-
-    ){
-
-        return false;
-
-    }
-
-    const expired =
-
-        Date.now() -
-
-        time >
-
-        CACHE_DURATION;
-
-    if(expired){
+    if(!cache){
 
         return false;
 
@@ -107,6 +122,7 @@ function loadWalletCache(){
     return true;
 
 }
+
 
 /* =========================
    CLEAR CACHE
