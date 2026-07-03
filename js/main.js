@@ -55,6 +55,8 @@ processAirdrop();
 
 populateAirdropFilters();
 
+initAirdropFilters();
+
 updateAirdropDashboard();
 
 updateHistory();
