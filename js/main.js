@@ -45,8 +45,20 @@ async function init(){
 
     updatePlannerHeader();
 
+/* =========================
+   AIRDROP
+========================= */
 
-    /* =========================
+await fetchAirdrop();
+
+processAirdrop();
+
+updateAirdropDashboard();
+
+updateHistory();
+
+
+/* =========================
    WALLET (Background)
 ========================= */
 await fetchWalletPrices();
