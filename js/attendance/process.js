@@ -18,7 +18,15 @@ function normalizeAttendance(){
 
             item.Date ||
 
-            "",
+             "",
+
+              dateObject:
+
+              new Date(
+
+              item.Date
+
+             ),
 
             checkIn:
 
@@ -211,11 +219,9 @@ function calculateAttendanceSummary(){
 
 function calculateAttendanceStreak(){
 
-    let current = 0;
+    let streak = 0;
 
     let best = 0;
-
-    let streak = 0;
 
     const data =
 
@@ -225,9 +231,9 @@ function calculateAttendanceStreak(){
 
         (a,b)=>
 
-        new Date(a.date) -
+        a.dateObject -
 
-        new Date(b.date)
+        b.dateObject
 
     );
 
@@ -245,27 +251,32 @@ function calculateAttendanceStreak(){
 
             case "Sick":
 
+                // streak tetap
                 break;
 
-            default:
+            case "Late":
+
+            case "Leave":
 
                 streak = 0;
 
-        }
-
-        if(streak > best){
-
-            best = streak;
+                break;
 
         }
+
+        best = Math.max(
+
+            best,
+
+            streak
+
+        );
 
     });
 
-    current = streak;
-
     Attendance.summary.currentStreak =
 
-    current;
+    streak;
 
     Attendance.summary.bestStreak =
 
