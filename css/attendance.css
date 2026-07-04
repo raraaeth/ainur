@@ -607,3 +607,83 @@
     font-weight:700;
 
 }
+
+/* =====================================================
+   HISTORY
+===================================================== */
+
+.attendance-history{
+
+    margin-top:28px;
+
+}
+
+.attendance-history-list{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:10px;
+
+}
+
+.attendance-history-card{
+
+    background:#111827;
+
+    border-radius:14px;
+
+    padding:12px 14px;
+
+    border:1px solid rgba(255,255,255,.08);
+
+}
+
+.history-top{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    margin-bottom:8px;
+
+}
+
+.history-top strong{
+
+    color:#fff;
+
+}
+
+.history-top small{
+
+    color:#9ca3af;
+
+}
+
+.history-bottom{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    color:#d1d5db;
+
+    font-size:.9rem;
+
+}
+
+.attendance-home,
+
+.attendance-summary-home,
+
+.reminder-bar,
+
+.section{
+
+    margin-bottom:24px;
+
+}
