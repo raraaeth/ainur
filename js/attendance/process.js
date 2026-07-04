@@ -67,11 +67,41 @@ function normalizeAttendance(){
 }
 
 /* =========================
+   TODAY
+========================= */
+
+function calculateTodayAttendance(){
+
+    const today =
+
+    new Date()
+
+    .toLocaleDateString(
+
+        "sv-SE"
+
+    );
+
+    Attendance.current =
+
+    Attendance.data.find(
+
+        item=>
+
+        item.date===today
+
+    ) || null;
+
+}
+
+/* =========================
    PROCESS
 ========================= */
 
 function processAttendance(){
 
     normalizeAttendance();
+
+    calculateTodayAttendance();
 
 }
