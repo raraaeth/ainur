@@ -36,9 +36,10 @@ function normalizeAirdrop(){
 
             status:
 
-            item.Status
-            ?.trim() || "",
-
+(item.Status || "")
+.trim()
+.toLowerCase(),
+           
             started:
 
             item.Started
@@ -110,35 +111,24 @@ function calculateAirdropSummary(){
 
         switch(item.status){
 
-            case "ClaimAll":
+    case "ClaimAll":
+    case "ClaimVesting":
+    case "DistriAll":
+    case "Mint":
+        won++;
+        break;
 
-            case "ClaimVesting":
+    case "NotEligible":
+    case "NotWin":
+        failed++;
+        break;
 
-            case "DistriAll":
+    case "Eligible":
+    case "Ongoing":
+        active++;
+        break;
 
-            case "Mint":
-
-                won++;
-
-                break;
-
-            case "NotEligible":
-
-            case "NotWin":
-
-                failed++;
-
-                break;
-
-            case "Eligible":
-
-            case "Ongoing":
-
-                active++;
-
-                break;
-
-        }
+}
 
     });
 
