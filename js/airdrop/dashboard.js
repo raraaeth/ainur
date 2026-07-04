@@ -51,15 +51,15 @@ function updateAirdropSummary(){
 
     if(totalUSD){
 
-        totalUSD.textContent =
+    totalUSD.textContent =
 
-        formatCurrency(
+    formatUSD(
 
-            Airdrop.summary.totalUSD
+        Airdrop.summary.totalUSD
 
-        );
+    );
 
-    }
+}
 
     if(won){
 
@@ -113,7 +113,7 @@ function updateHallOfFame(){
 
     .map((item,index)=>`
 
-        <div class="hall-card">
+        <div class="hall-card rank-${index+1}">
 
             <div class="hall-rank">
 
