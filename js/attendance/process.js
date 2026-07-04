@@ -100,6 +100,112 @@ function calculateTodayAttendance(){
 }
 
 /* =========================
+   SUMMARY
+========================= */
+
+function calculateAttendanceSummary(){
+
+    const now = new Date();
+
+    const currentMonth =
+
+    now.toLocaleString(
+
+        "en-US",
+
+        {
+
+            month:"long"
+
+        }
+
+    );
+
+    const currentYear =
+
+    now.getFullYear();
+
+    const monthData =
+
+    Attendance.data.filter(
+
+        item=>
+
+        item.month===currentMonth &&
+
+        item.year===currentYear
+
+    );
+
+    Attendance.summary = {
+
+        present:
+
+        monthData.filter(
+
+            item=>
+
+            item.status==="OnTime" ||
+
+            item.status==="Late"
+
+        ).length,
+
+        onTime:
+
+        monthData.filter(
+
+            item=>
+
+            item.status==="OnTime"
+
+        ).length,
+
+        late:
+
+        monthData.filter(
+
+            item=>
+
+            item.status==="Late"
+
+        ).length,
+
+        holiday:
+
+        monthData.filter(
+
+            item=>
+
+            item.status==="Holiday"
+
+        ).length,
+
+        sick:
+
+        monthData.filter(
+
+            item=>
+
+            item.status==="Sick"
+
+        ).length,
+
+        leave:
+
+        monthData.filter(
+
+            item=>
+
+            item.status==="Leave"
+
+        ).length
+
+    };
+
+}
+
+/* =========================
    PROCESS
 ========================= */
 
@@ -109,21 +215,6 @@ function processAttendance(){
 
     calculateTodayAttendance();
 
-   
-
-    console.log(
-        "RAW",
-        Attendance.raw
-    );
-
-    console.log(
-        "DATA",
-        Attendance.data
-    );
-
-    console.log(
-        "CURRENT",
-        Attendance.current
-    );
+    calculateAttendanceSummary();
 
 }
