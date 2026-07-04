@@ -1,0 +1,228 @@
+/* =====================================================
+   ATTENDANCE
+===================================================== */
+
+/* =========================
+   CHECK IN CARD
+========================= */
+
+.checkin-card{
+
+    background:#ffffff;
+
+    border-radius:18px;
+
+    padding:20px;
+
+    margin:24px 0;
+
+    box-shadow:
+    0 4px 12px
+    rgba(0,0,0,.08);
+
+}
+
+.checkin-card h2{
+
+    margin-bottom:10px;
+
+    font-size:1.2rem;
+
+    font-weight:700;
+
+    color:#111827;
+
+}
+
+#attendanceMessage{
+
+    color:#6b7280;
+
+    font-size:.95rem;
+
+    margin-bottom:12px;
+
+}
+
+#attendanceInfo{
+
+    margin-bottom:18px;
+
+    line-height:1.8;
+
+    color:#374151;
+
+}
+
+#attendanceInfo strong{
+
+    font-size:1rem;
+
+    color:#111827;
+
+}
+
+/* =========================
+   BUTTON
+========================= */
+
+.btn-checkin{
+
+    width:100%;
+
+    border:none;
+
+    border-radius:12px;
+
+    padding:14px;
+
+    background:#2563eb;
+
+    color:#fff;
+
+    font-size:1rem;
+
+    font-weight:600;
+
+    cursor:pointer;
+
+    transition:.25s;
+
+}
+
+.btn-checkin:hover{
+
+    background:#1d4ed8;
+
+}
+
+.btn-checkin:disabled{
+
+    background:#16a34a;
+
+    cursor:default;
+
+}
+
+/* =========================
+   ATTENDANCE SUMMARY
+========================= */
+
+.attendance-summary{
+
+    margin-bottom:28px;
+
+}
+
+.attendance-summary h2{
+
+    margin-bottom:14px;
+
+    font-size:1.1rem;
+
+    font-weight:700;
+
+}
+
+.attendance-summary-grid{
+
+    display:grid;
+
+    grid-template-columns:
+    repeat(2,1fr);
+
+    gap:14px;
+
+}
+
+.summary-box{
+
+    background:#fff;
+
+    border-radius:16px;
+
+    padding:16px;
+
+    text-align:center;
+
+    box-shadow:
+    0 2px 8px
+    rgba(0,0,0,.06);
+
+}
+
+.summary-box small{
+
+    display:block;
+
+    color:#6b7280;
+
+    margin-bottom:6px;
+
+}
+
+.summary-box strong{
+
+    font-size:1.5rem;
+
+    color:#111827;
+
+}
+
+/* =========================
+   BADGE
+========================= */
+
+.attendance-badge{
+
+    display:inline-block;
+
+    padding:4px 10px;
+
+    border-radius:999px;
+
+    font-size:.75rem;
+
+    font-weight:600;
+
+}
+
+.badge-ontime{
+
+    background:#dcfce7;
+
+    color:#15803d;
+
+}
+
+.badge-late{
+
+    background:#fee2e2;
+
+    color:#b91c1c;
+
+}
+
+.badge-holiday{
+
+    background:#fef3c7;
+
+    color:#b45309;
+
+}
+
+.badge-sick{
+
+    background:#dbeafe;
+
+    color:#1d4ed8;
+
+}
+
+.badge-leave{
+
+    background:#ede9fe;
+
+    color:#6d28d9;
+
+}
