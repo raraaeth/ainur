@@ -340,3 +340,63 @@
     text-align:center;
 
 }
+
+/* =========================
+   HISTORY CARD
+========================= */
+
+.attendance-card{
+
+    background:#fff;
+
+    border-radius:16px;
+
+    padding:16px;
+
+    box-shadow:
+
+    0 2px 8px
+
+    rgba(0,0,0,.06);
+
+}
+
+.attendance-card-top{
+
+    display:flex;
+
+    justify-content:flex-end;
+
+    margin-bottom:12px;
+
+}
+
+.attendance-card h4{
+
+    margin-bottom:8px;
+
+    color:#111827;
+
+}
+
+.attendance-card p{
+
+    margin:4px 0;
+
+    color:#6b7280;
+
+}
+
+.attendance-empty{
+
+    background:#fff;
+
+    padding:24px;
+
+    border-radius:16px;
+
+    text-align:center;
+
+    color:#888;
+
+}
