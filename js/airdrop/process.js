@@ -310,6 +310,37 @@ function prepareHistory(){
     );
 
 }
+
+/* =========================
+   AIRDROP REMINDER
+========================= */
+
+function processAirdropReminder(){
+
+    Airdrop.upcoming.forEach(item=>{
+
+        Finance.planner.push({
+
+            type:"airdrop",
+
+            priority:
+
+            item.status==="Eligible"
+
+            ?"high"
+
+            :"medium",
+
+            title:item.project,
+
+            date:item.estimationEnd
+
+        });
+
+    });
+
+}
+
 /* =========================
    PROCESS AIRDROP
 ========================= */
@@ -325,5 +356,7 @@ function processAirdrop(){
     calculateUpcoming();
 
     prepareHistory();
+
+    processAirdropReminder();
 
 }
