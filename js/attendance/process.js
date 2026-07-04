@@ -81,6 +81,11 @@ function calculateTodayAttendance(){
         "sv-SE"
 
     );
+   
+   console.log(
+    "TODAY",
+    today
+   );
 
     Attendance.current =
 
@@ -103,5 +108,22 @@ function processAttendance(){
     normalizeAttendance();
 
     calculateTodayAttendance();
+
+   
+
+    console.log(
+        "RAW",
+        Attendance.raw
+    );
+
+    console.log(
+        "DATA",
+        Attendance.data
+    );
+
+    console.log(
+        "CURRENT",
+        Attendance.current
+    );
 
 }
