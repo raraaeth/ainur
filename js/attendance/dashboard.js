@@ -371,4 +371,6 @@ function updateAttendanceDashboard(){
 
     updateAttendanceSummary();
 
+    updateAttendanceHistory();
+
 }
