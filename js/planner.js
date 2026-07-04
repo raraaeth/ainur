@@ -273,7 +273,9 @@ function updatePlannerHeader(){
 
         birthday:"🎂",
 
-        anniversary:"💍"
+        anniversary:"💍",
+
+       airdrop:"🪂"
 
     };
 
