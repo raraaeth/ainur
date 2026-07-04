@@ -213,32 +213,81 @@ function calculateAirdropHallOfFame(){
 ========================= */
 
 function calculateAirdropUpcoming(){
+console.log(
 
-    Airdrop.data
+    "Qty = 0",
 
-    .filter(item=>item.status==="ClaimVesting")
+    Airdrop.data.filter(
 
-    .forEach(item=>{
+        item=>
 
-        console.log({
+        item.status==="ClaimVesting"
 
-            project:item.project,
+        &&
 
-            status:item.status,
+        item.qty===0
 
-            qty:item.qty,
+    )
 
-            estimationEnd:item.estimationEnd,
+);
+   
+    Airdrop.upcoming =
 
-            totalUSD:item.totalUSD
+    [...Airdrop.data]
 
-        });
+    .filter(item=>
+
+        item.status==="Eligible"
+
+        ||
+
+        item.status==="Ongoing"
+
+        ||
+
+        (
+
+            item.status==="ClaimVesting"
+
+            &&
+
+            item.qty===0
+
+        )
+
+    )
+
+    .sort((a,b)=>{
+
+        if(
+
+            a.estimationEnd &&
+
+            b.estimationEnd
+
+        ){
+
+            return a.estimationEnd-b.estimationEnd;
+
+        }
+
+        if(a.estimationEnd) return -1;
+
+        if(b.estimationEnd) return 1;
+
+        return a.project.localeCompare(b.project);
 
     });
 
-}
+    console.log(
 
-   
+        "Upcoming",
+
+        Airdrop.upcoming
+
+    );
+
+}
 
 /* =========================
    HISTORY
