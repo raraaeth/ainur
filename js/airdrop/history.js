@@ -91,6 +91,58 @@ function filterHistory(){
 }
 
 /* =========================
+   STATUS BADGE
+========================= */
+
+function getStatusBadge(status){
+
+    const badge={
+
+        ClaimAll:
+        "badge-success",
+
+        ClaimVesting:
+        "badge-info",
+
+        DistriAll:
+        "badge-success",
+
+        Eligible:
+        "badge-warning",
+
+        Ongoing:
+        "badge-primary",
+
+        NotEligible:
+        "badge-danger",
+
+        NotWin:
+        "badge-danger",
+
+        Mint:
+        "badge-purple"
+
+    };
+
+    return `
+
+    <span class="status-badge ${
+
+        badge[status]||
+
+        "badge-default"
+
+    }">
+
+        ${status}
+
+    </span>
+
+    `;
+
+}
+
+/* =========================
    UPDATE HISTORY
 ========================= */
 
@@ -273,9 +325,9 @@ function renderHistory(data){
 
                 <td>
 
-                    ${item.status}
+    ${getStatusBadge(item.status)}
 
-                </td>
+</td>
 
                 <td>
 
