@@ -181,9 +181,7 @@ function updateAttendanceSummary(){
 
     if(!container) return;
 
-    const s =
-
-    Attendance.summary;
+    const s = Attendance.summary;
 
     container.innerHTML =
 
@@ -191,87 +189,72 @@ function updateAttendanceSummary(){
 
     <div class="summary-box">
 
-        <small>👤 Present</small>
+        <small>
 
-        <strong>${s.present}</strong>
+            🟢 On Time
 
-    </div>
+        </small>
 
-    <div class="summary-box">
+        <strong>
 
-        <small>🟢 On Time</small>
+            ${s.onTime}
 
-        <strong>${s.onTime}</strong>
-
-    </div>
-
-    <div class="summary-box">
-
-        <small>🔴 Late</small>
-
-        <strong>${s.late}</strong>
+        </strong>
 
     </div>
 
     <div class="summary-box">
 
-        <small>🏖 Holiday</small>
+        <small>
 
-        <strong>${s.holiday}</strong>
+            🔴 Late
 
-    </div>
+        </small>
 
-    <div class="summary-box">
+        <strong>
 
-        <small>🤒 Sick</small>
+            ${s.late}
 
-        <strong>${s.sick}</strong>
-
-    </div>
-
-    <div class="summary-box">
-
-        <small>📅 Leave</small>
-
-        <strong>${s.leave}</strong>
+        </strong>
 
     </div>
 
     <div class="summary-box">
 
-    <small>
+        <small>
 
-        🔥 Current Streak
+            👤 Present
 
-    </small>
+        </small>
 
-    <strong>
+        <strong>
 
-        ${s.currentStreak}
+            ${s.present}
 
-    </strong>
+        </strong>
 
-</div>
+    </div>
 
-<div class="summary-box">
+    <div class="summary-box">
 
-    <small>
+        <small>
 
-        ⭐ Best Streak
+            🔥 Current Streak
 
-    </small>
+        </small>
 
-    <strong>
+        <strong>
 
-        ${s.bestStreak}
+            ${s.currentStreak}
 
-    </strong>
+        </strong>
 
-</div>
+    </div>
 
     `;
 
 }
+    
 
 /* =========================
    HEADER
