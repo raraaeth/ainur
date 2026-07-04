@@ -105,6 +105,11 @@ function calculateAirdropSummary(){
 
     let active = 0;
 
+   console.log(
+    Airdrop.data[0].status
+);
+   
+
     Airdrop.data.forEach(item=>{
 
         totalUSD += item.totalUSD;
