@@ -214,107 +214,31 @@ function calculateAirdropHallOfFame(){
 
 function calculateAirdropUpcoming(){
 
-    console.log(
+    Airdrop.data
 
-        Airdrop.data.filter(
+    .filter(item=>item.status==="ClaimVesting")
 
-            item=>item.status==="ClaimVesting"
+    .forEach(item=>{
 
-        )
+        console.log({
 
-    );
+            project:item.project,
 
-}
+            status:item.status,
 
-    [...Airdrop.data]
+            qty:item.qty,
 
-    .filter(item=>
+            estimationEnd:item.estimationEnd,
 
-        /* =====================
-           ELIGIBLE
-        ===================== */
+            totalUSD:item.totalUSD
 
-        item.status==="Eligible"
-
-        ||
-
-        /* =====================
-           ONGOING
-        ===================== */
-
-        item.status==="Ongoing"
-
-        ||
-
-        /* =====================
-           CLAIM VESTING
-           Belum claim jika
-           qty masih kosong
-        ===================== */
-
-        (
-
-            item.status==="ClaimVesting"
-
-            &&
-
-            item.qty===0
-
-        )
-
-    )
-
-    .sort((a,b)=>{
-
-        /* =====================
-           Yang punya estimasi
-           lebih dulu tampil
-        ===================== */
-
-        if(
-
-            a.estimationEnd &&
-
-            b.estimationEnd
-
-        ){
-
-            return(
-
-                a.estimationEnd -
-
-                b.estimationEnd
-
-            );
-
-        }
-
-        if(a.estimationEnd)
-
-            return -1;
-
-        if(b.estimationEnd)
-
-            return 1;
-
-        return a.project.localeCompare(
-
-            b.project
-
-        );
+        });
 
     });
 
-    console.log(
+}
 
-        "Upcoming",
-
-        Airdrop.upcoming
-
-    );
-
-           }
-
+   
 
 /* =========================
    HISTORY
