@@ -220,6 +220,38 @@ function updateAttendanceSummary(){
 
     </div>
 
+    <div class="summary-box">
+
+    <small>
+
+        🔥 Current Streak
+
+    </small>
+
+    <strong>
+
+        ${s.currentStreak}
+
+    </strong>
+
+</div>
+
+<div class="summary-box">
+
+    <small>
+
+        ⭐ Best Streak
+
+    </small>
+
+    <strong>
+
+        ${s.bestStreak}
+
+    </strong>
+
+</div>
+
     `;
 
 }
