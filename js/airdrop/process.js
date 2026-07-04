@@ -36,9 +36,8 @@ function normalizeAirdrop(){
 
             status:
 
-(item.Status || "")
-.trim()
-.toLowerCase(),
+            item.Status
+            ?.trim() || "",
            
             started:
 
