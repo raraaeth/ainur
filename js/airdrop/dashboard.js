@@ -6,65 +6,45 @@ console.log("===== AIRDROP DASHBOARD =====");
 /* =========================
    UPDATE SUMMARY
 ========================= */
-
 function updateAirdropSummary(){
 
-    const totalProject =
-
-    document.getElementById(
-
-        "airdropTotalProject"
-
-    );
-
     const totalUSD =
-
     document.getElementById(
-
         "airdropTotalUSD"
-
     );
 
     const won =
-
     document.getElementById(
-
         "airdropWon"
-
     );
 
     const failed =
-
     document.getElementById(
-
         "airdropFailed"
-
     );
 
-    if(totalProject){
+    const active =
+    document.getElementById(
+        "airdropActive"
+    );
 
-        totalProject.textContent =
-
-        Airdrop.summary.totalProject;
-
-    }
+    const badge =
+    document.getElementById(
+        "airdropProjectBadge"
+    );
 
     if(totalUSD){
 
-    totalUSD.textContent =
+        totalUSD.textContent =
+        formatUSD(
+            Airdrop.summary.totalUSD
+        );
 
-    formatUSD(
-
-        Airdrop.summary.totalUSD
-
-    );
-
-}
+    }
 
     if(won){
 
         won.textContent =
-
         Airdrop.summary.won;
 
     }
@@ -72,8 +52,21 @@ function updateAirdropSummary(){
     if(failed){
 
         failed.textContent =
-
         Airdrop.summary.failed;
+
+    }
+
+    if(active){
+
+        active.textContent =
+        Airdrop.summary.active;
+
+    }
+
+    if(badge){
+
+        badge.textContent =
+        `${Airdrop.summary.totalProject} Projects`;
 
     }
 
