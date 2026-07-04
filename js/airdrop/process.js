@@ -214,13 +214,17 @@ function calculateAirdropHallOfFame(){
 
 function calculateAirdropUpcoming(){
 
-   console.log(
-    Airdrop.data.filter(
-        item => item.status==="ClaimVesting"
-    )
-);
-   
-    Airdrop.upcoming =
+    console.log(
+
+        Airdrop.data.filter(
+
+            item=>item.status==="ClaimVesting"
+
+        )
+
+    );
+
+}
 
     [...Airdrop.data]
 
