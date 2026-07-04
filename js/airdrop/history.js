@@ -345,11 +345,11 @@ function renderHistory(data){
 
                 <td>
 
-                    ${formatCurrency(
+                    ${formatUSD(
 
-                        item.totalUSD
+    item.totalUSD
 
-                    )}
+)}
 
                 </td>
 
