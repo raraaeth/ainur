@@ -8,29 +8,61 @@
 
 function normalizeAttendance(){
 
-}
+    Attendance.data =
 
-/* =========================
-   SUMMARY
-========================= */
+    Attendance.raw.map(item=>{
 
-function calculateAttendanceSummary(){
+        return{
 
-}
+            date:
 
-/* =========================
-   STREAK
-========================= */
+            item.Date ||
 
-function calculateAttendanceStreak(){
+            "",
 
-}
+            checkIn:
 
-/* =========================
-   TODAY
-========================= */
+            item.CheckIn ||
 
-function calculateTodayAttendance(){
+            "",
+
+            status:
+
+            item.Status ||
+
+            "",
+
+            lateMinutes:
+
+            Number(
+
+                item.LateMinutes
+
+            ) || 0,
+
+            month:
+
+            item.Month ||
+
+            "",
+
+            year:
+
+            Number(
+
+                item.Year
+
+            ) || 0,
+
+            notes:
+
+            item.Notes ||
+
+            ""
+
+        };
+
+    });
 
 }
 
@@ -41,11 +73,5 @@ function calculateTodayAttendance(){
 function processAttendance(){
 
     normalizeAttendance();
-
-    calculateAttendanceSummary();
-
-    calculateAttendanceStreak();
-
-    calculateTodayAttendance();
 
 }
