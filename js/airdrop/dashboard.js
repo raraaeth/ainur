@@ -244,3 +244,17 @@ function updateUpcoming(){
     .join("");
 
                   }
+
+/* =========================
+   UPDATE DASHBOARD
+========================= */
+
+function updateAirdropDashboard(){
+
+    updateAirdropSummary();
+
+    updateHallOfFame();
+
+    updateUpcoming();
+
+}
