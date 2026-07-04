@@ -50,12 +50,91 @@ function updateAttendanceHistory(){
 
     : Attendance.history.slice(0,5);
 
+    if(data.length===0){
+
+        container.innerHTML =
+
+        `
+
+        <div class="attendance-empty">
+
+            Belum ada data attendance.
+
+        </div>
+
+        `;
+
+        return;
+
+    }
+
     container.innerHTML =
 
-    data.map(item=>`
+    data.map(item=>{
 
-        <div
-        class="attendance-card">
+        let icon="🟢";
+
+        let color="badge-ontime";
+
+        let detail="";
+
+        switch(item.status){
+
+            case "Late":
+
+                icon="🔴";
+
+                color="badge-late";
+
+                detail=
+
+                `Late ${item.lateMinutes} Minutes`;
+
+                break;
+
+            case "Holiday":
+
+                icon="🏖";
+
+                color="badge-holiday";
+
+                break;
+
+            case "Sick":
+
+                icon="🤒";
+
+                color="badge-sick";
+
+                break;
+
+            case "Leave":
+
+                icon="📅";
+
+                color="badge-leave";
+
+                break;
+
+        }
+
+        return `
+
+        <div class="attendance-card">
+
+            <div class="attendance-card-top">
+
+                <span
+
+                    class="attendance-badge ${color}">
+
+                    ${icon}
+
+                    ${item.status}
+
+                </span>
+
+            </div>
 
             <h4>
 
@@ -65,20 +144,62 @@ function updateAttendanceHistory(){
 
             <p>
 
-                🕒 ${item.checkIn || "-"}
+                🕒
+
+                ${item.checkIn || "-"}
 
             </p>
 
-            <p>
+            ${
 
-                ${item.status}
+                detail
 
-            </p>
+                ?
+
+                `<p>${detail}</p>`
+
+                :
+
+                ""
+
+            }
 
         </div>
 
-    `)
+        `;
+
+    })
 
     .join("");
+
+}
+
+/* =========================
+   TOGGLE HISTORY
+========================= */
+
+function toggleAttendanceHistory(){
+
+    attendanceShowAll =
+
+    !attendanceShowAll;
+
+    updateAttendanceHistory();
+
+    document.getElementById(
+
+        "attendanceMore"
+
+    ).textContent =
+
+    attendanceShowAll
+
+    ?
+
+    "Lihat Lebih Sedikit"
+
+    :
+
+    "Lihat Semua";
 
 }
