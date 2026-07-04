@@ -51,12 +51,16 @@ Halo, Ainur 👋
 </h1>
 
 <p id="greetingText">
-Seberapa boros kamu bulan ini?
+
+Memuat status hari ini...
+
 </p>
-<p id="dailyInsight"
+
+<p
+id="dailyStatus"
 class="daily-insight">
 
-Memuat insight...
+Memuat attendance...
 
 </p>
 
@@ -70,20 +74,33 @@ Memuat insight...
 CHECK-IN 
 ========================= -->
     
-    
 <section class="checkin-card">
 
-    <h2>👋 Daily Check In</h2>
+    <h2>
 
-    <p>
-        Catat jam masuk kerjamu hari ini.
+        👋 Daily Check In
+
+    </h2>
+
+    <p
+        id="attendanceMessage">
+
+        Hari ini kamu belum check in.
+
     </p>
 
+    <div
+        id="attendanceInfo">
+
+    </div>
+
     <button
+
         class="btn-checkin"
+
         onclick="saveAttendance('CheckIn')">
 
-        Check In
+        ✅ Check In
 
     </button>
 
