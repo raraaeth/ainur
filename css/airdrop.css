@@ -566,3 +566,29 @@
     color:#374151;
 
    }
+/* =========================
+   FORCE INPUT COLOR
+========================= */
+
+.airdrop-filter input,
+.airdrop-filter select{
+
+    color:#333 !important;
+
+    background:#fff !important;
+
+}
+
+.airdrop-filter input::placeholder{
+
+    color:#9ca3af !important;
+
+}
+
+.airdrop-filter select option{
+
+    color:#333 !important;
+
+    background:#fff !important;
+
+}
