@@ -71,7 +71,99 @@ Memuat attendance...
 
 </header>
     
+<!-- =========================
+     DAILY CHECK IN
+========================= -->
 
+<section class="attendance-home">
+
+    <div class="section-title">
+
+        <h2>👋 Daily Check In</h2>
+
+        <p>
+            Catat kehadiran kerjamu hari ini.
+        </p>
+
+    </div>
+
+    <div class="attendance-grid">
+
+        <!-- LEFT -->
+
+        <div class="attendance-action">
+
+            <div class="attendance-illustration">
+
+                👨🏻‍💻
+
+            </div>
+
+            <button
+
+                id="checkInButton"
+
+                class="btn-checkin"
+
+                onclick="saveAttendance('CheckIn')">
+
+                ✅ Check In
+
+            </button>
+
+            <small>
+
+                Tekan tombol di atas untuk check in.
+
+            </small>
+
+        </div>
+
+        <!-- RIGHT -->
+
+        <div class="attendance-status">
+
+            <div
+            id="attendanceBadge"
+            class="attendance-badge">
+
+                Memuat...
+
+            </div>
+
+            <h1
+            id="attendanceTime">
+
+                --:--
+
+            </h1>
+
+            <span>
+
+                WIB
+
+            </span>
+
+            <div
+            id="attendanceState">
+
+                Menunggu check in...
+
+            </div>
+
+            <div
+            id="attendanceMessage"
+            class="attendance-message">
+
+                Semoga harimu menyenangkan 😊
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
 
     
 
