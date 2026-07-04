@@ -457,7 +457,19 @@
 
 }
 
-.airdrop-table th,
+.airdrop-table th{
+
+    padding:12px;
+
+    text-align:left;
+
+    font-size:.85rem;
+
+    border-bottom:1px solid #eee;
+
+    color:#fff;
+
+}
 
 .airdrop-table td{
 
@@ -467,9 +479,9 @@
 
     font-size:.85rem;
 
-    border-bottom:
+    border-bottom:1px solid #eee;
 
-    1px solid #eee;
+    color:#333;
 
 }
 
