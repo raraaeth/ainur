@@ -326,6 +326,8 @@
 
     border-radius:10px;
 
+    color:#333;
+
     font-size:.9rem;
 
     background:#fff;
@@ -336,13 +338,25 @@
 
 }
 
+.airdrop-filter select option{
+
+    color:#333;
+
+    background:#fff;
+
+}
+
 .airdrop-filter input{
 
     grid-column:1/-1;
 
 }
 
-.airdrop-filter input:focus,
+.airdrop-filter input::placeholder{
+
+    color:#9ca3af;
+
+}
 
 .airdrop-filter select:focus{
 
@@ -355,6 +369,7 @@
     rgba(37,99,235,.12);
 
 }
+
 /* =========================
    HISTORY
 ========================= */
