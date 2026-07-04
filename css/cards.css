@@ -387,7 +387,67 @@
 
 }
 
+/* =====================================================
+   CHECK IN
+===================================================== */
 
+.checkin-card{
+
+    background:#fff;
+
+    border-radius:18px;
+
+    padding:20px;
+
+    margin-bottom:28px;
+
+    box-shadow:
+
+    0 4px 12px
+
+    rgba(0,0,0,.06);
+
+}
+
+.checkin-card h2{
+
+    margin-bottom:12px;
+
+}
+
+#attendanceMessage{
+
+    font-size:.95rem;
+
+    color:#555;
+
+}
+
+#attendanceInfo{
+
+    margin:16px 0;
+
+    line-height:1.8;
+
+}
+
+.btn-checkin{
+
+    width:100%;
+
+    padding:14px;
+
+    border:none;
+
+    border-radius:12px;
+
+    font-size:1rem;
+
+    font-weight:600;
+
+    cursor:pointer;
+
+}
 
 
 
