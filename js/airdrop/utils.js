@@ -98,3 +98,28 @@ function populateSelect(
     });
 
 }
+/* =========================
+   FORMAT USD
+========================= */
+
+function formatUSD(value){
+
+    return "$" +
+
+    Number(value || 0)
+
+    .toLocaleString(
+
+        "en-US",
+
+        {
+
+            minimumFractionDigits:0,
+
+            maximumFractionDigits:2
+
+        }
+
+    );
+
+}
