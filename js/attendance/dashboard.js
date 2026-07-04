@@ -18,11 +18,31 @@ function updateCheckInCard(){
 
     if(!button) return;
 
-    button.disabled = false;
+    /* =====================
+       BELUM CHECK IN
+    ===================== */
+
+    if(!Attendance.current){
+
+        button.disabled = false;
+
+        button.textContent =
+
+        "✅ Check In";
+
+        return;
+
+    }
+
+    /* =====================
+       SUDAH CHECK IN
+    ===================== */
+
+    button.disabled = true;
 
     button.textContent =
 
-    "✅ Check In";
+    "✔ Attendance Completed";
 
 }
 
