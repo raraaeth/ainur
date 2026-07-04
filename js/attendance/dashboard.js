@@ -9,42 +9,36 @@
 function updateCheckInCard(){
 
     const button =
+    document.getElementById(
+        "checkInButton"
+    );
 
-    document.querySelector(
+    const badge =
+    document.getElementById(
+        "attendanceBadge"
+    );
 
-        ".btn-checkin"
+    const time =
+    document.getElementById(
+        "attendanceTime"
+    );
 
+    const state =
+    document.getElementById(
+        "attendanceState"
     );
 
     const message =
-
     document.getElementById(
-
         "attendanceMessage"
-
-    );
-
-    const info =
-
-    document.getElementById(
-
-        "attendanceInfo"
-
-    );
-
-    const header =
-
-    document.getElementById(
-
-        "dailyStatus"
-
     );
 
     if(
         !button ||
-        !message ||
-        !info ||
-        !header
+        !badge ||
+        !time ||
+        !state ||
+        !message
     ) return;
 
     /* =====================
@@ -56,18 +50,22 @@ function updateCheckInCard(){
         button.disabled = false;
 
         button.textContent =
-
         "✅ Check In";
 
+        badge.className =
+        "attendance-badge badge-warning";
+
+        badge.textContent =
+        "Waiting";
+
+        time.textContent =
+        "-- : --";
+
+        state.textContent =
+        "Belum Check In";
+
         message.textContent =
-
-        "Hari ini kamu belum check in.";
-
-        info.innerHTML = "";
-
-        header.textContent =
-
-        "⏳ Belum check in hari ini.";
+        "Jangan lupa melakukan check in sebelum pukul 06.00 WIB.";
 
         return;
 
@@ -80,22 +78,21 @@ function updateCheckInCard(){
     button.disabled = true;
 
     button.textContent =
+    "✔ Attendance Completed";
 
-        "✔ Attendance Completed";
-
-    message.textContent =
-
-        Attendance.current.checkIn;
+    let badgeClass =
+    "badge-success";
 
     let icon = "🟢";
 
     switch(
-
         Attendance.current.status
-
     ){
 
         case "Late":
+
+            badgeClass =
+            "badge-danger";
 
             icon = "🔴";
 
@@ -103,11 +100,17 @@ function updateCheckInCard(){
 
         case "Holiday":
 
+            badgeClass =
+            "badge-warning";
+
             icon = "🏖";
 
             break;
 
         case "Sick":
+
+            badgeClass =
+            "badge-info";
 
             icon = "🤒";
 
@@ -115,38 +118,52 @@ function updateCheckInCard(){
 
         case "Leave":
 
+            badgeClass =
+            "badge-purple";
+
             icon = "📅";
 
             break;
 
     }
 
-    info.innerHTML =
+    badge.className =
+    `attendance-badge ${badgeClass}`;
 
-    `
-
-    <strong>
-
-        ${icon}
-        ${Attendance.current.status}
-
-    </strong>
-
-    <br>
-
-    Late :
-
-    ${Attendance.current.lateMinutes}
-
-    Minute
-
-    `;
-
-    header.textContent =
-
+    badge.textContent =
     `${icon} ${Attendance.current.status}`;
 
-}
+    time.textContent =
+    Attendance.current.checkIn
+    ?
+    Attendance.current.checkIn.replaceAll(".",":")
+
+    :
+    "-- : --";
+
+    state.textContent =
+    Attendance.current.status;
+
+    if(
+        Attendance.current.status==="Late"
+    ){
+
+        message.textContent =
+        `Terlambat ${Attendance.current.lateMinutes} menit hari ini.`;
+
+    }
+
+    else{
+
+        message.textContent =
+        "Kerja bagus! Pertahankan kedisiplinanmu. 🔥";
+
+    }
+
+       }
+    
+
+    
 
 /* =========================
    SUMMARY
