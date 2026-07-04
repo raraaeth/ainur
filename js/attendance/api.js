@@ -3,7 +3,29 @@
 ===================================================== */
 
 /* =========================
-   CHECK IN
+   FETCH ATTENDANCE
+========================= */
+
+async function fetchAttendance(){
+
+    const response =
+
+    await fetch(
+
+        CONFIG.API_URL +
+
+        "attendance"
+
+    );
+
+    Attendance.raw =
+
+    await response.json();
+
+}
+
+/* =========================
+   SEND ATTENDANCE
 ========================= */
 
 async function sendAttendance(data){
@@ -12,13 +34,15 @@ async function sendAttendance(data){
 
     await fetch(
 
-        Attendance.apiUrl,
+        Attendance.scriptUrl,
 
         {
 
             method:"POST",
 
-            body:JSON.stringify(data)
+            body:
+
+            JSON.stringify(data)
 
         }
 
