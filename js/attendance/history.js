@@ -28,8 +28,8 @@ function prepareAttendanceHistory(){
 
 /* =========================
    RENDER HISTORY
-========================= */
-
+========================= */     
+               
 function updateAttendanceHistory(){
 
     const container =
@@ -52,7 +52,7 @@ function updateAttendanceHistory(){
 
     if(data.length===0){
 
-        container.innerHTML =
+        container.innerHTML=
 
         `
 
@@ -68,51 +68,45 @@ function updateAttendanceHistory(){
 
     }
 
-    container.innerHTML =
+    container.innerHTML=
 
     data.map(item=>{
 
+        let color="#22c55e";
+
         let icon="🟢";
-
-        let color="badge-ontime";
-
-        let detail="";
 
         switch(item.status){
 
             case "Late":
 
+                color="#ef4444";
+
                 icon="🔴";
-
-                color="badge-late";
-
-                detail=
-
-                `Late ${item.lateMinutes} Minutes`;
 
                 break;
 
             case "Holiday":
 
-                icon="🏖";
+                color="#f59e0b";
 
-                color="badge-holiday";
+                icon="🏖";
 
                 break;
 
             case "Sick":
 
-                icon="🤒";
+                color="#3b82f6";
 
-                color="badge-sick";
+                icon="🤒";
 
                 break;
 
             case "Leave":
 
-                icon="📅";
+                color="#a855f7";
 
-                color="badge-leave";
+                icon="📅";
 
                 break;
 
@@ -120,49 +114,62 @@ function updateAttendanceHistory(){
 
         return `
 
-        <div class="attendance-card">
+        <div
 
-            <div class="attendance-card-top">
+        class="attendance-history-card"
 
-                <span
+        style="border-left:4px solid ${color};">
 
-                    class="attendance-badge ${color}">
+            <div class="history-top">
+
+                <strong>
 
                     ${icon}
 
                     ${item.status}
 
-                </span>
+                </strong>
+
+                <small>
+
+                    ${formatDate(item.date)}
+
+                </small>
 
             </div>
 
-            <h4>
+            <div class="history-bottom">
 
-                ${formatDate(item.date)}
+                <span>
 
-            </h4>
+                    🕒
 
-            <p>
+                    ${item.checkIn
+                    ?
+                    item.checkIn.replaceAll(".",":")
 
-                🕒
+                    :
+                    "-"}
 
-                ${item.checkIn || "-"}
+                </span>
 
-            </p>
+                <span>
 
-            ${
+                    ${item.lateMinutes>0
 
-                detail
+                    ?
 
-                ?
+                    item.lateMinutes+
 
-                `<p>${detail}</p>`
+                    " min"
 
-                :
+                    :
 
-                ""
+                    ""}
 
-            }
+                </span>
+
+            </div>
 
         </div>
 
@@ -173,6 +180,7 @@ function updateAttendanceHistory(){
     .join("");
 
 }
+
 
 /* =========================
    TOGGLE HISTORY
