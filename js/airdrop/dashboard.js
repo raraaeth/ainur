@@ -129,11 +129,11 @@ function updateHallOfFame(){
 
             <div class="hall-usd">
 
-                ${formatCurrency(
+                ${formatUSD(
 
-                    item.totalUSD
+    item.totalUSD
 
-                )}
+)}
 
             </div>
 
