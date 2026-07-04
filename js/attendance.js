@@ -3,68 +3,97 @@ const API_URL =
 
 async function checkIn(){
 
-    const now = new Date();
+    const button =
 
-    const hour = now.getHours();
-    const minute = now.getMinutes();
+    document.querySelector(".btn-checkin");
 
-    const totalMinute = hour * 60 + minute;
+    button.disabled = true;
 
-    // Jam masuk kerja
-    const officeMinute = 8 * 60;
+    button.textContent = "Checking...";
 
-    const lateMinutes =
-    Math.max(
-        totalMinute - officeMinute,
-        0
-    );
+    try{
 
-    const status =
-    lateMinutes > 0
-    ? "Late"
-    : "On Time";
+        const now = new Date();
 
-    const body = {
+        const officeHour = 8;
+        const officeMinute = 0;
 
-        date:
-        now.toISOString().split("T")[0],
+        const currentMinute =
+        now.getHours()*60 +
+        now.getMinutes();
 
-        checkIn:
-        now.toLocaleTimeString("id-ID"),
+        const targetMinute =
+        officeHour*60 +
+        officeMinute;
 
-        status,
+        const lateMinutes =
+        Math.max(
+            currentMinute -
+            targetMinute,
+            0
+        );
 
-        lateMinutes,
+        const status =
+        lateMinutes > 0
+        ? "Late"
+        : "On Time";
 
-        month:
-        now.toLocaleString(
-            "en-US",
-            {month:"long"}
-        ),
+        const body={
 
-        year:
-        now.getFullYear(),
+            date:
+            now.toLocaleDateString("sv-SE"),
 
-        notes:""
+            checkIn:
+            now.toLocaleTimeString("id-ID"),
 
-    };
+            status,
 
-    const res =
-    await fetch(API_URL,{
+            lateMinutes,
 
-        method:"POST",
+            month:
+            now.toLocaleString(
+                "en-US",
+                {month:"long"}
+            ),
 
-        body:JSON.stringify(body)
+            year:
+            now.getFullYear(),
 
-    });
+            notes:""
 
-    const json =
-    await res.json();
+        };
 
-    alert(
-        json.success
-        ? "✅ Check In Success"
-        : "❌ Failed"
-    );
+        const response =
+        await fetch(API_URL,{
+
+            method:"POST",
+
+            body:JSON.stringify(body)
+
+        });
+
+        const result =
+        await response.json();
+
+        if(result.success){
+
+            button.textContent =
+            "✅ Checked In";
+
+        }else{
+
+            button.textContent =
+            "❌ Failed";
+
+        }
+
+    }catch(error){
+
+        console.error(error);
+
+        button.textContent =
+        "❌ Failed";
+
+    }
 
 }
