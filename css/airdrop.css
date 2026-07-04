@@ -260,13 +260,17 @@
 
 }
 
-.upcoming-item div:last-child{
-
-    color:#2563eb;
-
-    font-weight:600;
+.upcoming-item > div:last-child{
 
     text-align:right;
+
+}
+
+.upcoming-item > div:last-child small{
+
+    color:#2563eb !important;
+
+    font-weight:600;
 
 }
 
@@ -618,5 +622,41 @@
     color:#333 !important;
 
     background:#fff !important;
+
+}
+
+/* =========================
+   UPCOMING FORCE COLOR
+========================= */
+
+.upcoming-item{
+
+    color:#111827 !important;
+
+}
+
+.upcoming-item *{
+
+    color:inherit;
+
+}
+
+.upcoming-item strong{
+
+    color:#111827 !important;
+
+}
+
+.upcoming-item small{
+
+    color:#6b7280 !important;
+
+}
+
+.upcoming-item > div:last-child small{
+
+    color:#2563eb !important;
+
+    font-weight:600;
 
 }
