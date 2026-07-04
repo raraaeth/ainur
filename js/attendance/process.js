@@ -206,6 +206,74 @@ function calculateAttendanceSummary(){
 }
 
 /* =========================
+   STREAK
+========================= */
+
+function calculateAttendanceStreak(){
+
+    let current = 0;
+
+    let best = 0;
+
+    let streak = 0;
+
+    const data =
+
+    [...Attendance.data]
+
+    .sort(
+
+        (a,b)=>
+
+        new Date(a.date) -
+
+        new Date(b.date)
+
+    );
+
+    data.forEach(item=>{
+
+        switch(item.status){
+
+            case "OnTime":
+
+                streak++;
+
+                break;
+
+            case "Holiday":
+
+            case "Sick":
+
+                break;
+
+            default:
+
+                streak = 0;
+
+        }
+
+        if(streak > best){
+
+            best = streak;
+
+        }
+
+    });
+
+    current = streak;
+
+    Attendance.summary.currentStreak =
+
+    current;
+
+    Attendance.summary.bestStreak =
+
+    best;
+
+}
+
+/* =========================
    PROCESS
 ========================= */
 
@@ -216,5 +284,7 @@ function processAttendance(){
     calculateTodayAttendance();
 
     calculateAttendanceSummary();
+
+    calculateAttendanceStreak();
 
 }
