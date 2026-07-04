@@ -53,6 +53,14 @@ await fetchAirdrop();
 
 processAirdrop();
 
+/* Refresh Planner karena ada reminder baru dari Airdrop */
+
+processPlanner();
+
+updatePlanner();
+
+updatePlannerHeader();
+
 populateAirdropFilters();
 
 initAirdropFilters();
