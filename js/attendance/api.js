@@ -12,9 +12,7 @@ async function fetchAttendance(){
 
     await fetch(
 
-        CONFIG.API_URL +
-
-        "attendance"
+        Attendance.sheetUrl
 
     );
 
