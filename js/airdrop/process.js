@@ -94,7 +94,7 @@ function normalizeAirdrop(){
    SUMMARY
 ========================= */
 
-function calculateSummary(){
+function calculateAirdropSummary(){
 
     let totalUSD = 0;
 
@@ -171,7 +171,7 @@ function calculateSummary(){
    HALL OF FAME
 ========================= */
 
-function calculateHallOfFame(){
+function calculateAirdropHallOfFame(){
 
     Airdrop.hallOfFame =
 
@@ -209,7 +209,7 @@ function calculateHallOfFame(){
    UPCOMING
 ========================= */
 
-function calculateUpcoming(){
+function calculateAirdropUpcoming(){
 
     const today = new Date();
 
@@ -259,7 +259,7 @@ function calculateUpcoming(){
    HISTORY
 ========================= */
 
-function prepareHistory(){
+function prepareAirdropHistory(){
 
     Airdrop.history =
 
@@ -404,13 +404,13 @@ function processAirdrop(){
 
     normalizeAirdrop();
 
-    calculateSummary();
+    calculateAirdropSummary();
 
-    calculateHallOfFame();
+    calculateAirdropHallOfFame();
 
-    calculateUpcoming();
+    calculateAirdropUpcoming();
 
-    prepareHistory();
+    prepareAirdropHistory();
 
     processAirdropReminder();
 
