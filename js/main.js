@@ -46,6 +46,16 @@ async function init(){
     updatePlannerHeader();
 
 /* =========================
+   ATTENDANCE
+========================= */
+
+await fetchAttendance();
+
+processAttendance();
+
+updateAttendanceDashboard();
+
+/* =========================
    AIRDROP
 ========================= */
 
