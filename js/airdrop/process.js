@@ -142,6 +142,10 @@ function calculateAirdropSummary(){
 
     });
 
+   console.log(
+    Airdrop.data.map(item => item.status)
+);
+
     Airdrop.summary = {
 
         totalProject:
