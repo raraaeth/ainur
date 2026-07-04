@@ -298,4 +298,6 @@ function processAttendance(){
 
     calculateAttendanceStreak();
 
+    prepareAttendanceHistory();
+
 }
