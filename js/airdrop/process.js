@@ -311,32 +311,86 @@ function prepareHistory(){
 
 }
 
-/* =========================
+
 /* =========================
    AIRDROP REMINDER
 ========================= */
 
 function processAirdropReminder(){
 
-    Airdrop.upcoming.forEach(item=>{
+    Airdrop.data.forEach(item=>{
 
-        Finance.planner.push({
+        /* =====================
+           ONGOING
+        ===================== */
 
-            type:"airdrop",
+        if(item.status==="Ongoing"){
 
-            priority:
+            Finance.planner.push({
 
-            item.status==="Eligible"
+                type:"airdrop",
 
-            ?"high"
+                priority:"medium",
 
-            :"medium",
+                status:"upcoming",
 
-            title:item.project,
+                title:item.project,
 
-            date:item.estimationEnd
+                countdown:"Masih Farming"
 
-        });
+            });
+
+        }
+
+        /* =====================
+           ELIGIBLE
+        ===================== */
+
+        if(item.status==="Eligible"){
+
+            Finance.planner.push({
+
+                type:"airdrop",
+
+                priority:"high",
+
+                status:"today",
+
+                title:item.project,
+
+                countdown:"Segera Claim"
+
+            });
+
+        }
+
+        /* =====================
+           CLAIM VESTING
+        ===================== */
+
+        if(
+
+            item.status==="ClaimVesting" &&
+
+            item.estimationEnd
+
+        ){
+
+            Finance.planner.push({
+
+                type:"airdrop",
+
+                priority:"low",
+
+                type:"airdrop",
+
+                title:item.project,
+
+                date:item.estimationEnd
+
+            });
+
+        }
 
     });
 
