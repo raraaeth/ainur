@@ -226,14 +226,14 @@
 
     background:#fff;
 
+    color:#111827;
+
     padding:14px 16px;
 
     border-radius:14px;
 
     box-shadow:
-
     0 2px 8px
-
     rgba(0,0,0,.06);
 
 }
@@ -242,15 +242,31 @@
 
     display:block;
 
-    font-size:.95rem;
+    font-size:1rem;
+
+    font-weight:700;
+
+    color:#111827;
 
 }
 
 .upcoming-item small{
 
-    color:#777;
+    display:block;
 
-    font-size:.8rem;
+    margin-top:4px;
+
+    color:#6b7280;
+
+}
+
+.upcoming-item div:last-child{
+
+    color:#2563eb;
+
+    font-weight:600;
+
+    text-align:right;
 
 }
 
