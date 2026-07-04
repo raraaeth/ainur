@@ -152,6 +152,7 @@ function updateHallOfFame(){
 
 }
 
+
 /* =========================
    UPCOMING
 ========================= */
@@ -172,7 +173,7 @@ function updateUpcoming(){
 
     Airdrop.upcoming
 
-    .slice(0,3);
+    .slice(0,5);
 
     if(data.length===0){
 
@@ -182,8 +183,7 @@ function updateUpcoming(){
 
         <div class="upcoming-empty">
 
-            Tidak ada project yang sedang
-            menunggu distribusi.
+            Tidak ada project yang perlu dipantau.
 
         </div>
 
@@ -195,9 +195,47 @@ function updateUpcoming(){
 
     container.innerHTML =
 
-    data
+    data.map(item=>{
 
-    .map(item=>`
+        let subtitle = "";
+
+        switch(item.status){
+
+            case "ClaimVesting":
+
+                subtitle =
+
+                item.estimationEnd
+
+                ?
+
+                `Next Claim ${formatDate(item.estimationEnd)}`
+
+                :
+
+                "Waiting Next Claim";
+
+                break;
+
+            case "Eligible":
+
+                subtitle =
+
+                "Waiting Distribution";
+
+                break;
+
+            case "Ongoing":
+
+                subtitle =
+
+                "Still Farming";
+
+                break;
+
+        }
+
+        return `
 
         <div class="upcoming-item">
 
@@ -221,11 +259,7 @@ function updateUpcoming(){
 
                 <small>
 
-                    ${formatDate(
-
-                        item.estimationEnd
-
-                    )}
+                    ${subtitle}
 
                 </small>
 
@@ -233,11 +267,14 @@ function updateUpcoming(){
 
         </div>
 
-    `)
+        `;
+
+    })
 
     .join("");
 
-                  }
+       }
+
 
 /* =========================
    UPDATE DASHBOARD
