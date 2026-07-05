@@ -123,6 +123,27 @@ fetchAllWalletTokens()
     ========================= */
 
     updateLastSync();
+   /* =========================
+   BOTTOM NAVIGATION
+========================= */
+
+document
+.querySelectorAll(".nav-item")
+.forEach(item=>{
+
+    item.addEventListener(
+        "click",
+        ()=>{
+
+            showPage(
+                item.dataset.page
+            );
+
+        }
+
+    );
+
+});
 
 }
 
@@ -216,30 +237,4 @@ function showPage(pageId){
 
 }
 
-/* =========================
-   INIT NAVIGATION
-========================= */
 
-document
-
-.querySelectorAll(".nav-item")
-
-.forEach(item=>{
-
-    item.addEventListener(
-
-        "click",
-
-        ()=>{
-
-            showPage(
-
-                item.dataset.page
-
-            );
-
-        }
-
-    );
-
-});
