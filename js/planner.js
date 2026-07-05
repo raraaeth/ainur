@@ -232,11 +232,8 @@ function togglePlanner(){
 function updatePlannerHeader(){
 
     const container =
-
     document.getElementById(
-
         "plannerHeader"
-
     );
 
     if(!container) return;
@@ -254,8 +251,7 @@ function updatePlannerHeader(){
     if(reminder.length===0){
 
         container.innerHTML=
-
-        "✅ Tidak ada reminder dalam waktu dekat.";
+        "✅ Tidak ada reminder.";
 
         return;
 
@@ -264,60 +260,50 @@ function updatePlannerHeader(){
     const icon={
 
         maintenance:"🔧",
-
         reminder:"📄",
-
         planning:"🎯",
-
         renovasi:"🏠",
-
         birthday:"🎂",
-
         anniversary:"💍",
-
-       airdrop:"🪂"
+        airdrop:"🪂"
 
     };
 
-    const text =
+    const text=
 
-reminder.map(item=>
+    reminder.map(item=>
 
-`${icon[item.type]||"📌"}
-<strong>${item.title}</strong>
-(${item.countdown})`
+        `${icon[item.type]||"📌"}
+        <strong>${item.title}</strong>
+        (${item.countdown})`
 
-).join(
+    ).join(
 
-"&nbsp;&nbsp;&nbsp; • &nbsp;&nbsp;&nbsp;"
+        "&nbsp;&nbsp;&nbsp; • &nbsp;&nbsp;&nbsp;"
 
-);
+    );
 
-if(reminder.length===1){
-
-    container.style.animation="none";
-
-    container.innerHTML=text;
-
-}
-
-else{
+    /* selalu bergerak */
 
     container.style.animation=
 
     "reminderTicker 25s linear infinite";
 
+    /* gandakan isi supaya tidak ada jeda */
+
     container.innerHTML=
 
     text+
 
-    "&nbsp;&nbsp;&nbsp; • &nbsp;&nbsp;&nbsp;"+
+    "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"+
+
+    text+
+
+    "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"+
 
     text;
 
 }
-}
-
 
 
 
