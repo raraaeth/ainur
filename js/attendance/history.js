@@ -3,11 +3,12 @@
 ===================================================== */
 
 let attendanceShowAll = false;
+let attendanceMonth = "";
+let attendanceYear = "";
 
 /* =========================
    PREPARE HISTORY
 ========================= */
-
 function prepareAttendanceHistory(){
 
     Attendance.history =
@@ -24,7 +25,99 @@ function prepareAttendanceHistory(){
 
     );
 
+    populateAttendanceFilters();
+
 }
+/* =========================
+   POPULATE FILTER
+========================= */
+
+function populateAttendanceFilters(){
+
+    const monthSelect =
+
+    document.getElementById(
+        "attendanceMonth"
+    );
+
+    const yearSelect =
+
+    document.getElementById(
+        "attendanceYear"
+    );
+
+    if(!monthSelect || !yearSelect) return;
+
+    const months =
+
+    [...new Set(
+
+        Attendance.history.map(
+            item=>item.month
+        )
+
+    )];
+
+    const years =
+
+    [...new Set(
+
+        Attendance.history.map(
+            item=>item.year
+        )
+
+    )];
+
+    monthSelect.innerHTML =
+
+    months.map(month=>
+
+        `<option value="${month}">
+            ${month}
+        </option>`
+
+    ).join("");
+
+    yearSelect.innerHTML =
+
+    years.map(year=>
+
+        `<option value="${year}">
+            ${year}
+        </option>`
+
+    ).join("");
+
+    attendanceMonth =
+
+    monthSelect.value;
+
+    attendanceYear =
+
+    yearSelect.value;
+
+    monthSelect.onchange = ()=>{
+
+        attendanceMonth =
+
+        monthSelect.value;
+
+        updateAttendanceHistory();
+
+    };
+
+    yearSelect.onchange = ()=>{
+
+        attendanceYear =
+
+        yearSelect.value;
+
+        updateAttendanceHistory();
+
+    };
+
+}
+
 
 /* =========================
    RENDER HISTORY
