@@ -1,12 +1,58 @@
 /* =====================================================
    ATTENDANCE CONTROLLER
 ===================================================== */
+/* =========================
+   ALREADY CHECK IN
+========================= */
+
+const today =
+
+new Date()
+
+.toLocaleDateString(
+
+    "sv-SE"
+
+);
+
+const exists =
+
+Attendance.data.some(
+
+    item =>
+
+    item.date === today
+
+);
+
+if(exists){
+
+    alert(
+
+        "Kamu sudah melakukan attendance hari ini."
+
+    );
+
+    return;
+
+}
+
 
 /* =========================
    SAVE ATTENDANCE
 ========================= */
 
 async function saveAttendance(status){
+
+   const button =
+
+document.getElementById(
+
+    "checkInButton"
+
+);
+
+button.disabled = true;
 
     const now = new Date();
 
@@ -102,8 +148,21 @@ async function saveAttendance(status){
 
     const result =
 
-    await sendAttendance(data);
+await sendAttendance(data);
 
+if(!result.success){
+
+    button.disabled = false;
+
+    alert(
+
+        "Attendance gagal disimpan."
+
+    );
+
+    return;
+
+}
     if(result.success){
 
         await fetchAttendance();
