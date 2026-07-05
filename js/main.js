@@ -53,9 +53,9 @@ await fetchAttendance();
 
 processAttendance();
 
-updateAttendanceDashboard();
-
 prepareAttendanceHistory();
+
+updateAttendanceDashboard();
 
 updateAttendanceHistory();
 
