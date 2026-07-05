@@ -47,6 +47,10 @@ href="assets/icons/icon-192.png">
 
 <div class="container">
 
+<div
+    id="homePage"
+    class="page active-page">
+
 <!-- =========================
 HEADER
 ========================= -->
@@ -398,6 +402,12 @@ Memuat attendance...
     </div>
 
 </section>
+    
+</div>
+
+<div
+    id="financePage"
+    class="page">
 
 <!-- =========================
 TOTAL PEMASUKAN DAN PENGELUARAN
@@ -618,6 +628,11 @@ class="table-counter">
     </div>
 
 </section>
+</div>
+
+<div
+    id="cryptoPage"
+    class="page">
 
 <!-- =====================================================
      CRYPTO PORTFOLIO
@@ -737,13 +752,12 @@ class="table-counter">
     </div>
 
 </section>
-    
+</div>   
 
     
-
-
-
-
+<div
+    id="airdropPage"
+    class="page">
 <!-- =====================================================
      AIRDROP CENTER
 ===================================================== -->
@@ -1045,8 +1059,56 @@ PLANNER
     </div>
 
 </section>
+</div>
 
+<!-- =====================================================
+     BOTTOM NAVIGATION
+===================================================== -->
 
+<nav class="bottom-nav">
+
+    <button
+        class="nav-item active"
+        data-page="homePage">
+
+        <i class="fa-solid fa-house"></i>
+
+        <span>Home</span>
+
+    </button>
+
+    <button
+        class="nav-item"
+        data-page="financePage">
+
+        <i class="fa-solid fa-wallet"></i>
+
+        <span>Finance</span>
+
+    </button>
+
+    <button
+        class="nav-item"
+        data-page="cryptoPage">
+
+        <i class="fa-brands fa-bitcoin"></i>
+
+        <span>Crypto</span>
+
+    </button>
+
+    <button
+        class="nav-item"
+        data-page="airdropPage">
+
+        <i class="fa-solid fa-gift"></i>
+
+        <span>Airdrop</span>
+
+    </button>
+
+</nav>
+    
 <!-- =========================
 FOOTER
 ========================= -->
