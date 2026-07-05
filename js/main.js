@@ -55,6 +55,10 @@ processAttendance();
 
 updateAttendanceDashboard();
 
+prepareAttendanceHistory();
+
+updateAttendanceHistory();
+
 /* =========================
    AIRDROP
 ========================= */
