@@ -82,137 +82,159 @@ Memuat attendance...
         <h2>👋 Daily Check In</h2>
 
         <p>
+
             Catat kehadiran kerjamu hari ini.
+
         </p>
 
     </div>
 
-    <div class="attendance-grid">
+    <div class="attendance-card">
 
-        <!-- LEFT -->
+        <!-- HERO IMAGE -->
 
-        <div class="attendance-action">
+        <div class="attendance-image">
 
-            <div class="attendance-image">
+            <img
 
-    <img
+                src="assets/attendance/ainur.png"
 
-        src="assets/attendance/ainur.png"
+                alt="Attendance"
 
-        alt="Attendance"
+            >
 
-    >
+        </div>
 
-            </div>
+        <!-- CONTENT -->
+
+        <div class="attendance-content">
+
+            <!-- BUTTON -->
 
             <div class="attendance-button-group">
 
-    <button
+                <button
 
-        id="checkInButton"
+                    id="checkInButton"
 
-        class="btn-checkin"
+                    class="btn-checkin"
 
-        onclick="saveAttendance('CheckIn')">
+                    onclick="saveAttendance('CheckIn')">
 
-        ✅ Check In
+                    ✅ Check In
 
-    </button>
+                </button>
 
-    <button
+                <button
 
-    id="attendanceMenuButton"
+                    id="attendanceMenuButton"
 
-    class="btn-menu"
+                    class="btn-menu"
 
-    onclick="toggleAttendanceMenu()">
+                    onclick="toggleAttendanceMenu()">
 
-    ⚙️
+                    ⚙️
 
-</button>
-
-</div>
-<div
-
-    id="attendanceMenu"
-
-    class="attendance-menu">
-
-    <button
-
-        onclick="openAttendanceModal('Holiday')">
-        🏖 Holiday
-
-    </button>
-
-    <button
-
-        onclick="openAttendanceModal('Sick')">
-
-        🤒 Sick
-
-    </button>
-
-    <button
-
-        onclick="openAttendanceModal('Leave')">
-        📄 Leave
-
-    </button>
-
-</div>
-            <div
-
-    id="attendanceStatus"
-
-    class="attendance-status-card">
-
-    <div
-
-        id="attendanceBadge"
-
-        class="attendance-badge">
-
-        Memuat...
-
-    </div>
-
-    <h2 id="attendanceTime">
-
-        --:--
-
-    </h2>
-
-    <p>
-
-        WIB
-
-    </p>
-
-    <strong
-
-        id="attendanceState">
-
-        Menunggu Check In
-
-    </strong>
-
-    <small
-
-        id="attendanceMessage">
-
-        Semoga harimu menyenangkan 😊
-
-    </small>
+                </button>
 
             </div>
 
+            <!-- MENU -->
+
+            <div
+
+                id="attendanceMenu"
+
+                class="attendance-menu">
+
+                <button
+
+                    onclick="openAttendanceModal('Holiday')">
+
+                    🏖 Holiday
+
+                </button>
+
+                <button
+
+                    onclick="openAttendanceModal('Sick')">
+
+                    🤒 Sick
+
+                </button>
+
+                <button
+
+                    onclick="openAttendanceModal('Leave')">
+
+                    📄 Leave
+
+                </button>
+
+            </div>
+
+            <!-- STATUS -->
+
+            <div
+
+                id="attendanceStatus"
+
+                class="attendance-status-card">
+
+                <div
+
+                    id="attendanceBadge"
+
+                    class="attendance-badge">
+
+                    Memuat...
+
+                </div>
+
+                <h2
+
+                    id="attendanceTime">
+
+                    --:--
+
+                </h2>
+
+                <div class="attendance-timezone">
+
+                    WIB
+
+                </div>
+
+                <div
+
+                    id="attendanceState"
+
+                    class="attendance-state">
+
+                    Menunggu Check In
+
+                </div>
+
+                <p
+
+                    id="attendanceMessage"
+
+                    class="attendance-message">
+
+                    Semoga harimu menyenangkan 😊
+
+                </p>
+
+            </div>
 
         </div>
 
     </div>
 
 </section>
+
+
+    
 
 <!-- =========================
      ATTENDANCE SUMMARY
