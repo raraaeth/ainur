@@ -325,3 +325,107 @@ document.addEventListener(
     }
 
 );
+
+/* =========================
+   MODAL
+========================= */
+
+function openAttendanceModal(status){
+
+    const modal =
+
+    document.getElementById(
+
+        "attendanceModal"
+
+    );
+
+    modal.classList.add(
+
+        "show"
+
+    );
+
+    const icon =
+
+    document.getElementById(
+
+        "attendanceModalIcon"
+
+    );
+
+    const title =
+
+    document.getElementById(
+
+        "attendanceModalTitle"
+
+    );
+
+    const text =
+
+    document.getElementById(
+
+        "attendanceModalText"
+
+    );
+
+    const confirm =
+
+    document.getElementById(
+
+        "attendanceConfirm"
+
+    );
+
+    const icons={
+
+        Holiday:"🏖",
+
+        Sick:"🤒",
+
+        Leave:"📄"
+
+    };
+
+    icon.textContent=
+
+    icons[status];
+
+    title.textContent=
+
+    status;
+
+    text.textContent=
+
+    `Tandai hari ini sebagai ${status}?`;
+
+    confirm.onclick=()=>{
+
+        closeAttendanceModal();
+
+        saveAttendance(status);
+
+    };
+
+}
+
+function closeAttendanceModal(){
+
+    document
+
+    .getElementById(
+
+        "attendanceModal"
+
+    )
+
+    .classList.remove(
+
+        "show"
+
+    );
+
+}
+
+
