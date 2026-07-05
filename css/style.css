@@ -848,4 +848,66 @@ select:focus{
 
 }
 
+/* =====================================================
+   CRYPTO PORTFOLIO
+===================================================== */
 
+.crypto-section{
+
+    margin-top:32px;
+
+    padding:26px;
+
+    background:linear-gradient(
+        180deg,
+        #111827,
+        #0f172a
+    );
+
+    border:1px solid rgba(59,130,246,.15);
+
+    border-radius:24px;
+
+    box-shadow:
+    0 12px 35px rgba(0,0,0,.25);
+
+}
+
+.crypto-section>.section-title{
+
+    margin-bottom:24px;
+
+}
+
+.crypto-section>.section-title h2{
+
+    color:#fff;
+
+}
+
+.crypto-section>.section-title p{
+
+    color:#94a3b8;
+
+    margin-top:4px;
+
+}
+.crypto-section .portfolio-card,
+.crypto-section .wallet-overview,
+.crypto-section .chart-card,
+.crypto-section .portfolio-chart-card{
+
+    margin-bottom:24px;
+
+}
+.crypto-section .wallet-card{
+
+    transition:.25s;
+
+}
+
+.crypto-section .wallet-card:hover{
+
+    transform:translateY(-4px);
+
+}
