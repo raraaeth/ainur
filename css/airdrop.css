@@ -10,11 +10,17 @@
 
 .airdrop-section h2{
 
-    margin-bottom:18px;
-
-    font-size:1.25rem;
+    font-size:1.8rem;
 
     font-weight:700;
+
+    color:#fff;
+
+}
+
+.airdrop-section p{
+
+    color:#94A3B8;
 
 }
 
@@ -26,17 +32,20 @@
 
     align-items:center;
 
-    margin:18px 0 12px;
+    margin:22px 0 14px;
 
 }
 
 .section-header h3{
 
-    font-size:1rem;
+    font-size:1.35rem;
 
-    font-weight:600;
+    font-weight:700;
+
+    color:#fff;
 
 }
+
 
 /* =========================
    SUMMARY
@@ -44,31 +53,67 @@
 
 .airdrop-summary-card{
 
-    background:#121826;
+    background:#1E293B;
+
+    border:1px solid rgba(255,255,255,.08);
+
+    border-radius:22px;
+
+    padding:22px;
 
     color:#fff;
 
-    border-radius:16px;
+    box-shadow:
 
-    padding:20px;
-
-    margin-bottom:20px;
+    0 10px 30px rgba(0,0,0,.25);
 
 }
 
-.airdrop-summary-card h3{
+.airdrop-header{
 
-    font-size:.9rem;
+    display:flex;
 
-    opacity:.8;
+    justify-content:space-between;
+
+    align-items:flex-start;
+
+    gap:16px;
 
 }
 
-.airdrop-summary-card h1{
+.project-badge{
 
-    margin:10px 0 20px;
+    background:#2563EB;
 
-    font-size:2rem;
+    color:#fff;
+
+    padding:8px 14px;
+
+    border-radius:999px;
+
+    font-size:.85rem;
+
+    font-weight:600;
+
+}
+
+.airdrop-total{
+
+    margin:28px 0;
+
+}
+
+.airdrop-total small{
+
+    color:#94A3B8;
+
+}
+
+.airdrop-total h1{
+
+    margin-top:8px;
+
+    font-size:3rem;
 
     font-weight:700;
 
@@ -78,17 +123,27 @@
 
     display:grid;
 
-    grid-template-columns:
+    grid-template-columns:repeat(3,1fr);
 
-    repeat(3,1fr);
-
-    gap:12px;
+    gap:16px;
 
 }
 
 .airdrop-summary-grid div{
 
+    background:#111827;
+
+    border-radius:18px;
+
+    padding:18px;
+
     text-align:center;
+
+}
+
+.airdrop-summary-grid span{
+
+    font-size:1.5rem;
 
 }
 
@@ -96,17 +151,20 @@
 
     display:block;
 
-    margin-top:6px;
+    margin-top:8px;
 
-    font-size:1.1rem;
+    font-size:1.5rem;
+
+    color:#fff;
 
 }
 
 .airdrop-summary-grid small{
 
-    color:#bbb;
+    color:#94A3B8;
 
 }
+
 
 /* =========================
    HALL OF FAME
@@ -116,29 +174,27 @@
 
     display:grid;
 
-    grid-template-columns:
+    grid-template-columns:repeat(2,1fr);
 
-    repeat(2,1fr);
+    gap:16px;
 
-    gap:14px;
-
-    margin-bottom:20px;
+    margin-bottom:24px;
 
 }
 
 .hall-card{
 
-    background:#fff;
+    background:#1E293B;
 
-    border-radius:16px;
+    border:1px solid rgba(255,255,255,.08);
 
-    padding:16px;
+    border-radius:20px;
+
+    padding:18px;
 
     box-shadow:
 
-    0 4px 12px
-
-    rgba(0,0,0,.08);
+    0 8px 24px rgba(0,0,0,.25);
 
     transition:.25s;
 
@@ -146,25 +202,25 @@
 
 .hall-card:hover{
 
-    transform:
-
-    translateY(-3px);
+    transform:translateY(-4px);
 
 }
 
 .hall-rank{
 
-    font-size:1.4rem;
+    font-size:1.6rem;
 
-    margin-bottom:8px;
+    margin-bottom:12px;
 
 }
 
 .hall-project{
 
-    font-size:1rem;
+    font-size:1.1rem;
 
     font-weight:700;
+
+    color:#fff;
 
     margin-bottom:8px;
 
@@ -172,21 +228,19 @@
 
 .hall-usd{
 
-    font-size:1.25rem;
+    font-size:2rem;
 
     font-weight:700;
 
-    color:#22c55e;
+    color:#22C55E;
 
-    margin-bottom:8px;
+    margin-bottom:10px;
 
 }
 
 .hall-token{
 
-    font-size:.85rem;
-
-    color:#666;
+    color:#94A3B8;
 
     margin-bottom:6px;
 
@@ -194,11 +248,10 @@
 
 .hall-wallet{
 
-    font-size:.8rem;
-
-    color:#888;
+    color:#94A3B8;
 
 }
+
 
 /* =========================
    UPCOMING
@@ -210,9 +263,7 @@
 
     flex-direction:column;
 
-    gap:12px;
-
-    margin-bottom:16px;
+    gap:14px;
 
 }
 
@@ -224,85 +275,63 @@
 
     align-items:center;
 
-    background:#fff;
+    background:#1E293B;
 
-    color:#111827;
+    border:1px solid rgba(255,255,255,.08);
 
-    padding:14px 16px;
+    border-radius:18px;
 
-    border-radius:14px;
-
-    box-shadow:
-    0 2px 8px
-    rgba(0,0,0,.06);
+    padding:18px;
 
 }
 
 .upcoming-item strong{
 
-    display:block;
+    color:#fff;
 
-    font-size:1rem;
-
-    font-weight:700;
-
-    color:#111827;
+    font-size:1.05rem;
 
 }
 
 .upcoming-item small{
 
-    display:block;
-
-    margin-top:4px;
-
-    color:#6b7280;
+    color:#94A3B8;
 
 }
 
-.upcoming-item > div:last-child{
+.upcoming-item>div:last-child{
 
     text-align:right;
 
 }
 
-.upcoming-item > div:last-child small{
+.upcoming-item>div:last-child small{
 
-    color:#2563eb !important;
+    color:#3B82F6;
 
     font-weight:600;
 
 }
 
-.upcoming-empty{
-
-    text-align:center;
-
-    padding:20px;
-
-    color:#888;
-
-}
-
 .upcoming-footer{
 
-    text-align:center;
-
-    margin-bottom:22px;
+    margin:20px 0 28px;
 
 }
 
 .btn-outline{
 
-    border:1px solid #d6d6d6;
+    width:100%;
 
-    background:#fff;
+    background:#1E293B;
 
-    color:#333;
+    color:#fff;
 
-    padding:8px 16px;
+    border:1px solid rgba(255,255,255,.08);
 
-    border-radius:10px;
+    border-radius:14px;
+
+    padding:14px;
 
     cursor:pointer;
 
@@ -312,57 +341,24 @@
 
 .btn-outline:hover{
 
-    background:#f5f5f5;
+    background:#253247;
 
 }
 
+
 /* =========================
-   SEARCH & FILTER
+   FILTER
 ========================= */
 
 .airdrop-filter{
 
     display:grid;
 
-    grid-template-columns:
+    grid-template-columns:repeat(2,1fr);
 
-    repeat(2,1fr);
+    gap:14px;
 
-    gap:12px;
-
-    margin-bottom:20px;
-
-}
-
-.airdrop-filter input,
-
-.airdrop-filter select{
-
-    width:100%;
-
-    padding:10px 12px;
-
-    border:1px solid #ddd;
-
-    border-radius:10px;
-
-    color:#333;
-
-    font-size:.9rem;
-
-    background:#fff;
-
-    outline:none;
-
-    transition:.2s;
-
-}
-
-.airdrop-filter select option{
-
-    color:#333;
-
-    background:#fff;
+    margin-bottom:24px;
 
 }
 
@@ -372,23 +368,38 @@
 
 }
 
+.airdrop-filter input,
+
+.airdrop-filter select{
+
+    background:#1E293B;
+
+    color:#fff;
+
+    border:1px solid rgba(255,255,255,.08);
+
+    border-radius:14px;
+
+    padding:14px;
+
+    outline:none;
+
+}
+
 .airdrop-filter input::placeholder{
 
-    color:#9ca3af;
+    color:#94A3B8;
 
 }
 
-.airdrop-filter select:focus{
+.airdrop-filter select option{
 
-    border-color:#2563eb;
+    background:#1E293B;
 
-    box-shadow:
-
-    0 0 0 3px
-
-    rgba(37,99,235,.12);
+    color:#fff;
 
 }
+
 
 /* =========================
    HISTORY
@@ -396,51 +407,45 @@
 
 .airdrop-history{
 
-    margin-top:20px;
+    margin-top:18px;
 
 }
 
 .airdrop-empty{
 
-    background:#fff;
+    background:#1E293B;
 
-    border-radius:16px;
+    border:1px solid rgba(255,255,255,.08);
 
-    padding:30px 20px;
+    border-radius:20px;
+
+    padding:40px 20px;
 
     text-align:center;
-
-    color:#777;
-
-    box-shadow:
-
-    0 2px 8px
-
-    rgba(0,0,0,.05);
 
 }
 
 .empty-icon{
 
-    font-size:2rem;
+    font-size:2.5rem;
 
-    margin-bottom:12px;
+    margin-bottom:14px;
 
 }
 
 .airdrop-empty h4{
 
-    margin-bottom:8px;
+    color:#fff;
 
-    color:#333;
+    margin-bottom:10px;
 
 }
 
 .airdrop-empty p{
 
-    font-size:.9rem;
+    color:#94A3B8;
 
-    line-height:1.5;
+    line-height:1.6;
 
 }
 
@@ -449,91 +454,66 @@
    TABLE
 ========================= */
 
-.airdrop-table{
-
-    width:100%;
-
-    border-collapse:collapse;
-
-    background:#fff;
-
-    border-radius:16px;
-
-    overflow:hidden;
-
-    box-shadow:
-
-    0 2px 8px
-
-    rgba(0,0,0,.05);
-
-}
-
-.airdrop-table thead{
-
-    background:#121826;
-
-    color:#fff;
-
-}
-
-.airdrop-table th{
-
-    padding:12px;
-
-    text-align:left;
-
-    font-size:.85rem;
-
-    border-bottom:1px solid #eee;
-
-    color:#fff;
-
-}
-
-.airdrop-table td{
-
-    padding:12px;
-
-    text-align:left;
-
-    font-size:.85rem;
-
-    border-bottom:1px solid #eee;
-
-    color:#333;
-
-}
-
-.airdrop-table tbody tr:hover{
-
-    background:#f8f9fb;
-
-}
-
-.airdrop-table td:last-child{
-
-    font-weight:600;
-
-    color:#16a34a;
-
-}
-
 .table-wrapper{
 
     overflow-x:auto;
 
 }
 
+.airdrop-table{
+
+    width:100%;
+
+    border-collapse:collapse;
+
+    background:#1E293B;
+
+    border-radius:18px;
+
+    overflow:hidden;
+
+}
+
+.airdrop-table thead{
+
+    background:#111827;
+
+}
+
+.airdrop-table th{
+
+    color:#fff;
+
+    padding:14px;
+
+}
+
+.airdrop-table td{
+
+    color:#E5E7EB;
+
+    padding:14px;
+
+    border-top:1px solid rgba(255,255,255,.05);
+
+}
+
+.airdrop-table tbody tr:hover{
+
+    background:#253247;
+
+}
+
+
 /* =========================
-   STATUS BADGE
+   STATUS
 ========================= */
 
 .status-badge{
 
     display:inline-block;
 
-    padding:4px 10px;
+    padding:5px 12px;
 
     border-radius:999px;
 
@@ -545,118 +525,56 @@
 
 .badge-success{
 
-    background:#dcfce7;
+    background:#14532D;
 
-    color:#15803d;
+    color:#4ADE80;
 
 }
 
 .badge-warning{
 
-    background:#fef3c7;
+    background:#78350F;
 
-    color:#b45309;
+    color:#FBBF24;
 
 }
 
 .badge-primary{
 
-    background:#dbeafe;
+    background:#1E3A8A;
 
-    color:#1d4ed8;
+    color:#60A5FA;
 
 }
 
 .badge-info{
 
-    background:#e0f2fe;
+    background:#164E63;
 
-    color:#0369a1;
+    color:#67E8F9;
 
 }
 
 .badge-danger{
 
-    background:#fee2e2;
+    background:#7F1D1D;
 
-    color:#b91c1c;
+    color:#F87171;
 
 }
 
 .badge-purple{
 
-    background:#f3e8ff;
+    background:#581C87;
 
-    color:#7e22ce;
+    color:#C084FC;
 
 }
 
 .badge-default{
 
-    background:#f3f4f6;
+    background:#374151;
 
-    color:#374151;
-
-   }
-/* =========================
-   FORCE INPUT COLOR
-========================= */
-
-.airdrop-filter input,
-.airdrop-filter select{
-
-    color:#333 !important;
-
-    background:#fff !important;
-
-}
-
-.airdrop-filter input::placeholder{
-
-    color:#9ca3af !important;
-
-}
-
-.airdrop-filter select option{
-
-    color:#333 !important;
-
-    background:#fff !important;
-
-}
-
-/* =========================
-   UPCOMING FORCE COLOR
-========================= */
-
-.upcoming-item{
-
-    color:#111827 !important;
-
-}
-
-.upcoming-item *{
-
-    color:inherit;
-
-}
-
-.upcoming-item strong{
-
-    color:#111827 !important;
-
-}
-
-.upcoming-item small{
-
-    color:#6b7280 !important;
-
-}
-
-.upcoming-item > div:last-child small{
-
-    color:#2563eb !important;
-
-    font-weight:600;
+    color:#E5E7EB;
 
 }
