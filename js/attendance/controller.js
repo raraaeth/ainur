@@ -165,3 +165,81 @@ async function saveAttendance(status){
     }
 
 }
+
+/* =========================
+   MENU
+========================= */
+
+function toggleAttendanceMenu(){
+
+    const menu =
+
+    document.getElementById(
+
+        "attendanceMenu"
+
+    );
+
+    if(!menu) return;
+
+    menu.classList.toggle(
+
+        "show"
+
+    );
+
+}
+
+/* =========================
+   CLOSE MENU
+========================= */
+
+document.addEventListener(
+
+    "click",
+
+    function(e){
+
+        const menu =
+
+        document.getElementById(
+
+            "attendanceMenu"
+
+        );
+
+        const button =
+
+        document.getElementById(
+
+            "attendanceMenuButton"
+
+        );
+
+        if(
+
+            !menu ||
+
+            !button
+
+        ) return;
+
+        if(
+
+            !menu.contains(e.target) &&
+
+            !button.contains(e.target)
+
+        ){
+
+            menu.classList.remove(
+
+                "show"
+
+            );
+
+        }
+
+    }
+
+);
