@@ -3,12 +3,15 @@
 ===================================================== */
 
 let attendanceShowAll = false;
+
 let attendanceMonth = "";
+
 let attendanceYear = "";
 
 /* =========================
    PREPARE HISTORY
 ========================= */
+
 function prepareAttendanceHistory(){
 
     Attendance.history =
@@ -28,6 +31,7 @@ function prepareAttendanceHistory(){
     populateAttendanceFilters();
 
 }
+
 /* =========================
    POPULATE FILTER
 ========================= */
@@ -37,13 +41,17 @@ function populateAttendanceFilters(){
     const monthSelect =
 
     document.getElementById(
+
         "attendanceMonth"
+
     );
 
     const yearSelect =
 
     document.getElementById(
+
         "attendanceYear"
+
     );
 
     if(!monthSelect || !yearSelect) return;
@@ -53,7 +61,9 @@ function populateAttendanceFilters(){
     [...new Set(
 
         Attendance.history.map(
+
             item=>item.month
+
         )
 
     )];
@@ -63,7 +73,9 @@ function populateAttendanceFilters(){
     [...new Set(
 
         Attendance.history.map(
+
             item=>item.year
+
         )
 
     )];
@@ -73,7 +85,9 @@ function populateAttendanceFilters(){
     months.map(month=>
 
         `<option value="${month}">
+
             ${month}
+
         </option>`
 
     ).join("");
@@ -83,7 +97,9 @@ function populateAttendanceFilters(){
     years.map(year=>
 
         `<option value="${year}">
+
             ${year}
+
         </option>`
 
     ).join("");
@@ -118,11 +134,10 @@ function populateAttendanceFilters(){
 
 }
 
-
 /* =========================
    RENDER HISTORY
-========================= */     
-               
+========================= */
+
 function updateAttendanceHistory(){
 
     const container =
@@ -135,13 +150,33 @@ function updateAttendanceHistory(){
 
     if(!container) return;
 
+    const filtered =
+
+    Attendance.history.filter(item=>{
+
+        return(
+
+            item.month===attendanceMonth &&
+
+            String(item.year)===
+
+            String(attendanceYear)
+
+        );
+
+    });
+
     const data =
 
     attendanceShowAll
 
-    ? Attendance.history
+    ?
 
-    : Attendance.history.slice(0,5);
+    filtered
+
+    :
+
+    filtered.slice(0,5);
 
     if(data.length===0){
 
@@ -183,7 +218,7 @@ function updateAttendanceHistory(){
 
                 color="#f59e0b";
 
-                icon="🏖";
+                icon="🏖️";
 
                 break;
 
@@ -238,10 +273,13 @@ function updateAttendanceHistory(){
                     🕒
 
                     ${item.checkIn
+
                     ?
+
                     item.checkIn.replaceAll(".",":")
 
                     :
+
                     "-"}
 
                 </span>
@@ -252,7 +290,7 @@ function updateAttendanceHistory(){
 
                     ?
 
-                    item.lateMinutes+
+                    item.lateMinutes +
 
                     " min"
 
@@ -268,12 +306,9 @@ function updateAttendanceHistory(){
 
         `;
 
-    })
-
-    .join("");
+    }).join("");
 
 }
-
 
 /* =========================
    TOGGLE HISTORY
