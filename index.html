@@ -99,17 +99,64 @@ Memuat attendance...
 
             </div>
 
-            <button
+            <div class="attendance-button-group">
 
-                id="checkInButton"
+    <button
 
-                class="btn-checkin"
+        id="checkInButton"
 
-                onclick="saveAttendance('CheckIn')">
+        class="btn-checkin"
 
-                ✅ Check In
+        onclick="saveAttendance('CheckIn')">
 
-            </button>
+        ✅ Check In
+
+    </button>
+
+    <button
+
+        id="attendanceMenuButton"
+
+        class="btn-menu"
+
+        onclick="toggleAttendanceMenu()">
+
+        <i class="fas fa-ellipsis-v"></i>
+
+    </button>
+
+</div>
+<div
+
+    id="attendanceMenu"
+
+    class="attendance-menu">
+
+    <button
+
+        onclick="saveAttendance('Holiday')">
+
+        🏖 Holiday
+
+    </button>
+
+    <button
+
+        onclick="saveAttendance('Sick')">
+
+        🤒 Sick
+
+    </button>
+
+    <button
+
+        onclick="saveAttendance('Leave')">
+
+        📄 Leave
+
+    </button>
+
+</div>
 
             <small>
 
