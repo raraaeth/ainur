@@ -125,3 +125,121 @@ fetchAllWalletTokens()
     updateLastSync();
 
 }
+
+/* =====================================================
+   BOTTOM NAVIGATION
+===================================================== */
+
+function showPage(pageId){
+
+    /* =====================
+       PAGE
+    ===================== */
+
+    document
+
+    .querySelectorAll(".page")
+
+    .forEach(page=>{
+
+        page.classList.remove(
+
+            "active-page"
+
+        );
+
+    });
+
+    const target =
+
+    document.getElementById(
+
+        pageId
+
+    );
+
+    if(target){
+
+        target.classList.add(
+
+            "active-page"
+
+        );
+
+    }
+
+    /* =====================
+       NAVIGATION
+    ===================== */
+
+    document
+
+    .querySelectorAll(".nav-item")
+
+    .forEach(item=>{
+
+        item.classList.remove(
+
+            "active"
+
+        );
+
+        if(
+
+            item.dataset.page===
+
+            pageId
+
+        ){
+
+            item.classList.add(
+
+                "active"
+
+            );
+
+        }
+
+    });
+
+    /* =====================
+       SCROLL TOP
+    ===================== */
+
+    window.scrollTo({
+
+        top:0,
+
+        behavior:"smooth"
+
+    });
+
+}
+
+/* =========================
+   INIT NAVIGATION
+========================= */
+
+document
+
+.querySelectorAll(".nav-item")
+
+.forEach(item=>{
+
+    item.addEventListener(
+
+        "click",
+
+        ()=>{
+
+            showPage(
+
+                item.dataset.page
+
+            );
+
+        }
+
+    );
+
+});
