@@ -134,15 +134,14 @@ Memuat attendance...
 
     <button
 
-        onclick="saveAttendance('Holiday')">
-
+        onclick="openAttendanceModal('Holiday')">
         🏖 Holiday
 
     </button>
 
     <button
 
-        onclick="saveAttendance('Sick')">
+        onclick="openAttendanceModal('Sick')">
 
         🤒 Sick
 
@@ -150,8 +149,7 @@ Memuat attendance...
 
     <button
 
-        onclick="saveAttendance('Leave')">
-
+        onclick="openAttendanceModal('Leave')">
         📄 Leave
 
     </button>
@@ -1030,6 +1028,72 @@ Last Sync : -
 
 </div>
 
+<!-- =========================
+     ATTENDANCE MODAL
+========================= -->
+
+<div
+
+    id="attendanceModal"
+
+    class="attendance-modal">
+
+    <div class="attendance-sheet">
+
+        <div
+
+            id="attendanceModalIcon"
+
+            class="attendance-modal-icon">
+
+            🏖
+
+        </div>
+
+        <h3
+
+            id="attendanceModalTitle">
+
+            Holiday
+
+        </h3>
+
+        <p
+
+            id="attendanceModalText">
+
+            Apakah kamu yakin?
+
+        </p>
+
+        <div class="attendance-modal-action">
+
+            <button
+
+                class="btn-outline"
+
+                onclick="closeAttendanceModal()">
+
+                Batal
+
+            </button>
+
+            <button
+
+                id="attendanceConfirm"
+
+                class="btn-checkin">
+
+                Ya, Simpan
+
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+    
 <!-- =========================
 JAVASCRIPT
 ========================= -->
