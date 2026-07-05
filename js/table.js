@@ -185,8 +185,10 @@ function updateTable(){
 
     const data =
     getFilteredData();
-   
+
     updateTableCounter(data);
+
+    updateFilterSummary(data);
 
     if(data.length===0){
 
@@ -246,6 +248,95 @@ function updateTableCounter(filtered){
     `Menampilkan ${filtered.length} dari ${Finance.table.length} transaksi`;
 
 }
+
+/* ===========================
+   FILTER SUMMARY
+=========================== */
+
+function updateFilterSummary(data){
+
+    const totalTransaction =
+
+    document.getElementById(
+        "filterTotalTransaction"
+    );
+
+    const totalAmount =
+
+    document.getElementById(
+        "filterTotalAmount"
+    );
+
+    const amountLabel =
+
+    document.getElementById(
+        "filterAmountLabel"
+    );
+
+    if(
+
+        !totalTransaction ||
+
+        !totalAmount ||
+
+        !amountLabel
+
+    ) return;
+
+    const total =
+
+    data.reduce(
+
+        (sum,item)=>
+
+        sum + Number(item.amount),
+
+        0
+
+    );
+
+    totalTransaction.textContent =
+
+    data.length;
+
+    totalAmount.textContent =
+
+    formatCurrency(total);
+
+    const type =
+
+    document.getElementById(
+        "typeFilter"
+    ).value;
+
+    switch(type){
+
+        case "Masuk":
+
+            amountLabel.textContent =
+
+            "💰 Total Pemasukan";
+
+            break;
+
+        case "Keluar":
+
+            amountLabel.textContent =
+
+            "💸 Total Pengeluaran";
+
+            break;
+
+        default:
+
+            amountLabel.textContent =
+
+            "💵 Total Nominal";
+
+    }
+
+}
+
 /* =========================
    TABLE BUTTON
 ========================= */
