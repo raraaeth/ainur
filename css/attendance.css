@@ -796,3 +796,105 @@
     background:#1f2937;
 
 }
+
+/* =====================================================
+   ATTENDANCE MODAL
+===================================================== */
+
+.attendance-modal{
+
+    position:fixed;
+
+    inset:0;
+
+    background:rgba(0,0,0,.45);
+
+    display:none;
+
+    align-items:flex-end;
+
+    justify-content:center;
+
+    z-index:9999;
+
+}
+
+.attendance-modal.show{
+
+    display:flex;
+
+}
+
+.attendance-sheet{
+
+    width:100%;
+
+    max-width:520px;
+
+    background:#111827;
+
+    border-radius:24px 24px 0 0;
+
+    padding:28px;
+
+    animation:sheetUp .25s ease;
+
+}
+
+.attendance-modal-icon{
+
+    font-size:54px;
+
+    text-align:center;
+
+}
+
+.attendance-sheet h3{
+
+    color:#fff;
+
+    text-align:center;
+
+    margin:14px 0;
+
+}
+
+.attendance-sheet p{
+
+    color:#9ca3af;
+
+    text-align:center;
+
+}
+
+.attendance-modal-action{
+
+    display:flex;
+
+    gap:12px;
+
+    margin-top:24px;
+
+}
+
+.attendance-modal-action button{
+
+    flex:1;
+
+}
+
+@keyframes sheetUp{
+
+    from{
+
+        transform:translateY(100%);
+
+    }
+
+    to{
+
+        transform:translateY(0);
+
+    }
+
+}
