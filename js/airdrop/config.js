@@ -43,6 +43,32 @@ const Airdrop = {
        HISTORY
     ===================== */
 
-    history:[]
+    history:[],
+       
+   /* =====================
+       REMINDER PLANNER
+    ===================== */
+       
+    reminders:[]
 
 };
+
+/* =========================
+   REMINDER CONFIG
+========================= */
+
+const AIRDROP_REMINDER = {
+
+    // Reminder Claim Vesting
+    claimStatus:"ClaimVesting",
+
+    // Reminder Campaign
+    campaignCategory:"Bountydrop",
+
+    campaignStatus:"Ongoing",
+
+    // Muncul H-3
+    campaignReminderDays:3
+
+};
+
