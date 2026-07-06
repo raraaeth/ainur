@@ -37,7 +37,7 @@ const Airdrop = {
     // Pagination
     upcomingPage:1,
 
-    upcomingPerPage:10,
+    upcomingPerPage:5,
 
     /* =====================
        HISTORY
