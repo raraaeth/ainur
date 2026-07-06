@@ -2,7 +2,9 @@
    ATTENDANCE HISTORY
 ===================================================== */
 
-let attendanceShowAll = false;
+let attendancePage = 1;
+
+const attendancePerPage = 5;
 
 let attendanceMonth = "";
 
@@ -166,17 +168,27 @@ function updateAttendanceHistory(){
 
     });
 
-    const data =
+    const start =
 
-    attendanceShowAll
+(attendancePage - 1) *
 
-    ?
+attendancePerPage;
 
-    filtered
+const end =
 
-    :
+start +
 
-    filtered.slice(0,5);
+attendancePerPage;
+
+const data =
+
+filtered.slice(
+
+    start,
+
+    end
+
+);
 
     if(data.length===0){
 
@@ -311,31 +323,133 @@ function updateAttendanceHistory(){
 }
 
 /* =========================
-   TOGGLE HISTORY
+   HISTORY PAGINATION
 ========================= */
 
-function toggleAttendanceHistory(){
+function updateAttendancePagination(){
 
-    attendanceShowAll =
-
-    !attendanceShowAll;
-
-    updateAttendanceHistory();
+    const prev =
 
     document.getElementById(
 
-        "attendanceMore"
+        "attendancePrev"
 
-    ).textContent =
+    );
 
-    attendanceShowAll
+    const next =
 
-    ?
+    document.getElementById(
 
-    "Lihat Lebih Sedikit"
+        "attendanceNext"
 
-    :
+    );
 
-    "Lihat Semua";
+    const indicator =
+
+    document.getElementById(
+
+        "attendanceIndicator"
+
+    );
+
+    const pageInfo =
+
+    document.getElementById(
+
+        "attendancePageInfo"
+
+    );
+
+    if(
+
+        !prev ||
+
+        !next ||
+
+        !indicator ||
+
+        !pageInfo
+
+    ) return;
+
+    const totalData =
+
+    Attendance.history.filter(item=>
+
+        item.month===attendanceMonth &&
+
+        String(item.year)===String(attendanceYear)
+
+    ).length;
+
+    const totalPage =
+
+    Math.max(
+
+        1,
+
+        Math.ceil(
+
+            totalData /
+
+            attendancePerPage
+
+        )
+
+    );
+
+    pageInfo.textContent =
+
+    `Halaman ${attendancePage} / ${totalPage}`;
+
+    const active =
+
+    (attendancePage - 1) % 3;
+
+    const dots =
+
+    ["○","○","○"];
+
+    dots[active] = "●";
+
+    indicator.innerHTML =
+
+    dots.join(" ");
+
+    prev.disabled =
+
+    attendancePage === 1;
+
+    next.disabled =
+
+    attendancePage === totalPage;
+
+    prev.onclick = ()=>{
+
+        if(attendancePage>1){
+
+            attendancePage--;
+
+            updateAttendanceHistory();
+
+            updateAttendancePagination();
+
+        }
+
+    };
+
+    next.onclick = ()=>{
+
+        if(attendancePage<totalPage){
+
+            attendancePage++;
+
+            updateAttendanceHistory();
+
+            updateAttendancePagination();
+
+        }
+
+    };
 
 }
