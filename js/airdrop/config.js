@@ -4,22 +4,45 @@
 
 const Airdrop = {
 
-    // Data Google Sheet
+    /* =====================
+       GOOGLE SHEET
+    ===================== */
+
     raw:[],
 
-    // Data hasil normalisasi
+    /* =====================
+       NORMALIZED DATA
+    ===================== */
+
     data:[],
 
-    // Ringkasan
+    /* =====================
+       SUMMARY
+    ===================== */
+
     summary:{},
 
-    // Hall Of Fame
+    /* =====================
+       HALL OF FAME
+    ===================== */
+
     hallOfFame:[],
 
-    // Upcoming
+    /* =====================
+       UPCOMING
+    ===================== */
+
     upcoming:[],
 
-    // History
+    // Pagination
+    upcomingPage:1,
+
+    upcomingPerPage:10,
+
+    /* =====================
+       HISTORY
+    ===================== */
+
     history:[]
 
 };
