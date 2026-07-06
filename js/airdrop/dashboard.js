@@ -152,6 +152,38 @@ function updateHallOfFame(){
 
 }
 
+/* =========================
+   UPCOMING ANIMATION
+========================= */
+
+function animateUpcoming(direction){
+
+    const list =
+
+    document.getElementById(
+        "upcomingList"
+    );
+
+    if(!list) return;
+
+    list.classList.remove(
+        "slide-left",
+        "slide-right"
+    );
+
+    void list.offsetWidth;
+
+    list.classList.add(
+
+        direction === "next"
+
+        ? "slide-left"
+
+        : "slide-right"
+
+    );
+
+}
 
 /* =========================
    UPCOMING
@@ -388,39 +420,51 @@ function updateUpcomingPagination(){
 
     prev.onclick = ()=>{
 
-        if(
+    if(
 
-            Airdrop.upcomingPage > 1
+        Airdrop.upcomingPage > 1
 
-        ){
+    ){
 
-            Airdrop.upcomingPage--;
+        animateUpcoming("prev");
+
+        Airdrop.upcomingPage--;
+
+        setTimeout(()=>{
 
             updateUpcoming();
 
             updateUpcomingPagination();
 
-        }
+        },180);
 
-    };
+    }
+
+};
 
     next.onclick = ()=>{
 
-        if(
+    if(
 
-            Airdrop.upcomingPage < totalPage
+        Airdrop.upcomingPage < totalPage
 
-        ){
+    ){
 
-            Airdrop.upcomingPage++;
+        animateUpcoming("next");
+
+        Airdrop.upcomingPage++;
+
+        setTimeout(()=>{
 
             updateUpcoming();
 
             updateUpcomingPagination();
 
-        }
+        },180);
 
-    };
+    }
+
+};
 
 }
 
