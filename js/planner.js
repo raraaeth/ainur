@@ -23,6 +23,8 @@ function createPlannerItem(item){
 
         anniversary:"💍",
 
+        airdrop-campaign:"⚠️",
+
         airdrop:"🪂"
 
     };
