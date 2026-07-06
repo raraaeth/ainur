@@ -67,6 +67,8 @@ await fetchAirdrop();
 
 processAirdrop();
 
+processAirdropPlanner();
+
 /* Refresh Planner karena ada reminder baru dari Airdrop */
 
 processPlanner();
