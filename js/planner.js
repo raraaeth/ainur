@@ -305,14 +305,6 @@ ${label}${item.title}
 
     /* selalu bergerak */
 
-    const duration = Math.max(
-
-    35,
-
-    reminder.length * 10
-
-);
-
 container.style.animation =
 "reminderTicker 60s linear infinite";
    
