@@ -318,8 +318,8 @@ function updatePlannerHeader(){
 );
 
 container.style.animation =
-
-`reminderTicker ${duration}s linear infinite`;
+"reminderTicker 60s linear infinite";
+   
     /* gandakan isi supaya tidak ada jeda */
 
     container.innerHTML=
