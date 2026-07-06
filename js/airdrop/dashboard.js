@@ -388,29 +388,27 @@ function updateUpcomingPagination(){
 
     `Halaman ${Airdrop.upcomingPage} / ${totalPage}`;
 
-    /* ===== INDICATOR ===== */
+    /* ===== MOBILE INDICATOR ===== */
 
-    const active =
+       const active =
 
-(Airdrop.upcomingPage - 1) % 3;
+       (Airdrop.upcomingPage - 1) % 3;
 
-indicator.innerHTML =
+       const dots = [
 
-["○","○","○"]
+         "○",
 
-.map(
+         "○",
 
-    (dot,index)=>
+         "○"
 
-    index===active
+         ];
 
-    ? "●"
+       dots[active] = "●";
 
-    : dot
+       indicator.innerHTML =
 
-)
-
-.join(" ");
+       dots.join(" ");
 
     /* ===== BUTTON ===== */
 
