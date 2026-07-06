@@ -2,6 +2,13 @@
    Finance Dashboard v1.0
    File : table.js
 ===================================================== */
+/* ===========================
+   TABLE PAGINATION
+=========================== */
+
+let tablePage = 1;
+
+const tablePerPage = 5;
 
 /* ===========================
    FILTER
@@ -216,17 +223,38 @@ function updateTable(){
 
     }
 
-    const displayData =
-Finance.tableExpand
-? data
-: data.slice(0, Finance.tableLimit);
+    const start =
+
+(tablePage - 1) *
+
+tablePerPage;
+
+const end =
+
+start +
+
+tablePerPage;
+
+const displayData =
+
+data.slice(
+
+    start,
+
+    end
+
+);
 
 tbody.innerHTML =
 displayData
 .map(createTableRow)
 .join("");
 
-renderTableButton(data.length);
+updateTablePagination(
+
+    data.length
+
+);
 
 }
 
@@ -337,51 +365,119 @@ function updateFilterSummary(data){
 
 }
 
-/* =========================
-   TABLE BUTTON
-========================= */
+/* ===========================
+   TABLE PAGINATION
+=========================== */
 
-function renderTableButton(total){
+function updateTablePagination(total){
 
-    let button =
-    document.getElementById("tableMoreBtn");
+    const prev =
 
-    if(!button){
+    document.getElementById(
 
-        button =
-        document.createElement("button");
+        "tablePrev"
 
-        button.id = "tableMoreBtn";
+    );
 
-        button.className = "btn-more";
+    const next =
 
-        document
-        .querySelector(".table-wrapper")
-        .appendChild(button);
+    document.getElementById(
 
-    }
+        "tableNext"
 
-    if(total <= Finance.tableLimit){
+    );
 
-        button.style.display = "none";
+    const indicator =
 
-        return;
+    document.getElementById(
 
-    }
+        "tableIndicator"
 
-    button.style.display = "block";
+    );
 
-    button.textContent =
-    Finance.tableExpand
-    ? "Sembunyikan"
-    : `Lihat ${total - Finance.tableLimit} transaksi lainnya`;
+    const pageInfo =
 
-    button.onclick = () => {
+    document.getElementById(
 
-        Finance.tableExpand =
-        !Finance.tableExpand;
+        "tablePageInfo"
 
-        updateTable();
+    );
+
+    if(
+
+        !prev ||
+
+        !next ||
+
+        !indicator ||
+
+        !pageInfo
+
+    ) return;
+
+    const totalPage =
+
+    Math.max(
+
+        1,
+
+        Math.ceil(
+
+            total /
+
+            tablePerPage
+
+        )
+
+    );
+
+    pageInfo.textContent =
+
+    `Halaman ${tablePage} / ${totalPage}`;
+
+    const active =
+
+    (tablePage - 1) % 3;
+
+    const dots =
+
+    ["○","○","○"];
+
+    dots[active] = "●";
+
+    indicator.innerHTML =
+
+    dots.join(" ");
+
+    prev.disabled =
+
+    tablePage === 1;
+
+    next.disabled =
+
+    tablePage === totalPage;
+
+    prev.onclick = ()=>{
+
+        if(tablePage>1){
+
+            tablePage--;
+
+            updateTable();
+
+        }
+
+    };
+
+    next.onclick = ()=>{
+
+        if(tablePage<totalPage){
+
+            tablePage++;
+
+            updateTable();
+
+        }
 
     };
 
@@ -398,28 +494,52 @@ function initFilters(){
     .getElementById("monthFilter")
     .addEventListener(
         "change",
-        updateTable
+        ()=>{
+
+    tablePage = 1;
+
+    updateTable();
+
+}
     );
 
     document
     .getElementById("categoryFilter")
     .addEventListener(
         "change",
-        updateTable
+        ()=>{
+
+    tablePage = 1;
+
+    updateTable();
+
+}
     );
 
     document
     .getElementById("typeFilter")
     .addEventListener(
         "change",
-        updateTable
+        ()=>{
+
+    tablePage = 1;
+
+    updateTable();
+
+}
     );
    
    document
 .getElementById("searchInput")
 .addEventListener(
     "input",
-    updateTable
+    ()=>{
+
+    tablePage = 1;
+
+    updateTable();
+
+}
 );
 
 }
