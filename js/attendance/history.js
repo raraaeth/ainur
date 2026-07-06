@@ -56,7 +56,13 @@ function populateAttendanceFilters(){
 
     );
 
-    if(!monthSelect || !yearSelect) return;
+    if(
+
+        !monthSelect ||
+
+        !yearSelect
+
+    ) return;
 
     const months =
 
@@ -84,27 +90,27 @@ function populateAttendanceFilters(){
 
     monthSelect.innerHTML =
 
-    months.map(month=>
+    months.map(month=>`
 
-        `<option value="${month}">
+        <option value="${month}">
 
             ${month}
 
-        </option>`
+        </option>
 
-    ).join("");
+    `).join("");
 
     yearSelect.innerHTML =
 
-    years.map(year=>
+    years.map(year=>`
 
-        `<option value="${year}">
+        <option value="${year}">
 
             ${year}
 
-        </option>`
+        </option>
 
-    ).join("");
+    `).join("");
 
     attendanceMonth =
 
@@ -114,11 +120,15 @@ function populateAttendanceFilters(){
 
     yearSelect.value;
 
+    attendancePage = 1;
+
     monthSelect.onchange = ()=>{
 
         attendanceMonth =
 
         monthSelect.value;
+
+        attendancePage = 1;
 
         updateAttendanceHistory();
 
@@ -130,11 +140,13 @@ function populateAttendanceFilters(){
 
         yearSelect.value;
 
+        attendancePage = 1;
+
         updateAttendanceHistory();
 
     };
 
-}
+    }
 
 /* =========================
    RENDER HISTORY
@@ -319,6 +331,8 @@ filtered.slice(
         `;
 
     }).join("");
+   
+   updateAttendancePagination();
 
 }
 
