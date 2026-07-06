@@ -324,3 +324,56 @@ td.keluar{
     opacity:.85;
 
 }
+/* =====================================================
+   TABLE PAGINATION
+===================================================== */
+
+.table-pagination{
+
+    display:grid;
+
+    grid-template-columns:48px 1fr 48px;
+
+    align-items:center;
+
+    gap:18px;
+
+    margin-top:22px;
+
+}
+
+.table-indicator{
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    gap:12px;
+
+    font-size:18px;
+
+    color:#94A3B8;
+
+    user-select:none;
+
+}
+
+.table-page-info{
+
+    margin-top:10px;
+
+    text-align:center;
+
+    color:#94A3B8;
+
+    font-size:.82rem;
+
+}
+
+.table-footer{
+
+    margin-top:24px;
+
+}
