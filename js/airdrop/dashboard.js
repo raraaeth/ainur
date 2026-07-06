@@ -169,11 +169,31 @@ function updateUpcoming(){
 
     if(!container) return;
 
+    /* =====================
+       PAGINATION
+    ===================== */
+
+    const start =
+
+    (Airdrop.upcomingPage - 1) *
+
+    Airdrop.upcomingPerPage;
+
+    const end =
+
+    start +
+
+    Airdrop.upcomingPerPage;
+
     const data =
 
-    Airdrop.upcoming
+    Airdrop.upcoming.slice(
 
-    .slice(0,5);
+        start,
+
+        end
+
+    );
 
     if(data.length===0){
 
@@ -233,6 +253,10 @@ function updateUpcoming(){
 
                 break;
 
+            default:
+
+                subtitle = "-";
+
         }
 
         return `
@@ -269,11 +293,9 @@ function updateUpcoming(){
 
         `;
 
-    })
+    }).join("");
 
-    .join("");
-
-       }
+}
 
 
 /* =========================
