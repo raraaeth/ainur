@@ -636,11 +636,7 @@ function mergeAirdropReminder(){
 
             title:
 
-            item.type==="claim"
-
-            ? `Claim • ${item.project}`
-
-            : `Campaign • ${item.project}`,
+            title:item.project,
            
             type:"airdrop",
 
