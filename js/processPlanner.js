@@ -635,7 +635,7 @@ function mergeAirdropReminder(){
         Finance.planner.push({
 
             title:item.project,
-           
+
             type:"airdrop",
 
             date:new Date(item.date),
@@ -656,15 +656,15 @@ function mergeAirdropReminder(){
 
             note:
 
-item.reminderType==="claim"
+            item.reminderType==="claim"
 
-?
+            ?
 
-"Next Claim"
+            "Next Claim"
 
-:
+            :
 
-"Campaign Ending",
+            "Campaign Ending",
 
             isEvent:false,
 
