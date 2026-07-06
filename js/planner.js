@@ -275,17 +275,39 @@ function updatePlannerHeader(){
 
     const text=
 
-    reminder.map(item=>
+    reminder.map(item=>{
 
-        `${icon[item.type]||"📌"}
-        <strong>${item.title}</strong>
-        (${item.countdown})`
+    let label="";
 
-    ).join(
+    if(item.type==="airdrop"){
 
-        "&nbsp;&nbsp;&nbsp; • &nbsp;&nbsp;&nbsp;"
+        label=
 
-    );
+        item.note+
+
+        " • ";
+
+    }
+
+    return `
+
+    ${icon[item.type]||"📌"}
+
+    <strong>
+
+        ${label}${item.title}
+
+    </strong>
+
+    (${item.countdown})
+
+    `;
+
+}).join(
+
+"&nbsp;&nbsp;&nbsp; • &nbsp;&nbsp;&nbsp;"
+
+);
 
     /* selalu bergerak */
 
@@ -308,19 +330,4 @@ function updatePlannerHeader(){
     text;
 
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
