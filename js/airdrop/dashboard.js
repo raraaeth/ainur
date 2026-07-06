@@ -297,6 +297,133 @@ function updateUpcoming(){
 
 }
 
+/* =========================
+   UPCOMING PAGINATION
+========================= */
+
+function updateUpcomingPagination(){
+
+    const prev =
+
+    document.getElementById(
+        "upcomingPrev"
+    );
+
+    const next =
+
+    document.getElementById(
+        "upcomingNext"
+    );
+
+    const indicator =
+
+    document.getElementById(
+        "upcomingIndicator"
+    );
+
+    const pageInfo =
+
+    document.getElementById(
+        "upcomingPageInfo"
+    );
+
+    if(
+        !prev ||
+        !next ||
+        !indicator ||
+        !pageInfo
+    ) return;
+
+    const totalPage =
+
+    Math.max(
+
+        1,
+
+        Math.ceil(
+
+            Airdrop.upcoming.length /
+
+            Airdrop.upcomingPerPage
+
+        )
+
+    );
+
+    /* ===== PAGE INFO ===== */
+
+    pageInfo.textContent =
+
+    `Halaman ${Airdrop.upcomingPage} / ${totalPage}`;
+
+    /* ===== INDICATOR ===== */
+
+    indicator.innerHTML =
+
+    Array.from(
+
+        {length:totalPage},
+
+        (_,i)=>
+
+        i + 1 ===
+
+        Airdrop.upcomingPage
+
+        ? "●"
+
+        : "○"
+
+    ).join(" ");
+
+    /* ===== BUTTON ===== */
+
+    prev.disabled =
+
+    Airdrop.upcomingPage === 1;
+
+    next.disabled =
+
+    Airdrop.upcomingPage === totalPage;
+
+    prev.onclick = ()=>{
+
+        if(
+
+            Airdrop.upcomingPage > 1
+
+        ){
+
+            Airdrop.upcomingPage--;
+
+            updateUpcoming();
+
+            updateUpcomingPagination();
+
+        }
+
+    };
+
+    next.onclick = ()=>{
+
+        if(
+
+            Airdrop.upcomingPage < totalPage
+
+        ){
+
+            Airdrop.upcomingPage++;
+
+            updateUpcoming();
+
+            updateUpcomingPagination();
+
+        }
+
+    };
+
+}
+
 
 /* =========================
    UPDATE DASHBOARD
@@ -309,5 +436,7 @@ function updateAirdropDashboard(){
     updateHallOfFame();
 
     updateUpcoming();
+
+    updateUpcomingPagination();
 
 }
