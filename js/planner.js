@@ -311,7 +311,7 @@ function updatePlannerHeader(){
 
     const duration = Math.max(
 
-    35,
+    60,
 
     reminder.length * 10
 
