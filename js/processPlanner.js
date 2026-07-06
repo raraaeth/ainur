@@ -312,7 +312,9 @@ function calculateDueDate(){
 
     });
 
-    }/* ===========================
+    }
+
+/* ===========================
    CALCULATE STATUS
 =========================== */
 
@@ -614,6 +616,93 @@ function formatPlannerCountdown(days){
 
 }
 
+/* ===========================
+   MERGE AIRDROP REMINDER
+=========================== */
+
+function mergeAirdropReminder(){
+
+    if(
+
+        !Airdrop.reminders ||
+
+        Airdrop.reminders.length===0
+
+    ) return;
+
+    Airdrop.reminders.forEach(item=>{
+
+        Finance.planner.push({
+
+            title:item.project,
+
+            type:"airdrop",
+
+            date:new Date(item.date),
+
+            interval:0,
+
+            keyword:"",
+
+            priority:
+
+            item.priority===1
+
+            ? "high"
+
+            : "medium",
+
+            reminderBefore:0,
+
+            note:
+
+            item.type==="claim"
+
+            ?
+
+            "🪂 Next Claim"
+
+            :
+
+            "⚠ Campaign Ending",
+
+            isEvent:false,
+
+            hasKeyword:false,
+
+            lastTransaction:null,
+
+            dueDate:new Date(item.date),
+
+            daysLeft:item.daysLeft,
+
+            countdown:
+
+            formatPlannerCountdown(
+
+                item.daysLeft
+
+            ),
+
+            status:
+
+            item.daysLeft===0
+
+            ?
+
+            "today"
+
+            :
+
+            "upcoming",
+
+            completed:false
+
+        });
+
+    });
+
+}
 
 /* ===========================
    PROCESS PLANNER
@@ -628,6 +717,8 @@ function processPlanner(){
     calculateDueDate();
 
     calculateStatus();
+
+    mergeAirdropReminder();
 
     sortPlanner();
 
