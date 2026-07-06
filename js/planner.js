@@ -309,10 +309,17 @@ function updatePlannerHeader(){
 
     /* selalu bergerak */
 
-    container.style.animation=
+    const duration = Math.max(
 
-    "reminderTicker 25s linear infinite";
+    25,
 
+    reminder.length * 8
+
+);
+
+container.style.animation =
+
+`reminderTicker ${duration}s linear infinite`;
     /* gandakan isi supaya tidak ada jeda */
 
     container.innerHTML=
