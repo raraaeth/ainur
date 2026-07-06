@@ -390,23 +390,27 @@ function updateUpcomingPagination(){
 
     /* ===== INDICATOR ===== */
 
-    indicator.innerHTML =
+    const active =
 
-    Array.from(
+(Airdrop.upcomingPage - 1) % 3;
 
-        {length:totalPage},
+indicator.innerHTML =
 
-        (_,i)=>
+["○","○","○"]
 
-        i + 1 ===
+.map(
 
-        Airdrop.upcomingPage
+    (dot,index)=>
 
-        ? "●"
+    index===active
 
-        : "○"
+    ? "●"
 
-    ).join(" ");
+    : dot
+
+)
+
+.join(" ");
 
     /* ===== BUTTON ===== */
 
