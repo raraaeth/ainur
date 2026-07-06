@@ -446,7 +446,7 @@ function updateAttendancePagination(){
 
             updateAttendanceHistory();
 
-            updateAttendancePagination();
+         
 
         }
 
@@ -460,7 +460,7 @@ function updateAttendancePagination(){
 
             updateAttendanceHistory();
 
-            updateAttendancePagination();
+            
 
         }
 
