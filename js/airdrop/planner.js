@@ -26,49 +26,36 @@ function processAirdropPlanner(){
 
 function processClaimReminder(){
 
-    const today =
+    const today = new Date();
 
-    new Date();
+    today.setHours(0,0,0,0);
 
     Airdrop.history.forEach(item=>{
 
         if(
-
             item.status !==
-
             AIRDROP_REMINDER.claimStatus
-
         ) return;
 
-        if(
-
-            !item.estimationEnd
-
-        ) return;
+        if(!item.estimationEnd) return;
 
         const endDate =
+        new Date(item.estimationEnd);
 
-        new Date(
+        endDate.setHours(0,0,0,0);
 
-            item.estimationEnd
-
-        );
-
-        const diff =
-
-        Math.ceil(
-
+        const diff = Math.ceil(
             (endDate - today) /
-
             86400000
-
         );
 
         if(diff < 0) return;
 
         Airdrop.reminders.push({
 
-            type:"claim",
+            type:"airdrop",
+
+            reminderType:"claim",
 
             priority:1,
 
@@ -86,103 +73,74 @@ function processClaimReminder(){
 
     });
 
-  /* =========================
+}
+
+/* =========================
    CAMPAIGN REMINDER
 ========================= */
 
 function processCampaignReminder(){
 
-    const today =
+    const today = new Date();
 
-    new Date();
+    today.setHours(0,0,0,0);
 
     const campaignMap =
-
     new Map();
 
     Airdrop.history.forEach(item=>{
 
         if(
-
             item.category !==
-
             AIRDROP_REMINDER.campaignCategory
-
         ) return;
 
         if(
-
             item.status !==
-
             AIRDROP_REMINDER.campaignStatus
-
         ) return;
 
-        if(
-
-            !item.estimationEnd
-
-        ) return;
+        if(!item.estimationEnd) return;
 
         const endDate =
+        new Date(item.estimationEnd);
 
-        new Date(
+        endDate.setHours(0,0,0,0);
 
-            item.estimationEnd
-
-        );
-
-        const diff =
-
-        Math.ceil(
-
+        const diff = Math.ceil(
             (endDate - today) /
-
             86400000
-
         );
 
         if(
-
             diff < 0 ||
-
             diff >
-
             AIRDROP_REMINDER.campaignReminderDays
-
         ) return;
 
         const key =
 
         [
-
             item.project,
-
             item.category,
-
             item.status,
-
             item.estimationEnd
-
         ].join("|");
 
         if(
-
             campaignMap.has(key)
-
         ) return;
 
         campaignMap.set(
-
             key,
-
             true
-
         );
 
         Airdrop.reminders.push({
 
-            type:"campaign",
+            type:"airdrop",
+
+            reminderType:"campaign",
 
             priority:2,
 
@@ -200,69 +158,45 @@ function processCampaignReminder(){
 
     });
 
-          }
+}
 
-  
 /* =========================
    SORT REMINDER
 ========================= */
 
 function sortAirdropReminder(){
 
-    Airdrop.reminders.sort(
+    Airdrop.reminders.sort((a,b)=>{
 
-        (a,b)=>{
+        if(
+            a.priority !==
+            b.priority
+        ){
 
-            // Priority
-            if(
-
-                a.priority !==
-
-                b.priority
-
-            ){
-
-                return (
-
-                    a.priority -
-
-                    b.priority
-
-                );
-
-            }
-
-            // Hari terdekat
-            if(
-
-                a.daysLeft !==
-
-                b.daysLeft
-
-            ){
-
-                return (
-
-                    a.daysLeft -
-
-                    b.daysLeft
-
-                );
-
-            }
-
-            // Tanggal
             return (
-
-                new Date(a.date) -
-
-                new Date(b.date)
-
+                a.priority -
+                b.priority
             );
 
         }
 
-    );
+        if(
+            a.daysLeft !==
+            b.daysLeft
+        ){
 
-}
+            return (
+                a.daysLeft -
+                b.daysLeft
+            );
+
+        }
+
+        return (
+            new Date(a.date) -
+            new Date(b.date)
+        );
+
+    });
+
 }
