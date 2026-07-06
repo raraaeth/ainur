@@ -578,3 +578,121 @@
     color:#E5E7EB;
 
 }
+
+/* =====================================================
+   UPCOMING PAGINATION
+===================================================== */
+
+.upcoming-pagination{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    gap:16px;
+
+    margin-top:18px;
+
+}
+
+.upcoming-pagination button{
+
+    min-width:90px;
+
+}
+
+.upcoming-pagination button:disabled{
+
+    opacity:.35;
+
+    cursor:not-allowed;
+
+}
+
+.upcoming-indicator{
+
+    flex:1;
+
+    text-align:center;
+
+    color:#60A5FA;
+
+    font-size:18px;
+
+    letter-spacing:6px;
+
+    user-select:none;
+
+}
+
+.upcoming-page-info{
+
+    margin-top:10px;
+
+    text-align:center;
+
+    color:#94A3B8;
+
+    font-size:.85rem;
+
+}
+
+/* =========================
+   ANDROID SLIDE
+========================= */
+
+.slide-left{
+
+    animation:
+    slideLeft .18s ease;
+
+}
+
+.slide-right{
+
+    animation:
+    slideRight .18s ease;
+
+}
+
+@keyframes slideLeft{
+
+    from{
+
+        opacity:1;
+
+        transform:translateX(0);
+
+    }
+
+    to{
+
+        opacity:0;
+
+        transform:translateX(-45px);
+
+    }
+
+}
+
+@keyframes slideRight{
+
+    from{
+
+        opacity:1;
+
+        transform:translateX(0);
+
+    }
+
+    to{
+
+        opacity:0;
+
+        transform:translateX(45px);
+
+    }
+
+}
