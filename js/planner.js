@@ -275,32 +275,28 @@ function updatePlannerHeader(){
 
     reminder.map(item=>{
 
-    let label="";
+    let label = "";
 
-    if(item.type==="airdrop"){
+if(item.type==="airdrop"){
 
-        label=
+    label = item.note + " • ";
 
-        item.note+
+}
 
-        " • ";
+return `
 
-    }
+${icon[item.type]||"📌"}
 
-    return `
+<strong>
 
-    ${icon[item.type]||"📌"}
+${label}${item.title}
 
-    <strong>
+</strong>
 
-        ${label}${item.title}
+(${item.countdown})
 
-    </strong>
-
-    (${item.countdown})
-
-    `;
-
+`;
+       
 }).join(
 
 "&nbsp;&nbsp;&nbsp; • &nbsp;&nbsp;&nbsp;"
