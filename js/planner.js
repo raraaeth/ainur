@@ -21,7 +21,9 @@ function createPlannerItem(item){
 
         birthday:"🎂",
 
-        anniversary:"💍"
+        anniversary:"💍",
+
+        airdrop:"🪂"
 
     };
 
