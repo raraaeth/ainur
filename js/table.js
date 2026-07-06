@@ -192,6 +192,31 @@ function updateTable(){
 
     const data =
     getFilteredData();
+   const totalPage =
+
+Math.max(
+
+    1,
+
+    Math.ceil(
+
+        data.length /
+
+        tablePerPage
+
+    )
+
+);
+
+if(
+
+    tablePage > totalPage
+
+){
+
+    tablePage = totalPage;
+
+}
 
     updateTableCounter(data);
 
