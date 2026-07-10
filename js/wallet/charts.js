@@ -7,28 +7,74 @@ let walletAllocationChart = null;
 function renderWalletAllocationChart(){
 
     const canvas =
+
     document.getElementById(
+
         "walletAllocationChart"
+
     );
 
     if(!canvas) return;
 
+
+    /* =========================
+       CHART THEME COLOR
+    ========================= */
+
+    const isLightMode =
+
+    document.documentElement
+    .getAttribute("data-theme")
+    === "light";
+
+
+    const chartTextColor =
+
+    isLightMode
+
+    ? "#64748B"
+
+    : "#FFFFFF";
+
+
+    const chartGridColor =
+
+    isLightMode
+
+    ? "rgba(100,116,139,.16)"
+
+    : "rgba(255,255,255,.08)";
+
+
     const portfolios =
+
     Object.entries(
+
         Wallet.summary.portfolios || {}
+
     );
+
 
     if(!portfolios.length) return;
 
+
     const labels =
+
     portfolios.map(
+
         ([name]) => name
+
     );
 
+
     const values =
+
     portfolios.map(
+
         ([,item]) => item.totalUSD
+
     );
+
 
     if(walletAllocationChart){
 
@@ -36,7 +82,9 @@ function renderWalletAllocationChart(){
 
     }
 
+
     walletAllocationChart =
+
     new Chart(canvas,{
 
         type:"bar",
@@ -68,7 +116,9 @@ function renderWalletAllocationChart(){
             plugins:{
 
                 legend:{
+
                     display:false
+
                 }
 
             },
@@ -80,13 +130,19 @@ function renderWalletAllocationChart(){
                     beginAtZero:true,
 
                     ticks:{
-                        color:"#ffffff",
+
+                        color:chartTextColor,
+
                         callback:v =>
+
                         "$"+v.toFixed(0)
+
                     },
 
                     grid:{
-                        color:"rgba(255,255,255,.08)"
+
+                        color:chartGridColor
+
                     }
 
                 },
@@ -94,11 +150,15 @@ function renderWalletAllocationChart(){
                 y:{
 
                     ticks:{
-                        color:"#ffffff"
+
+                        color:chartTextColor
+
                     },
 
                     grid:{
+
                         display:false
+
                     }
 
                 }
