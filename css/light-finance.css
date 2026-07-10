@@ -1,0 +1,785 @@
+/* =====================================================
+   Life Dashboard v4.0
+   File  : light-finance.css
+   Theme : Light Mode — Finance
+===================================================== */
+
+
+/* =====================================================
+   FINANCE PAGE
+===================================================== */
+
+[data-theme="light"]
+.finance-section{
+
+    color:#172033;
+
+}
+
+
+/* =====================================================
+   FINANCE SECTION TITLE
+===================================================== */
+
+[data-theme="light"]
+.finance-section
+.section-title h2,
+
+[data-theme="light"]
+.finance-section
+.section-header h3{
+
+    color:#172033;
+
+}
+
+
+[data-theme="light"]
+.finance-section
+.section-title p{
+
+    color:#64748B;
+
+}
+
+
+/* =====================================================
+   FINANCIAL SUMMARY
+===================================================== */
+
+[data-theme="light"]
+.summary-overview{
+
+    background:
+
+    linear-gradient(
+
+        145deg,
+
+        #FFFFFF 0%,
+
+        #F2F7FF 100%
+
+    );
+
+    color:#172033;
+
+    border:
+
+    1px solid #DCE3ED;
+
+    box-shadow:
+
+    0 12px 34px
+
+    rgba(15,23,42,.08);
+
+}
+
+
+/* ===========================
+   SUMMARY TITLE
+=========================== */
+
+[data-theme="light"]
+.summary-overview h2,
+
+[data-theme="light"]
+.summary-overview h3{
+
+    color:#172033;
+
+}
+
+
+/* ===========================
+   SUMMARY LABEL
+=========================== */
+
+[data-theme="light"]
+.summary-overview p,
+
+[data-theme="light"]
+.summary-overview span,
+
+[data-theme="light"]
+.summary-overview small{
+
+    color:#64748B;
+
+}
+
+
+/* ===========================
+   SUMMARY VALUE
+=========================== */
+
+[data-theme="light"]
+.summary-overview strong{
+
+    color:#172033;
+
+}
+
+
+/* ===========================
+   SUMMARY DIVIDER
+=========================== */
+
+[data-theme="light"]
+.summary-overview hr{
+
+    border-color:#DCE3ED;
+
+}
+
+
+/* =====================================================
+   SAVING OVERVIEW
+===================================================== */
+
+[data-theme="light"]
+.saving-overview{
+
+    background:
+
+    linear-gradient(
+
+        145deg,
+
+        #FFFFFF 0%,
+
+        #F1FBF6 100%
+
+    );
+
+    color:#172033;
+
+    border:
+
+    1px solid #DCE3ED;
+
+    box-shadow:
+
+    0 12px 34px
+
+    rgba(15,23,42,.08);
+
+}
+
+
+/* ===========================
+   SAVING TITLE
+=========================== */
+
+[data-theme="light"]
+.saving-overview h2,
+
+[data-theme="light"]
+.saving-overview h3{
+
+    color:#172033;
+
+}
+
+
+/* ===========================
+   SAVING LABEL
+=========================== */
+
+[data-theme="light"]
+.saving-overview p,
+
+[data-theme="light"]
+.saving-overview span,
+
+[data-theme="light"]
+.saving-overview small{
+
+    color:#64748B;
+
+}
+
+
+/* ===========================
+   SAVING VALUE
+=========================== */
+
+[data-theme="light"]
+.saving-overview strong{
+
+    color:#172033;
+
+}
+
+
+/* ===========================
+   SAVING DIVIDER
+=========================== */
+
+[data-theme="light"]
+.saving-overview hr{
+
+    border-color:#CBD5E1;
+
+}
+
+
+/* =====================================================
+   CHART CARD
+===================================================== */
+
+[data-theme="light"]
+.chart-card{
+
+    background:
+
+    linear-gradient(
+
+        145deg,
+
+        #FFFFFF 0%,
+
+        #F8FAFC 100%
+
+    );
+
+    border:
+
+    1px solid #DCE3ED;
+
+    box-shadow:
+
+    0 12px 34px
+
+    rgba(15,23,42,.08);
+
+}
+
+
+/* =====================================================
+   MONTHLY STATISTICS
+===================================================== */
+
+[data-theme="light"]
+.stats-card{
+
+    background:
+
+    linear-gradient(
+
+        145deg,
+
+        #FFFFFF 0%,
+
+        #F8FAFC 100%
+
+    );
+
+    color:#172033;
+
+    border:
+
+    1px solid #DCE3ED;
+
+    box-shadow:
+
+    0 12px 34px
+
+    rgba(15,23,42,.08);
+
+}
+
+
+/* ===========================
+   STATISTICS TEXT
+=========================== */
+
+[data-theme="light"]
+.stats-card h2,
+
+[data-theme="light"]
+.stats-card h3,
+
+[data-theme="light"]
+.stats-card strong{
+
+    color:#172033;
+
+}
+
+
+[data-theme="light"]
+.stats-card p,
+
+[data-theme="light"]
+.stats-card span,
+
+[data-theme="light"]
+.stats-card small{
+
+    color:#64748B;
+
+}
+
+
+/* ===========================
+   STATISTICS DIVIDER
+=========================== */
+
+[data-theme="light"]
+.stats-card hr{
+
+    border-color:#E2E8F0;
+
+}
+
+
+/* =====================================================
+   STATISTICS GRID FALLBACK
+===================================================== */
+
+[data-theme="light"]
+.stats-grid > div{
+
+    background:#FFFFFF;
+
+    color:#172033;
+
+    border:
+
+    1px solid #DCE3ED;
+
+    box-shadow:
+
+    0 8px 24px
+
+    rgba(15,23,42,.06);
+
+}
+
+
+[data-theme="light"]
+.stats-grid strong{
+
+    color:#172033;
+
+}
+
+
+[data-theme="light"]
+.stats-grid span,
+
+[data-theme="light"]
+.stats-grid small{
+
+    color:#64748B;
+
+}
+
+
+/* =====================================================
+   TRANSACTION FILTER
+===================================================== */
+
+[data-theme="light"]
+.filter-section{
+
+    color:#172033;
+
+}
+
+
+/* ===========================
+   FILTER TITLE
+=========================== */
+
+[data-theme="light"]
+.filter-section h2,
+
+[data-theme="light"]
+.filter-section h3{
+
+    color:#172033;
+
+}
+
+
+/* ===========================
+   FILTER SELECT
+=========================== */
+
+[data-theme="light"]
+.filter-section select{
+
+    background:#FFFFFF;
+
+    color:#172033;
+
+    border:
+
+    1px solid #CBD5E1;
+
+    box-shadow:
+
+    0 5px 18px
+
+    rgba(15,23,42,.04);
+
+}
+
+
+/* ===========================
+   FILTER INPUT
+=========================== */
+
+[data-theme="light"]
+.filter-section input{
+
+    background:#FFFFFF;
+
+    color:#172033;
+
+    border:
+
+    1px solid #CBD5E1;
+
+    box-shadow:
+
+    0 5px 18px
+
+    rgba(15,23,42,.04);
+
+}
+
+
+[data-theme="light"]
+.filter-section input::placeholder{
+
+    color:#94A3B8;
+
+}
+
+
+/* ===========================
+   FILTER FOCUS
+=========================== */
+
+[data-theme="light"]
+.filter-section select:focus,
+
+[data-theme="light"]
+.filter-section input:focus{
+
+    border-color:#3B82F6;
+
+    box-shadow:
+
+    0 0 0 3px
+
+    rgba(59,130,246,.12);
+
+}
+
+
+/* =====================================================
+   FILTER SUMMARY
+===================================================== */
+
+[data-theme="light"]
+.filter-summary-card{
+
+    background:
+
+    linear-gradient(
+
+        145deg,
+
+        #FFFFFF 0%,
+
+        #F2F7FF 100%
+
+    );
+
+    color:#172033;
+
+    border:
+
+    1px solid #DCE3ED;
+
+    box-shadow:
+
+    0 10px 28px
+
+    rgba(15,23,42,.07);
+
+}
+
+
+/* ===========================
+   FILTER SUMMARY TEXT
+=========================== */
+
+[data-theme="light"]
+.filter-summary-card small,
+
+[data-theme="light"]
+.filter-summary-card span,
+
+[data-theme="light"]
+.filter-summary-card p{
+
+    color:#64748B;
+
+}
+
+
+/* ===========================
+   FILTER SUMMARY VALUE
+=========================== */
+
+[data-theme="light"]
+.filter-summary-card strong{
+
+    color:#172033;
+
+}
+
+
+/* =====================================================
+   TRANSACTION TABLE CARD
+===================================================== */
+
+[data-theme="light"]
+.table-card{
+
+    background:#FFFFFF;
+
+    border:
+
+    1px solid #DCE3ED;
+
+    box-shadow:
+
+    0 12px 34px
+
+    rgba(15,23,42,.08);
+
+}
+
+
+/* ===========================
+   TABLE WRAPPER
+=========================== */
+
+[data-theme="light"]
+.table-wrapper{
+
+    background:#FFFFFF;
+
+}
+
+
+/* ===========================
+   TABLE
+=========================== */
+
+[data-theme="light"]
+table{
+
+    background:#FFFFFF;
+
+    color:#334155;
+
+}
+
+
+/* ===========================
+   TABLE HEADER
+=========================== */
+
+[data-theme="light"]
+thead{
+
+    background:#EFF6FF;
+
+}
+
+
+[data-theme="light"]
+th{
+
+    color:#1E3A8A;
+
+    border-color:#DCE3ED;
+
+}
+
+
+/* ===========================
+   TABLE CONTENT
+=========================== */
+
+[data-theme="light"]
+td{
+
+    color:#334155;
+
+    border-color:#E2E8F0;
+
+}
+
+
+/* ===========================
+   TABLE ROW
+=========================== */
+
+[data-theme="light"]
+tbody tr{
+
+    background:#FFFFFF;
+
+}
+
+
+[data-theme="light"]
+tbody tr:nth-child(even){
+
+    background:#F8FAFC;
+
+}
+
+
+[data-theme="light"]
+tbody tr:hover{
+
+    background:#EFF6FF;
+
+}
+
+
+/* =====================================================
+   TRANSACTION TYPE BADGE
+===================================================== */
+
+[data-theme="light"]
+.badge-income,
+
+[data-theme="light"]
+.type-income{
+
+    background:#DCFCE7;
+
+    color:#15803D;
+
+}
+
+
+[data-theme="light"]
+.badge-expense,
+
+[data-theme="light"]
+.type-expense{
+
+    background:#FEE2E2;
+
+    color:#DC2626;
+
+}
+
+
+/* =====================================================
+   TABLE PAGINATION
+===================================================== */
+
+[data-theme="light"]
+.table-pagination{
+
+    background:#FFFFFF;
+
+}
+
+
+[data-theme="light"]
+.page-arrow{
+
+    background:#FFFFFF;
+
+    color:#3B82F6;
+
+    border:
+
+    1px solid #D8E2F0;
+
+}
+
+
+[data-theme="light"]
+.page-arrow:disabled{
+
+    color:#CBD5E1;
+
+    background:#F8FAFC;
+
+}
+
+
+/* ===========================
+   PAGE INDICATOR
+=========================== */
+
+[data-theme="light"]
+.table-indicator{
+
+    color:#94A3B8;
+
+}
+
+
+/* ===========================
+   PAGE INFORMATION
+=========================== */
+
+[data-theme="light"]
+.table-page-info{
+
+    color:#64748B;
+
+}
+
+
+/* =====================================================
+   TRANSACTION INFORMATION
+===================================================== */
+
+[data-theme="light"]
+.transaction-info{
+
+    color:#64748B;
+
+}
+
+
+/* =====================================================
+   FINANCE FOOTER
+===================================================== */
+
+[data-theme="light"]
+.finance-footer{
+
+    color:#64748B;
+
+    border-color:#E2E8F0;
+
+}
+
+
+[data-theme="light"]
+.finance-footer strong,
+
+[data-theme="light"]
+.finance-footer a{
+
+    color:#3B82F6;
+
+}
