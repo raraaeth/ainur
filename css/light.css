@@ -1587,3 +1587,102 @@ tbody tr:hover{
     font-weight:700;
 
 }
+/* =====================================================
+   ATTENDANCE HISTORY — LIGHT MODE
+===================================================== */
+
+
+/* ===========================
+   HISTORY CARD
+=========================== */
+
+[data-theme="light"]
+.attendance-history-card{
+
+    background:
+
+    linear-gradient(
+
+        145deg,
+
+        #FFFFFF 0%,
+
+        #F8FAFC 100%
+
+    ) !important;
+
+    border:
+
+    1px solid #DCE3ED;
+
+    border-left:
+
+    5px solid #22C55E;
+
+    box-shadow:
+
+    0 8px 24px
+
+    rgba(15,23,42,.06);
+
+}
+
+
+/* ===========================
+   HISTORY STATUS
+=========================== */
+
+[data-theme="light"]
+.history-top strong{
+
+    color:#172033 !important;
+
+}
+
+
+/* ===========================
+   HISTORY DATE
+=========================== */
+
+[data-theme="light"]
+.history-top small{
+
+    color:#64748B !important;
+
+}
+
+
+/* ===========================
+   HISTORY DETAILS
+=========================== */
+
+[data-theme="light"]
+.history-bottom{
+
+    color:#475569 !important;
+
+}
+
+
+/* ===========================
+   EMPTY HISTORY
+=========================== */
+
+[data-theme="light"]
+.attendance-empty{
+
+    background:#FFFFFF;
+
+    color:#64748B;
+
+    border:
+
+    1px solid #DCE3ED;
+
+    box-shadow:
+
+    0 8px 24px
+
+    rgba(15,23,42,.05);
+
+}
