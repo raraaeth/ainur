@@ -344,3 +344,103 @@
     }
 
 }
+
+/* ===========================
+   HEADER TITLE ROW
+=========================== */
+
+.header-title-row{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    gap:16px;
+
+}
+
+/* Hapus margin bawah bawaan judul */
+
+.header-title-row h1{
+
+    margin-bottom:0;
+
+}
+
+/* ===========================
+   THEME TOGGLE
+=========================== */
+
+.theme-toggle{
+
+    width:44px;
+
+    height:44px;
+
+    flex-shrink:0;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    border:
+
+    1px solid
+
+    rgba(255,255,255,.14);
+
+    border-radius:50%;
+
+    background:
+
+    rgba(255,255,255,.09);
+
+    color:#FBBF24;
+
+    font-size:1.1rem;
+
+    cursor:pointer;
+
+    backdrop-filter:
+
+    blur(14px);
+
+    -webkit-backdrop-filter:
+
+    blur(14px);
+
+    box-shadow:
+
+    0 8px 20px
+
+    rgba(0,0,0,.18);
+
+    transition:
+
+    transform .25s ease,
+
+    background .25s ease,
+
+    color .25s ease;
+
+}
+
+.theme-toggle:hover{
+
+    background:
+
+    rgba(255,255,255,.15);
+
+}
+
+.theme-toggle:active{
+
+    transform:
+
+    scale(.9);
+
+}
