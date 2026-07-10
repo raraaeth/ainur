@@ -783,3 +783,168 @@ tbody tr:hover{
     color:#3B82F6;
 
 }
+/* =====================================================
+   FINANCE FILTER — FINAL LIGHT FIX
+===================================================== */
+
+
+/* ===========================
+   FILTER SELECT
+=========================== */
+
+[data-theme="light"]
+#monthFilter,
+
+[data-theme="light"]
+#categoryFilter,
+
+[data-theme="light"]
+#typeFilter{
+
+    background:#FFFFFF !important;
+
+    color:#172033 !important;
+
+    border:
+
+    1px solid #CBD5E1 !important;
+
+    box-shadow:
+
+    0 6px 20px
+
+    rgba(15,23,42,.05);
+
+}
+
+
+/* ===========================
+   SEARCH INPUT
+=========================== */
+
+[data-theme="light"]
+#searchInput{
+
+    background:#FFFFFF !important;
+
+    color:#172033 !important;
+
+    border:
+
+    1px solid #CBD5E1 !important;
+
+    box-shadow:
+
+    0 6px 20px
+
+    rgba(15,23,42,.05);
+
+}
+
+
+[data-theme="light"]
+#searchInput::placeholder{
+
+    color:#94A3B8 !important;
+
+}
+
+
+/* ===========================
+   FILTER FOCUS
+=========================== */
+
+[data-theme="light"]
+#monthFilter:focus,
+
+[data-theme="light"]
+#categoryFilter:focus,
+
+[data-theme="light"]
+#typeFilter:focus,
+
+[data-theme="light"]
+#searchInput:focus{
+
+    border-color:#3B82F6 !important;
+
+    box-shadow:
+
+    0 0 0 3px
+
+    rgba(59,130,246,.12);
+
+}
+
+
+/* =====================================================
+   FILTER SUMMARY — FINAL LIGHT FIX
+===================================================== */
+
+
+/* ===========================
+   SUMMARY CARD
+=========================== */
+
+[data-theme="light"]
+.filter-summary-card{
+
+    background:
+
+    linear-gradient(
+
+        145deg,
+
+        #FFFFFF 0%,
+
+        #F5F9FF 100%
+
+    ) !important;
+
+    border:
+
+    1px solid #DCE3ED !important;
+
+    box-shadow:
+
+    0 10px 28px
+
+    rgba(15,23,42,.06);
+
+}
+
+
+/* ===========================
+   SUMMARY LABEL
+=========================== */
+
+[data-theme="light"]
+.filter-summary-card small,
+
+[data-theme="light"]
+.filter-summary-card span,
+
+[data-theme="light"]
+.filter-summary-card p{
+
+    color:#64748B !important;
+
+}
+
+
+/* ===========================
+   SUMMARY NUMBER
+=========================== */
+
+[data-theme="light"]
+.filter-summary-card strong,
+
+[data-theme="light"]
+.filter-summary-card h2,
+
+[data-theme="light"]
+.filter-summary-card h3{
+
+    color:#172033 !important;
+
+}
