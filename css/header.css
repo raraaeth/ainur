@@ -11,9 +11,9 @@
 
     position:relative;
 
-    overflow:hidden;
-
     margin:-20px -20px 30px;
+
+    overflow:hidden;
 
 }
 
@@ -23,21 +23,81 @@
 
 .header-background{
 
-    background:
-    linear-gradient(
-        135deg,
-        #0F172A 0%,
-        #1E3A8A 55%,
-        #2563EB 100%
-    );
+    position:relative;
+
+    overflow:hidden;
 
     padding:
 
         42px
         22px
-        110px;
+        120px;
 
-    position:relative;
+    background:
+
+    linear-gradient(
+
+        160deg,
+
+        #020617 0%,
+
+        #0F172A 40%,
+
+        #1D4ED8 100%
+
+    );
+
+}
+
+/* ===========================
+   DECORATION
+=========================== */
+
+.header-background::before{
+
+    content:"";
+
+    position:absolute;
+
+    width:260px;
+
+    height:260px;
+
+    right:-80px;
+
+    top:-90px;
+
+    border-radius:50%;
+
+    background:
+
+    rgba(255,255,255,.05);
+
+    filter:blur(10px);
+
+}
+
+.header-background::after{
+
+    content:"";
+
+    position:absolute;
+
+    width:180px;
+
+    height:180px;
+
+    left:-70px;
+
+    bottom:20px;
+
+    border-radius:50%;
+
+    background:
+
+    rgba(255,255,255,.04);
+
+    filter:blur(12px);
 
 }
 
@@ -51,12 +111,6 @@
 
     z-index:2;
 
-    display:flex;
-
-    flex-direction:column;
-
-    gap:18px;
-
 }
 
 /* ===========================
@@ -67,7 +121,7 @@
 
     color:#FFFFFF;
 
-    font-size:1.9rem;
+    font-size:2rem;
 
     font-weight:700;
 
@@ -81,33 +135,41 @@
 
     rgba(255,255,255,.82);
 
-    margin:4px 0;
+    margin:5px 0;
 
-    font-size:.92rem;
+    font-size:.95rem;
 
 }
 
 .header-text span{
 
-    display:inline-block;
-
-    margin-top:10px;
-
     color:
 
-    rgba(255,255,255,.72);
+    rgba(255,255,255,.65);
 
     font-size:.82rem;
 
 }
 
 /* ===========================
-   HEADER CARD
+   GLASS CARD
 =========================== */
 
-.header-card{
+.header-glass{
+
+    margin-top:28px;
+
+    padding:18px;
+
+    border-radius:18px;
 
     background:
+
+    rgba(255,255,255,.10);
+
+    border:
+
+    1px solid
 
     rgba(255,255,255,.12);
 
@@ -115,54 +177,71 @@
 
     blur(18px);
 
-    border:
+    -webkit-backdrop-filter:
 
-    1px solid
-    rgba(255,255,255,.12);
+    blur(18px);
 
-    border-radius:18px;
+    box-shadow:
 
-    padding:18px;
+    0 12px 28px
 
-    color:#fff;
-  box-shadow:
-
-0 10px 30px
-
-rgba(0,0,0,.18);
-
-transition:.3s;
-  .header-card:hover{
-
-    transform:
-
-    translateY(-2px);
-
-  }
+    rgba(0,0,0,.20);
 
 }
 
-.header-card small{
+/* ===========================
+   GLASS TOP
+=========================== */
 
-    display:block;
+.glass-top{
 
-    opacity:.8;
+    display:flex;
 
-    margin-bottom:8px;
+    justify-content:space-between;
+
+    align-items:center;
+
+    margin-bottom:12px;
+
+    color:#E2E8F0;
+
+    font-size:.9rem;
 
 }
 
-.header-card h2{
+/* ===========================
+   CLOCK
+=========================== */
 
-    font-size:2rem;
+.glass-clock{
 
-    margin-bottom:6px;
+    text-align:center;
+
+    font-size:2.2rem;
+
+    font-weight:700;
+
+    color:#FFFFFF;
+
+    letter-spacing:2px;
 
 }
 
-.header-card p{
+/* ===========================
+   TIMEZONE
+=========================== */
 
-    opacity:.8;
+.glass-zone{
+
+    text-align:center;
+
+    margin-top:6px;
+
+    font-size:.82rem;
+
+    color:
+
+    rgba(255,255,255,.75);
 
 }
 
@@ -190,59 +269,38 @@ transition:.3s;
 
     width:100%;
 
-    height:110px;
+    height:100px;
+
+}
+
+.header-wave path{
+
+    fill:#0F172A;
 
 }
 
 /* ===========================
-   HEADER OVERLAY
+   RESPONSIVE
 =========================== */
 
-.header-background::before{
+@media(max-width:768px){
 
-    content:"";
+    .header-text h1{
 
-    position:absolute;
+        font-size:2rem;
 
-    top:-80px;
+    }
 
-    right:-60px;
+    .glass-clock{
 
-    width:220px;
+        font-size:1.9rem;
 
-    height:220px;
+    }
 
-    border-radius:50%;
+    .glass-top{
 
-    background:
+        font-size:.85rem;
 
-    rgba(255,255,255,.08);
-
-    filter:blur(8px);
+    }
 
 }
-
-.header-background::after{
-
-    content:"";
-
-    position:absolute;
-
-    bottom:20px;
-
-    left:-70px;
-
-    width:180px;
-
-    height:180px;
-
-    border-radius:50%;
-
-    background:
-
-    rgba(255,255,255,.05);
-
-    filter:blur(10px);
-
-}
-
