@@ -48,23 +48,27 @@ function updateHeaderClock(){
        CLOCK
     ====================== */
 
-    clock.textContent =
+clock.textContent =
 
-    now.toLocaleTimeString(
+now
 
-        "id-ID",
+.toLocaleTimeString(
 
-        {
+"id-ID",
 
-            hour:"2-digit",
+{
 
-            minute:"2-digit",
+hour:"2-digit",
 
-            second:"2-digit"
+minute:"2-digit",
 
-        }
+second:"2-digit"
 
-    );
+}
+
+)
+
+.replaceAll(".",":");
 
     /* ======================
        DATE
