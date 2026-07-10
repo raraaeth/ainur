@@ -460,3 +460,164 @@
     color:#64748B;
 
 }
+/* =====================================================
+   PLANNER — LIGHT MODE
+===================================================== */
+
+
+/* ===========================
+   PLANNER CARD
+=========================== */
+
+[data-theme="light"]
+.planner-card{
+
+    background:
+
+    linear-gradient(
+        145deg,
+        #FFFFFF 0%,
+        #F8FAFC 100%
+    );
+
+    border:
+
+    1px solid #DCE3ED;
+
+    box-shadow:
+
+    0 10px 28px
+    rgba(15,23,42,.07);
+
+}
+
+
+/* ===========================
+   STATUS TITLE
+=========================== */
+
+[data-theme="light"]
+.planner-status{
+
+    color:#64748B;
+
+    border-bottom-color:#E2E8F0;
+
+}
+
+
+/* ===========================
+   PLANNER ITEM
+=========================== */
+
+[data-theme="light"]
+.analytics-item{
+
+    border-bottom-color:#E2E8F0;
+
+}
+
+
+/* ===========================
+   PROJECT NAME
+=========================== */
+
+[data-theme="light"]
+.planner-title{
+
+    color:#172033;
+
+}
+
+
+/* ===========================
+   DATE / STATUS
+=========================== */
+
+[data-theme="light"]
+.planner-right{
+
+    color:#64748B;
+
+}
+
+
+/* Hari ini */
+
+[data-theme="light"]
+.analytics-item.today
+.planner-right{
+
+    color:#D97706;
+
+}
+
+
+/* Akan datang */
+
+[data-theme="light"]
+.analytics-item.upcoming
+.planner-right{
+
+    color:#0284C7;
+
+}
+
+
+/* Menunggu */
+
+[data-theme="light"]
+.analytics-item.waiting
+.planner-right{
+
+    color:#64748B;
+
+}
+
+
+/* Selesai */
+
+[data-theme="light"]
+.analytics-item.completed
+.planner-title{
+
+    color:#94A3B8;
+
+}
+
+
+[data-theme="light"]
+.analytics-item.completed
+.planner-right{
+
+    color:#16A34A;
+
+}
+
+
+/* ===========================
+   SHOW MORE
+=========================== */
+
+[data-theme="light"]
+.planner-more{
+
+    border-top-color:#E2E8F0;
+
+}
+
+
+[data-theme="light"]
+.planner-more button{
+
+    color:#2563EB;
+
+}
+
+
+[data-theme="light"]
+.planner-more button:hover{
+
+    color:#1D4ED8;
+
+}
