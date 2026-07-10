@@ -1,1 +1,454 @@
+/* =====================================================
+   LIFE DASHBOARD
+   FILE  : light-crypto.css
+   THEME : CRYPTO LIGHT MODE
+===================================================== */
 
+
+/* =====================================================
+   CRYPTO MAIN SECTION
+===================================================== */
+
+[data-theme="light"]
+.crypto-section{
+
+    background:
+
+    linear-gradient(
+
+        180deg,
+
+        #F8FBFF 0%,
+
+        #F1F6FD 100%
+
+    );
+
+    border:
+
+    1px solid #DCE5F0;
+
+    box-shadow:
+
+    0 14px 38px
+
+    rgba(15,23,42,.08);
+
+}
+
+
+/* =====================================================
+   CRYPTO SECTION TITLE
+===================================================== */
+
+[data-theme="light"]
+.crypto-section > .section-title h2{
+
+    color:#172033;
+
+}
+
+
+[data-theme="light"]
+.crypto-section > .section-title p{
+
+    color:#64748B;
+
+}
+
+
+/* =====================================================
+   CRYPTO ASSET / PORTFOLIO CARD
+===================================================== */
+
+[data-theme="light"]
+.crypto-section .portfolio-card{
+
+    background:
+
+    linear-gradient(
+
+        145deg,
+
+        #FFFFFF 0%,
+
+        #F3F7FF 100%
+
+    );
+
+    color:#172033;
+
+    border:
+
+    1px solid #DCE5F0;
+
+    box-shadow:
+
+    0 10px 30px
+
+    rgba(15,23,42,.07);
+
+}
+
+
+/* Semua teks portfolio */
+
+[data-theme="light"]
+.crypto-section .portfolio-card *{
+
+    color:#64748B;
+
+}
+
+
+/* Nilai utama portfolio */
+
+[data-theme="light"]
+.crypto-section .portfolio-card h1,
+
+[data-theme="light"]
+.crypto-section .portfolio-card h2,
+
+[data-theme="light"]
+.crypto-section .portfolio-card strong{
+
+    color:#172033;
+
+}
+
+
+/* =====================================================
+   WALLET OVERVIEW TITLE
+===================================================== */
+
+[data-theme="light"]
+.crypto-section .section-header h2,
+
+[data-theme="light"]
+.crypto-section .section-header h3{
+
+    color:#172033;
+
+}
+
+
+/* =====================================================
+   WALLET CARD
+===================================================== */
+
+[data-theme="light"]
+.crypto-section .wallet-card{
+
+    background:
+
+    linear-gradient(
+
+        145deg,
+
+        #FFFFFF 0%,
+
+        #F8FAFC 100%
+
+    );
+
+    border:
+
+    1px solid #DCE3ED;
+
+    box-shadow:
+
+    0 9px 26px
+
+    rgba(15,23,42,.06);
+
+}
+
+
+/* ===========================
+   WALLET NAME
+=========================== */
+
+[data-theme="light"]
+.crypto-section .wallet-name{
+
+    color:#172033;
+
+}
+
+
+/* ===========================
+   WALLET PROVIDER
+=========================== */
+
+[data-theme="light"]
+.crypto-section .wallet-provider{
+
+    color:#64748B;
+
+}
+
+
+/* ===========================
+   WALLET USD VALUE
+=========================== */
+
+[data-theme="light"]
+.crypto-section .wallet-total{
+
+    color:#16A34A;
+
+}
+
+
+/* ===========================
+   WALLET IDR VALUE
+=========================== */
+
+[data-theme="light"]
+.crypto-section .wallet-idr{
+
+    color:#64748B;
+
+}
+
+
+/* ===========================
+   DETAIL BUTTON
+=========================== */
+
+[data-theme="light"]
+.crypto-section .wallet-toggle{
+
+    color:#3B82F6;
+
+}
+
+
+/* =====================================================
+   WALLET DETAIL
+===================================================== */
+
+[data-theme="light"]
+.crypto-section .wallet-detail{
+
+    border-top:
+
+    1px solid #E2E8F0;
+
+}
+
+
+/* ===========================
+   NETWORK NAME
+=========================== */
+
+[data-theme="light"]
+.crypto-section .wallet-network{
+
+    color:#3B82F6;
+
+}
+
+
+/* ===========================
+   TOKEN NAME
+=========================== */
+
+[data-theme="light"]
+.crypto-section
+.wallet-token span:first-child{
+
+    color:#64748B;
+
+}
+
+
+/* ===========================
+   TOKEN VALUE
+=========================== */
+
+[data-theme="light"]
+.crypto-section
+.wallet-token span:last-child{
+
+    color:#172033;
+
+}
+
+
+/* =====================================================
+   PORTFOLIO ALLOCATION
+===================================================== */
+
+[data-theme="light"]
+.crypto-section .chart-card,
+
+[data-theme="light"]
+.crypto-section .portfolio-chart-card{
+
+    background:
+
+    linear-gradient(
+
+        145deg,
+
+        #FFFFFF 0%,
+
+        #F8FAFC 100%
+
+    );
+
+    border:
+
+    1px solid #DCE3ED;
+
+    box-shadow:
+
+    0 10px 30px
+
+    rgba(15,23,42,.06);
+
+}
+
+
+/* Judul chart */
+
+[data-theme="light"]
+.crypto-section .chart-card h2,
+
+[data-theme="light"]
+.crypto-section .chart-card h3,
+
+[data-theme="light"]
+.crypto-section .portfolio-chart-card h2,
+
+[data-theme="light"]
+.crypto-section .portfolio-chart-card h3{
+
+    color:#172033;
+
+}
+
+
+/* =====================================================
+   TOP HOLDING
+===================================================== */
+
+[data-theme="light"]
+.crypto-section .top-holding-list{
+
+    background:
+
+    linear-gradient(
+
+        145deg,
+
+        #FFFFFF 0%,
+
+        #F8FAFC 100%
+
+    );
+
+    border:
+
+    1px solid #DCE3ED;
+
+    border-radius:18px;
+
+    padding:8px 18px;
+
+    box-shadow:
+
+    0 9px 26px
+
+    rgba(15,23,42,.06);
+
+}
+
+
+/* ===========================
+   HOLDING DIVIDER
+=========================== */
+
+[data-theme="light"]
+.crypto-section .holding-item{
+
+    border-bottom:
+
+    1px solid #E2E8F0;
+
+}
+
+
+/* ===========================
+   TOKEN NAME
+=========================== */
+
+[data-theme="light"]
+.crypto-section .holding-info strong{
+
+    color:#172033;
+
+}
+
+
+/* ===========================
+   TOKEN DETAIL
+=========================== */
+
+[data-theme="light"]
+.crypto-section .holding-info small{
+
+    color:#64748B;
+
+}
+
+
+/* ===========================
+   HOLDING VALUE
+=========================== */
+
+[data-theme="light"]
+.crypto-section .holding-value{
+
+    color:#172033;
+
+}
+
+
+/* =====================================================
+   CHART TEXT
+===================================================== */
+
+[data-theme="light"]
+.crypto-section canvas{
+
+    color:#172033;
+
+}
+
+
+/* =====================================================
+   GENERAL CRYPTO TEXT FIX
+===================================================== */
+
+[data-theme="light"]
+.crypto-section h1,
+
+[data-theme="light"]
+.crypto-section h2,
+
+[data-theme="light"]
+.crypto-section h3{
+
+    color:#172033;
+
+}
+
+
+[data-theme="light"]
+.crypto-section p{
+
+    color:#64748B;
+
+}
