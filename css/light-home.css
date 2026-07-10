@@ -1,0 +1,865 @@
+/* =====================================================
+   Life Dashboard v4.0
+   File  : light-home.css
+   Theme : Light Mode — Home
+===================================================== */
+
+
+/* =====================================================
+   LIGHT THEME VARIABLES
+===================================================== */
+
+[data-theme="light"]{
+
+    color-scheme:light;
+
+    --light-bg:#F4F7FC;
+
+    --light-surface:#FFFFFF;
+
+    --light-text:#172033;
+
+    --light-muted:#64748B;
+
+    --light-border:#DCE3ED;
+
+    --light-primary:#3B82F6;
+
+    --light-shadow:
+
+    0 10px 30px
+
+    rgba(15,23,42,.07);
+
+}
+
+
+/* =====================================================
+   GLOBAL
+===================================================== */
+
+[data-theme="light"] body{
+
+    background:#F4F7FC;
+
+    color:#172033;
+
+}
+
+
+[data-theme="light"] .container{
+
+    background:#F4F7FC;
+
+}
+
+
+/* =====================================================
+   HEADER
+===================================================== */
+
+[data-theme="light"]
+.header-background{
+
+    background:
+
+    linear-gradient(
+
+        145deg,
+
+        #DCEBFF 0%,
+
+        #C8DEFF 35%,
+
+        #A9CAFF 68%,
+
+        #7EADFA 100%
+
+    );
+
+}
+
+
+/* ===========================
+   HEADER DECORATION
+=========================== */
+
+[data-theme="light"]
+.header-background::before{
+
+    background:
+
+    rgba(255,255,255,.58);
+
+}
+
+
+[data-theme="light"]
+.header-background::after{
+
+    background:
+
+    rgba(59,130,246,.10);
+
+}
+
+
+/* ===========================
+   HEADER TEXT
+=========================== */
+
+[data-theme="light"]
+.header-text h1{
+
+    color:#172033;
+
+}
+
+
+[data-theme="light"]
+.header-text p{
+
+    color:#475569;
+
+}
+
+
+[data-theme="light"]
+.header-text span{
+
+    color:#64748B;
+
+}
+
+
+/* ===========================
+   HEADER GLASS
+=========================== */
+
+[data-theme="light"]
+.header-glass{
+
+    background:
+
+    rgba(255,255,255,.48);
+
+    border:
+
+    1px solid
+
+    rgba(255,255,255,.78);
+
+    box-shadow:
+
+    0 18px 45px
+
+    rgba(37,99,235,.14),
+
+    inset 0 1px
+
+    rgba(255,255,255,.90);
+
+}
+
+
+/* ===========================
+   GLASS CONTENT
+=========================== */
+
+[data-theme="light"]
+.glass-top{
+
+    color:#334155;
+
+}
+
+
+[data-theme="light"]
+.glass-clock{
+
+    color:#172033;
+
+}
+
+
+[data-theme="light"]
+.glass-zone{
+
+    color:#64748B;
+
+}
+
+
+/* ===========================
+   HEADER WAVE
+=========================== */
+
+[data-theme="light"]
+.header-wave path{
+
+    fill:#F4F7FC;
+
+}
+
+
+/* ===========================
+   THEME TOGGLE
+=========================== */
+
+[data-theme="light"]
+.theme-toggle{
+
+    color:#334155;
+
+    background:
+
+    rgba(255,255,255,.58);
+
+    border:
+
+    1px solid
+
+    rgba(255,255,255,.85);
+
+    box-shadow:
+
+    0 10px 28px
+
+    rgba(51,65,85,.12);
+
+}
+
+
+/* =====================================================
+   SECTION TITLE
+===================================================== */
+
+[data-theme="light"]
+.section-title h2{
+
+    color:#172033;
+
+}
+
+
+[data-theme="light"]
+.section-title p{
+
+    color:#64748B;
+
+}
+
+
+/* =====================================================
+   ATTENDANCE MAIN CARD
+===================================================== */
+
+[data-theme="light"]
+.attendance-card{
+
+    background:#FFFFFF;
+
+    border:
+
+    1px solid #DCE3ED;
+
+    box-shadow:
+
+    0 14px 35px
+
+    rgba(15,23,42,.09);
+
+}
+
+
+/* ===========================
+   ATTENDANCE IMAGE
+=========================== */
+
+[data-theme="light"]
+.attendance-image{
+
+    background:
+
+    linear-gradient(
+
+        145deg,
+
+        #EFF6FF,
+
+        #E0EAFF
+
+    );
+
+}
+
+
+/* ===========================
+   ATTENDANCE CONTENT
+=========================== */
+
+[data-theme="light"]
+.attendance-content{
+
+    background:#FFFFFF;
+
+    color:#172033;
+
+}
+
+
+/* =====================================================
+   ATTENDANCE STATUS
+===================================================== */
+
+[data-theme="light"]
+.attendance-status-card{
+
+    background:
+
+    linear-gradient(
+
+        145deg,
+
+        #FFFFFF 0%,
+
+        #F8FAFC 100%
+
+    );
+
+    border:
+
+    1px solid #DCE3ED;
+
+    box-shadow:
+
+    0 10px 30px
+
+    rgba(15,23,42,.06);
+
+}
+
+
+/* ===========================
+   ATTENDANCE TIME
+=========================== */
+
+[data-theme="light"]
+#attendanceTime{
+
+    color:#172033 !important;
+
+}
+
+
+/* ===========================
+   ATTENDANCE TIMEZONE
+=========================== */
+
+[data-theme="light"]
+.attendance-timezone{
+
+    color:#64748B !important;
+
+}
+
+
+/* ===========================
+   ATTENDANCE STATE
+=========================== */
+
+[data-theme="light"]
+#attendanceState{
+
+    color:#27364B !important;
+
+}
+
+
+/* ===========================
+   ATTENDANCE MESSAGE
+=========================== */
+
+[data-theme="light"]
+#attendanceMessage{
+
+    color:#64748B !important;
+
+}
+
+
+/* =====================================================
+   ATTENDANCE BADGE
+===================================================== */
+
+[data-theme="light"]
+.attendance-badge{
+
+    color:#FFFFFF !important;
+
+    font-weight:600;
+
+}
+
+
+/* =====================================================
+   ATTENDANCE SUMMARY
+===================================================== */
+
+[data-theme="light"]
+.attendance-summary-grid{
+
+    gap:16px;
+
+}
+
+
+/* ===========================
+   SUMMARY CARD
+=========================== */
+
+[data-theme="light"]
+.attendance-summary-grid
+.summary-box{
+
+    background:
+
+    linear-gradient(
+
+        145deg,
+
+        #FFFFFF 0%,
+
+        #F8FAFC 100%
+
+    );
+
+    border:
+
+    1px solid #DCE3ED;
+
+    box-shadow:
+
+    0 8px 24px
+
+    rgba(15,23,42,.06);
+
+}
+
+
+/* ===========================
+   SUMMARY LABEL
+=========================== */
+
+[data-theme="light"]
+.attendance-summary-grid
+.summary-box small{
+
+    color:#64748B !important;
+
+}
+
+
+/* ===========================
+   SUMMARY VALUE
+=========================== */
+
+[data-theme="light"]
+.attendance-summary-grid
+.summary-box strong{
+
+    display:block;
+
+    color:#172033 !important;
+
+    font-weight:700;
+
+}
+
+
+/* =====================================================
+   REMINDER
+===================================================== */
+
+[data-theme="light"]
+.reminder-bar{
+
+    background:#FFFFFF;
+
+    border:
+
+    1px solid #E2E8F0;
+
+    border-left:
+
+    4px solid #3B82F6;
+
+    box-shadow:
+
+    0 8px 25px
+
+    rgba(15,23,42,.06);
+
+}
+
+
+[data-theme="light"]
+.reminder-content{
+
+    color:#334155;
+
+}
+
+
+/* =====================================================
+   SMART INSIGHT
+===================================================== */
+
+[data-theme="light"]
+.insight-box{
+
+    background:#FFFFFF;
+
+    color:#334155;
+
+    border:
+
+    1px solid #DCE3ED;
+
+    box-shadow:
+
+    0 10px 30px
+
+    rgba(15,23,42,.07);
+
+}
+
+
+[data-theme="light"]
+.insight-box *{
+
+    color:#334155;
+
+}
+
+
+/* =====================================================
+   ATTENDANCE FILTER
+===================================================== */
+
+[data-theme="light"]
+.filter-item label{
+
+    color:#64748B;
+
+}
+
+
+[data-theme="light"]
+.filter-item select{
+
+    background:#FFFFFF;
+
+    color:#172033;
+
+    border:
+
+    1px solid #CBD5E1;
+
+}
+
+
+[data-theme="light"]
+.filter-item select:focus{
+
+    border-color:#3B82F6;
+
+    box-shadow:
+
+    0 0 0 3px
+
+    rgba(59,130,246,.12);
+
+}
+
+
+/* =====================================================
+   ATTENDANCE HISTORY
+===================================================== */
+
+[data-theme="light"]
+.attendance-history-card{
+
+    background:
+
+    linear-gradient(
+
+        145deg,
+
+        #FFFFFF 0%,
+
+        #F8FAFC 100%
+
+    ) !important;
+
+    border:
+
+    1px solid #DCE3ED;
+
+    border-left:
+
+    5px solid #22C55E;
+
+    box-shadow:
+
+    0 8px 24px
+
+    rgba(15,23,42,.06);
+
+}
+
+
+/* ===========================
+   HISTORY STATUS
+=========================== */
+
+[data-theme="light"]
+.history-top strong{
+
+    color:#172033 !important;
+
+}
+
+
+/* ===========================
+   HISTORY DATE
+=========================== */
+
+[data-theme="light"]
+.history-top small{
+
+    color:#64748B !important;
+
+}
+
+
+/* ===========================
+   HISTORY DETAILS
+=========================== */
+
+[data-theme="light"]
+.history-bottom{
+
+    color:#475569 !important;
+
+}
+
+
+/* ===========================
+   EMPTY HISTORY
+=========================== */
+
+[data-theme="light"]
+.attendance-empty{
+
+    background:#FFFFFF;
+
+    color:#64748B;
+
+    border:
+
+    1px solid #DCE3ED;
+
+    box-shadow:
+
+    0 8px 24px
+
+    rgba(15,23,42,.05);
+
+}
+
+
+/* =====================================================
+   PAGINATION
+===================================================== */
+
+[data-theme="light"]
+.page-arrow{
+
+    background:#FFFFFF;
+
+    color:#3B82F6;
+
+    border:
+
+    1px solid #D8E2F0;
+
+}
+
+
+[data-theme="light"]
+.attendance-indicator{
+
+    color:#94A3B8;
+
+}
+
+
+[data-theme="light"]
+.attendance-page-info{
+
+    color:#64748B;
+
+}
+
+
+/* =====================================================
+   ATTENDANCE MENU
+===================================================== */
+
+[data-theme="light"]
+.attendance-menu{
+
+    background:#FFFFFF;
+
+    border:
+
+    1px solid #DCE3ED;
+
+    box-shadow:
+
+    0 12px 30px
+
+    rgba(15,23,42,.14);
+
+}
+
+
+[data-theme="light"]
+.attendance-menu button{
+
+    color:#172033;
+
+}
+
+
+[data-theme="light"]
+.attendance-menu button:hover{
+
+    background:#F1F5F9;
+
+}
+
+
+/* =====================================================
+   ATTENDANCE MODAL
+===================================================== */
+
+[data-theme="light"]
+.attendance-modal{
+
+    background:
+
+    rgba(15,23,42,.35);
+
+}
+
+
+[data-theme="light"]
+.attendance-sheet{
+
+    background:#FFFFFF;
+
+    color:#172033;
+
+}
+
+
+[data-theme="light"]
+.attendance-sheet h3{
+
+    color:#172033;
+
+}
+
+
+[data-theme="light"]
+.attendance-sheet p{
+
+    color:#64748B;
+
+}
+
+
+/* =====================================================
+   BOTTOM NAVIGATION
+===================================================== */
+
+[data-theme="light"]
+.bottom-nav{
+
+    background:
+
+    rgba(255,255,255,.96);
+
+    border-top:
+
+    1px solid #E2E8F0;
+
+    box-shadow:
+
+    0 -8px 30px
+
+    rgba(15,23,42,.08);
+
+}
+
+
+[data-theme="light"]
+.nav-item{
+
+    color:#94A3B8;
+
+}
+
+
+[data-theme="light"]
+.nav-item.active{
+
+    color:#3B82F6;
+
+}
+
+
+/* =====================================================
+   FOOTER
+===================================================== */
+
+[data-theme="light"]
+.footer{
+
+    color:#64748B;
+
+    border-color:#E2E8F0;
+
+}
+
+
+/* =====================================================
+   SCROLLBAR
+===================================================== */
+
+[data-theme="light"]
+::-webkit-scrollbar-track{
+
+    background:#F1F5F9;
+
+}
+
+
+[data-theme="light"]
+::-webkit-scrollbar-thumb{
+
+    background:#CBD5E1;
+
+}
