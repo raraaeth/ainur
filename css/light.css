@@ -1,0 +1,1055 @@
+/* =====================================================
+   Life Dashboard v4.0
+   File : light.css
+   Theme: Light Mode
+===================================================== */
+
+
+/* =====================================================
+   GLOBAL
+===================================================== */
+
+[data-theme="light"]{
+
+    color-scheme:light;
+
+    --light-bg:#F4F7FC;
+
+    --light-surface:#FFFFFF;
+
+    --light-card:#FFFFFF;
+
+    --light-primary:#3B82F6;
+
+    --light-primary-soft:#DBEAFE;
+
+    --light-text:#172033;
+
+    --light-muted:#64748B;
+
+    --light-border:#E2E8F0;
+
+    --light-shadow:
+    0 10px 30px
+    rgba(15,23,42,.08);
+
+}
+
+
+/* ===========================
+   BODY
+=========================== */
+
+[data-theme="light"] body{
+
+    background:#F4F7FC;
+
+    color:#172033;
+
+}
+
+
+/* ===========================
+   MAIN CONTAINER
+=========================== */
+
+[data-theme="light"] .container{
+
+    background:#F4F7FC;
+
+}
+
+
+/* =====================================================
+   HEADER
+===================================================== */
+
+[data-theme="light"]
+.header-background{
+
+    background:
+
+    linear-gradient(
+
+        145deg,
+
+        #EAF2FF 0%,
+
+        #DCEAFF 35%,
+
+        #C7DCFF 68%,
+
+        #93B8FF 100%
+
+    );
+
+}
+
+
+/* ===========================
+   HEADER DECORATION
+=========================== */
+
+[data-theme="light"]
+.header-background::before{
+
+    background:
+
+    rgba(255,255,255,.58);
+
+}
+
+
+[data-theme="light"]
+.header-background::after{
+
+    background:
+
+    rgba(59,130,246,.10);
+
+}
+
+
+/* ===========================
+   HEADER TITLE
+=========================== */
+
+[data-theme="light"]
+.header-text h1{
+
+    color:#172033;
+
+}
+
+
+[data-theme="light"]
+.header-text p{
+
+    color:#475569;
+
+}
+
+
+[data-theme="light"]
+.header-text span{
+
+    color:#64748B;
+
+}
+
+
+/* ===========================
+   HEADER GLASS
+=========================== */
+
+[data-theme="light"]
+.header-glass{
+
+    background:
+
+    rgba(255,255,255,.48);
+
+    border:
+
+    1px solid
+
+    rgba(255,255,255,.82);
+
+    box-shadow:
+
+    0 18px 45px
+
+    rgba(51,65,85,.12),
+
+    inset 0 1px
+
+    rgba(255,255,255,.95);
+
+}
+
+
+/* ===========================
+   GLASS DATE
+=========================== */
+
+[data-theme="light"]
+.glass-top{
+
+    color:#334155;
+
+}
+
+
+/* ===========================
+   CLOCK
+=========================== */
+
+[data-theme="light"]
+.glass-clock{
+
+    color:#172033;
+
+}
+
+
+/* ===========================
+   TIMEZONE
+=========================== */
+
+[data-theme="light"]
+.glass-zone{
+
+    color:#64748B;
+
+}
+
+
+/* ===========================
+   HEADER WAVE
+=========================== */
+
+[data-theme="light"]
+.header-wave path{
+
+    fill:#F4F7FC;
+
+}
+
+
+/* ===========================
+   THEME BUTTON
+=========================== */
+
+[data-theme="light"]
+.theme-toggle{
+
+    color:#334155;
+
+    background:
+
+    rgba(255,255,255,.58);
+
+    border:
+
+    1px solid
+
+    rgba(255,255,255,.85);
+
+    box-shadow:
+
+    0 10px 28px
+
+    rgba(51,65,85,.12);
+
+}
+
+
+/* =====================================================
+   GENERAL TEXT
+===================================================== */
+
+[data-theme="light"]
+.section-title h2,
+
+[data-theme="light"]
+.section-header h3{
+
+    color:#172033;
+
+}
+
+
+[data-theme="light"]
+.section-title p{
+
+    color:#64748B;
+
+}
+
+
+/* =====================================================
+   GENERAL CARDS
+===================================================== */
+
+[data-theme="light"]
+.card,
+
+[data-theme="light"]
+.summary-card,
+
+[data-theme="light"]
+.chart-card,
+
+[data-theme="light"]
+.portfolio-chart-card,
+
+[data-theme="light"]
+.planner-card{
+
+    background:#FFFFFF;
+
+    color:#172033;
+
+    border:
+
+    1px solid #E2E8F0;
+
+    box-shadow:
+
+    0 10px 30px
+
+    rgba(15,23,42,.07);
+
+}
+
+
+/* =====================================================
+   ATTENDANCE
+===================================================== */
+
+[data-theme="light"]
+.attendance-home,
+
+[data-theme="light"]
+.attendance-summary-home,
+
+[data-theme="light"]
+.attendance-history{
+
+    color:#172033;
+
+}
+
+
+[data-theme="light"]
+.attendance-card{
+
+    background:#FFFFFF;
+
+    border:
+
+    1px solid #E2E8F0;
+
+    box-shadow:
+
+    0 12px 35px
+
+    rgba(15,23,42,.08);
+
+}
+
+
+[data-theme="light"]
+.attendance-image{
+
+    background:
+
+    linear-gradient(
+
+        145deg,
+
+        #EFF6FF,
+
+        #E0EAFF
+
+    );
+
+}
+
+
+[data-theme="light"]
+.attendance-status-card{
+
+    background:#F8FAFC;
+
+    color:#172033;
+
+    border:
+
+    1px solid #E2E8F0;
+
+}
+
+
+[data-theme="light"]
+.attendance-state{
+
+    color:#334155;
+
+}
+
+
+[data-theme="light"]
+.attendance-message,
+
+[data-theme="light"]
+.attendance-timezone{
+
+    color:#64748B;
+
+}
+
+
+/* =====================================================
+   ATTENDANCE SUMMARY
+===================================================== */
+
+[data-theme="light"]
+.attendance-summary-grid > div{
+
+    background:#FFFFFF;
+
+    color:#172033;
+
+    border:
+
+    1px solid #E2E8F0;
+
+    box-shadow:
+
+    0 8px 24px
+
+    rgba(15,23,42,.06);
+
+}
+
+
+/* =====================================================
+   REMINDER
+===================================================== */
+
+[data-theme="light"]
+.reminder-bar{
+
+    background:#FFFFFF;
+
+    border:
+
+    1px solid #E2E8F0;
+
+    border-left:
+
+    4px solid #3B82F6;
+
+    box-shadow:
+
+    0 8px 25px
+
+    rgba(15,23,42,.06);
+
+}
+
+
+[data-theme="light"]
+.reminder-content{
+
+    color:#334155;
+
+}
+
+
+/* =====================================================
+   SMART INSIGHT
+===================================================== */
+
+[data-theme="light"]
+.insight-box{
+
+    background:
+
+    linear-gradient(
+
+        145deg,
+
+        #FFFFFF,
+
+        #F0F6FF
+
+    );
+
+    color:#334155;
+
+    border:
+
+    1px solid #DCE7F5;
+
+    box-shadow:
+
+    0 8px 25px
+
+    rgba(15,23,42,.06);
+
+}
+
+
+/* =====================================================
+   ATTENDANCE HISTORY
+===================================================== */
+
+[data-theme="light"]
+.attendance-history-list{
+
+    color:#172033;
+
+}
+
+
+[data-theme="light"]
+.attendance-history-item{
+
+    background:#FFFFFF;
+
+    border:
+
+    1px solid #E2E8F0;
+
+    box-shadow:
+
+    0 7px 22px
+
+    rgba(15,23,42,.05);
+
+}
+
+
+/* =====================================================
+   FINANCE SUMMARY
+===================================================== */
+
+[data-theme="light"]
+.summary-overview{
+
+    background:
+
+    linear-gradient(
+
+        145deg,
+
+        #FFFFFF,
+
+        #EFF6FF
+
+    );
+
+}
+
+
+[data-theme="light"]
+.summary-card h2,
+
+[data-theme="light"]
+.summary-card h3{
+
+    color:#172033;
+
+}
+
+
+[data-theme="light"]
+.summary-card p,
+
+[data-theme="light"]
+.summary-card span{
+
+    color:#64748B;
+
+}
+
+
+[data-theme="light"]
+.summary-card strong{
+
+    color:#172033;
+
+}
+
+
+[data-theme="light"]
+.summary-card hr{
+
+    border-color:#E2E8F0;
+
+}
+
+
+/* =====================================================
+   SAVING CARD
+===================================================== */
+
+[data-theme="light"]
+.saving-overview{
+
+    background:
+
+    linear-gradient(
+
+        145deg,
+
+        #FFFFFF,
+
+        #ECFDF5
+
+    );
+
+}
+
+
+/* =====================================================
+   STATISTICS
+===================================================== */
+
+[data-theme="light"]
+.stats-grid > div{
+
+    background:#FFFFFF;
+
+    color:#172033;
+
+    border:
+
+    1px solid #E2E8F0;
+
+    box-shadow:
+
+    0 8px 24px
+
+    rgba(15,23,42,.06);
+
+}
+
+
+/* =====================================================
+   FILTER
+===================================================== */
+
+[data-theme="light"]
+select,
+
+[data-theme="light"]
+input{
+
+    background:#FFFFFF;
+
+    color:#172033;
+
+    border:
+
+    1px solid #CBD5E1;
+
+}
+
+
+[data-theme="light"]
+select:focus,
+
+[data-theme="light"]
+input:focus{
+
+    border-color:#3B82F6;
+
+    box-shadow:
+
+    0 0 0 3px
+
+    rgba(59,130,246,.12);
+
+}
+
+
+[data-theme="light"]
+input::placeholder{
+
+    color:#94A3B8;
+
+}
+
+
+/* =====================================================
+   FILTER SUMMARY
+===================================================== */
+
+[data-theme="light"]
+.filter-summary-card{
+
+    background:#FFFFFF;
+
+    color:#172033;
+
+    border:
+
+    1px solid #E2E8F0;
+
+    box-shadow:
+
+    0 8px 24px
+
+    rgba(15,23,42,.06);
+
+}
+
+
+[data-theme="light"]
+.filter-summary-card small{
+
+    color:#64748B;
+
+}
+
+
+/* =====================================================
+   TRANSACTION TABLE
+===================================================== */
+
+[data-theme="light"]
+.table-card{
+
+    background:#FFFFFF;
+
+}
+
+
+[data-theme="light"]
+table{
+
+    color:#334155;
+
+}
+
+
+[data-theme="light"]
+thead{
+
+    background:#EFF6FF;
+
+}
+
+
+[data-theme="light"]
+th{
+
+    color:#1E3A8A;
+
+}
+
+
+[data-theme="light"]
+td{
+
+    border-color:#E2E8F0;
+
+}
+
+
+[data-theme="light"]
+tbody tr:hover{
+
+    background:#F8FAFC;
+
+}
+
+
+/* =====================================================
+   PAGINATION
+===================================================== */
+
+[data-theme="light"]
+.page-arrow{
+
+    background:#FFFFFF;
+
+    color:#3B82F6;
+
+    border:
+
+    1px solid #D8E2F0;
+
+}
+
+
+[data-theme="light"]
+.table-page-info,
+
+[data-theme="light"]
+.attendance-page-info,
+
+[data-theme="light"]
+.upcoming-page-info{
+
+    color:#64748B;
+
+}
+
+
+/* =====================================================
+   CRYPTO
+===================================================== */
+
+[data-theme="light"]
+.crypto-section{
+
+    color:#172033;
+
+}
+
+
+[data-theme="light"]
+.portfolio-card{
+
+    background:
+
+    linear-gradient(
+
+        145deg,
+
+        #2563EB,
+
+        #3B82F6,
+
+        #60A5FA
+
+    );
+
+    border:none;
+
+}
+
+
+[data-theme="light"]
+.portfolio-card,
+
+[data-theme="light"]
+.portfolio-card h1,
+
+[data-theme="light"]
+.portfolio-card p{
+
+    color:#FFFFFF;
+
+}
+
+
+[data-theme="light"]
+.wallet-overview > div,
+
+[data-theme="light"]
+.top-holding-list > div{
+
+    background:#FFFFFF;
+
+    color:#172033;
+
+    border:
+
+    1px solid #E2E8F0;
+
+    box-shadow:
+
+    0 8px 25px
+
+    rgba(15,23,42,.06);
+
+}
+
+
+/* =====================================================
+   AIRDROP
+===================================================== */
+
+[data-theme="light"]
+.airdrop-section{
+
+    color:#172033;
+
+}
+
+
+[data-theme="light"]
+.airdrop-summary-card{
+
+    background:
+
+    linear-gradient(
+
+        145deg,
+
+        #2563EB,
+
+        #3B82F6,
+
+        #60A5FA
+
+    );
+
+    color:#FFFFFF;
+
+}
+
+
+[data-theme="light"]
+.hall-grid > div,
+
+[data-theme="light"]
+.upcoming-list > div,
+
+[data-theme="light"]
+.airdrop-history > div{
+
+    background:#FFFFFF;
+
+    color:#172033;
+
+    border:
+
+    1px solid #E2E8F0;
+
+    box-shadow:
+
+    0 8px 25px
+
+    rgba(15,23,42,.06);
+
+}
+
+
+/* =====================================================
+   PLANNER
+===================================================== */
+
+[data-theme="light"]
+.planner-status{
+
+    color:#64748B;
+
+    border-color:#E2E8F0;
+
+}
+
+
+[data-theme="light"]
+.analytics-item{
+
+    border-color:#E2E8F0;
+
+}
+
+
+[data-theme="light"]
+.planner-title{
+
+    color:#172033;
+
+}
+
+
+[data-theme="light"]
+.planner-right{
+
+    color:#64748B;
+
+}
+
+
+/* =====================================================
+   BOTTOM NAVIGATION
+===================================================== */
+
+[data-theme="light"]
+.bottom-nav{
+
+    background:
+
+    rgba(255,255,255,.96);
+
+    border-top:
+
+    1px solid #E2E8F0;
+
+    box-shadow:
+
+    0 -8px 30px
+
+    rgba(15,23,42,.08);
+
+}
+
+
+[data-theme="light"]
+.nav-item{
+
+    color:#94A3B8;
+
+}
+
+
+[data-theme="light"]
+.nav-item.active{
+
+    color:#3B82F6;
+
+}
+
+
+/* =====================================================
+   FOOTER
+===================================================== */
+
+[data-theme="light"]
+.footer{
+
+    color:#64748B;
+
+    border-color:#E2E8F0;
+
+}
+
+
+/* =====================================================
+   ATTENDANCE MODAL
+===================================================== */
+
+[data-theme="light"]
+.attendance-modal{
+
+    background:
+
+    rgba(15,23,42,.35);
+
+}
+
+
+[data-theme="light"]
+.attendance-sheet{
+
+    background:#FFFFFF;
+
+    color:#172033;
+
+}
+
+
+[data-theme="light"]
+.attendance-sheet p{
+
+    color:#64748B;
+
+}
+
+
+/* =====================================================
+   SCROLLBAR
+===================================================== */
+
+[data-theme="light"]
+::-webkit-scrollbar-track{
+
+    background:#F1F5F9;
+
+}
+
+
+[data-theme="light"]
+::-webkit-scrollbar-thumb{
+
+    background:#CBD5E1;
+
+}
