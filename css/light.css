@@ -1364,3 +1364,226 @@ tbody tr:hover{
     color:#64748B;
 
 }
+
+/* =====================================================
+   ATTENDANCE HOME — LIGHT MODE
+===================================================== */
+
+
+/* ===========================
+   CHECK IN STATUS CARD
+=========================== */
+
+[data-theme="light"]
+.attendance-status-card{
+
+    background:
+
+    linear-gradient(
+
+        145deg,
+
+        #FFFFFF 0%,
+
+        #F8FAFC 100%
+
+    );
+
+    border:
+
+    1px solid #DCE3ED;
+
+    box-shadow:
+
+    0 10px 30px
+
+    rgba(15,23,42,.06);
+
+}
+
+
+/* ===========================
+   CHECK IN TIME
+=========================== */
+
+[data-theme="light"]
+#attendanceTime{
+
+    color:#172033 !important;
+
+}
+
+
+/* ===========================
+   TIMEZONE
+=========================== */
+
+[data-theme="light"]
+.attendance-timezone{
+
+    color:#64748B !important;
+
+}
+
+
+/* ===========================
+   ATTENDANCE STATE
+=========================== */
+
+[data-theme="light"]
+#attendanceState{
+
+    color:#27364B !important;
+
+}
+
+
+/* ===========================
+   ATTENDANCE MESSAGE
+=========================== */
+
+[data-theme="light"]
+#attendanceMessage{
+
+    color:#64748B !important;
+
+}
+
+
+/* =====================================================
+   ATTENDANCE BADGE
+===================================================== */
+
+[data-theme="light"]
+.attendance-badge{
+
+    color:#FFFFFF !important;
+
+    font-weight:600;
+
+}
+
+
+/* ON TIME */
+
+[data-theme="light"]
+.attendance-badge.badge-success{
+
+    color:#FFFFFF !important;
+
+}
+
+
+/* LATE */
+
+[data-theme="light"]
+.attendance-badge.badge-danger{
+
+    color:#FFFFFF !important;
+
+}
+
+
+/* WAITING / HOLIDAY */
+
+[data-theme="light"]
+.attendance-badge.badge-warning{
+
+    color:#FFFFFF !important;
+
+}
+
+
+/* SICK */
+
+[data-theme="light"]
+.attendance-badge.badge-info{
+
+    color:#FFFFFF !important;
+
+}
+
+
+/* LEAVE */
+
+[data-theme="light"]
+.attendance-badge.badge-purple{
+
+    color:#FFFFFF !important;
+
+}
+
+
+/* =====================================================
+   ATTENDANCE SUMMARY
+===================================================== */
+
+[data-theme="light"]
+.attendance-summary-grid{
+
+    gap:16px;
+
+}
+
+
+/* ===========================
+   SUMMARY CARD
+=========================== */
+
+[data-theme="light"]
+.attendance-summary-grid
+.summary-box{
+
+    background:
+
+    linear-gradient(
+
+        145deg,
+
+        #FFFFFF 0%,
+
+        #F8FAFC 100%
+
+    );
+
+    border:
+
+    1px solid #DCE3ED;
+
+    box-shadow:
+
+    0 8px 24px
+
+    rgba(15,23,42,.06);
+
+}
+
+
+/* ===========================
+   SUMMARY LABEL
+=========================== */
+
+[data-theme="light"]
+.attendance-summary-grid
+.summary-box small{
+
+    color:#64748B !important;
+
+}
+
+
+/* ===========================
+   SUMMARY NUMBER
+=========================== */
+
+[data-theme="light"]
+.attendance-summary-grid
+.summary-box strong{
+
+    display:block;
+
+    color:#172033 !important;
+
+    font-weight:700;
+
+}
