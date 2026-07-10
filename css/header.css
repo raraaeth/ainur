@@ -1,5 +1,5 @@
 /* =====================================================
-   Life Dashboard v4.0
+   Life Dashboard v5.0
    File : header.css
 ===================================================== */
 
@@ -28,59 +28,23 @@
     overflow:hidden;
 
     padding:
-
         42px
         22px
-        120px;
-
-    
+        105px;
 
     background:
-linear-gradient(
-160deg,
-#020617 0%,
-#0F172A 35%,
-#1E293B 70%,
-#1D4ED8 100%
-);
-
-position:relative;
-overflow:hidden;
-   
-   .home-header::before{
-
-content:"";
-
-position:absolute;
-
-top:-120px;
-right:-80px;
-
-width:280px;
-height:280px;
-
-background:
-
-radial-gradient(
-
-circle,
-
-rgba(96,165,250,.18),
-
-transparent 70%
-
-);
-
-filter:blur(30px);
-
-pointer-events:none;
-
-   }
+    linear-gradient(
+        160deg,
+        #020617 0%,
+        #0F172A 35%,
+        #16213E 70%,
+        #1E3A8A 100%
+    );
 
 }
 
 /* ===========================
-   DECORATION
+   GLOW EFFECT
 =========================== */
 
 .header-background::before{
@@ -89,21 +53,26 @@ pointer-events:none;
 
     position:absolute;
 
-    width:260px;
+    top:-130px;
+    right:-90px;
 
-    height:260px;
-
-    right:-80px;
-
-    top:-90px;
+    width:300px;
+    height:300px;
 
     border-radius:50%;
 
     background:
+    radial-gradient(
 
-    rgba(255,255,255,.05);
+        circle,
 
-    filter:blur(10px);
+        rgba(96,165,250,.18),
+
+        transparent 72%
+
+    );
+
+    filter:blur(30px);
 
 }
 
@@ -113,21 +82,26 @@ pointer-events:none;
 
     position:absolute;
 
-    width:180px;
-
-    height:180px;
-
-    left:-70px;
-
+    left:-90px;
     bottom:20px;
+
+    width:240px;
+    height:240px;
 
     border-radius:50%;
 
     background:
+    radial-gradient(
 
-    rgba(255,255,255,.04);
+        circle,
 
-    filter:blur(12px);
+        rgba(255,255,255,.06),
+
+        transparent 75%
+
+    );
+
+    filter:blur(25px);
 
 }
 
@@ -139,7 +113,7 @@ pointer-events:none;
 
     position:relative;
 
-    z-index:2;
+    z-index:5;
 
 }
 
@@ -147,37 +121,41 @@ pointer-events:none;
    HEADER TEXT
 =========================== */
 
+.header-text{
+
+    margin-bottom:26px;
+
+}
+
 .header-text h1{
 
     color:#FFFFFF;
 
-    font-size:2rem;
+    font-size:2.35rem;
 
     font-weight:700;
 
-    margin-bottom:8px;
+    margin-bottom:10px;
+
+    line-height:1.2;
 
 }
 
 .header-text p{
 
-    color:
+    color:rgba(255,255,255,.88);
 
-    rgba(255,255,255,.82);
+    font-size:1rem;
 
-    margin:5px 0;
-
-    font-size:.95rem;
+    margin:6px 0;
 
 }
 
 .header-text span{
 
-    color:
+    color:rgba(255,255,255,.65);
 
-    rgba(255,255,255,.65);
-
-    font-size:.82rem;
+    font-size:.88rem;
 
 }
 
@@ -187,32 +165,39 @@ pointer-events:none;
 
 .header-glass{
 
-background:
-rgba(255,255,255,.08);
+    position:relative;
 
-backdrop-filter:
-blur(22px);
+    background:
+    rgba(255,255,255,.08);
 
--webkit-backdrop-filter:
-blur(22px);
+    border:
 
-border:
-1px solid rgba(255,255,255,.10);
+    1px solid
 
-border-radius:24px;
+    rgba(255,255,255,.10);
 
-box-shadow:
+    backdrop-filter:
 
-0 20px 45px rgba(0,0,0,.25),
+    blur(24px);
 
-inset 0 1px rgba(255,255,255,.08);
+    -webkit-backdrop-filter:
 
-padding:22px;
+    blur(24px);
+
+    border-radius:24px;
+
+    padding:22px;
+
+    box-shadow:
+
+    0 15px 35px rgba(0,0,0,.28),
+
+    inset 0 1px rgba(255,255,255,.08);
 
 }
 
 /* ===========================
-   GLASS TOP
+   DATE & WEATHER
 =========================== */
 
 .glass-top{
@@ -223,11 +208,11 @@ padding:22px;
 
     align-items:center;
 
-    margin-bottom:12px;
-
     color:#E2E8F0;
 
-    font-size:.9rem;
+    font-size:.95rem;
+
+    margin-bottom:18px;
 
 }
 
@@ -239,13 +224,17 @@ padding:22px;
 
     text-align:center;
 
-    font-size:2.2rem;
+    font-size:3rem;
 
     font-weight:700;
 
     color:#FFFFFF;
 
     letter-spacing:2px;
+
+    font-variant-numeric:
+
+    tabular-nums;
 
 }
 
@@ -255,20 +244,20 @@ padding:22px;
 
 .glass-zone{
 
+    margin-top:10px;
+
     text-align:center;
-
-    margin-top:6px;
-
-    font-size:.82rem;
 
     color:
 
-    rgba(255,255,255,.75);
+    rgba(255,255,255,.72);
+
+    font-size:.9rem;
 
 }
 
 /* ===========================
-   WAVE
+   HEADER WAVE
 =========================== */
 
 .header-wave{
@@ -277,9 +266,9 @@ padding:22px;
 
     left:0;
 
-    bottom:-1px;
+    right:0;
 
-    width:100%;
+    bottom:-2px;
 
     line-height:0;
 
@@ -293,7 +282,7 @@ padding:22px;
 
     width:100%;
 
-    height:65px;
+    height:58px;
 
 }
 
@@ -309,6 +298,16 @@ padding:22px;
 
 @media(max-width:768px){
 
+    .header-background{
+
+        padding:
+
+        36px
+        18px
+        90px;
+
+    }
+
     .header-text h1{
 
         font-size:2rem;
@@ -317,13 +316,13 @@ padding:22px;
 
     .glass-clock{
 
-        font-size:1.9rem;
+        font-size:2.45rem;
 
     }
 
     .glass-top{
 
-        font-size:.85rem;
+        font-size:.88rem;
 
     }
 
