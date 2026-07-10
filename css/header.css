@@ -11,7 +11,7 @@
 
     position:relative;
 
-    margin:-20px -20px 30px;
+    margin:-20px -20px 28px;
 
     overflow:hidden;
 
@@ -28,23 +28,22 @@
     overflow:hidden;
 
     padding:
-        42px
+        34px
         22px
-        105px;
+        70px;
 
     background:
     linear-gradient(
         160deg,
         #020617 0%,
         #0F172A 35%,
-        #16213E 70%,
-        #1E3A8A 100%
+        #172554 100%
     );
 
 }
 
 /* ===========================
-   GLOW EFFECT
+   GLOW
 =========================== */
 
 .header-background::before{
@@ -53,26 +52,27 @@
 
     position:absolute;
 
-    top:-130px;
-    right:-90px;
+    width:320px;
+    height:320px;
 
-    width:300px;
-    height:300px;
+    right:-120px;
+    top:-150px;
 
     border-radius:50%;
 
     background:
+
     radial-gradient(
 
         circle,
 
-        rgba(96,165,250,.18),
+        rgba(59,130,246,.12),
 
-        transparent 72%
+        transparent 70%
 
     );
 
-    filter:blur(30px);
+    filter:blur(60px);
 
 }
 
@@ -82,48 +82,49 @@
 
     position:absolute;
 
-    left:-90px;
-    bottom:20px;
+    width:220px;
+    height:220px;
 
-    width:240px;
-    height:240px;
+    left:-80px;
+    bottom:20px;
 
     border-radius:50%;
 
     background:
+
     radial-gradient(
 
         circle,
 
-        rgba(255,255,255,.06),
+        rgba(255,255,255,.04),
 
         transparent 75%
 
     );
 
-    filter:blur(25px);
+    filter:blur(45px);
 
 }
 
 /* ===========================
-   HEADER CONTENT
+   CONTENT
 =========================== */
 
 .header-content{
 
     position:relative;
 
-    z-index:5;
+    z-index:2;
 
 }
 
 /* ===========================
-   HEADER TEXT
+   TEXT
 =========================== */
 
 .header-text{
 
-    margin-bottom:26px;
+    margin-bottom:18px;
 
 }
 
@@ -131,13 +132,13 @@
 
     color:#FFFFFF;
 
-    font-size:2.35rem;
+    font-size:2.25rem;
 
     font-weight:700;
 
-    margin-bottom:10px;
-
     line-height:1.2;
+
+    margin-bottom:10px;
 
 }
 
@@ -155,7 +156,7 @@
 
     color:rgba(255,255,255,.65);
 
-    font-size:.88rem;
+    font-size:.85rem;
 
 }
 
@@ -168,31 +169,30 @@
     position:relative;
 
     background:
-    rgba(255,255,255,.08);
+
+    rgba(255,255,255,.07);
+
+    backdrop-filter:
+
+    blur(18px);
+
+    -webkit-backdrop-filter:
+
+    blur(18px);
 
     border:
 
     1px solid
 
-    rgba(255,255,255,.10);
+    rgba(255,255,255,.08);
 
-    backdrop-filter:
+    border-radius:22px;
 
-    blur(24px);
-
-    -webkit-backdrop-filter:
-
-    blur(24px);
-
-    border-radius:24px;
-
-    padding:22px;
+    padding:18px 20px;
 
     box-shadow:
 
-    0 15px 35px rgba(0,0,0,.28),
-
-    inset 0 1px rgba(255,255,255,.08);
+    0 12px 30px rgba(0,0,0,.25);
 
 }
 
@@ -208,11 +208,11 @@
 
     align-items:center;
 
+    margin-bottom:14px;
+
     color:#E2E8F0;
 
     font-size:.95rem;
-
-    margin-bottom:18px;
 
 }
 
@@ -224,11 +224,13 @@
 
     text-align:center;
 
-    font-size:3rem;
+    color:#FFFFFF;
+
+    font-size:2.9rem;
 
     font-weight:700;
 
-    color:#FFFFFF;
+    line-height:1;
 
     letter-spacing:2px;
 
@@ -244,20 +246,18 @@
 
 .glass-zone{
 
-    margin-top:10px;
-
     text-align:center;
 
-    color:
+    margin-top:10px;
 
-    rgba(255,255,255,.72);
+    color:rgba(255,255,255,.70);
 
-    font-size:.9rem;
+    font-size:.85rem;
 
 }
 
 /* ===========================
-   HEADER WAVE
+   WAVE
 =========================== */
 
 .header-wave{
@@ -266,9 +266,9 @@
 
     left:0;
 
-    right:0;
+    bottom:-1px;
 
-    bottom:-2px;
+    width:100%;
 
     line-height:0;
 
@@ -282,13 +282,13 @@
 
     width:100%;
 
-    height:58px;
+    height:48px;
 
 }
 
 .header-wave path{
 
-    fill:#0F172A;
+    fill:#0B1120;
 
 }
 
@@ -301,10 +301,15 @@
     .header-background{
 
         padding:
+            30px
+            18px
+            65px;
 
-        36px
-        18px
-        90px;
+    }
+
+    .header-text{
+
+        margin-bottom:16px;
 
     }
 
@@ -314,15 +319,27 @@
 
     }
 
-    .glass-clock{
+    .header-text p{
 
-        font-size:2.45rem;
+        font-size:.95rem;
 
     }
 
     .glass-top{
 
         font-size:.88rem;
+
+    }
+
+    .glass-clock{
+
+        font-size:2.45rem;
+
+    }
+
+    .glass-zone{
+
+        font-size:.8rem;
 
     }
 
