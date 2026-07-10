@@ -452,3 +452,39 @@
     color:#64748B;
 
 }
+
+/* =====================================================
+   CRYPTO TOTAL PORTFOLIO VALUE
+===================================================== */
+
+/* Nilai utama USD */
+
+[data-theme="light"]
+.crypto-section .portfolio-card h1,
+
+[data-theme="light"]
+.crypto-section .portfolio-card
+.portfolio-value,
+
+[data-theme="light"]
+.crypto-section
+#portfolioValue{
+
+    color:#172033 !important;
+
+}
+
+
+/* Nilai rupiah */
+
+[data-theme="light"]
+.crypto-section
+.portfolio-idr,
+
+[data-theme="light"]
+.crypto-section
+#portfolioIDR{
+
+    color:#64748B !important;
+
+}
