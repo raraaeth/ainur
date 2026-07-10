@@ -2,7 +2,7 @@
    LIFE DASHBOARD PWA
 ===================================================== */
 
-const CACHE_NAME = "ainur-dashboard-v9";
+const CACHE_NAME = "ainur-dashboard-v10";
 
 const FILES = [
 
