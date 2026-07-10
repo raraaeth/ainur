@@ -1,1 +1,462 @@
+/* =====================================================
+   AIRDROP — LIGHT MODE
+===================================================== */
 
+
+/* =====================================================
+   SECTION TITLE
+===================================================== */
+
+[data-theme="light"]
+.airdrop-section h2,
+
+[data-theme="light"]
+.section-header h3{
+
+    color:#172033;
+
+}
+
+
+[data-theme="light"]
+.airdrop-section p{
+
+    color:#64748B;
+
+}
+
+
+/* =====================================================
+   LIFETIME REWARD
+===================================================== */
+
+[data-theme="light"]
+.airdrop-summary-card{
+
+    background:
+
+    linear-gradient(
+        145deg,
+        #FFFFFF,
+        #F4F8FF
+    );
+
+    color:#172033;
+
+    border:
+
+    1px solid #DCE3ED;
+
+    box-shadow:
+
+    0 12px 32px
+    rgba(15,23,42,.08);
+
+}
+
+
+/* Judul Lifetime Reward */
+
+[data-theme="light"]
+.airdrop-summary-card h2{
+
+    color:#172033;
+
+}
+
+
+/* Total Reward */
+
+[data-theme="light"]
+.airdrop-total small{
+
+    color:#64748B;
+
+}
+
+
+[data-theme="light"]
+.airdrop-total h1{
+
+    color:#172033;
+
+}
+
+
+/* Project badge tetap biru */
+
+[data-theme="light"]
+.project-badge{
+
+    background:#2563EB;
+
+    color:#FFFFFF;
+
+}
+
+
+/* =====================================================
+   REWARD STATISTICS
+===================================================== */
+
+[data-theme="light"]
+.airdrop-summary-grid div{
+
+    background:#F8FAFC;
+
+    border:
+
+    1px solid #E2E8F0;
+
+}
+
+
+[data-theme="light"]
+.airdrop-summary-grid strong{
+
+    color:#172033;
+
+}
+
+
+[data-theme="light"]
+.airdrop-summary-grid small{
+
+    color:#64748B;
+
+}
+
+
+/* =====================================================
+   HALL OF FAME
+===================================================== */
+
+[data-theme="light"]
+.hall-card{
+
+    background:
+
+    linear-gradient(
+        145deg,
+        #FFFFFF,
+        #F8FAFC
+    );
+
+    border:
+
+    1px solid #DCE3ED;
+
+    box-shadow:
+
+    0 8px 24px
+    rgba(15,23,42,.07);
+
+}
+
+
+[data-theme="light"]
+.hall-project{
+
+    color:#172033;
+
+}
+
+
+[data-theme="light"]
+.hall-token,
+
+[data-theme="light"]
+.hall-wallet{
+
+    color:#64748B;
+
+}
+
+
+/* Nilai reward tetap hijau */
+
+[data-theme="light"]
+.hall-usd{
+
+    color:#16A34A;
+
+}
+
+
+/* =====================================================
+   UPCOMING DISTRIBUTION
+===================================================== */
+
+[data-theme="light"]
+.upcoming-item{
+
+    background:
+
+    linear-gradient(
+        145deg,
+        #FFFFFF,
+        #F8FAFC
+    );
+
+    border:
+
+    1px solid #DCE3ED;
+
+    box-shadow:
+
+    0 7px 22px
+    rgba(15,23,42,.06);
+
+}
+
+
+[data-theme="light"]
+.upcoming-item strong{
+
+    color:#172033;
+
+}
+
+
+[data-theme="light"]
+.upcoming-item small{
+
+    color:#64748B;
+
+}
+
+
+/* Status kanan tetap biru */
+
+[data-theme="light"]
+.upcoming-item
+> div:last-child small{
+
+    color:#3B82F6;
+
+}
+
+
+/* =====================================================
+   AIRDROP FILTER
+===================================================== */
+
+[data-theme="light"]
+.airdrop-filter input,
+
+[data-theme="light"]
+.airdrop-filter select{
+
+    background:#FFFFFF;
+
+    color:#172033;
+
+    border:
+
+    1px solid #CBD5E1;
+
+    box-shadow:
+
+    0 5px 16px
+    rgba(15,23,42,.04);
+
+}
+
+
+[data-theme="light"]
+.airdrop-filter input::placeholder{
+
+    color:#94A3B8;
+
+}
+
+
+[data-theme="light"]
+.airdrop-filter select option{
+
+    background:#FFFFFF;
+
+    color:#172033;
+
+}
+
+
+/* Focus */
+
+[data-theme="light"]
+.airdrop-filter input:focus,
+
+[data-theme="light"]
+.airdrop-filter select:focus{
+
+    border-color:#3B82F6;
+
+    box-shadow:
+
+    0 0 0 3px
+    rgba(59,130,246,.12);
+
+}
+
+
+/* =====================================================
+   EMPTY HISTORY
+===================================================== */
+
+[data-theme="light"]
+.airdrop-empty{
+
+    background:
+
+    linear-gradient(
+        145deg,
+        #FFFFFF,
+        #F8FAFC
+    );
+
+    border:
+
+    1px solid #DCE3ED;
+
+    box-shadow:
+
+    0 8px 24px
+    rgba(15,23,42,.06);
+
+}
+
+
+[data-theme="light"]
+.airdrop-empty h4{
+
+    color:#172033;
+
+}
+
+
+[data-theme="light"]
+.airdrop-empty p{
+
+    color:#64748B;
+
+}
+
+
+/* =====================================================
+   AIRDROP HISTORY TABLE
+===================================================== */
+
+[data-theme="light"]
+.airdrop-table{
+
+    background:#FFFFFF;
+
+    border:
+
+    1px solid #E2E8F0;
+
+}
+
+
+[data-theme="light"]
+.airdrop-table thead{
+
+    background:#EFF6FF;
+
+}
+
+
+[data-theme="light"]
+.airdrop-table th{
+
+    color:#1E3A8A;
+
+}
+
+
+[data-theme="light"]
+.airdrop-table td{
+
+    color:#334155;
+
+    border-color:#E2E8F0;
+
+}
+
+
+[data-theme="light"]
+.airdrop-table tbody tr:hover{
+
+    background:#F8FAFC;
+
+}
+
+
+/* =====================================================
+   BUTTON
+===================================================== */
+
+[data-theme="light"]
+.btn-outline{
+
+    background:#FFFFFF;
+
+    color:#3B82F6;
+
+    border:
+
+    1px solid #D8E2F0;
+
+}
+
+
+[data-theme="light"]
+.btn-outline:hover{
+
+    background:#EFF6FF;
+
+}
+
+
+/* =====================================================
+   PAGINATION
+===================================================== */
+
+[data-theme="light"]
+.page-arrow{
+
+    background:#FFFFFF;
+
+    color:#3B82F6;
+
+    border:
+
+    1px solid #D8E2F0;
+
+    box-shadow:
+
+    0 5px 16px
+    rgba(15,23,42,.05);
+
+}
+
+
+[data-theme="light"]
+.page-arrow:hover{
+
+    background:#2563EB;
+
+    color:#FFFFFF;
+
+}
+
+
+[data-theme="light"]
+.upcoming-indicator,
+
+[data-theme="light"]
+.upcoming-page-info{
+
+    color:#64748B;
+
+}
