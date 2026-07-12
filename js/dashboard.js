@@ -3,44 +3,159 @@
    File : dashboard.js
 ===================================================== */
 
+
 /* ===========================
    SUMMARY CARD
 =========================== */
+
 function updateSummaryCard(){
 
-    const summary = Finance.summary;
+    const summary=
 
-    document.getElementById("totalIncome").textContent =
-        formatCurrency(summary.income);
+    Finance.summary;
 
-    document.getElementById("totalExpense").textContent =
-        formatCurrency(summary.expense);
 
-    document.getElementById("remainingBalance").textContent =
-        formatCurrency(summary.balance);
+    document
 
-    document.getElementById("savingRate").textContent =
-        `${summary.savingRate.toFixed(1)}%`;
+    .getElementById(
+
+        "totalIncome"
+
+    )
+
+    .textContent=
+
+    formatCurrency(
+
+        summary.income
+
+    );
+
+
+    document
+
+    .getElementById(
+
+        "totalExpense"
+
+    )
+
+    .textContent=
+
+    formatCurrency(
+
+        summary.expense
+
+    );
+
+
+    document
+
+    .getElementById(
+
+        "remainingBalance"
+
+    )
+
+    .textContent=
+
+    formatCurrency(
+
+        summary.balance
+
+    );
+
+
+    document
+
+    .getElementById(
+
+        "savingRate"
+
+    )
+
+    .textContent=
+
+    `${summary.savingRate.toFixed(1)}%`;
 
 }
+
 
 /* ===========================
-   SAVING CARD
+   TABUNGAN SEABANK
 =========================== */
+
 function updateSavingCard(){
 
-    const summary = Finance.summary;
+    const summary=
 
-    document.getElementById("savingIncome").textContent =
-        formatCurrency(summary.savingIncome);
+    Finance.summary;
 
-    document.getElementById("savingExpense").textContent =
-        formatCurrency(summary.savingExpense);
 
-    document.getElementById("savingDifference").textContent =
-        formatCurrency(summary.savingDifference);
+    /* =====================
+       SALDO SAAT INI
+    ===================== */
+
+    document
+
+    .getElementById(
+
+        "savingBalance"
+
+    )
+
+    .textContent=
+
+    formatCurrency(
+
+        summary.savingBalance
+
+    );
+
+
+    /* =====================
+       TOTAL DEPOSIT
+    ===================== */
+
+    document
+
+    .getElementById(
+
+        "savingDeposit"
+
+    )
+
+    .textContent=
+
+    formatCurrency(
+
+        summary.savingDeposit
+
+    );
+
+
+    /* =====================
+       TOTAL PENARIKAN
+    ===================== */
+
+    document
+
+    .getElementById(
+
+        "savingWithdraw"
+
+    )
+
+    .textContent=
+
+    formatCurrency(
+
+        summary.savingWithdraw
+
+    );
 
 }
+
 
 /* ===========================
    UPDATE DASHBOARD
@@ -54,21 +169,41 @@ function updateDashboard(){
 
 }
 
+
 /* ===========================
    LAST SYNC
 =========================== */
 
 function updateLastSync(){
 
-    const now = new Date();
+    const now=
 
-    document.getElementById(
+    new Date();
+
+
+    const lastSync=
+
+    document
+
+    .getElementById(
 
         "lastSync"
 
-    ).textContent =
+    );
 
-    "Last Sync : " +
+
+    if(!lastSync){
+
+        return;
+
+    }
+
+
+    lastSync.textContent=
+
+    "Last Sync : "
+
+    +
 
     now.toLocaleString(
 
