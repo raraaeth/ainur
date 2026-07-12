@@ -2,9 +2,12 @@
    Finance Dashboard v1.0
    File : processData.js
 ===================================================== */
+
+
 /* ===========================
    NORMALIZE
 =========================== */
+
 function normalizeTransactions(){
 
     Finance.data = Finance.raw.map(item=>{
@@ -15,22 +18,33 @@ function normalizeTransactions(){
 
             date,
 
-            day : date.getDate(),
+            day:date.getDate(),
 
-            month : date.getMonth()+1,
+            month:date.getMonth()+1,
 
-            year : date.getFullYear(),
+            year:date.getFullYear(),
 
-            type : item.type
-.trim()
-.toLowerCase(),
+            type:
 
-            category : item.category
-.trim()
-.toLowerCase(),
-            description : item.description,
+            item.type
+            .trim()
+            .toLowerCase(),
 
-            amount : Number(item.amount)||0
+            category:
+
+            item.category
+            .trim()
+            .toLowerCase(),
+
+            description:
+
+            item.description
+            ? item.description.trim()
+            : "",
+
+            amount:
+
+            Number(item.amount)||0
 
         };
 
@@ -46,60 +60,158 @@ function normalizeTransactions(){
 function calculateSummary(){
 
     let income = 0;
+
     let expense = 0;
 
-    let savingIncome = 0;
-    let savingExpense = 0;
+
+    /* =====================
+       TABUNGAN SEABANK
+    ===================== */
+
+    let savingDeposit = 0;
+
+    let savingWithdraw = 0;
+
 
     Finance.data.forEach(item=>{
 
-        /* ===== INCOME ===== */
 
-        if(item.type===TRANSACTION.INCOME){
-
-            income += item.amount;
-
-        }
-
-        /* ===== EXPENSE ===== */
-
-        if(item.type===TRANSACTION.EXPENSE){
-
-            expense += item.amount;
-
-        }
-
-        /* ===== SAVING ===== */
+        /* =====================
+           INCOME
+        ===================== */
 
         if(
 
-            item.type===TRANSACTION.INCOME &&
+            item.type===
 
-            item.category===CATEGORY.SAVING
+            TRANSACTION.INCOME
 
         ){
 
-            savingIncome += item.amount;
+            income +=
+
+            item.amount;
 
         }
 
+
+        /* =====================
+           EXPENSE
+        ===================== */
+
         if(
 
-            item.type===TRANSACTION.EXPENSE &&
+            item.type===
 
-            item.category===CATEGORY.SAVING
+            TRANSACTION.EXPENSE
 
         ){
 
-            savingExpense += item.amount;
+            expense +=
+
+            item.amount;
+
+        }
+
+
+        /* =====================
+           TABUNGAN SEABANK
+        ===================== */
+
+        if(
+
+            item.category===
+
+            CATEGORY.SAVING
+
+        ){
+
+            const description =
+
+            item.description
+
+            .toLowerCase()
+
+            .trim();
+
+
+            /* =================
+               DEPOSIT
+
+               Menambah saldo
+            ================= */
+
+            if(
+
+                description.includes(
+
+                    "deposit ke seabank"
+
+                )
+
+            ){
+
+                savingDeposit +=
+
+                item.amount;
+
+            }
+
+
+            /* =================
+               PENARIKAN
+
+               Mengurangi saldo
+            ================= */
+
+            if(
+
+                description.includes(
+
+                    "tarik dari seabank"
+
+                )
+
+            ){
+
+                savingWithdraw +=
+
+                item.amount;
+
+            }
 
         }
 
     });
 
-    const balance = income - expense;
 
-    Finance.summary = {
+    /* =====================
+       FINANCE BALANCE
+    ===================== */
+
+    const balance =
+
+    income -
+
+    expense;
+
+
+    /* =====================
+       SEABANK BALANCE
+    ===================== */
+
+    const savingBalance =
+
+    savingDeposit -
+
+    savingWithdraw;
+
+
+    /* =====================
+       FINANCE SUMMARY
+    ===================== */
+
+    Finance.summary={
 
         income,
 
@@ -107,25 +219,46 @@ function calculateSummary(){
 
         balance,
 
-        savingRate :
+
+        /* =================
+           SAVING RATE
+
+           Tetap memakai
+           total dana yang
+           disimpan
+        ================= */
+
+        savingRate:
 
         income===0
 
-        ?0
+        ? 0
 
-        :(savingExpense/income)*100,
+        :
 
-        savingIncome,
+        (
 
-        savingExpense,
+            savingDeposit /
 
-        savingDifference :
+            income
 
-        savingIncome-savingExpense
+        ) * 100,
+
+
+        /* =================
+           TABUNGAN SEABANK
+        ================= */
+
+        savingDeposit,
+
+        savingWithdraw,
+
+        savingBalance
 
     };
 
 }
+
 
 /* ===========================
    CATEGORY
@@ -133,46 +266,97 @@ function calculateSummary(){
 
 function calculateCategory(){
 
-    const income = {};
-    const expense = {};
+    const income={};
+
+    const expense={};
+
 
     Finance.data.forEach(item=>{
 
-        /* ===== INCOME ===== */
 
-        if(item.type===TRANSACTION.INCOME){
-
-            income[item.category] =
-
-            (income[item.category]||0)
-
-            + item.amount;
-
-        }
-
-        /* ===== EXPENSE ===== */
+        /* =====================
+           INCOME
+        ===================== */
 
         if(
 
-            item.type===TRANSACTION.EXPENSE &&
+            item.type===
 
-            !EXCLUDED_EXPENSE.includes(
+            TRANSACTION.INCOME
+
+        ){
+
+            income[
+
                 item.category
+
+            ]=
+
+            (
+
+                income[
+
+                    item.category
+
+                ]||0
+
+            )
+
+            +
+
+            item.amount;
+
+        }
+
+
+        /* =====================
+           EXPENSE
+        ===================== */
+
+        if(
+
+            item.type===
+
+            TRANSACTION.EXPENSE
+
+            &&
+
+            !EXCLUDED_EXPENSE
+
+            .includes(
+
+                item.category
+
             )
 
         ){
 
-            expense[item.category] =
+            expense[
 
-            (expense[item.category]||0)
+                item.category
 
-            + item.amount;
+            ]=
+
+            (
+
+                expense[
+
+                    item.category
+
+                ]||0
+
+            )
+
+            +
+
+            item.amount;
 
         }
 
     });
 
-    Finance.category = {
+
+    Finance.category={
 
         income,
 
@@ -182,25 +366,34 @@ function calculateCategory(){
 
 }
 
+
 /* ===========================
    CHART
 =========================== */
 
 function calculateChart(){
 
-    const monthly = {};
+    const monthly={};
+
 
     Finance.data.forEach(item=>{
 
-        const key = `${item.year}-${item.month}`;
+        const key=
+
+        `${item.year}-${item.month}`;
+
 
         if(!monthly[key]){
 
             monthly[key]={
 
-                year:item.year,
+                year:
 
-                month:item.month,
+                item.year,
+
+                month:
+
+                item.month,
 
                 income:0,
 
@@ -210,68 +403,140 @@ function calculateChart(){
 
         }
 
-        /* ===== INCOME ===== */
 
-        if(item.type===TRANSACTION.INCOME){
+        /* =====================
+           INCOME
+        ===================== */
 
-            monthly[key].income += item.amount;
+        if(
+
+            item.type===
+
+            TRANSACTION.INCOME
+
+        ){
+
+            monthly[key]
+
+            .income +=
+
+            item.amount;
 
         }
 
-        /* ===== EXPENSE ===== */
 
-if(item.type===TRANSACTION.EXPENSE){
+        /* =====================
+           EXPENSE
+        ===================== */
 
-    monthly[key].expense += item.amount;
+        if(
 
-}
+            item.type===
+
+            TRANSACTION.EXPENSE
+
+        ){
+
+            monthly[key]
+
+            .expense +=
+
+            item.amount;
+
+        }
 
     });
 
-    const result = Object.values(monthly)
 
-        .sort((a,b)=>{
+    const result=
 
-            if(a.year!==b.year){
+    Object
 
-                return a.year-b.year;
+    .values(monthly)
 
-            }
+    .sort((a,b)=>{
 
-            return a.month-b.month;
+        if(
 
-        })
+            a.year!==b.year
 
-        .slice(-3);
+        ){
+
+            return(
+
+                a.year-b.year
+
+            );
+
+        }
+
+        return(
+
+            a.month-b.month
+
+        );
+
+    })
+
+    .slice(-3);
+
 
     Finance.charts={
 
-        labels:result.map(
-            item=>MONTH_SHORT[item.month-1]
+        labels:
+
+        result.map(
+
+            item=>
+
+            MONTH_SHORT[
+
+                item.month-1
+
+            ]
+
         ),
 
-        income:result.map(
-            item=>item.income
+
+        income:
+
+        result.map(
+
+            item=>
+
+            item.income
+
         ),
 
-        expense:result.map(
-            item=>item.expense
+
+        expense:
+
+        result.map(
+
+            item=>
+
+            item.expense
+
         )
 
     };
 
 }
 
+
 /* ===========================
    TABLE
 =========================== */
+
 function prepareTable(){
 
     Finance.table=[
 
         ...Finance.data
 
-    ].sort(
+    ]
+
+    .sort(
 
         (a,b)=>
 
@@ -288,15 +553,20 @@ function prepareTable(){
 
 function calculateStatistics(){
 
-    const today = new Date();
+    const today=
 
-    const currentMonth =
+    new Date();
+
+
+    const currentMonth=
 
     today.getMonth()+1;
 
-    const currentYear =
+
+    const currentYear=
 
     today.getFullYear();
+
 
     const stats={
 
@@ -316,39 +586,84 @@ function calculateStatistics(){
 
     };
 
-    const currentData =
 
-    Finance.data.filter(item=>
+    const currentData=
 
-        item.month===currentMonth &&
+    Finance.data
 
-        item.year===currentYear
+    .filter(item=>
+
+        item.month===
+
+        currentMonth
+
+        &&
+
+        item.year===
+
+        currentYear
 
     );
 
-    currentData.forEach(item=>{
 
-        /* ===== MONTHLY CASHFLOW ===== */
+    currentData
 
-        if(item.type===TRANSACTION.INCOME){
+    .forEach(item=>{
 
-            stats.monthlyIncome += item.amount;
 
-        }
-
-        if(item.type===TRANSACTION.EXPENSE){
-
-            stats.monthlyExpense += item.amount;
-
-        }
-
-        /* ===== EXPENSE ===== */
+        /* =====================
+           MONTHLY CASHFLOW
+        ===================== */
 
         if(
 
-            item.type===TRANSACTION.EXPENSE &&
+            item.type===
 
-            !EXCLUDED_EXPENSE.includes(
+            TRANSACTION.INCOME
+
+        ){
+
+            stats
+
+            .monthlyIncome +=
+
+            item.amount;
+
+        }
+
+
+        if(
+
+            item.type===
+
+            TRANSACTION.EXPENSE
+
+        ){
+
+            stats
+
+            .monthlyExpense +=
+
+            item.amount;
+
+        }
+
+
+        /* =====================
+           EXPENSE
+        ===================== */
+
+        if(
+
+            item.type===
+
+            TRANSACTION.EXPENSE
+
+            &&
+
+            !EXCLUDED_EXPENSE
+
+            .includes(
 
                 item.category
 
@@ -356,7 +671,9 @@ function calculateStatistics(){
 
         ){
 
-            stats.expenseByCategory[
+            stats
+
+            .expenseByCategory[
 
                 item.category
 
@@ -364,39 +681,69 @@ function calculateStatistics(){
 
             (
 
-                stats.expenseByCategory[
+                stats
+
+                .expenseByCategory[
 
                     item.category
 
-                ]||0
+                ]
 
-            )+item.amount;
+                ||0
+
+            )
+
+            +
+
+            item.amount;
+
 
             if(
 
-                !stats.highestExpense ||
+                !stats
 
-                item.amount>
+                .highestExpense
 
-                stats.highestExpense.amount
+                ||
+
+                item.amount
+
+                >
+
+                stats
+
+                .highestExpense
+
+                .amount
 
             ){
 
-                stats.highestExpense=item;
+                stats
+
+                .highestExpense=
+
+                item;
 
             }
 
         }
 
-        /* ===== INCOME ===== */
+
+        /* =====================
+           INCOME
+        ===================== */
 
         if(
 
-            item.type===TRANSACTION.INCOME
+            item.type===
+
+            TRANSACTION.INCOME
 
         ){
 
-            stats.incomeByCategory[
+            stats
+
+            .incomeByCategory[
 
                 item.category
 
@@ -404,25 +751,48 @@ function calculateStatistics(){
 
             (
 
-                stats.incomeByCategory[
+                stats
+
+                .incomeByCategory[
 
                     item.category
 
-                ]||0
+                ]
 
-            )+item.amount;
+                ||0
+
+            )
+
+            +
+
+            item.amount;
+
 
             if(
 
-                !stats.highestIncome ||
+                !stats
 
-                item.amount>
+                .highestIncome
 
-                stats.highestIncome.amount
+                ||
+
+                item.amount
+
+                >
+
+                stats
+
+                .highestIncome
+
+                .amount
 
             ){
 
-                stats.highestIncome=item;
+                stats
+
+                .highestIncome=
+
+                item;
 
             }
 
@@ -430,20 +800,31 @@ function calculateStatistics(){
 
     });
 
-    stats.monthlyBalance =
 
-    stats.monthlyIncome -
+    stats.monthlyBalance=
+
+    stats.monthlyIncome
+
+    -
 
     stats.monthlyExpense;
 
-    Finance.statistics = stats;
-   console.log(
-    "Monthly Statistics",
-    Finance.statistics
-);
+
+    Finance.statistics=
+
+    stats;
+
+
+    console.log(
+
+        "Monthly Statistics",
+
+        Finance.statistics
+
+    );
 
 }
-            
+
 
 /* ===========================
    INSIGHT
@@ -451,101 +832,145 @@ function calculateStatistics(){
 
 function generateInsight(){
 
-    const summary =
+    const summary=
+
     Finance.summary;
 
-    const stats =
+
+    const stats=
+
     Finance.statistics;
 
-    const insight = [];
 
-    /* ===== CASHFLOW ===== */
+    const insight=[];
 
-    if(summary.balance>0){
+
+    /* =====================
+       CASHFLOW
+    ===================== */
+
+    if(
+
+        summary.balance>0
+
+    ){
 
         insight.push({
 
             icon:"📈",
 
             text:
+
             "Cashflow bulan ini masih positif."
 
         });
 
-    }else{
+    }
+
+    else{
 
         insight.push({
 
             icon:"⚠️",
 
             text:
+
             "Cashflow bulan ini negatif."
 
         });
 
     }
 
-    /* ===== SAVING RATE ===== */
 
-    if(summary.savingRate>=20){
+    /* =====================
+       SAVING RATE
+    ===================== */
+
+    if(
+
+        summary.savingRate>=20
+
+    ){
 
         insight.push({
 
             icon:"🏦",
 
             text:
-            `Saving Rate ${summary.savingRate.toFixed(1)}%.
-            Sangat baik, pertahankan!`
+
+            `Saving Rate ${summary.savingRate.toFixed(1)}%. Sangat baik, pertahankan!`
 
         });
 
-    }else{
+    }
+
+    else{
 
         insight.push({
 
             icon:"💰",
 
             text:
-            `Saving Rate ${summary.savingRate.toFixed(1)}%.
-            Coba tingkatkan hingga minimal 20%.`
+
+            `Saving Rate ${summary.savingRate.toFixed(1)}%. Coba tingkatkan hingga minimal 20%.`
 
         });
 
     }
 
-    /* ===== TOP EXPENSE ===== */
 
-    if(stats.highestExpense){
+    /* =====================
+       TOP EXPENSE
+    ===================== */
+
+    if(
+
+        stats.highestExpense
+
+    ){
 
         insight.push({
 
             icon:"💸",
 
             text:
+
             `Pengeluaran operasional terbesar berasal dari kategori "${stats.highestExpense.category}".`
 
         });
 
     }
 
-    /* ===== TOP INCOME ===== */
 
-    if(stats.highestIncome){
+    /* =====================
+       TOP INCOME
+    ===================== */
+
+    if(
+
+        stats.highestIncome
+
+    ){
 
         insight.push({
 
             icon:"💵",
 
             text:
+
             `Sumber pemasukan terbesar berasal dari "${stats.highestIncome.category}".`
 
         });
 
     }
 
-    Finance.insight = insight;
 
-           }
+    Finance.insight=
+
+    insight;
+
+}
+
 
 /* ===========================
    ALL FUNCTION
@@ -568,4 +993,3 @@ function processFinanceData(){
     generateInsight();
 
 }
-
