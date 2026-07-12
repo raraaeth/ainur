@@ -948,3 +948,13 @@ tbody tr:hover{
     color:#172033 !important;
 
 }
+
+/* =========================
+   SEABANK CURRENT BALANCE
+========================= */
+
+body.light-mode #savingBalance{
+
+    color:#172033;
+
+}
