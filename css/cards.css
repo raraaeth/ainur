@@ -527,3 +527,23 @@
 
 }
 
+/* =========================
+   SEABANK CURRENT BALANCE
+========================= */
+
+#savingBalance{
+
+    display:block;
+
+    margin-top:12px;
+
+    font-size:2rem;
+
+    font-weight:700;
+
+    line-height:1.2;
+
+    color:#ffffff;
+
+}
+
