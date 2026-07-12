@@ -543,7 +543,7 @@
 
     line-height:1.2;
 
-    color:#ffffff;
+    color:var(--text);
 
 }
 
