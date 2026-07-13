@@ -455,7 +455,22 @@ function showPage(pageId){
             "page-enter-right"
 
         );
+       
+/* =====================
+   SMART INSIGHT
+===================== */
 
+if(
+
+    pageId ===
+
+    "homePage"
+
+){
+
+    animateSmartInsight();
+
+}
 
       /* =====================
    PAGE ANIMATION
