@@ -1,0 +1,353 @@
+/* =====================================================
+   LIFE DASHBOARD
+   FILE : animation.css
+   DESCRIPTION : Global Interface Animation
+===================================================== */
+
+
+/* =====================================================
+   PAGE NAVIGATION
+===================================================== */
+
+.page{
+
+    display:none;
+
+}
+
+
+/* =========================
+   ACTIVE PAGE
+========================= */
+
+.page.active-page{
+
+    display:block;
+
+}
+
+
+/* =====================================================
+   PAGE ENTER ANIMATION
+===================================================== */
+
+
+/* =========================
+   ENTER FROM RIGHT
+========================= */
+
+.page.page-enter-right{
+
+    display:block;
+
+    animation:
+
+    pageEnterRight
+
+    .32s
+
+    cubic-bezier(
+        .22,
+        .61,
+        .36,
+        1
+    )
+
+    both;
+
+}
+
+
+/* =========================
+   ENTER FROM LEFT
+========================= */
+
+.page.page-enter-left{
+
+    display:block;
+
+    animation:
+
+    pageEnterLeft
+
+    .32s
+
+    cubic-bezier(
+        .22,
+        .61,
+        .36,
+        1
+    )
+
+    both;
+
+}
+
+
+/* =====================================================
+   PAGE EXIT ANIMATION
+===================================================== */
+
+
+/* =========================
+   EXIT TO LEFT
+========================= */
+
+.page.page-exit-left{
+
+    display:block;
+
+    animation:
+
+    pageExitLeft
+
+    .32s
+
+    cubic-bezier(
+        .22,
+        .61,
+        .36,
+        1
+    )
+
+    both;
+
+}
+
+
+/* =========================
+   EXIT TO RIGHT
+========================= */
+
+.page.page-exit-right{
+
+    display:block;
+
+    animation:
+
+    pageExitRight
+
+    .32s
+
+    cubic-bezier(
+        .22,
+        .61,
+        .36,
+        1
+    )
+
+    both;
+
+}
+
+
+/* =====================================================
+   NAVIGATION ITEM
+===================================================== */
+
+.nav-item{
+
+    transition:
+
+    color .25s ease,
+
+    transform .25s ease;
+
+}
+
+
+/* =========================
+   ACTIVE NAVIGATION
+========================= */
+
+.nav-item.active{
+
+    transform:
+
+    translateY(-2px);
+
+}
+
+
+/* =========================
+   NAVIGATION ICON
+========================= */
+
+.nav-item i,
+
+.nav-item .nav-icon{
+
+    transition:
+
+    transform .3s
+
+    cubic-bezier(
+        .34,
+        1.56,
+        .64,
+        1
+    );
+
+}
+
+
+/* =========================
+   ACTIVE ICON
+========================= */
+
+.nav-item.active i,
+
+.nav-item.active .nav-icon{
+
+    transform:
+
+    scale(1.14);
+
+}
+
+
+/* =====================================================
+   KEYFRAMES
+===================================================== */
+
+
+/* =========================
+   ENTER RIGHT
+========================= */
+
+@keyframes pageEnterRight{
+
+    from{
+
+        opacity:0;
+
+        transform:
+
+        translateX(42px);
+
+    }
+
+    to{
+
+        opacity:1;
+
+        transform:
+
+        translateX(0);
+
+    }
+
+}
+
+
+/* =========================
+   ENTER LEFT
+========================= */
+
+@keyframes pageEnterLeft{
+
+    from{
+
+        opacity:0;
+
+        transform:
+
+        translateX(-42px);
+
+    }
+
+    to{
+
+        opacity:1;
+
+        transform:
+
+        translateX(0);
+
+    }
+
+}
+
+
+/* =========================
+   EXIT LEFT
+========================= */
+
+@keyframes pageExitLeft{
+
+    from{
+
+        opacity:1;
+
+        transform:
+
+        translateX(0);
+
+    }
+
+    to{
+
+        opacity:0;
+
+        transform:
+
+        translateX(-30px);
+
+    }
+
+}
+
+
+/* =========================
+   EXIT RIGHT
+========================= */
+
+@keyframes pageExitRight{
+
+    from{
+
+        opacity:1;
+
+        transform:
+
+        translateX(0);
+
+    }
+
+    to{
+
+        opacity:0;
+
+        transform:
+
+        translateX(30px);
+
+    }
+
+}
+
+
+/* =====================================================
+   REDUCED MOTION
+===================================================== */
+
+@media(
+    prefers-reduced-motion:
+    reduce
+){
+
+    .page,
+
+    .nav-item,
+
+    .nav-item i,
+
+    .nav-item .nav-icon{
+
+        animation:none !important;
+
+        transition:none !important;
+
+    }
+
+}
