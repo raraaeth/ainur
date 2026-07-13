@@ -41,6 +41,8 @@ async function init(){
 
     updateInsight();
 
+    animateSmartInsight();
+
     updatePlanner();
 
     updatePlannerHeader();
