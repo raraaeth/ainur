@@ -384,7 +384,7 @@
 
     insightReveal
 
-    .55s
+    1s
 
     cubic-bezier(
         .22,
@@ -409,7 +409,7 @@
 
     insightTextReveal
 
-    .55s
+    1s
 
     ease
 
