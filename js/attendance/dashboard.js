@@ -46,6 +46,10 @@ function updateCheckInCard(){
     ===================== */
 
     if(!Attendance.current){
+       
+       /* START BEFORE CHECK-IN ANIMATION */
+
+playBeforeCheckInIntro();
 
         button.disabled = false;
 
@@ -74,6 +78,9 @@ function updateCheckInCard(){
     /* =====================
        SUDAH CHECK IN
     ===================== */
+   /* STOP BEFORE CHECK-IN ANIMATION */
+
+stopAttendanceAnimation();
 
     button.disabled = true;
 
