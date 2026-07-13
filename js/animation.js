@@ -582,7 +582,7 @@ function animateSmartInsight(){
 
             },
 
-            index * 140
+            index * 350
 
             );
 
