@@ -153,27 +153,70 @@ document
    BOTTOM NAVIGATION
 ===================================================== */
 
+
+/* =========================
+   NAVIGATION STATE
+========================= */
+
+let navigationAnimating = false;
+
+
+/* =========================
+   PAGE ORDER
+========================= */
+
+const PAGE_ORDER = [
+
+    "homePage",
+
+    "financePage",
+
+    "cryptoPage",
+
+    "airdropPage"
+
+];
+
+
+/* =========================
+   SHOW PAGE
+========================= */
+
 function showPage(pageId){
 
     /* =====================
-       PAGE
+       PREVENT MULTIPLE CLICK
     ===================== */
 
-    document
+    if(
 
-    .querySelectorAll(".page")
+        navigationAnimating
 
-    .forEach(page=>{
+    ){
 
-        page.classList.remove(
+        return;
 
-            "active-page"
+    }
 
-        );
 
-    });
+    /* =====================
+       CURRENT PAGE
+    ===================== */
 
-    const target =
+    const currentPage =
+
+    document.querySelector(
+
+        ".page.active-page"
+
+    );
+
+
+    /* =====================
+       TARGET PAGE
+    ===================== */
+
+    const targetPage =
 
     document.getElementById(
 
@@ -181,62 +224,239 @@ function showPage(pageId){
 
     );
 
-    if(target){
 
-        target.classList.add(
+    /* =====================
+       VALIDATION
+    ===================== */
 
-            "active-page"
+    if(
 
-        );
+        !targetPage
+
+    ){
+
+        return;
 
     }
 
+
     /* =====================
-       NAVIGATION
+       SAME PAGE
     ===================== */
 
-    document
+    if(
 
-    .querySelectorAll(".nav-item")
+        currentPage ===
 
-    .forEach(item=>{
+        targetPage
 
-        item.classList.remove(
+    ){
 
-            "active"
+        window.scrollTo({
 
-        );
+            top:0,
 
-        if(
+            behavior:"smooth"
 
-            item.dataset.page===
+        });
 
-            pageId
+        return;
 
-        ){
+    }
 
-            item.classList.add(
-
-                "active"
-
-            );
-
-        }
-
-    });
 
     /* =====================
-       SCROLL TOP
+       LOCK NAVIGATION
+    ===================== */
+
+    navigationAnimating = true;
+
+
+    /* =====================
+       PAGE INDEX
+    ===================== */
+
+    const currentIndex =
+
+    PAGE_ORDER.indexOf(
+
+        currentPage?.id
+
+    );
+
+
+    const targetIndex =
+
+    PAGE_ORDER.indexOf(
+
+        pageId
+
+    );
+
+
+    /* =====================
+       DIRECTION
+    ===================== */
+
+    const moveForward =
+
+    targetIndex >
+
+    currentIndex;
+
+
+    const exitClass =
+
+    moveForward
+
+    ?
+
+    "page-exit-left"
+
+    :
+
+    "page-exit-right";
+
+
+    const enterClass =
+
+    moveForward
+
+    ?
+
+    "page-enter-right"
+
+    :
+
+    "page-enter-left";
+
+
+    /* =====================
+       RESET SCROLL
     ===================== */
 
     window.scrollTo({
 
         top:0,
 
-        behavior:"smooth"
+        behavior:"auto"
 
     });
 
-}
 
+    /* =====================
+       UPDATE NAVIGATION
+    ===================== */
+
+    document
+
+    .querySelectorAll(
+
+        ".nav-item"
+
+    )
+
+    .forEach(item=>{
+
+        item.classList.toggle(
+
+            "active",
+
+            item.dataset.page ===
+
+            pageId
+
+        );
+
+    });
+
+
+    /* =====================
+       CLEAN TARGET
+    ===================== */
+
+    targetPage.classList.remove(
+
+        "page-enter-right",
+
+        "page-enter-left",
+
+        "page-exit-right",
+
+        "page-exit-left"
+
+    );
+
+
+    /* =====================
+       ENTER TARGET
+    ===================== */
+
+    targetPage.classList.add(
+
+        "active-page",
+
+        enterClass
+
+    );
+
+
+    /* =====================
+       EXIT CURRENT
+    ===================== */
+
+    if(
+
+        currentPage
+
+    ){
+
+        currentPage.classList.add(
+
+            exitClass
+
+        );
+
+    }
+
+
+    /* =====================
+       FINISH ANIMATION
+    ===================== */
+
+    setTimeout(()=>{
+
+        if(
+
+            currentPage
+
+        ){
+
+            currentPage.classList.remove(
+
+                "active-page",
+
+                "page-exit-left",
+
+                "page-exit-right"
+
+            );
+
+        }
+
+
+        targetPage.classList.remove(
+
+            "page-enter-left",
+
+            "page-enter-right"
+
+        );
+
+
+        navigationAnimating = false;
+
+    },320);
+
+}
 
