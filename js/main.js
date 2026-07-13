@@ -454,6 +454,36 @@ function showPage(pageId){
         );
 
 
+      /* =====================
+   PAGE ANIMATION
+===================== */
+
+if(
+
+    pageId ===
+
+    "financePage"
+
+){
+
+    animateFinanceSummary();
+
+}
+
+
+if(
+
+    pageId ===
+
+    "airdropPage"
+
+){
+
+    animateAirdropReward();
+
+}
+       
+
         navigationAnimating = false;
 
     },320);
