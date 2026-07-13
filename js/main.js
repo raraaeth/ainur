@@ -109,6 +109,7 @@ fetchAllWalletTokens()
     renderTopHoldingChart();
     processInsight();
     updateInsight();
+    animateSmartInsight();
 
 })
 
