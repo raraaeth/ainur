@@ -470,3 +470,131 @@ function animateAirdropReward(){
     );
 
               }
+
+/* =====================================================
+   SMART INSIGHT ANIMATION
+===================================================== */
+
+
+/* =========================
+   ACTIVE TIMERS
+========================= */
+
+let insightAnimationTimers = [];
+
+
+/* =========================
+   ANIMATE SMART INSIGHT
+========================= */
+
+function animateSmartInsight(){
+
+    /* =====================
+       GET INSIGHT ITEMS
+    ===================== */
+
+    const items =
+
+    document.querySelectorAll(
+
+        "#insightContainer .insight-item"
+
+    );
+
+
+    if(
+
+        !items.length
+
+    ){
+
+        return;
+
+    }
+
+
+    /* =====================
+       CLEAR OLD TIMER
+    ===================== */
+
+    insightAnimationTimers
+
+    .forEach(timer=>{
+
+        clearTimeout(
+
+            timer
+
+        );
+
+    });
+
+
+    insightAnimationTimers = [];
+
+
+    /* =====================
+       RESET ITEMS
+    ===================== */
+
+    items.forEach(item=>{
+
+        item.classList.remove(
+
+            "insight-show"
+
+        );
+
+    });
+
+
+    /* =====================
+       FORCE REPAINT
+    ===================== */
+
+    void document.body.offsetHeight;
+
+
+    /* =====================
+       SHOW ONE BY ONE
+    ===================== */
+
+    items.forEach(
+
+        (
+
+            item,
+
+            index
+
+        )=>{
+
+
+            const timer =
+
+            setTimeout(()=>{
+
+                item.classList.add(
+
+                    "insight-show"
+
+                );
+
+            },
+
+            index * 140
+
+            );
+
+
+            insightAnimationTimers.push(
+
+                timer
+
+            );
+
+        }
+
+    );
+
+                       }
