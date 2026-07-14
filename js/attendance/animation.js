@@ -826,6 +826,134 @@ function playLeaveAnimation(){
 
 }
 
+/* =========================
+   DISPLAY MODE
+========================= */
+
+function showAttendanceVideo(){
+
+    const video =
+
+    document.getElementById(
+
+        "attendanceCharacterVideo"
+
+    );
+
+
+    const image =
+
+    document.getElementById(
+
+        "attendanceCharacter"
+
+    );
+
+
+    if(!video || !image){
+
+        return;
+
+    }
+
+
+    /* SHOW VIDEO */
+
+    video.style.display =
+
+    "block";
+
+
+    /* HIDE PNG */
+
+    image.style.display =
+
+    "none";
+
+
+    /* STOP PNG ANIMATION */
+
+    stopAttendanceAnimation();
+
+
+    /* RESTART VIDEO */
+
+    video.currentTime = 0;
+
+
+    const playPromise =
+
+    video.play();
+
+
+    if(
+
+        playPromise !==
+
+        undefined
+
+    ){
+
+        playPromise.catch(
+
+            ()=>{}
+
+        );
+
+    }
+
+}
+
+
+/* =========================
+   DISPLAY IMAGE
+========================= */
+
+function showAttendanceImage(){
+
+    const video =
+
+    document.getElementById(
+
+        "attendanceCharacterVideo"
+
+    );
+
+
+    const image =
+
+    document.getElementById(
+
+        "attendanceCharacter"
+
+    );
+
+
+    if(!video || !image){
+
+        return;
+
+    }
+
+
+    /* HIDE VIDEO */
+
+    video.pause();
+
+
+    video.style.display =
+
+    "none";
+
+
+    /* SHOW PNG */
+
+    image.style.display =
+
+    "block";
+
+}
+
 
 /* =========================
    SELECT ANIMATION
@@ -843,11 +971,18 @@ function updateAttendanceAnimation(){
 
     ){
 
-        playBeforeCheckInIntro();
+        showAttendanceVideo();
 
         return;
 
     }
+
+
+    /* =====================
+       SHOW PNG ANIMATION
+    ===================== */
+
+    showAttendanceImage();
 
 
     const status =
@@ -903,4 +1038,6 @@ function updateAttendanceAnimation(){
 
     playAfterCheckInAnimation();
 
-       }
+}
+
+    
