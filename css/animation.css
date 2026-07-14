@@ -495,3 +495,44 @@
     }
 
 }
+
+/* =====================================================
+   ATTENDANCE VIDEO
+===================================================== */
+
+.attendance-image{
+
+    position:relative;
+
+    overflow:hidden;
+
+}
+
+
+/* =========================
+   VIDEO + IMAGE
+========================= */
+
+#attendanceCharacterVideo,
+#attendanceCharacter{
+
+    display:block;
+
+    width:100%;
+
+    height:100%;
+
+    object-fit:contain;
+
+}
+
+
+/* =========================
+   VIDEO DEFAULT
+========================= */
+
+#attendanceCharacterVideo{
+
+    display:none;
+
+}
