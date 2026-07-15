@@ -1,885 +1,140 @@
 /* =====================================================
    AINUR DASHBOARD
-   FILE : attendance/animation.js
-   DESCRIPTION : Attendance Character Animation
+   FILE : attendance-animation.js
+   DESCRIPTION : Attendance Video Controller
 ===================================================== */
 
 
 /* =========================
-   ANIMATION STATE
+   ATTENDANCE VIDEO PATH
 ========================= */
 
-let attendanceAnimationTimer = null;
+const ATTENDANCE_VIDEOS = {
 
-let attendanceAnimationRunning = false;
+    before:
 
-let attendanceAnimationMode = null;
-
-
-/* =========================
-   IMAGE PATH
-========================= */
-
-const BEFORE_CHECKIN_PATH =
-
-"assets/attendance/before-checkin/";
+    "assets/attendance/before-checkin/before-checkin.mp4",
 
 
-const AFTER_CHECKIN_PATH =
+    work:
 
-"assets/attendance/after-checkin/";
-
-
-const HOLIDAY_PATH =
-
-"assets/attendance/holiday/";
+    "assets/attendance/after-checkin/after-checkin.mp4",
 
 
-const LEAVE_PATH =
+    /* TEMPORARY */
 
-"assets/attendance/leave/";
+    holiday:
 
-
-/* =========================
-   BEFORE CHECK-IN FRAMES
-========================= */
-
-const beforeCheckInFrames = {
-
-    empty:
-
-    BEFORE_CHECKIN_PATH +
-
-    "before-empty.png",
+    "assets/attendance/after-checkin/after-checkin.mp4",
 
 
-    peek:
+    /* TEMPORARY */
 
-    BEFORE_CHECKIN_PATH +
+    leave:
 
-    "before-peek.png",
-
-
-    enter:
-
-    BEFORE_CHECKIN_PATH +
-
-    "before-enter.png",
-
-
-    ready:
-
-    BEFORE_CHECKIN_PATH +
-
-    "before-ready.png",
-
-
-    waveStart:
-
-    BEFORE_CHECKIN_PATH +
-
-    "before-wave-start.png",
-
-
-    waveLeft:
-
-    BEFORE_CHECKIN_PATH +
-
-    "before-wave-left.png",
-
-
-    waveRight:
-
-    BEFORE_CHECKIN_PATH +
-
-    "before-wave-right.png"
+    "assets/attendance/after-checkin/after-checkin.mp4"
 
 };
 
 
 /* =========================
-   AFTER CHECK-IN FRAMES
+   CURRENT VIDEO
 ========================= */
 
-const afterCheckInFrames = [
+let currentAttendanceVideo =
 
-    AFTER_CHECKIN_PATH +
-
-    "after-work-01.png",
-
-
-    AFTER_CHECKIN_PATH +
-
-    "after-work-02.png",
-
-
-    AFTER_CHECKIN_PATH +
-
-    "after-work-03.png",
-
-
-    AFTER_CHECKIN_PATH +
-
-    "after-work-04.png",
-
-
-    AFTER_CHECKIN_PATH +
-
-    "after-work-05.png",
-
-
-    AFTER_CHECKIN_PATH +
-
-    "after-work-06.png",
-
-
-    AFTER_CHECKIN_PATH +
-
-    "after-work-07.png",
-
-
-    AFTER_CHECKIN_PATH +
-
-    "after-work-08.png"
-
-];
+null;
 
 
 /* =========================
-   HOLIDAY FRAMES
+   PLAY ATTENDANCE VIDEO
 ========================= */
 
-const holidayFrames = [
+function playAttendanceVideo(
 
-    HOLIDAY_PATH +
-
-    "holiday-smoke-01.png",
-
-
-    HOLIDAY_PATH +
-
-    "holiday-smoke-02.png",
-
-
-    HOLIDAY_PATH +
-
-    "holiday-smoke-03.png",
-
-
-    HOLIDAY_PATH +
-
-    "holiday-smoke-04.png",
-
-
-    HOLIDAY_PATH +
-
-    "holiday-smoke-05.png"
-
-];
-
-
-/* =========================
-   LEAVE / SICK FRAMES
-========================= */
-
-const leaveFrames = [
-
-    LEAVE_PATH +
-
-    "leave-sleep-01.png",
-
-
-    LEAVE_PATH +
-
-    "leave-sleep-02.png",
-
-
-    LEAVE_PATH +
-
-    "leave-sleep-03.png",
-
-
-    LEAVE_PATH +
-
-    "leave-sleep-04.png"
-
-];
-
-
-/* =========================
-   GET CHARACTER
-========================= */
-
-function getAttendanceCharacter(){
-
-    return document.getElementById(
-
-        "attendanceCharacter"
-
-    );
-
-}
-
-
-/* =========================
-   CHANGE IMAGE
-========================= */
-
-function setAttendanceImage(
-
-    imagePath
+    videoPath
 
 ){
-
-    const character =
-
-    getAttendanceCharacter();
-
-
-    if(
-
-        !character ||
-
-        !imagePath
-
-    ){
-
-        return;
-
-    }
-
-
-    character.src =
-
-    imagePath;
-
-}
-
-
-/* =========================
-   BEFORE FRAME
-========================= */
-
-function setAttendanceCharacter(
-
-    frame
-
-){
-
-    if(
-
-        !beforeCheckInFrames[frame]
-
-    ){
-
-        return;
-
-    }
-
-
-    setAttendanceImage(
-
-        beforeCheckInFrames[frame]
-
-    );
-
-}
-
-
-/* =========================
-   WAIT
-========================= */
-
-function waitAttendanceAnimation(
-
-    duration
-
-){
-
-    return new Promise(
-
-        resolve=>{
-
-            attendanceAnimationTimer =
-
-            setTimeout(
-
-                resolve,
-
-                duration
-
-            );
-
-        }
-
-    );
-
-}
-
-
-/* =========================
-   STOP ANIMATION
-========================= */
-
-function stopAttendanceAnimation(){
-
-    attendanceAnimationRunning =
-
-    false;
-
-
-    clearTimeout(
-
-        attendanceAnimationTimer
-
-    );
-
-
-    attendanceAnimationTimer =
-
-    null;
-
-
-    attendanceAnimationMode =
-
-    null;
-
-}
-
-
-/* =========================
-   START MODE
-========================= */
-
-function startAttendanceAnimation(
-
-    mode
-
-){
-
-    if(
-
-        attendanceAnimationRunning &&
-
-        attendanceAnimationMode === mode
-
-    ){
-
-        return false;
-
-    }
-
-
-    stopAttendanceAnimation();
-
-
-    attendanceAnimationRunning =
-
-    true;
-
-
-    attendanceAnimationMode =
-
-    mode;
-
-
-    return true;
-
-}
-
-
-/* =========================
-   BEFORE CHECK-IN WAVE
-========================= */
-
-async function playAttendanceWave(
-
-    totalWave = 4
-
-){
-
-    setAttendanceCharacter(
-
-        "waveStart"
-
-    );
-
-
-    await waitAttendanceAnimation(
-
-        500
-
-    );
-
-
-    for(
-
-        let wave = 0;
-
-        wave < totalWave;
-
-        wave++
-
-    ){
-
-        if(
-
-            !attendanceAnimationRunning ||
-
-            attendanceAnimationMode !==
-
-            "before"
-
-        ){
-
-            return;
-
-        }
-
-
-        setAttendanceCharacter(
-
-            "waveLeft"
-
-        );
-
-
-        await waitAttendanceAnimation(
-
-            550
-
-        );
-
-
-        if(
-
-            !attendanceAnimationRunning ||
-
-            attendanceAnimationMode !==
-
-            "before"
-
-        ){
-
-            return;
-
-        }
-
-
-        setAttendanceCharacter(
-
-            "waveRight"
-
-        );
-
-
-        await waitAttendanceAnimation(
-
-            550
-
-        );
-
-    }
-
-
-    setAttendanceCharacter(
-
-        "waveStart"
-
-    );
-
-}
-
-
-/* =========================
-   BEFORE CHECK-IN
-========================= */
-
-async function playBeforeCheckInIntro(){
-
-    const started =
-
-    startAttendanceAnimation(
-
-        "before"
-
-    );
-
-
-    if(
-
-        !started
-
-    ){
-
-        return;
-
-    }
-
-
-    /* EMPTY */
-
-    setAttendanceCharacter(
-
-        "empty"
-
-    );
-
-
-    await waitAttendanceAnimation(
-
-        1200
-
-    );
-
-
-    if(
-
-        attendanceAnimationMode !==
-
-        "before"
-
-    ){
-
-        return;
-
-    }
-
-
-    /* PEEK */
-
-    setAttendanceCharacter(
-
-        "peek"
-
-    );
-
-
-    await waitAttendanceAnimation(
-
-        1500
-
-    );
-
-
-    if(
-
-        attendanceAnimationMode !==
-
-        "before"
-
-    ){
-
-        return;
-
-    }
-
-
-    /* ENTER */
-
-    setAttendanceCharacter(
-
-        "enter"
-
-    );
-
-
-    await waitAttendanceAnimation(
-
-        1400
-
-    );
-
-
-    if(
-
-        attendanceAnimationMode !==
-
-        "before"
-
-    ){
-
-        return;
-
-    }
-
-
-    /* READY */
-
-    setAttendanceCharacter(
-
-        "ready"
-
-    );
-
-
-    await waitAttendanceAnimation(
-
-        1300
-
-    );
-
-
-    if(
-
-        attendanceAnimationMode !==
-
-        "before"
-
-    ){
-
-        return;
-
-    }
-
-
-    /* FIRST WAVE */
-
-    await playAttendanceWave(
-
-        4
-
-    );
-
-
-    /* REPEAT WAVE */
-
-    while(
-
-        attendanceAnimationRunning &&
-
-        attendanceAnimationMode ===
-
-        "before"
-
-    ){
-
-        setAttendanceCharacter(
-
-            "waveStart"
-
-        );
-
-
-        await waitAttendanceAnimation(
-
-            4000
-
-        );
-
-
-        if(
-
-            !attendanceAnimationRunning ||
-
-            attendanceAnimationMode !==
-
-            "before"
-
-        ){
-
-            return;
-
-        }
-
-
-        await playAttendanceWave(
-
-            3
-
-        );
-
-    }
-
-}
-
-
-/* =========================
-   LOOP IMAGE FRAMES
-========================= */
-
-async function playAttendanceFrames(
-
-    mode,
-
-    frames,
-
-    frameDuration
-
-){
-
-    const started =
-
-    startAttendanceAnimation(
-
-        mode
-
-    );
-
-
-    if(
-
-        !started
-
-    ){
-
-        return;
-
-    }
-
-
-    let frameIndex = 0;
-
-
-    while(
-
-        attendanceAnimationRunning &&
-
-        attendanceAnimationMode === mode
-
-    ){
-
-        setAttendanceImage(
-
-            frames[frameIndex]
-
-        );
-
-
-        await waitAttendanceAnimation(
-
-            frameDuration
-
-        );
-
-
-        frameIndex =
-
-        (
-
-            frameIndex + 1
-
-        )
-
-        %
-
-        frames.length;
-
-    }
-
-}
-
-
-/* =========================
-   AFTER CHECK-IN
-========================= */
-
-function playAfterCheckInAnimation(){
-
-    playAttendanceFrames(
-
-        "work",
-
-        afterCheckInFrames,
-
-        850
-
-    );
-
-}
-
-
-/* =========================
-   HOLIDAY
-========================= */
-
-function playHolidayAnimation(){
-
-    playAttendanceFrames(
-
-        "holiday",
-
-        holidayFrames,
-
-        900
-
-    );
-
-}
-
-
-/* =========================
-   LEAVE / SICK
-========================= */
-
-function playLeaveAnimation(){
-
-    playAttendanceFrames(
-
-        "leave",
-
-        leaveFrames,
-
-        950
-
-    );
-
-}
-
-/* =========================
-   DISPLAY MODE
-========================= */
-
-function showAttendanceVideo(){
 
     const video =
 
     document.getElementById(
 
-        "attendanceCharacterVideo"
-
-    );
-
-
-    const image =
-
-    document.getElementById(
-
         "attendanceCharacter"
 
     );
 
 
-    if(!video || !image){
+    if(
+
+        !video ||
+
+        !videoPath
+
+    ){
 
         return;
 
     }
 
 
-    /* SHOW VIDEO */
+    /* =====================
+       SAME VIDEO
+    ===================== */
 
-    video.style.display =
+    if(
 
-    "block";
+        currentAttendanceVideo ===
+
+        videoPath
+
+    ){
+
+        if(
+
+            video.paused
+
+        ){
+
+            video.play()
+
+            .catch(()=>{});
+
+        }
 
 
-    /* HIDE PNG */
+        return;
 
-    image.style.display =
-
-    "none";
+    }
 
 
-    /* STOP PNG ANIMATION */
+    /* =====================
+       SAVE CURRENT VIDEO
+    ===================== */
 
-    stopAttendanceAnimation();
+    currentAttendanceVideo =
+
+    videoPath;
 
 
-    /* RESTART VIDEO */
+    /* =====================
+       CHANGE VIDEO
+    ===================== */
 
-    video.currentTime = 0;
+    video.pause();
 
+
+    video.src =
+
+    videoPath;
+
+
+    video.load();
+
+
+    /* =====================
+       PLAY VIDEO
+    ===================== */
 
     const playPromise =
 
@@ -894,9 +149,21 @@ function showAttendanceVideo(){
 
     ){
 
-        playPromise.catch(
+        playPromise
 
-            ()=>{}
+        .catch(
+
+            error=>{
+
+                console.warn(
+
+                    "Attendance video autoplay blocked:",
+
+                    error
+
+                );
+
+            }
 
         );
 
@@ -906,63 +173,13 @@ function showAttendanceVideo(){
 
 
 /* =========================
-   DISPLAY IMAGE
-========================= */
-
-function showAttendanceImage(){
-
-    const video =
-
-    document.getElementById(
-
-        "attendanceCharacterVideo"
-
-    );
-
-
-    const image =
-
-    document.getElementById(
-
-        "attendanceCharacter"
-
-    );
-
-
-    if(!video || !image){
-
-        return;
-
-    }
-
-
-    /* HIDE VIDEO */
-
-    video.pause();
-
-
-    video.style.display =
-
-    "none";
-
-
-    /* SHOW PNG */
-
-    image.style.display =
-
-    "block";
-
-}
-
-
-/* =========================
-   SELECT ANIMATION
+   UPDATE ATTENDANCE VIDEO
 ========================= */
 
 function updateAttendanceAnimation(){
 
     /* =====================
-       BEFORE CHECK IN
+       BEFORE CHECK-IN
     ===================== */
 
     if(
@@ -971,18 +188,16 @@ function updateAttendanceAnimation(){
 
     ){
 
-        showAttendanceVideo();
+        playAttendanceVideo(
+
+            ATTENDANCE_VIDEOS.before
+
+        );
+
 
         return;
 
     }
-
-
-    /* =====================
-       SHOW PNG ANIMATION
-    ===================== */
-
-    showAttendanceImage();
 
 
     const status =
@@ -1002,7 +217,12 @@ function updateAttendanceAnimation(){
 
     ){
 
-        playHolidayAnimation();
+        playAttendanceVideo(
+
+            ATTENDANCE_VIDEOS.holiday
+
+        );
+
 
         return;
 
@@ -1025,7 +245,12 @@ function updateAttendanceAnimation(){
 
     ){
 
-        playLeaveAnimation();
+        playAttendanceVideo(
+
+            ATTENDANCE_VIDEOS.leave
+
+        );
+
 
         return;
 
@@ -1036,8 +261,10 @@ function updateAttendanceAnimation(){
        ON TIME / LATE
     ===================== */
 
-    playAfterCheckInAnimation();
+    playAttendanceVideo(
+
+        ATTENDANCE_VIDEOS.work
+
+    );
 
 }
-
-    
