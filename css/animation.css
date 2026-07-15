@@ -564,3 +564,28 @@
     object-fit:cover;
 
 }
+
+/* =====================================================
+   SMOOTH ATTENDANCE VIDEO LOOP
+===================================================== */
+
+#attendanceCharacter{
+
+    opacity:1;
+
+    transition:
+
+        opacity 0.55s ease-in-out;
+
+}
+
+
+/* =========================
+   VIDEO FADE
+========================= */
+
+#attendanceCharacter.video-fade{
+
+    opacity:0;
+
+}
