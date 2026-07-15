@@ -536,3 +536,31 @@
     display:none;
 
 }
+/* =====================================================
+   ATTENDANCE VIDEO
+===================================================== */
+
+.attendance-image{
+
+    position:relative;
+
+    overflow:hidden;
+
+}
+
+
+/* =========================
+   ATTENDANCE CHARACTER
+========================= */
+
+#attendanceCharacter{
+
+    display:block;
+
+    width:100%;
+
+    height:100%;
+
+    object-fit:cover;
+
+}
