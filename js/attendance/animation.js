@@ -258,6 +258,41 @@ function getAttendanceHour(){
        }
 
 /* =====================================================
+   CHECK TODAY ATTENDANCE
+===================================================== */
+
+function isAttendanceToday(){
+
+    if(
+
+        !Attendance.current
+
+    ){
+
+        return false;
+
+    }
+
+    const today =
+
+    new Date()
+
+    .toLocaleDateString(
+
+        "id-ID"
+
+    );
+
+    return (
+
+        Attendance.current.date ===
+
+        today
+
+    );
+
+}
+/* =====================================================
    UPDATE ATTENDANCE VIDEO
 ===================================================== */
 
@@ -278,17 +313,17 @@ function updateAttendanceAnimation(){
 
     if(
 
-        !Attendance.current
+    !isAttendanceToday()
 
-    ){
+){
 
-        playAttendanceVideo(
+    playAttendanceVideo(
 
-            ATTENDANCE_VIDEOS.before
+        ATTENDANCE_VIDEOS.before
 
-        );
+    );
 
-        return;
+    return;
 
     }
 
