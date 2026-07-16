@@ -1,7 +1,7 @@
 /* =====================================================
    AINUR DASHBOARD
-   FILE : attendance-animation.js
-   DESCRIPTION : Attendance Video Controller
+   FILE : attendance/animation.js
+   DESCRIPTION : Attendance Video Engine
 ===================================================== */
 
 
@@ -12,62 +12,55 @@
 const ATTENDANCE_VIDEOS = {
 
     before:
-
     "assets/attendance/before-checkin/before-checkin.mp4",
 
     after:
-
     "assets/attendance/after-checkin/after-checkin.mp4",
 
-    holiday:
-
-    "assets/attendance/holiday/holiday.mp4",
-
-    leave:
-
-    "assets/attendance/leave/leave.mp4",
-
     afternoon:
-
     "assets/attendance/afternoon/afternoon.mp4",
 
     evening:
-
     "assets/attendance/evening/evening.mp4",
 
     night:
+    "assets/attendance/night/night.mp4",
 
-    "assets/attendance/night/night.mp4"
+    holiday:
+    "assets/attendance/holiday/holiday.mp4",
+
+    leave:
+    "assets/attendance/leave/leave.mp4"
 
 };
 
 
 /* =====================================================
-   LOOP SETTINGS
+   LOOP CONFIG
 ===================================================== */
 
-const ATTENDANCE_END_HOLD =
+const ATTENDANCE_HOLD_TIME =
 
-5000;
+3000;
 
-const ATTENDANCE_FADE_DURATION =
+const ATTENDANCE_FADE_TIME =
 
 550;
 
+const ATTENDANCE_TIME_CHECK =
+
+60000;
+
 
 /* =====================================================
-   VIDEO STATE
+   STATE
 ===================================================== */
 
-let currentAttendanceVideo =
+let attendanceCurrentVideo =
 
-null;
+"";
 
-let attendanceLoopRunning =
-
-false;
-
-let attendanceEndTimer =
+let attendanceLoopTimer =
 
 null;
 
@@ -75,52 +68,9 @@ let attendanceFadeTimer =
 
 null;
 
-let attendanceUnlockTimer =
+let attendanceTimeWatcher =
 
 null;
-
-
-/* =====================================================
-   CLEAR TIMER
-===================================================== */
-
-function clearAttendanceLoop(){
-
-    clearTimeout(
-
-        attendanceEndTimer
-
-    );
-
-    clearTimeout(
-
-        attendanceFadeTimer
-
-    );
-
-    clearTimeout(
-
-        attendanceUnlockTimer
-
-    );
-
-    attendanceEndTimer =
-
-    null;
-
-    attendanceFadeTimer =
-
-    null;
-
-    attendanceUnlockTimer =
-
-    null;
-
-    attendanceLoopRunning =
-
-    false;
-
-}
 
 
 /* =====================================================
@@ -139,14 +89,290 @@ function getAttendanceVideo(){
 
 
 /* =====================================================
+   CLEAR TIMER
+===================================================== */
+
+function clearAttendanceTimer(){
+
+    clearTimeout(
+
+        attendanceLoopTimer
+
+    );
+
+    clearTimeout(
+
+        attendanceFadeTimer
+
+    );
+
+}
+
+
+/* =====================================================
+   GET CURRENT HOUR
+===================================================== */
+
+function getAttendanceHour(){
+
+    return new Date()
+
+    .getHours();
+
+}
+
+
+/* =====================================================
+   GET VIDEO PATH
+===================================================== */
+
+function getAttendanceVideoPath(){
+
+    /* =====================
+       NO ATTENDANCE
+    ===================== */
+
+    if(
+
+        !Attendance.current
+
+    ){
+
+        return ATTENDANCE_VIDEOS.before;
+
+    }
+
+    /* =====================
+       CURRENT STATUS
+    ===================== */
+
+    const status =
+
+    Attendance.current.status;
+
+    /* =====================
+       HOLIDAY
+    ===================== */
+
+    if(
+
+        status==="Holiday"
+
+    ){
+
+        return ATTENDANCE_VIDEOS.holiday;
+
+    }
+
+    /* =====================
+       LEAVE / SICK
+    ===================== */
+
+    if(
+
+        status==="Leave" ||
+
+        status==="Sick"
+
+    ){
+
+        return ATTENDANCE_VIDEOS.leave;
+
+    }
+
+    /* =====================
+       NORMAL WORKDAY
+    ===================== */
+
+    const hour =
+
+    getAttendanceHour();
+
+    /* =====================
+       AFTERNOON
+    ===================== */
+
+    if(
+
+        hour>=12 &&
+
+        hour<16
+
+    ){
+
+        return ATTENDANCE_VIDEOS.afternoon;
+
+    }
+
+    /* =====================
+       EVENING
+    ===================== */
+
+    if(
+
+        hour>=16 &&
+
+        hour<22
+
+    ){
+
+        return ATTENDANCE_VIDEOS.evening;
+
+    }
+
+    /* =====================
+       NIGHT
+    ===================== */
+
+    if(
+
+        hour>=22
+
+    ){
+
+        return ATTENDANCE_VIDEOS.night;
+
+    }
+
+    /* =====================
+       DEFAULT
+    ===================== */
+
+    return ATTENDANCE_VIDEOS.after;
+
+}
+
+/* =====================================================
+   VIDEO STATE
+===================================================== */
+
+let attendanceChanging =
+
+false;
+
+
+/* =====================================================
+   FADE OUT
+===================================================== */
+
+function fadeOutAttendanceVideo(){
+
+    const video =
+
+    getAttendanceVideo();
+
+    if(!video) return;
+
+    video.classList.add(
+
+        "video-fade"
+
+    );
+
+}
+
+
+/* =====================================================
+   FADE IN
+===================================================== */
+
+function fadeInAttendanceVideo(){
+
+    const video =
+
+    getAttendanceVideo();
+
+    if(!video) return;
+
+    requestAnimationFrame(()=>{
+
+        requestAnimationFrame(()=>{
+
+            video.classList.remove(
+
+                "video-fade"
+
+            );
+
+        });
+
+    });
+
+}
+
+
+/* =====================================================
+   CHANGE VIDEO
+===================================================== */
+
+function changeAttendanceVideo(videoPath){
+
+    const video =
+
+    getAttendanceVideo();
+
+    if(
+
+        !video ||
+
+        attendanceChanging
+
+    ){
+
+        return;
+
+    }
+
+    attendanceChanging =
+
+    true;
+
+    clearAttendanceTimer();
+
+    attendanceCurrentVideo =
+
+    videoPath;
+
+    fadeOutAttendanceVideo();
+
+    attendanceFadeTimer =
+
+    setTimeout(()=>{
+
+        video.pause();
+
+        video.src =
+
+        videoPath;
+
+        video.load();
+
+        video.currentTime =
+
+        0;
+
+        video.play()
+
+        .catch(()=>{});
+
+        fadeInAttendanceVideo();
+
+        attendanceChanging =
+
+        false;
+
+    },
+
+    ATTENDANCE_FADE_TIME);
+
+}
+
+
+/* =====================================================
    PLAY VIDEO
 ===================================================== */
 
-function playAttendanceVideo(
-
-    videoPath
-
-){
+function playAttendanceVideo(videoPath){
 
     const video =
 
@@ -164,333 +390,29 @@ function playAttendanceVideo(
 
     }
 
-    /* SAME VIDEO */
-
     if(
 
-        currentAttendanceVideo ===
+        attendanceCurrentVideo===
 
         videoPath
 
     ){
 
-        if(
-
-            video.paused &&
-
-            !attendanceLoopRunning
-
-        ){
-
-            video.play()
-
-            .catch(()=>{});
-
-        }
-
         return;
 
     }
 
-    clearAttendanceLoop();
+    changeAttendanceVideo(
 
-    currentAttendanceVideo =
-
-    videoPath;
-
-    video.classList.remove(
-
-        "video-fade"
-
-    );
-
-    video.pause();
-
-    video.src =
-
-    videoPath;
-
-    video.load();
-
-    const playPromise =
-
-    video.play();
-
-    if(
-
-        playPromise !==
-
-        undefined
-
-    ){
-
-        playPromise.catch(
-
-            error=>{
-
-                console.warn(
-
-                    "Attendance Video:",
-
-                    error
-
-                );
-
-            }
-
-        );
-
-    }
-
-}
-
-
-/* =====================================================
-   CURRENT HOUR
-===================================================== */
-
-function getAttendanceHour(){
-
-    return new Date()
-
-    .getHours();
-
-       }
-
-/* =====================================================
-   CHECK TODAY ATTENDANCE
-===================================================== */
-
-function isAttendanceToday(){
-
-    if(
-
-        !Attendance.current
-
-    ){
-
-        return false;
-
-    }
-
-    const today =
-
-    new Date()
-
-    .toLocaleDateString(
-
-        "id-ID"
-
-    );
-
-    return (
-
-        Attendance.current.date ===
-
-        today
-
-    );
-
-}
-/* =====================================================
-   UPDATE ATTENDANCE VIDEO
-===================================================== */
-
-function updateAttendanceAnimation(){
-
-    /* =====================
-       CURRENT HOUR
-    ===================== */
-
-    const hour =
-
-    getAttendanceHour();
-
-
-    /* =====================
-       NO ATTENDANCE TODAY
-    ===================== */
-
-    if(
-
-    !Attendance.current
-
-){
-
-    playAttendanceVideo(
-
-        ATTENDANCE_VIDEOS.before
-
-    );
-
-    return;
-
-}
-
-
-    /* =====================
-       CURRENT STATUS
-    ===================== */
-
-    const status =
-
-    Attendance.current.status;
-
-
-    /* =====================
-       HOLIDAY
-       (Ignore Time)
-    ===================== */
-
-    if(
-
-        status ===
-
-        "Holiday"
-
-    ){
-
-        playAttendanceVideo(
-
-            ATTENDANCE_VIDEOS.holiday
-
-        );
-
-        return;
-
-    }
-
-
-    /* =====================
-       LEAVE / SICK
-       (Ignore Time)
-    ===================== */
-
-    if(
-
-        status ===
-
-        "Leave" ||
-
-        status ===
-
-        "Sick"
-
-    ){
-
-        playAttendanceVideo(
-
-            ATTENDANCE_VIDEOS.leave
-
-        );
-
-        return;
-
-    }
-
-
-    /* =================================================
-       NORMAL WORKDAY
-
-       Status :
-
-       On Time
-
-       Late
-    ================================================= */
-
-
-    /* =====================
-       AFTERNOON
-
-       12.00 - 15.59
-    ===================== */
-
-    if(
-
-        hour >= 12 &&
-
-        hour < 16
-
-    ){
-
-        playAttendanceVideo(
-
-            ATTENDANCE_VIDEOS.afternoon
-
-        );
-
-        return;
-
-    }
-
-
-    /* =====================
-       EVENING
-
-       16.00 - 21.59
-    ===================== */
-
-    if(
-
-        hour >= 16 &&
-
-        hour < 22
-
-    ){
-
-        playAttendanceVideo(
-
-            ATTENDANCE_VIDEOS.evening
-
-        );
-
-        return;
-
-    }
-
-
-    /* =====================
-       NIGHT
-
-       22.00 - 23.59
-    ===================== */
-
-    if(
-
-        hour >= 22
-
-    ){
-
-        playAttendanceVideo(
-
-            ATTENDANCE_VIDEOS.night
-
-        );
-
-        return;
-
-    }
-
-
-    /* =====================
-       DEFAULT
-
-       00.00 - 11.59
-
-       AFTER CHECK-IN
-    ===================== */
-
-    playAttendanceVideo(
-
-        ATTENDANCE_VIDEOS.after
+        videoPath
 
     );
 
 }
 
+
 /* =====================================================
-   SMOOTH VIDEO LOOP
+   RESTART VIDEO
 ===================================================== */
 
 function restartAttendanceVideo(){
@@ -503,7 +425,7 @@ function restartAttendanceVideo(){
 
         !video ||
 
-        attendanceLoopRunning
+        attendanceChanging
 
     ){
 
@@ -511,164 +433,89 @@ function restartAttendanceVideo(){
 
     }
 
+    clearAttendanceTimer();
 
-    /* =====================
-       LOCK LOOP
-    ===================== */
-
-    attendanceLoopRunning =
-
-    true;
-
-
-    /* =====================
-       HOLD LAST FRAME
-    ===================== */
-
-    attendanceEndTimer =
+    attendanceLoopTimer =
 
     setTimeout(()=>{
 
-
-        /* =====================
-           FADE OUT
-        ===================== */
-
-        video.classList.add(
-
-            "video-fade"
-
-        );
-
-
-        /* =====================
-           WAIT UNTIL FADE
-        ===================== */
+        fadeOutAttendanceVideo();
 
         attendanceFadeTimer =
 
         setTimeout(()=>{
 
-
-            /* =====================
-               BACK TO START
-            ===================== */
-
             video.currentTime =
 
             0;
 
+            video.play()
 
-            /* =====================
-               PLAY AGAIN
-            ===================== */
+            .catch(()=>{});
 
-            const playPromise =
-
-            video.play();
-
-
-            if(
-
-                playPromise !==
-
-                undefined
-
-            ){
-
-                playPromise.catch(
-
-                    error=>{
-
-                        console.warn(
-
-                            "Attendance Restart:",
-
-                            error
-
-                        );
-
-                    }
-
-                );
-
-            }
-
-
-            /* =====================
-               FADE IN
-            ===================== */
-
-            requestAnimationFrame(()=>{
-
-                requestAnimationFrame(()=>{
-
-                    video.classList.remove(
-
-                        "video-fade"
-
-                    );
-
-                });
-
-            });
-
-
-            /* =====================
-               UNLOCK LOOP
-            ===================== */
-
-            attendanceUnlockTimer =
-
-            setTimeout(()=>{
-
-                attendanceLoopRunning =
-
-                false;
-
-            },
-
-            ATTENDANCE_FADE_DURATION
-
-            );
-
+            fadeInAttendanceVideo();
 
         },
 
-        ATTENDANCE_FADE_DURATION
-
-        );
-
+        ATTENDANCE_FADE_TIME);
 
     },
 
-    ATTENDANCE_END_HOLD
-
-    );
+    ATTENDANCE_HOLD_TIME);
 
 }
 
 
 /* =====================================================
-   INITIALIZE
+   UPDATE VIDEO
 ===================================================== */
 
-function initializeAttendanceAnimation(){
+function updateAttendanceAnimation(){
+
+    playAttendanceVideo(
+
+        getAttendanceVideoPath()
+
+    );
+
+}
+
+/* =====================================================
+   TIME WATCHER
+===================================================== */
+
+function startAttendanceWatcher(){
+
+    clearInterval(
+
+        attendanceTimeWatcher
+
+    );
+
+    attendanceTimeWatcher =
+
+    setInterval(()=>{
+
+        updateAttendanceAnimation();
+
+    },
+
+    ATTENDANCE_TIME_CHECK);
+
+}
+
+
+/* =====================================================
+   VIDEO EVENT
+===================================================== */
+
+function initializeAttendanceVideo(){
 
     const video =
 
     getAttendanceVideo();
 
-    if(
-
-        !video
-
-    ){
-
-        return;
-
-    }
-
+    if(!video) return;
 
     /* =====================
        REMOVE OLD EVENT
@@ -682,7 +529,6 @@ function initializeAttendanceAnimation(){
 
     );
 
-
     /* =====================
        LOOP EVENT
     ===================== */
@@ -694,7 +540,6 @@ function initializeAttendanceAnimation(){
         restartAttendanceVideo
 
     );
-
 
     /* =====================
        ERROR
@@ -718,14 +563,49 @@ function initializeAttendanceAnimation(){
 
     );
 
+}
 
-    /* =====================
-       LOAD FIRST VIDEO
-    ===================== */
+
+/* =====================================================
+   INITIALIZE
+===================================================== */
+
+function initializeAttendanceAnimation(){
+
+    initializeAttendanceVideo();
+
+    startAttendanceWatcher();
 
     updateAttendanceAnimation();
 
 }
+
+
+/* =====================================================
+   PAGE VISIBILITY
+===================================================== */
+
+document.addEventListener(
+
+    "visibilitychange",
+
+    ()=>{
+
+        if(
+
+            document.hidden
+
+        ){
+
+            return;
+
+        }
+
+        updateAttendanceAnimation();
+
+    }
+
+);
 
 
 /* =====================================================
