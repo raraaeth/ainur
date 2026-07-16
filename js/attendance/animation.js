@@ -313,7 +313,7 @@ function updateAttendanceAnimation(){
 
     if(
 
-    !isAttendanceToday()
+    !Attendance.current
 
 ){
 
@@ -325,7 +325,7 @@ function updateAttendanceAnimation(){
 
     return;
 
-    }
+}
 
 
     /* =====================
