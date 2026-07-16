@@ -6,37 +6,38 @@
 
 
 /* =====================================================
-   ATTENDANCE VIDEO PATH
+   VIDEO PATH
 ===================================================== */
 
 const ATTENDANCE_VIDEOS = {
-
-    /* BEFORE CHECK-IN */
 
     before:
 
     "assets/attendance/before-checkin/before-checkin.mp4",
 
-
-    /* ON TIME / LATE */
-
-    work:
+    after:
 
     "assets/attendance/after-checkin/after-checkin.mp4",
-
-
-    /* TEMPORARY */
 
     holiday:
 
-    "assets/attendance/after-checkin/after-checkin.mp4",
-
-
-    /* TEMPORARY */
+    "assets/attendance/holiday/holiday.mp4",
 
     leave:
 
-    "assets/attendance/after-checkin/after-checkin.mp4"
+    "assets/attendance/leave/leave.mp4",
+
+    afternoon:
+
+    "assets/attendance/afternoon/afternoon.mp4",
+
+    evening:
+
+    "assets/attendance/evening/evening.mp4",
+
+    night:
+
+    "assets/attendance/night/night.mp4"
 
 };
 
@@ -45,23 +46,9 @@ const ATTENDANCE_VIDEOS = {
    LOOP SETTINGS
 ===================================================== */
 
-
-/* FINAL FRAME HOLD
-
-5000 = 5 seconds
-
-*/
-
 const ATTENDANCE_END_HOLD =
 
 5000;
-
-
-/* FADE DURATION
-
-550 = 0.55 seconds
-
-*/
 
 const ATTENDANCE_FADE_DURATION =
 
@@ -72,36 +59,21 @@ const ATTENDANCE_FADE_DURATION =
    VIDEO STATE
 ===================================================== */
 
-
-/* CURRENT VIDEO PATH */
-
 let currentAttendanceVideo =
 
 null;
-
-
-/* PREVENT DOUBLE LOOP */
 
 let attendanceLoopRunning =
 
 false;
 
-
-/* END FRAME TIMER */
-
 let attendanceEndTimer =
 
 null;
 
-
-/* FADE TIMER */
-
 let attendanceFadeTimer =
 
 null;
-
-
-/* UNLOCK TIMER */
 
 let attendanceUnlockTimer =
 
@@ -109,86 +81,40 @@ null;
 
 
 /* =====================================================
-   CLEAR VIDEO LOOP TIMER
+   CLEAR TIMER
 ===================================================== */
 
 function clearAttendanceLoop(){
 
-    /* =====================
-       CLEAR END HOLD
-    ===================== */
-
-    if(
+    clearTimeout(
 
         attendanceEndTimer
 
-    ){
+    );
 
-        clearTimeout(
-
-            attendanceEndTimer
-
-        );
-
-
-        attendanceEndTimer =
-
-        null;
-
-    }
-
-
-    /* =====================
-       CLEAR FADE
-    ===================== */
-
-    if(
+    clearTimeout(
 
         attendanceFadeTimer
 
-    ){
+    );
 
-        clearTimeout(
-
-            attendanceFadeTimer
-
-        );
-
-
-        attendanceFadeTimer =
-
-        null;
-
-    }
-
-
-    /* =====================
-       CLEAR UNLOCK
-    ===================== */
-
-    if(
+    clearTimeout(
 
         attendanceUnlockTimer
 
-    ){
+    );
 
-        clearTimeout(
+    attendanceEndTimer =
 
-            attendanceUnlockTimer
+    null;
 
-        );
+    attendanceFadeTimer =
 
+    null;
 
-        attendanceUnlockTimer =
+    attendanceUnlockTimer =
 
-        null;
-
-    }
-
-
-    /* =====================
-       RESET LOOP STATE
-    ===================== */
+    null;
 
     attendanceLoopRunning =
 
@@ -198,7 +124,22 @@ function clearAttendanceLoop(){
 
 
 /* =====================================================
-   PLAY ATTENDANCE VIDEO
+   GET VIDEO ELEMENT
+===================================================== */
+
+function getAttendanceVideo(){
+
+    return document.getElementById(
+
+        "attendanceCharacter"
+
+    );
+
+}
+
+
+/* =====================================================
+   PLAY VIDEO
 ===================================================== */
 
 function playAttendanceVideo(
@@ -209,16 +150,7 @@ function playAttendanceVideo(
 
     const video =
 
-    document.getElementById(
-
-        "attendanceCharacter"
-
-    );
-
-
-    /* =====================
-       VALIDATION
-    ===================== */
+    getAttendanceVideo();
 
     if(
 
@@ -232,10 +164,7 @@ function playAttendanceVideo(
 
     }
 
-
-    /* =====================
-       SAME VIDEO
-    ===================== */
+    /* SAME VIDEO */
 
     if(
 
@@ -245,22 +174,9 @@ function playAttendanceVideo(
 
     ){
 
-        /* REMOVE FADE */
-
-        video.classList.remove(
-
-            "video-fade"
-
-        );
-
-
-        /* CONTINUE VIDEO */
-
         if(
 
             video.paused &&
-
-            !video.ended &&
 
             !attendanceLoopRunning
 
@@ -272,31 +188,15 @@ function playAttendanceVideo(
 
         }
 
-
         return;
 
     }
 
-
-    /* =====================
-       CLEAR OLD LOOP
-    ===================== */
-
     clearAttendanceLoop();
-
-
-    /* =====================
-       SAVE CURRENT VIDEO
-    ===================== */
 
     currentAttendanceVideo =
 
     videoPath;
-
-
-    /* =====================
-       RESET FADE
-    ===================== */
 
     video.classList.remove(
 
@@ -304,30 +204,17 @@ function playAttendanceVideo(
 
     );
 
-
-    /* =====================
-       CHANGE VIDEO
-    ===================== */
-
     video.pause();
-
 
     video.src =
 
     videoPath;
 
-
     video.load();
-
-
-    /* =====================
-       PLAY NEW VIDEO
-    ===================== */
 
     const playPromise =
 
     video.play();
-
 
     if(
 
@@ -337,15 +224,13 @@ function playAttendanceVideo(
 
     ){
 
-        playPromise
-
-        .catch(
+        playPromise.catch(
 
             error=>{
 
                 console.warn(
 
-                    "Attendance video autoplay blocked:",
+                    "Attendance Video:",
 
                     error
 
@@ -361,23 +246,223 @@ function playAttendanceVideo(
 
 
 /* =====================================================
-   RESTART VIDEO WITH SMOOTH FADE
+   CURRENT HOUR
+===================================================== */
+
+function getAttendanceHour(){
+
+    return new Date()
+
+    .getHours();
+
+       }
+
+/* =====================================================
+   UPDATE ATTENDANCE VIDEO
+===================================================== */
+
+function updateAttendanceAnimation(){
+
+    /* =====================
+       CURRENT HOUR
+    ===================== */
+
+    const hour =
+
+    getAttendanceHour();
+
+
+    /* =====================
+       NO ATTENDANCE TODAY
+    ===================== */
+
+    if(
+
+        !Attendance.current
+
+    ){
+
+        playAttendanceVideo(
+
+            ATTENDANCE_VIDEOS.before
+
+        );
+
+        return;
+
+    }
+
+
+    /* =====================
+       CURRENT STATUS
+    ===================== */
+
+    const status =
+
+    Attendance.current.status;
+
+
+    /* =====================
+       HOLIDAY
+       (Ignore Time)
+    ===================== */
+
+    if(
+
+        status ===
+
+        "Holiday"
+
+    ){
+
+        playAttendanceVideo(
+
+            ATTENDANCE_VIDEOS.holiday
+
+        );
+
+        return;
+
+    }
+
+
+    /* =====================
+       LEAVE / SICK
+       (Ignore Time)
+    ===================== */
+
+    if(
+
+        status ===
+
+        "Leave" ||
+
+        status ===
+
+        "Sick"
+
+    ){
+
+        playAttendanceVideo(
+
+            ATTENDANCE_VIDEOS.leave
+
+        );
+
+        return;
+
+    }
+
+
+    /* =================================================
+       NORMAL WORKDAY
+
+       Status :
+
+       On Time
+
+       Late
+    ================================================= */
+
+
+    /* =====================
+       AFTERNOON
+
+       12.00 - 15.59
+    ===================== */
+
+    if(
+
+        hour >= 12 &&
+
+        hour < 16
+
+    ){
+
+        playAttendanceVideo(
+
+            ATTENDANCE_VIDEOS.afternoon
+
+        );
+
+        return;
+
+    }
+
+
+    /* =====================
+       EVENING
+
+       16.00 - 21.59
+    ===================== */
+
+    if(
+
+        hour >= 16 &&
+
+        hour < 22
+
+    ){
+
+        playAttendanceVideo(
+
+            ATTENDANCE_VIDEOS.evening
+
+        );
+
+        return;
+
+    }
+
+
+    /* =====================
+       NIGHT
+
+       22.00 - 23.59
+    ===================== */
+
+    if(
+
+        hour >= 22
+
+    ){
+
+        playAttendanceVideo(
+
+            ATTENDANCE_VIDEOS.night
+
+        );
+
+        return;
+
+    }
+
+
+    /* =====================
+       DEFAULT
+
+       00.00 - 11.59
+
+       AFTER CHECK-IN
+    ===================== */
+
+    playAttendanceVideo(
+
+        ATTENDANCE_VIDEOS.after
+
+    );
+
+}
+
+/* =====================================================
+   SMOOTH VIDEO LOOP
 ===================================================== */
 
 function restartAttendanceVideo(){
 
     const video =
 
-    document.getElementById(
-
-        "attendanceCharacter"
-
-    );
-
-
-    /* =====================
-       VALIDATION
-    ===================== */
+    getAttendanceVideo();
 
     if(
 
@@ -401,12 +486,9 @@ function restartAttendanceVideo(){
     true;
 
 
-    /* =================================================
-       HOLD FINAL FRAME
-
-       Keep the final video frame visible
-       for five seconds.
-    ================================================= */
+    /* =====================
+       HOLD LAST FRAME
+    ===================== */
 
     attendanceEndTimer =
 
@@ -424,9 +506,9 @@ function restartAttendanceVideo(){
         );
 
 
-        /* =============================================
-           WAIT UNTIL VIDEO IS COMPLETELY HIDDEN
-        ============================================= */
+        /* =====================
+           WAIT UNTIL FADE
+        ===================== */
 
         attendanceFadeTimer =
 
@@ -434,7 +516,7 @@ function restartAttendanceVideo(){
 
 
             /* =====================
-               RETURN TO FIRST FRAME
+               BACK TO START
             ===================== */
 
             video.currentTime =
@@ -443,7 +525,7 @@ function restartAttendanceVideo(){
 
 
             /* =====================
-               PLAY FROM BEGINNING
+               PLAY AGAIN
             ===================== */
 
             const playPromise =
@@ -459,15 +541,13 @@ function restartAttendanceVideo(){
 
             ){
 
-                playPromise
-
-                .catch(
+                playPromise.catch(
 
                     error=>{
 
                         console.warn(
 
-                            "Attendance video restart blocked:",
+                            "Attendance Restart:",
 
                             error
 
@@ -500,33 +580,16 @@ function restartAttendanceVideo(){
 
 
             /* =====================
-               UNLOCK NEXT LOOP
+               UNLOCK LOOP
             ===================== */
 
             attendanceUnlockTimer =
 
             setTimeout(()=>{
 
-
                 attendanceLoopRunning =
 
                 false;
-
-
-                attendanceEndTimer =
-
-                null;
-
-
-                attendanceFadeTimer =
-
-                null;
-
-
-                attendanceUnlockTimer =
-
-                null;
-
 
             },
 
@@ -552,27 +615,20 @@ function restartAttendanceVideo(){
 
 
 /* =====================================================
-   UPDATE ATTENDANCE VIDEO
+   INITIALIZE
 ===================================================== */
 
-function updateAttendanceAnimation(){
+function initializeAttendanceAnimation(){
 
-    /* =====================
-       BEFORE CHECK-IN
-    ===================== */
+    const video =
+
+    getAttendanceVideo();
 
     if(
 
-        !Attendance.current
+        !video
 
     ){
-
-        playAttendanceVideo(
-
-            ATTENDANCE_VIDEOS.before
-
-        );
-
 
         return;
 
@@ -580,77 +636,65 @@ function updateAttendanceAnimation(){
 
 
     /* =====================
-       CURRENT STATUS
+       REMOVE OLD EVENT
     ===================== */
 
-    const status =
+    video.removeEventListener(
 
-    Attendance.current.status;
+        "ended",
 
-
-    /* =====================
-       HOLIDAY
-    ===================== */
-
-    if(
-
-        status ===
-
-        "Holiday"
-
-    ){
-
-        playAttendanceVideo(
-
-            ATTENDANCE_VIDEOS.holiday
-
-        );
-
-
-        return;
-
-    }
-
-
-    /* =====================
-       SICK / LEAVE
-    ===================== */
-
-    if(
-
-        status === "Sick" ||
-
-        status === "Leave"
-
-    ){
-
-        playAttendanceVideo(
-
-            ATTENDANCE_VIDEOS.leave
-
-        );
-
-
-        return;
-
-    }
-
-
-    /* =====================
-       ON TIME / LATE
-    ===================== */
-
-    playAttendanceVideo(
-
-        ATTENDANCE_VIDEOS.work
+        restartAttendanceVideo
 
     );
+
+
+    /* =====================
+       LOOP EVENT
+    ===================== */
+
+    video.addEventListener(
+
+        "ended",
+
+        restartAttendanceVideo
+
+    );
+
+
+    /* =====================
+       ERROR
+    ===================== */
+
+    video.addEventListener(
+
+        "error",
+
+        ()=>{
+
+            console.error(
+
+                "Attendance video not found:",
+
+                video.currentSrc
+
+            );
+
+        }
+
+    );
+
+
+    /* =====================
+       LOAD FIRST VIDEO
+    ===================== */
+
+    updateAttendanceAnimation();
 
 }
 
 
 /* =====================================================
-   INITIALIZE ATTENDANCE VIDEO
+   AUTO START
 ===================================================== */
 
 document.addEventListener(
@@ -659,70 +703,7 @@ document.addEventListener(
 
     ()=>{
 
-
-        /* =====================
-           GET VIDEO
-        ===================== */
-
-        const video =
-
-        document.getElementById(
-
-            "attendanceCharacter"
-
-        );
-
-
-        /* =====================
-           VALIDATION
-        ===================== */
-
-        if(
-
-            !video
-
-        ){
-
-            return;
-
-        }
-
-
-        /* =====================
-           VIDEO FINISHED
-        ===================== */
-
-        video.addEventListener(
-
-            "ended",
-
-            restartAttendanceVideo
-
-        );
-
-
-        /* =====================
-           VIDEO ERROR
-        ===================== */
-
-        video.addEventListener(
-
-            "error",
-
-            ()=>{
-
-                console.error(
-
-                    "Attendance video failed to load:",
-
-                    video.currentSrc
-
-                );
-
-            }
-
-        );
-
+        initializeAttendanceAnimation();
 
     }
 
